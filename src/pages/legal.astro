@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Link from "../components/Link.astro";
+---
+
+<Layout>
+  <!-- <Link value="/" label="← Accueil" /> -->
+  <div id="legal">
+    <h1>Mentions Légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <ul>
+      <li>Raison Sociale : Romuald Tisserand</li>
+      <li>Adresse : 17 rue Henri Fiollin, 44400 REZE</li>
+      <li>Email : romuald@rinno.fr</li>
+      <li>Directeur de la publication : Romuald Tisserand</li>
+    </ul>
+
+    <h2>Hébergeur</h2>
+    <ul>
+      <li>Nom : GitHub</li>
+      <li>
+        Adresse : 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis
+      </li>
+      <li>Site Web : github.com</li>
+    </ul>
+
+    <h2>Informations légales</h2>
+    <ul>
+      <li>SIRET : 79901119200025</li>
+      <li>SIREN : 799011192</li>
+      <li>
+        Protection des données personnelles : Aucune collecte de données
+        personnelles ou de cookies n'est effectuée sur ce site.
+      </li>
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  #legal {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    align-self: center;
+  }
+
+  li {
+    font-family: "MuseoModerno", sans-serif;
+    color: var(--primary-color);
+    list-style: none;
+    position: relative;
+  }
+
+  li::before {
+    content: "→";
+    position: absolute;
+    left: -1.5rem;
+    color: var(--primary-color);
+  }
+
+  /* Ajuster la taille de base pour les écrans plus petits */
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+      padding: 1rem;
+    }
+  }
+
+  /* Ajuster la taille de base pour les écrans plus grands */
+  @media (min-width: 1440px) {
+    html {
+      font-size: 18px;
+    }
+  }
+</style>

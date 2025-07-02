@@ -1,0 +1,12 @@
+---
+const { id, type, value, label } = Astro.props;
+---
+
+<a href={value}>{label}</a>
+
+<style>
+  a {
+    font-family: "MuseoModerno", sans-serif;
+    color: var(--primary-color);
+  }
+</style>

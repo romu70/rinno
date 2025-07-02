@@ -1,5 +1,6 @@
 ---
 import Home from "../components/Home.astro";
+import Link from "../components/Link.astro";
 import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,5 +8,19 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Home />
+  <div id="home">
+    <Home />
+    <Link value="./legal" label="Mentions légales" />
+  </div>
 </Layout>
+
+<style>
+  #home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+</style>
