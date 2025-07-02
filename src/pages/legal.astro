@@ -4,7 +4,6 @@ import Link from "../components/Link.astro";
 ---
 
 <Layout>
-  <!-- <Link value="/" label="← Accueil" /> -->
   <div id="legal">
     <h1>Mentions Légales</h1>
 
@@ -67,12 +66,31 @@ import Link from "../components/Link.astro";
       font-size: 14px;
       padding: 1rem;
     }
+
+    #legal {
+      width: 70%;
+    }
   }
 
+  @media (min-width: 768px) {
+    #legal {
+      width: 60%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    #legal {
+      width: 55%;
+    }
+  }
   /* Ajuster la taille de base pour les écrans plus grands */
   @media (min-width: 1440px) {
     html {
       font-size: 18px;
+    }
+
+    #legal {
+      width: 50%;
     }
   }
 </style>
