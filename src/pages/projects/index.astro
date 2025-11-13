@@ -1,0 +1,172 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+---
+
+<Layout title="Projets - Romuald Tisserand">
+  <div class="projects-page">
+    <header class="page-header">
+      <h1>Projets</h1>
+      <p class="intro">
+        Découvrez mes projets professionnels et personnels, reflets de mon approche du Product Management et du Design.
+      </p>
+    </header>
+
+    <section class="projects-section">
+      <h2>Projets professionnels</h2>
+      <div class="projects-grid">
+        <ProjectCard
+          title="Meditect"
+          year="2022 - 2024"
+          description="Plateforme SaaS de détection de contrefaçons de médicaments par IA"
+          tags={["SaaS", "IA", "Product Management", "Healthtech"]}
+          status="soon"
+        />
+        <ProjectCard
+          title="Smart Rx"
+          year="2019 - 2022"
+          description="Application mobile pour la gestion des traitements médicamenteux"
+          tags={["Mobile", "Healthcare", "UX Design"]}
+          status="soon"
+        />
+        <ProjectCard
+          title="Novyspec"
+          year="2024 - présent"
+          description="Solution de spécifications techniques pour l'industrie pharmaceutique"
+          tags={["SaaS", "Pharma", "Product Design"]}
+          status="soon"
+        />
+      </div>
+    </section>
+
+    <section class="projects-section">
+      <h2>Projets personnels</h2>
+      <div class="projects-grid">
+        <ProjectCard
+          title="Coach Pizza"
+          year="2024 - présent"
+          description="Calculateur de pâte à pizza - De bidouille perso à reconnaissance professionnelle"
+          tags={["SaaS", "Astro", "React Native", "Mobile"]}
+          status="available"
+          link="/projects/personal/coach-pizza"
+        />
+        <ProjectCard
+          title="Galleries"
+          year="2021 - présent"
+          description="Collections visuelles : street art et typographie exposés"
+          tags={["Astro", "TypeScript", "GitHub Pages"]}
+          status="available"
+          link="/projects/personal/galleries"
+        />
+        <ProjectCard
+          title="ThoT"
+          year="2017"
+          description="Application d'aide aux réfugiés - Quand le vrai problème n'est pas celui attendu"
+          tags={["UX Design", "User Research", "Figma", "Gobelins"]}
+          status="available"
+          link="/projects/personal/thot"
+        />
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .projects-page {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .projects-section {
+    margin-bottom: 4rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .projects-section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  /* Responsive tablet */
+  @media (min-width: 768px) and (max-width: 1200px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .page-header {
+      margin-bottom: 5rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+
+    .intro {
+      font-size: 1.3rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    .projects-grid {
+      gap: 2.5rem;
+    }
+  }
+</style>
