@@ -1,7 +1,15 @@
+/* Fonts */
 @font-face {
     font-family: "Quicksand";
     src: url("/fonts/Quicksand-Regular.ttf") format("truetype");
     font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("/fonts/Quicksand-Bold.ttf") format("truetype");
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -47,10 +55,44 @@ p {
     margin-bottom: 0rem;
 }
 
+/* Links */
+a {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Responsive breakpoints */
+
 /* Ajuster la taille de base pour les écrans plus petits */
 @media (max-width: 768px) {
     html {
         font-size: 14px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* Medium screens (tablets/small desktops) */
+@media (min-width: 768px) and (max-width: 1200px) {
+    .container {
+        padding: 1.5rem;
     }
 }
 
@@ -58,5 +100,9 @@ p {
 @media (min-width: 1440px) {
     html {
         font-size: 18px;
+    }
+
+    .container {
+        padding: 3rem;
     }
 }
