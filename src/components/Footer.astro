@@ -4,75 +4,89 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <div class="footer-content">
-    <p>&copy; {currentYear} Romuald Tisserand - Tous droits réservés</p>
-    <a href="/legal">Mentions légales</a>
-  </div>
+    <div class="footer-content">
+        <p>&copy; {currentYear} - Tous droits réservés</p>
+        <a href="/legal">Mentions légales</a>
+    </div>
 </footer>
 
 <style>
-  footer {
-    width: 100%;
-    padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    margin-top: auto;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-  }
-
-  p {
-    font-family: "Quicksand", sans-serif;
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    margin: 0;
-    font-style: normal;
-  }
-
-  a {
-    font-family: "Quicksand", sans-serif;
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  a:hover {
-    color: var(--accent-color);
-  }
-
-  /* Responsive mobile */
-  @media (max-width: 768px) {
     footer {
-      padding: 1.5rem 1rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+        z-index: 1000;
     }
 
     .footer-content {
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem 2rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 1rem 1rem 0 0;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+        flex-wrap: wrap;
     }
 
-    p, a {
-      font-size: 0.8rem;
-    }
-  }
-
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    footer {
-      padding: 2.5rem;
+    p {
+        font-family: "Quicksand", sans-serif;
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        margin: 0;
+        font-style: normal;
     }
 
-    p, a {
-      font-size: 1rem;
+    a {
+        font-family: "Quicksand", sans-serif;
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
     }
-  }
+
+    a:hover {
+        color: var(--accent-color);
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+        footer {
+            padding: 0;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+        }
+
+        p,
+        a {
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Responsive large screens */
+    @media (min-width: 1440px) {
+        footer {
+            padding: 0;
+        }
+
+        .footer-content {
+            padding: 1.25rem 2.5rem;
+        }
+
+        p,
+        a {
+            font-size: 1rem;
+        }
+    }
 </style>

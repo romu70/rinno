@@ -24,10 +24,15 @@ const currentPath = Astro.url.pathname;
 
 <style>
     header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
         width: 100%;
-        padding: 1.5rem 2rem;
-        background-color: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(10px);
+        padding: 0;
+        z-index: 1000;
     }
 
     nav {
@@ -35,8 +40,10 @@ const currentPath = Astro.url.pathname;
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
+        padding: 1rem 2rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 0 0 1rem 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
 
     a {
@@ -73,11 +80,12 @@ const currentPath = Astro.url.pathname;
     /* Responsive mobile */
     @media (max-width: 768px) {
         header {
-            padding: 1rem;
+            padding: 0;
         }
 
         nav {
             gap: 1rem;
+            padding: 0.75rem 1.5rem;
         }
 
         a {
@@ -88,11 +96,12 @@ const currentPath = Astro.url.pathname;
     /* Responsive large screens */
     @media (min-width: 1440px) {
         header {
-            padding: 2rem;
+            padding: 0;
         }
 
         nav {
             gap: 3rem;
+            padding: 1.25rem 2.5rem;
         }
     }
 </style>
