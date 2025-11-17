@@ -1,12 +1,12 @@
 ---
 // Composant carte projet
 interface Props {
-  title: string;
-  year: string;
-  description: string;
-  tags?: string[];
-  status: "available" | "soon";
-  link?: string;
+    title: string;
+    year: string;
+    description: string;
+    tags?: string[];
+    status: "available" | "soon";
+    link?: string;
 }
 
 const { title, year, description, tags = [], status, link } = Astro.props;
@@ -14,156 +14,159 @@ const isClickable = status === "available" && link;
 const Tag = isClickable ? "a" : "div";
 ---
 
-<Tag href={isClickable ? link : undefined} class:list={["project-card", { clickable: isClickable, soon: status === "soon" }]}>
-  <div class="card-header">
-    <h3>{title}</h3>
-    <span class="year">{year}</span>
-  </div>
-  <p class="description">{description}</p>
-  {tags.length > 0 && (
-    <div class="tags">
-      {tags.map((tag) => (
-        <span class="tag">{tag}</span>
-      ))}
+<Tag
+    href={isClickable ? link : undefined}
+    class:list={[
+        "project-card",
+        { clickable: isClickable, soon: status === "soon" },
+    ]}
+>
+    <div class="card-header">
+        <h3>{title}</h3>
+        <span class="year">{year}</span>
     </div>
-  )}
-  <div class="status-badge" class:list={[status]}>
-    {status === "available" ? "Disponible" : "Bientôt disponible"}
-  </div>
+    <p class="description">{description}</p>
+    {
+        tags.length > 0 && (
+            <div class="tags">
+                {tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                ))}
+            </div>
+        )
+    }
+    <div class="status-badge" class:list={[status]}>
+        {status === "available" ? "Disponible" : "Bientôt disponible"}
+    </div>
 </Tag>
 
 <style>
-  .project-card {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(253, 240, 213, 0.2);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    position: relative;
-    display: block;
-    text-decoration: none;
-  }
-
-  .project-card.clickable {
-    cursor: pointer;
-  }
-
-  .project-card.clickable:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
-  }
-
-  .project-card.soon {
-    opacity: 0.7;
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    gap: 1rem;
-  }
-
-  h3 {
-    font-family: "Quicksand", sans-serif;
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin: 0;
-  }
-
-  .year {
-    font-family: "Quicksand", sans-serif;
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    font-weight: bold;
-    white-space: nowrap;
-  }
-
-  .description {
-    font-family: "Quicksand", sans-serif;
-    font-size: 1rem;
-    color: var(--primary-color);
-    line-height: 1.6;
-    margin: 0 0 1rem 0;
-    font-style: normal;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .tag {
-    font-family: "Quicksand", sans-serif;
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    background-color: rgba(253, 240, 213, 0.1);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    border: 1px solid rgba(253, 240, 213, 0.3);
-  }
-
-  .status-badge {
-    font-family: "Quicksand", sans-serif;
-    font-size: 0.85rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    display: inline-block;
-  }
-
-  .status-badge.available {
-    background-color: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
-    border: 1px solid #2ecc71;
-  }
-
-  .status-badge.soon {
-    background-color: rgba(241, 196, 15, 0.2);
-    color: #f1c40f;
-    border: 1px solid #f1c40f;
-  }
-
-  /* Responsive mobile */
-  @media (max-width: 768px) {
     .project-card {
-      padding: 1.2rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(253, 240, 213, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        display: block;
+        text-decoration: none;
+    }
+
+    .project-card.clickable {
+        cursor: pointer;
+    }
+
+    .project-card.clickable:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+    }
+
+    .project-card.soon {
+        opacity: 0.7;
     }
 
     .card-header {
-      flex-direction: column;
-      gap: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        gap: 1rem;
     }
 
     h3 {
-      font-size: 1.3rem;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin: 0;
+    }
+
+    .year {
+        font-size: 0.9rem;
+        color: var(--accent-color);
+        font-weight: bold;
+        white-space: nowrap;
     }
 
     .description {
-      font-size: 0.95rem;
+        font-size: 1rem;
+        color: var(--primary-color);
+        line-height: 1.6;
+        margin: 0 0 1rem 0;
+        font-style: normal;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     .tag {
-      font-size: 0.75rem;
-    }
-  }
-
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    .project-card {
-      padding: 2rem;
+        font-size: 0.8rem;
+        color: var(--primary-color);
+        background-color: rgba(253, 240, 213, 0.1);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        border: 1px solid rgba(253, 240, 213, 0.3);
     }
 
-    h3 {
-      font-size: 1.7rem;
+    .status-badge {
+        font-size: 0.85rem;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        display: inline-block;
     }
 
-    .description {
-      font-size: 1.1rem;
+    .status-badge.available {
+        background-color: rgba(46, 204, 113, 0.2);
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
     }
-  }
+
+    .status-badge.soon {
+        background-color: rgba(241, 196, 15, 0.2);
+        color: #f1c40f;
+        border: 1px solid #f1c40f;
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+        .project-card {
+            padding: 1.2rem;
+        }
+
+        .card-header {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        .description {
+            font-size: 0.95rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+        }
+    }
+
+    /* Responsive large screens */
+    @media (min-width: 1440px) {
+        .project-card {
+            padding: 2rem;
+        }
+
+        h3 {
+            font-size: 1.7rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+        }
+    }
 </style>

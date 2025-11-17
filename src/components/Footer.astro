@@ -4,7 +4,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-    <div class="footer-content">
+    <div class="footer-content glass-effect">
         <p>&copy; {currentYear} - Tous droits réservés</p>
         <a href="/legal">Mentions légales</a>
     </div>
@@ -29,14 +29,13 @@ const currentYear = new Date().getFullYear();
         align-items: center;
         gap: 2rem;
         padding: 1rem 2rem;
-        background-color: rgba(0, 0, 0, 0.3);
+        border-bottom: none;
         border-radius: 1rem 1rem 0 0;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
         flex-wrap: wrap;
     }
 
     p {
-        font-family: "Quicksand", sans-serif;
         font-size: 0.9rem;
         color: var(--primary-color);
         margin: 0;
@@ -44,15 +43,20 @@ const currentYear = new Date().getFullYear();
     }
 
     a {
-        font-family: "Quicksand", sans-serif;
         font-size: 0.9rem;
         color: var(--primary-color);
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition:
+            color 0.3s ease,
+            transform 0.2s ease,
+            text-decoration 0.3s ease;
+        position: relative;
     }
 
     a:hover {
-        color: var(--accent-color);
+        color: var(--color-dark);
+        transform: translateY(-2px);
+        text-decoration: underline;
     }
 
     /* Responsive mobile */
