@@ -23,7 +23,45 @@ const pageTitle = `${title} - Romuald Tisserand`;
             </div>
         </header>
 
-        <slot />
+        <section class="content-section">
+            <h2>Contexte</h2>
+            <slot name="contexte" />
+        </section>
+
+        <section class="content-section">
+            <h2>Challenge</h2>
+            <ul>
+                <slot name="challenge" />
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Actions</h2>
+            <ul>
+                <slot name="actions" />
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Résultats</h2>
+            <ul>
+                <slot name="resultats" />
+            </ul>
+        </section>
+
+        <section class="content-section highlight">
+            <h2>Apprentissages</h2>
+            <slot name="apprentissages" />
+        </section>
+
+        <section class="content-section">
+            <h2>Mots clé</h2>
+            <div class="keywords">
+                <slot name="keywords" />
+            </div>
+        </section>
+
+        <slot name="extra" />
 
         <footer class="project-footer">
             <a href="/perso" class="back-button">← Retour aux projets</a>

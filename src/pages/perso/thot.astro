@@ -7,8 +7,7 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
     subtitle="Quand le vrai problème n'est pas celui attendu"
     year="2017"
 >
-    <section class="content-section">
-        <h2>Contexte</h2>
+    <Fragment slot="contexte">
         <p>
             Projet de fin de formation de la certification UX Design aux
             Gobelins.
@@ -23,49 +22,36 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
             <strong>Brief initial :</strong> Aider les réfugiés à s'orienter dans
             Paris
         </p>
-    </section>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Challenge</h2>
-        <ul>
-            <li>Comprendre les vrais besoins des utilisateurs</li>
-            <li>Brief initial vs réalité terrain</li>
-            <li>Livrer une solution impactante en 3 mois</li>
-        </ul>
-    </section>
+    <Fragment slot="challenge">
+        <li>Comprendre les vrais besoins des utilisateurs</li>
+        <li>Brief initial vs réalité terrain</li>
+        <li>Livrer une solution impactante en 3 mois</li>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Actions</h2>
-        <ul>
-            <li>Phase de recherche approfondie avec les réfugiés</li>
-            <li>
-                Découverte : le vrai pain point est l'isolement, pas
-                l'orientation
-            </li>
-            <li>Pivot du concept vers une solution de connexion sociale</li>
-            <li>Conception d'une application mobile</li>
-            <li>
-                Itérations : idées papier → wireframes → prototype haute
-                fidélité
-            </li>
-        </ul>
-    </section>
+    <Fragment slot="actions">
+        <li>Phase de recherche approfondie avec les réfugiés</li>
+        <li>
+            Découverte : le vrai pain point est l'isolement, pas l'orientation
+        </li>
+        <li>Pivot du concept vers une solution de connexion sociale</li>
+        <li>Conception d'une application mobile</li>
+        <li>
+            Itérations : idées papier → wireframes → prototype haute fidélité
+        </li>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Résultats</h2>
-        <ul>
-            <li>
-                Meilleure note jamais attribuée à un projet de cette formation
-                aux Gobelins
-            </li>
-            <li>Prototype fonctionnel validé par les utilisateurs</li>
-            <li>Démonstration de l'importance du user research</li>
-        </ul>
-    </section>
+    <Fragment slot="resultats">
+        <li>
+            Meilleure note jamais attribuée à un projet de cette formation aux
+            Gobelins
+        </li>
+        <li>Prototype fonctionnel validé par les utilisateurs</li>
+        <li>Démonstration de l'importance du user research</li>
+    </Fragment>
 
-    <section class="content-section highlight">
-        <h2>Apprentissages</h2>
-
+    <Fragment slot="apprentissages">
         <h3>L'importance du problème réel vs le problème perçu</h3>
         <p>
             Ce projet a été une leçon fondamentale : le commanditaire pensait
@@ -81,19 +67,16 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
             appliquée ensuite chez Smart Rx, Meditect et Novyspec. C'est devenu
             un réflexe : comprendre d'abord, concevoir ensuite.
         </p>
-    </section>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Mots clé</h2>
-        <div class="keywords">
-            <span class="keyword">UX Design</span>
-            <span class="keyword">Mobile</span>
-            <span class="keyword">Figma</span>
-            <span class="keyword">User Research</span>
-            <span class="keyword">Gobelins</span>
-            <span class="keyword">UX Research</span>
-            <span class="keyword">Design Thinking</span>
-            <span class="keyword">Prototypage mobile</span>
-        </div>
-    </section>
+    <Fragment slot="keywords">
+        <span class="keyword">UX Design</span>
+        <span class="keyword">Mobile</span>
+        <span class="keyword">Figma</span>
+        <span class="keyword">User Research</span>
+        <span class="keyword">Gobelins</span>
+        <span class="keyword">UX Research</span>
+        <span class="keyword">Design Thinking</span>
+        <span class="keyword">Prototypage mobile</span>
+    </Fragment>
 </ProjectPersonal>

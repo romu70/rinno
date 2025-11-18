@@ -7,66 +7,52 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
     subtitle="De bidouille perso à reconnaissance professionnelle"
     year="2024 - présent"
 >
-    <section class="content-section">
-        <h2>Contexte</h2>
+    <Fragment slot="contexte">
         <p>
             Passionné de cuisine et de pizzas maison, j'ai créé Coach Pizza pour
             me faciliter la vie avec un calculateur simple de proportions.
             Double objectif : un outil utile au quotidien et parfaire mes
             compétences en développement web et mobile.
         </p>
-    </section>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Challenge</h2>
-        <ul>
-            <li>Créer un calculateur précis et ergonomique</li>
-            <li>Évoluer de web vers mobile</li>
-            <li>Monter en compétence sur React Native et Expo</li>
-        </ul>
-    </section>
+    <Fragment slot="challenge">
+        <li>Créer un calculateur précis et ergonomique</li>
+        <li>Évoluer de web vers mobile</li>
+        <li>Monter en compétence sur React Native et Expo</li>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Actions</h2>
-        <ul>
-            <li>V1 web développée avec Astro</li>
-            <li>Migration vers Expo pour une vraie application mobile</li>
-            <li>Développement avec assistance IA</li>
-            <li>Itérations basées sur mon usage réel</li>
-        </ul>
-    </section>
+    <Fragment slot="actions">
+        <li>V1 web développée avec Astro</li>
+        <li>Migration vers Expo pour une vraie application mobile</li>
+        <li>Développement avec assistance IA</li>
+        <li>Itérations basées sur mon usage réel</li>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Résultats</h2>
-        <ul>
-            <li>Un calculateur que j'utilise régulièrement</li>
-            <li>Montée en compétence React Native et développement mobile</li>
-            <li>
-                Reconnaissance inattendue : un champion du monde de la pizza m'a
-                contacté pour collaboration
-            </li>
-        </ul>
-    </section>
+    <Fragment slot="resultats">
+        <li>Un calculateur que j'utilise régulièrement</li>
+        <li>Montée en compétence React Native et développement mobile</li>
+        <li>
+            Reconnaissance inattendue : un champion du monde de la pizza m'a
+            contacté pour collaboration
+        </li>
+    </Fragment>
 
-    <section class="content-section highlight">
-        <h2>Apprentissages</h2>
+    <Fragment slot="apprentissages">
         <p>
             <em
                 >[Section à compléter avec vos propres réflexions et learnings]</em
             >
         </p>
-    </section>
+    </Fragment>
 
-    <section class="content-section">
-        <h2>Mots clé</h2>
-        <div class="keywords">
-            <span class="keyword">SaaS</span>
-            <span class="keyword">Astro</span>
-            <span class="keyword">Expo</span>
-            <span class="keyword">React Native</span>
-            <span class="keyword">Mobile</span>
-            <span class="keyword">No-code</span>
-            <span class="keyword">IA générative</span>
-        </div>
-    </section>
+    <Fragment slot="keywords">
+        <span class="keyword">SaaS</span>
+        <span class="keyword">Astro</span>
+        <span class="keyword">Expo</span>
+        <span class="keyword">React Native</span>
+        <span class="keyword">Mobile</span>
+        <span class="keyword">No-code</span>
+        <span class="keyword">IA générative</span>
+    </Fragment>
 </ProjectPersonal>
