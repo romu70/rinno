@@ -1,0 +1,103 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+    title: string;
+    intro: string;
+}
+
+const { title, intro } = Astro.props;
+const pageTitle = `${title} - Romuald Tisserand`;
+---
+
+<Layout title={pageTitle}>
+    <div class="projects-page">
+        <header class="page-header">
+            <h1>{title}</h1>
+            <p class="intro">{intro}</p>
+        </header>
+
+        <section class="projects-section">
+            <div class="projects-list">
+                <slot />
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .projects-page {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .intro {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .projects-section {
+        margin-bottom: 4rem;
+    }
+
+    .projects-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .intro {
+            font-size: 1rem;
+        }
+
+        .projects-section {
+            margin-bottom: 3rem;
+        }
+
+        .projects-list {
+            gap: 1.5rem;
+        }
+    }
+
+    /* Responsive large screens */
+    @media (min-width: 1440px) {
+        .page-header {
+            margin-bottom: 5rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        .intro {
+            font-size: 1.3rem;
+        }
+
+        .projects-list {
+            gap: 2.5rem;
+        }
+    }
+</style>
