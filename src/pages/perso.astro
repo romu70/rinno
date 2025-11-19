@@ -3,37 +3,37 @@ import ProjectsLanding from "../layouts/ProjectsLanding.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 // Import images
-import coachPizzaImg from "../assets/projects/thumb-coach-pizza.jpg";
-import galleriesImg from "../assets/projects/thumb-galleries.jpg";
-import thotImg from "../assets/projects/thumb-thot.jpg";
+import coachPizzaImg from "../assets/perso/coach-pizza/thumbnail.jpg";
+import galleriesImg from "../assets/perso/galleries/thumbnail.jpg";
+import thotImg from "../assets/perso/thot/thumbnail.jpg";
 ---
 
 <ProjectsLanding
-    title="Projets Personnels"
-    intro="Explorations et expérimentations créatives."
+  title="Projets Personnels"
+  intro="Explorations et expérimentations créatives."
 >
-    <ProjectCard
-        title="Coach Pizza"
-        year="2024 - présent"
-        description="Calculer les ingrédients comme un pro pour ne plus jamais râter sa pâte à pizza."
-        status="available"
-        link="/perso/coach-pizza"
-        image={coachPizzaImg}
-    />
-    <ProjectCard
-        title="Galleries"
-        year="2021 - présent"
-        description="Photographier des typographies et du street art, et faire une galerie virtuelle pour les présenter."
-        status="available"
-        link="/perso/galleries"
-        image={galleriesImg}
-    />
-    <ProjectCard
-        title="THoT - Sia"
-        year="2017"
-        description="Aider les réfugiés à s'orienter dans Paris. Et si le problème n'était pas celui là ?"
-        status="available"
-        link="/perso/thot"
-        image={thotImg}
-    />
+  <ProjectCard
+    title="Coach Pizza"
+    year="2024 - présent"
+    description="Calculer les ingrédients comme un pro pour ne plus jamais râter sa pâte à pizza."
+    status="available"
+    link="/perso/coach-pizza"
+    image={coachPizzaImg}
+  />
+  <ProjectCard
+    title="Galleries"
+    year="2021 - présent"
+    description="Photographier des typographies et du street art, et faire une galerie virtuelle pour les présenter."
+    status="available"
+    link="/perso/galleries"
+    image={galleriesImg}
+  />
+  <ProjectCard
+    title="THoT - Sia"
+    year="2017"
+    description="Aider les réfugiés à s'orienter dans Paris. Et si le problème n'était pas celui là ?"
+    status="available"
+    link="/perso/thot"
+    image={thotImg}
+  />
 </ProjectsLanding>

@@ -17,17 +17,61 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
 
   <Fragment slot="challenge">
     <p>Avec ce projet, je visais plusieurs objectifs :</p>
-    <li>Aiguiser mes compétences en développement web</li>
-    <li>Créer une galerie performante et esthétique</li>
-    <li>Gérer efficacement de nombreuses images</li>
-    <li>Approfondir l'approche composants en web</li>
+    <ul class="list-arrow">
+      <li>Aiguiser mes compétences en développement web</li>
+      <li>Créer une galerie performante et esthétique</li>
+      <li>Gérer efficacement de nombreuses images</li>
+      <li>Approfondir l'approche composants en web</li>
+    </ul>
   </Fragment>
 
   <Fragment slot="actions">
-    <li>Choix de la stack : Astro pour ses performances</li>
-    <li>Développement d'une galerie responsive</li>
-    <li>Hébergement sur GitHub Pages</li>
-    <li>Organisation des collections par thème</li>
+    <h3>Choix de la stack</h3>
+    <p>
+      J'ai choisi Astro sur les conseils d'un développeur front-end avec qui je
+      travaillais, <a
+        href="https://www.linkedin.com/in/guillaume-denier/"
+        target="_blank">Guillaume Denier</a
+      >. Il m'a vanté les mérites de cette solution : simplicité,performances,
+      respect des standards et facilité d'évolution selon mamontée en
+      compétences.
+    </p>
+    <p>Promesses tenues !</p>
+    <h3>Hébergement sur GitHub Pages</h3>
+    <p>
+      Le code est hébergé sur GitHub. Galleries est un site statique, je n'y
+      collecte aucune donnée. L'hébergement sur GitHub Pages était un choix
+      naturel compte tenu du pipeline CI/CD totalement intégré.
+    </p>
+    <h3>Développement d'une galerie responsive</h3>
+    <p>
+      Astro fournissait le support parfait via ses Content Collections. Il m'a
+      cependant fallu développer en TypeScript tout le fonctionnement de la
+      galerie : gestion du format des images (portrait vs paysage), gestion de
+      la navigation, etc.
+    </p>
+    <h3>Organisation des collections par thème</h3>
+    <p>
+      Les 2 galeries reposent sur les Content Collection de Astro. Et pour
+      bénéficier d'une meilleure connaissance du système, l'une est en markdown,
+      l'autre en JSON.
+    </p>
+    <h3>Outil de transfert et traitement des images</h3>
+    <p>
+      A l'usage, le traitement des images réalisé à la main s'est avéré très
+      chronophage. Grâce à l'IA, j'ai pu réaliser un script qui prend en charge
+      une grande partie de ce travail :
+    </p>
+    <ul class="list-arrow">
+      <li>Redimensionnement (limite à 1600px)</li>
+      <li>Extraction de la position géographique</li>
+      <li>Affectation automatique des métadonnées (position, lieu et date)</li>
+    </ul>
+    <p>
+      Je suis passé d'environ 10-15 mns de travail par image à ce même temps
+      pour en traiter 10. Ce temps gagner me permet de mettre à jour les
+      galeries plus souvent et plus rapidement.
+    </p>
   </Fragment>
 
   <Fragment slot="resultats">
@@ -38,9 +82,12 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
   </Fragment>
 
   <Fragment slot="apprentissages">
-    <p>
-      <em>[Section à compléter avec vos propres réflexions et learnings]</em>
-    </p>
+    <ul class="list-arrow">
+      <li>Site fonctionnel exposant mes collections</li>
+      <li>Meilleure maîtrise de l'approche composants</li>
+      <li>Compétences TypeScript et JavaScript renforcées</li>
+      <li>Performance optimale pour les images</li>
+    </ul>
   </Fragment>
 
   <Fragment slot="keywords">
