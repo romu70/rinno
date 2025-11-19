@@ -1,8 +1,14 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import heroImage from "../../assets/perso/galleries/hero.png";
 ---
 
-<ProjectPersonal title="Galleries" year="2021 - présent">
+<ProjectPersonal
+  title="Galleries"
+  year="2021 - présent"
+  image={heroImage}
+  externalLink="https://romu70.github.io/galleries/"
+>
   <Fragment slot="contexte">
     <p>
       Passionné par les polices de caractères et le street art, je collecte des
@@ -69,43 +75,49 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
     </ul>
     <p>
       Je suis passé d'environ 10-15 mns de travail par image à ce même temps
-      pour en traiter 10. Ce temps gagner me permet de mettre à jour les
-      galeries plus souvent et plus rapidement.
+      pour en traiter 10. Ce temps gagné me permet de mettre à jour les galeries
+      plus souvent et plus rapidement.
     </p>
   </Fragment>
 
-  <Fragment slot="resultats">
+  <!-- <Fragment slot="resultats">
     <li>Site fonctionnel exposant mes collections</li>
     <li>Meilleure maîtrise de l'approche composants</li>
     <li>Compétences TypeScript et JavaScript renforcées</li>
     <li>Performance optimale pour les images</li>
-  </Fragment>
+  </Fragment> -->
 
   <Fragment slot="apprentissages">
+    <h2>Apprentissages et Résultats</h2>
     <ul class="list-arrow">
-      <li>Site fonctionnel exposant mes collections</li>
-      <li>Meilleure maîtrise de l'approche composants</li>
+      <li>Site fonctionnel qui expose mes collections</li>
+      <li>Reproduction fidèle de la galerie de DuckDuckGo</li>
       <li>Compétences TypeScript et JavaScript renforcées</li>
-      <li>Performance optimale pour les images</li>
+      <li>
+        Ce projet m'a aussi permis de rencontrer des artistes exposés ici, comme
+        <strong>Ador</strong>, <strong>Ratz One</strong> et <strong
+          >Stend</strong
+        >, et d'avoir la permission de reproduire leur travail.
+      </li>
     </ul>
   </Fragment>
 
   <Fragment slot="keywords">
     <span class="keyword">Astro</span>
-    <span class="keyword">TypeScript</span>
-    <span class="keyword">JavaScript</span>
-    <span class="keyword">GitHub Pages</span>
     <span class="keyword">Galerie</span>
+    <span class="keyword">GitHub Pages</span>
+    <span class="keyword">JavaScript</span>
     <span class="keyword">Street art</span>
+    <span class="keyword">TypeScript</span>
     <span class="keyword">Typographie</span>
   </Fragment>
 
-  <Fragment slot="extra">
+  <!-- <Fragment slot="extra">
     <section class="content-section">
       <h2>Lien</h2>
       <p>
         <em>[Ajoutez ici l'URL de votre site galleries si publique]</em>
       </p>
     </section>
-  </Fragment>
+  </Fragment> -->
 </ProjectPersonal>
