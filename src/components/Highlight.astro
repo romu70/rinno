@@ -1,0 +1,98 @@
+---
+// Highlight component for emphasizing content sections
+---
+
+<div class="highlight">
+    <slot />
+</div>
+
+<style>
+    .highlight {
+        background-color: hsla(var(--hue), 40%, 90%, 0.6);
+        border-left: 4px solid var(--color-dark);
+        padding: 1.5rem;
+        border-radius: var(--radius);
+    }
+
+    .highlight :global(h2) {
+        margin-top: 0;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--color-darkest);
+    }
+
+    .highlight :global(h3) {
+        font-size: 1.4rem;
+        color: var(--primary-color);
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .highlight :global(p) {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .highlight :global(strong) {
+        color: var(--color-darkest);
+    }
+
+    .highlight :global(ul) {
+        list-style: none;
+        padding: 0;
+    }
+
+    .highlight :global(ul li) {
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        line-height: 1.8;
+        padding-left: 1.5rem;
+        position: relative;
+        margin-bottom: 0.8rem;
+    }
+
+    .highlight :global(ul li::before) {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--color-darkest);
+        font-weight: bold;
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+        .highlight {
+            padding: 1rem;
+        }
+
+        .highlight :global(h2) {
+            font-size: 1.6rem;
+        }
+
+        .highlight :global(h3) {
+            font-size: 1.2rem;
+        }
+
+        .highlight :global(p),
+        .highlight :global(ul li) {
+            font-size: 1rem;
+        }
+    }
+
+    /* Responsive large screens */
+    @media (min-width: 1440px) {
+        .highlight :global(h2) {
+            font-size: 2.3rem;
+        }
+
+        .highlight :global(h3) {
+            font-size: 1.6rem;
+        }
+
+        .highlight :global(p),
+        .highlight :global(ul li) {
+            font-size: 1.2rem;
+        }
+    }
+</style>
