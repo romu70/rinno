@@ -1,183 +1,252 @@
 /* Fonts */
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-LightItalic.ttf") format("truetype");
-    font-weight: 300;
-    font-style: italic;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-Italic.ttf") format("truetype");
-    font-weight: normal;
-    font-style: italic;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-Medium.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-MediumItalic.ttf") format("truetype");
-    font-weight: 500;
-    font-style: italic;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-SemiBold.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-SemiBoldItalic.ttf") format("truetype");
-    font-weight: 600;
-    font-style: italic;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-Bold.ttf") format("truetype");
-    font-weight: bold;
-    font-style: normal;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Cormorant Garamond";
-    src: url("/fonts/CormorantGaramond-BoldItalic.ttf") format("truetype");
-    font-weight: bold;
-    font-style: italic;
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
 
 :root {
-    --hue: 45deg;
-    --color-ligthest: hsl(var(--hue), 50%, 96%);
-    --color-light: hsl(var(--hue), 40%, 90%);
-    --color: hsl(var(--hue), 30%, 80%);
-    --color-dark: hsl(var(--hue), 20%, 30%);
-    --color-darkest: hsl(var(--hue), 30%, 18%);
-    --radius: 0.25rem;
+  --hue: 45deg;
+  --color-ligthest: hsl(var(--hue), 50%, 96%);
+  --color-light: hsl(var(--hue), 40%, 90%);
+  --color: hsl(var(--hue), 30%, 80%);
+  --color-dark: hsl(var(--hue), 20%, 30%);
+  --color-darkest: hsl(var(--hue), 30%, 18%);
+  --radius: 0.25rem;
 
-    --background-color: var(--color-ligthest);
-    --primary-color: var(--color-darkest);
-    --accent-color: var(--color-dark);
-    /*--accent-color: #fa7921;*/
+  --background-color: var(--color-ligthest);
+  --primary-color: var(--color-darkest);
+  --accent-color: var(--color-dark);
+  /*--accent-color: #fa7921;*/
+
+  /* Border patterns */
+  --border-divider: 2px solid rgba(253, 240, 213, 0.2);
 }
 
 /* Base styles */
 html {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-color);
-    background-image: url("../assets/linen.svg");
-    margin: 0;
-    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  background-image: url("../assets/linen.svg");
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
 /* Apply Cormorant Garamond serif to all text elements */
 * {
-    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
 /* Typography */
 h1 {
-    font-size: 3rem;
-    color: var(--primary-color);
-    text-align: center;
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-align: center;
 }
 
 h2 {
-    font-size: 2rem;
-    color: var(--color-darkest);
+  font-size: 2rem;
+  color: var(--primary-color);
 }
 
 p {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    font-style: italic;
-    margin-top: 0rem;
-    margin-bottom: 0rem;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  /*font-style: italic;*/
+  margin-top: 0rem;
+  margin-bottom: 0rem;
 }
 
 /* Links */
 a {
-    color: var(--primary-color);
-    transition: color 0.3s ease;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 /* Utility classes */
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .glass-effect {
-    background-color: color-mix(in srgb, var(--color-light) 80%, transparent);
-    backdrop-filter: blur(1px) saturate(100%);
-    -webkit-backdrop-filter: blur(10px) saturate(0%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: color-mix(in srgb, var(--color-light) 80%, transparent);
+  backdrop-filter: blur(1px) saturate(100%);
+  -webkit-backdrop-filter: blur(10px) saturate(0%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Badge/Pill component */
+.badge {
+  font-size: 1.2rem;
+  color: var(--color-darkest);
+  font-weight: bold;
+  background-color: var(--color-light);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius);
+  display: inline-block;
+}
+
+/* List with arrow bullets */
+.list-arrow {
+  list-style: none;
+  padding: 0;
+}
+
+.list-arrow li {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  line-height: 1.8;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.8rem;
+}
+
+.list-arrow li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-darkest);
+  font-weight: bold;
 }
 
 /* Responsive breakpoints */
 
 /* Ajuster la taille de base pour les écrans plus petits */
 @media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
+  html {
+    font-size: 14px;
+  }
 
-    .container {
-        padding: 1rem;
-    }
+  .container {
+    padding: 1rem;
+  }
+
+  .container-narrow {
+    padding: 1rem;
+  }
+
+  .badge {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .list-arrow li {
+    font-size: 1rem;
+  }
 }
 
 /* Medium screens (tablets/small desktops) */
 @media (min-width: 768px) and (max-width: 1200px) {
-    .container {
-        padding: 1.5rem;
-    }
+  .container {
+    padding: 1.5rem;
+  }
 }
 
 /* Ajuster la taille de base pour les écrans plus grands */
 @media (min-width: 1440px) {
-    html {
-        font-size: 18px;
-    }
+  html {
+    font-size: 18px;
+  }
 
-    .container {
-        padding: 3rem;
-    }
+  .container {
+    padding: 3rem;
+  }
+
+  .container-narrow {
+    padding: 3rem;
+  }
+
+  .badge {
+    font-size: 1.3rem;
+    padding: 0.5rem 1.2rem;
+  }
+
+  .list-arrow li {
+    font-size: 1.2rem;
+  }
 }

@@ -3,8 +3,8 @@ import Layout from "./Layout.astro";
 import Highlight from "../components/Highlight.astro";
 
 interface Props {
-    title: string;
-    year: string;
+  title: string;
+  year: string;
 }
 
 const { title, year } = Astro.props;
@@ -12,370 +12,327 @@ const pageTitle = `${title} - Romuald Tisserand`;
 
 // Define project navigation
 const projects = [
-    { title: "Coach Pizza", slug: "coach-pizza" },
-    { title: "Galleries", slug: "galleries" },
-    { title: "THoT", slug: "thot" },
+  { title: "Coach Pizza", slug: "coach-pizza" },
+  { title: "Galleries", slug: "galleries" },
+  { title: "THoT", slug: "thot" },
 ];
 
 const currentPath = Astro.url.pathname;
 const currentIndex = projects.findIndex((p) => currentPath.includes(p.slug));
 const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
 const nextProject =
-    currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+  currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 ---
 
 <Layout title={pageTitle}>
-    <article class="project-detail">
-        <!-- <a href="/perso" class="back-link">← Retour aux projets</a> -->
+  <article class="container-narrow project-detail">
+    <!-- <a href="/perso" class="back-link">← Retour aux projets</a> -->
 
-        <header class="hero">
-            <h1>{title}</h1>
-        </header>
+    <header class="hero">
+      <h1>{title}</h1>
+      <div class="timeline">
+        <span class="badge">{year}</span>
+      </div>
+    </header>
 
-        <section class="content-section">
-            <h2>Contexte</h2>
-            <div class="timeline">
-                <span class="year">{year}</span>
-            </div>
-            <slot name="contexte" />
-        </section>
+    <section class="content-section">
+      <h2>Contexte</h2>
+      <slot name="contexte" />
+    </section>
 
-        <section class="content-section">
-            <h2>Challenge</h2>
-            <ul>
-                <slot name="challenge" />
-            </ul>
-        </section>
+    <section class="content-section">
+      <h2>Challenge</h2>
+      <ul class="list-arrow">
+        <slot name="challenge" />
+      </ul>
+    </section>
 
-        <section class="content-section">
-            <h2>Actions</h2>
-            <ul>
-                <slot name="actions" />
-            </ul>
-        </section>
+    <section class="content-section">
+      <h2>Actions</h2>
+      <ul class="list-arrow">
+        <slot name="actions" />
+      </ul>
+    </section>
 
-        <section class="content-section">
-            <h2>Résultats</h2>
-            <ul>
-                <slot name="resultats" />
-            </ul>
-        </section>
+    <section class="content-section">
+      <h2>Résultats</h2>
+      <ul class="list-arrow">
+        <slot name="resultats" />
+      </ul>
+    </section>
 
-        <Highlight>
-            <h2>Apprentissages</h2>
-            <slot name="apprentissages" />
-        </Highlight>
+    <Highlight>
+      <h2>Apprentissages</h2>
+      <slot name="apprentissages" />
+    </Highlight>
 
-        <section class="content-section">
-            <h2>Mots clé</h2>
-            <div class="keywords">
-                <slot name="keywords" />
-            </div>
-        </section>
+    <section class="content-section">
+      <h2>Mots clé</h2>
+      <div class="keywords">
+        <slot name="keywords" />
+      </div>
+    </section>
 
-        <slot name="extra" />
+    <slot name="extra" />
 
-        <nav class="project-navigation">
-            <div class="nav-item nav-prev">
-                {
-                    prevProject ? (
-                        <a href={`/perso/${prevProject.slug}`}>
-                            <span class="nav-label">← Projet plus récent</span>
-                            <span class="nav-title">{prevProject.title}</span>
-                        </a>
-                    ) : (
-                        <div />
-                    )
-                }
-            </div>
-            <div class="nav-item nav-next">
-                {
-                    nextProject ? (
-                        <a href={`/perso/${nextProject.slug}`}>
-                            <span class="nav-label">Projet plus ancien →</span>
-                            <span class="nav-title">{nextProject.title}</span>
-                        </a>
-                    ) : (
-                        <div />
-                    )
-                }
-            </div>
-        </nav>
-    </article>
+    <nav class="project-navigation">
+      <div class="nav-item nav-prev">
+        {
+          prevProject ? (
+            <a href={`/perso/${prevProject.slug}`}>
+              <span class="nav-label">← Projet plus récent</span>
+              <span class="nav-title">{prevProject.title}</span>
+            </a>
+          ) : (
+            <div />
+          )
+        }
+      </div>
+      <div class="nav-item nav-next">
+        {
+          nextProject ? (
+            <a href={`/perso/${nextProject.slug}`}>
+              <span class="nav-label">Projet plus ancien →</span>
+              <span class="nav-title">{nextProject.title}</span>
+            </a>
+          ) : (
+            <div />
+          )
+        }
+      </div>
+    </nav>
+  </article>
 </Layout>
 
 <style>
+  .project-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-darkest);
+  }
+
+  .hero {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: var(--border-divider);
+  }
+
+  :global(.content-section) {
+    /* No margin needed - gap handles spacing */
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--color-darkest);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .timeline {
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.keywords) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.keyword) {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    background-color: var(--color-light);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius);
+  }
+
+  :global(.content-section h2) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-darkest);
+  }
+
+  :global(.content-section h3) {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  :global(.content-section p) {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  :global(.content-section strong) {
+    color: var(--color-darkest);
+  }
+
+  .project-navigation {
+    padding-top: 2rem;
+    border-top: var(--border-divider);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .nav-prev {
+    align-items: flex-start;
+  }
+
+  .nav-next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .nav-back {
+    flex: 0 0 auto;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-darkest);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: bold;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .nav-back:hover {
+    background-color: var(--color-dark);
+    transform: translateY(-2px);
+  }
+
+  .nav-item a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+  }
+
+  .nav-item a:hover {
+    color: var(--color-dark);
+  }
+
+  .nav-label {
+    font-size: 0.9rem;
+    color: var(--color-dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
     .project-detail {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0rem;
-    }
-
-    .back-link {
-        display: inline-block;
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .back-link:hover {
-        color: var(--color-darkest);
-    }
-
-    .hero {
-        text-align: center;
-        padding-bottom: 2rem;
-        border-bottom: 2px solid rgba(253, 240, 213, 0.2);
-    }
-
-    :global(.content-section) {
-        /* No margin needed - gap handles spacing */
+      gap: 2rem;
     }
 
     h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
+      font-size: 2.5rem;
     }
 
     .subtitle {
-        font-size: 1.5rem;
-        color: var(--color-darkest);
-        margin-bottom: 1.5rem;
-        font-style: italic;
+      font-size: 1.2rem;
     }
 
     .timeline {
-        margin-bottom: 1.5rem;
-    }
-
-    .year {
-        font-size: 1.1rem;
-        color: var(--color-darkest);
-        font-weight: bold;
-        background-color: rgba(253, 240, 213, 0.2);
-        padding: 0.5rem 1rem;
-        border-radius: var(--radius);
-        display: inline-block;
-    }
-
-    :global(.keywords) {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     :global(.keyword) {
-        font-size: 0.85rem;
-        color: var(--primary-color);
-        background-color: var(--color-light);
-        padding: 0.4rem 1rem;
-        border-radius: var(--radius);
+      font-size: 0.75rem;
     }
 
     :global(.content-section h2) {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: var(--color-darkest);
+      font-size: 1.6rem;
     }
 
     :global(.content-section h3) {
-        font-size: 1.4rem;
-        color: var(--primary-color);
-        margin-top: 1.5rem;
-        margin-bottom: 0.8rem;
+      font-size: 1.2rem;
     }
 
     :global(.content-section p) {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 1rem;
-    }
-
-    :global(.content-section strong) {
-        color: var(--color-darkest);
-    }
-
-    :global(.content-section ul) {
-        list-style: none;
-        padding: 0;
-    }
-
-    :global(.content-section ul li) {
-        font-size: 1.1rem;
-        color: var(--primary-color);
-        line-height: 1.8;
-        padding-left: 1.5rem;
-        position: relative;
-        margin-bottom: 0.8rem;
-    }
-
-    :global(.content-section ul li::before) {
-        content: "→";
-        position: absolute;
-        left: 0;
-        color: var(--color-darkest);
-        font-weight: bold;
+      font-size: 1rem;
     }
 
     .project-navigation {
-        padding-top: 2rem;
-        border-top: 2px solid rgba(253, 240, 213, 0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .nav-item {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
+      width: 100%;
     }
 
-    .nav-prev {
-        align-items: flex-start;
-    }
-
+    .nav-prev,
     .nav-next {
-        align-items: flex-end;
-        text-align: right;
+      align-items: flex-start;
+      text-align: left;
     }
 
     .nav-back {
-        flex: 0 0 auto;
-        padding: 0.75rem 1.5rem;
-        background-color: var(--color-darkest);
-        color: var(--primary-color);
-        text-decoration: none;
-        border-radius: var(--radius);
-        font-size: 1rem;
-        font-weight: bold;
-        transition:
-            transform 0.3s ease,
-            background-color 0.3s ease;
-        white-space: nowrap;
-    }
-
-    .nav-back:hover {
-        background-color: var(--color-dark);
-        transform: translateY(-2px);
-    }
-
-    .nav-item a {
-        text-decoration: none;
-        color: var(--primary-color);
-        transition: color 0.3s ease;
-    }
-
-    .nav-item a:hover {
-        color: var(--color-dark);
+      padding: 0.8rem 1.5rem;
+      font-size: 0.95rem;
     }
 
     .nav-label {
-        font-size: 0.9rem;
-        color: var(--color-dark);
-        margin-bottom: 0.25rem;
+      font-size: 0.85rem;
     }
 
     .nav-title {
-        font-size: 1.1rem;
-        font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    h1 {
+      font-size: 4rem;
     }
 
-    /* Responsive mobile */
-    @media (max-width: 768px) {
-        .project-detail {
-            padding: 1rem;
-            gap: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-        }
-
-        .timeline {
-            margin-bottom: 1rem;
-        }
-
-        .year {
-            font-size: 1rem;
-            padding: 0.4rem 0.8rem;
-        }
-
-        :global(.keyword) {
-            font-size: 0.75rem;
-        }
-
-        :global(.content-section h2) {
-            font-size: 1.6rem;
-        }
-
-        :global(.content-section h3) {
-            font-size: 1.2rem;
-        }
-
-        :global(.content-section p),
-        :global(.content-section ul li) {
-            font-size: 1rem;
-        }
-
-        .project-navigation {
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .nav-item {
-            width: 100%;
-        }
-
-        .nav-prev,
-        .nav-next {
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .nav-back {
-            padding: 0.8rem 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .nav-label {
-            font-size: 0.85rem;
-        }
-
-        .nav-title {
-            font-size: 1rem;
-        }
+    .subtitle {
+      font-size: 1.7rem;
     }
 
-    /* Responsive large screens */
-    @media (min-width: 1440px) {
-        h1 {
-            font-size: 4rem;
-        }
-
-        .subtitle {
-            font-size: 1.7rem;
-        }
-
-        :global(.content-section h2) {
-            font-size: 2.3rem;
-        }
-
-        :global(.content-section h3) {
-            font-size: 1.6rem;
-        }
-
-        :global(.content-section p),
-        :global(.content-section ul li) {
-            font-size: 1.2rem;
-        }
+    :global(.content-section h2) {
+      font-size: 2.3rem;
     }
+
+    :global(.content-section h3) {
+      font-size: 1.6rem;
+    }
+
+    :global(.content-section p) {
+      font-size: 1.2rem;
+    }
+  }
 </style>
