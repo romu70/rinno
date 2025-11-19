@@ -8,9 +8,10 @@ interface Props {
   title: string;
   year: string;
   image?: ImageMetadata;
+  externalLink?: string;
 }
 
-const { title, year, image } = Astro.props;
+const { title, year, image, externalLink } = Astro.props;
 const pageTitle = `${title} - Romuald Tisserand`;
 
 // Define project navigation
@@ -32,24 +33,46 @@ const nextProject =
     <header class="hero">
       {
         image && (
-          <div class="hero-image">
+          <div class="hero-image-container">
             <Image
               src={image}
               alt={title}
-              width={400}
-              height={300}
+              width={800}
+              height={400}
               format="webp"
               quality={85}
             />
+            <div class="hero-overlay">
+              <div class="hero-info">
+                <h1>{title}</h1>
+                <div class="timeline">
+                  <span class="year">{year}</span>
+                </div>
+              </div>
+              {externalLink && (
+                <a
+                  href={externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="visit-link"
+                >
+                  Visiter le site ↗
+                </a>
+              )}
+            </div>
           </div>
         )
       }
-      <div class="hero-content">
-        <h1>{title}</h1>
-        <div class="timeline">
-          <span class="badge">{year}</span>
-        </div>
-      </div>
+      {
+        !image && (
+          <div class="hero-content">
+            <h1>{title}</h1>
+            <div class="timeline">
+              <span class="year">{year}</span>
+            </div>
+          </div>
+        )
+      }
     </header>
 
     <section class="content-section">
@@ -68,19 +91,15 @@ const nextProject =
     </section>
 
     <section class="content-section">
-      <h2>Résultats</h2>
-      <ul class="list-arrow">
-        <slot name="resultats" />
-      </ul>
+      <slot name="resultats" />
     </section>
 
     <Highlight>
-      <h2>Apprentissages</h2>
       <slot name="apprentissages" />
     </Highlight>
 
     <section class="content-section">
-      <h2>Mots clé</h2>
+      <h2>Mots-Clés</h2>
       <div class="keywords">
         <slot name="keywords" />
       </div>
@@ -136,28 +155,87 @@ const nextProject =
   }
 
   .hero {
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    /*padding-bottom: 2rem;*/
     border-bottom: var(--border-divider);
+  }
+
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: hsla(var(--hue), 40%, 90%, 0.8);
+    backdrop-filter: blur(0.5rem);
+    padding: 1.5rem 2rem;
     display: flex;
+    justify-content: space-between;
     align-items: flex-start;
     gap: 2rem;
   }
 
-  .hero-image {
-    flex-shrink: 0;
-    width: 250px;
+  .hero-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .hero-image img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  .hero-overlay h1 {
+    margin: 0;
+    font-size: 3rem;
+    text-align: left;
+    color: var(--color-lightest);
+  }
+
+  .hero-overlay .timeline {
+    margin: 0;
+  }
+
+  .visit-link {
+    font-size: 1.4rem;
+    color: var(--color-lightest);
+    text-decoration: none;
+    font-weight: 500;
+    transition:
+      color 0.3s ease,
+      transform 0.2s ease,
+      text-decoration 0.3s ease;
+    display: inline-block;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .visit-link:hover {
+    color: var(--color-dark);
+    transform: translateY(-2px);
+    text-decoration: underline;
+  }
+
+  .hero-overlay .year {
+    font-size: 1.2rem;
+    color: var(--color-lightest);
+    font-weight: bold;
+    white-space: nowrap;
   }
 
   .hero-content {
-    flex: 1;
     text-align: center;
+    padding-bottom: 1rem;
   }
 
   :global(.content-section) {
@@ -288,21 +366,31 @@ const nextProject =
       gap: 2rem;
     }
 
-    .hero {
-      flex-direction: column-reverse;
-      align-items: center;
+    .hero-overlay {
+      padding: 1rem 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
 
-    .hero-image {
-      width: 100%;
-      max-width: 400px;
+    .hero-info {
+      gap: 0.3rem;
     }
 
-    .hero-content {
-      width: 100%;
+    .hero-overlay h1 {
+      font-size: 2rem;
     }
 
-    h1 {
+    .visit-link {
+      font-size: 1.4rem;
+      align-self: flex-start;
+    }
+
+    .hero-overlay .year {
+      font-size: 1rem;
+    }
+
+    .hero-content h1 {
       font-size: 2.5rem;
     }
 
@@ -361,7 +449,27 @@ const nextProject =
 
   /* Responsive large screens */
   @media (min-width: 1440px) {
-    h1 {
+    .hero-overlay {
+      padding: 2rem 2.5rem;
+    }
+
+    .hero-info {
+      gap: 0.6rem;
+    }
+
+    .hero-overlay h1 {
+      font-size: 3rem;
+    }
+
+    .visit-link {
+      font-size: 1.4rem;
+    }
+
+    .hero-overlay .year {
+      font-size: 1.3rem;
+    }
+
+    .hero-content h1 {
       font-size: 4rem;
     }
 
