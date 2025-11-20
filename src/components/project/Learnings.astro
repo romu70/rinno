@@ -1,0 +1,13 @@
+---
+import Highlight from "../Highlight.astro";
+
+interface Props {
+  fullWidth?: boolean;
+}
+
+const { fullWidth = false } = Astro.props;
+---
+
+<Highlight class:list={[{ "full-width": fullWidth }]}>
+  <slot />
+</Highlight>

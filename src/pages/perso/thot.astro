@@ -1,9 +1,15 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Context from "../../components/project/Context.astro";
+import Challenge from "../../components/project/Challenge.astro";
+import Actions from "../../components/project/Actions.astro";
+import Results from "../../components/project/Results.astro";
+import Learnings from "../../components/project/Learnings.astro";
+import Keywords from "../../components/project/Keywords.astro";
 ---
 
 <ProjectPersonal title="THoT - Sia" year="2017">
-  <Fragment slot="contexte">
+  <Context>
     <p>Projet de fin de formation de la certification UX Design auxGobelins.</p>
     <p>
       Projet de groupe (3 personnes) réalisé dans le cadre de la formation UX
@@ -14,32 +20,32 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
       />
       <strong>Brief initial :</strong> Aider les réfugiés à s'orienter dans Paris
     </p>
-  </Fragment>
+  </Context>
 
-  <Fragment slot="challenge">
+  <Challenge>
     <li>Comprendre les vrais besoins des utilisateurs</li>
     <li>Brief initial vs réalité terrain</li>
     <li>Livrer une solution impactante en 3 mois</li>
-  </Fragment>
+  </Challenge>
 
-  <Fragment slot="actions">
+  <Actions>
     <li>Phase de recherche approfondie avec les réfugiés</li>
     <li>Découverte : le vrai pain point est l'isolement, pas l'orientation</li>
     <li>Pivot du concept vers une solution de connexion sociale</li>
     <li>Conception d'une application mobile</li>
     <li>Itérations : idées papier → wireframes → prototype haute fidélité</li>
-  </Fragment>
+  </Actions>
 
-  <Fragment slot="resultats">
+  <Results>
     <li>
       Meilleure note jamais attribuée à un projet de cette formation aux
       Gobelins
     </li>
     <li>Prototype fonctionnel validé par les utilisateurs</li>
     <li>Démonstration de l'importance du user research</li>
-  </Fragment>
+  </Results>
 
-  <Fragment slot="apprentissages">
+  <Learnings>
     <h3>L'importance du problème réel vs le problème perçu</h3>
     <p>
       Ce projet a été une leçon fondamentale : le commanditaire pensait
@@ -55,9 +61,9 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
       ensuite chez Smart Rx, Meditect et Novyspec. C'est devenu un réflexe :
       comprendre d'abord, concevoir ensuite.
     </p>
-  </Fragment>
+  </Learnings>
 
-  <Fragment slot="keywords">
+  <Keywords>
     <span class="keyword">UX Design</span>
     <span class="keyword">Mobile</span>
     <span class="keyword">Figma</span>
@@ -66,5 +72,5 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
     <span class="keyword">UX Research</span>
     <span class="keyword">Design Thinking</span>
     <span class="keyword">Prototypage mobile</span>
-  </Fragment>
+  </Keywords>
 </ProjectPersonal>

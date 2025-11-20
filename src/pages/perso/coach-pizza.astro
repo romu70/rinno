@@ -1,6 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Context from "../../components/project/Context.astro";
+import Challenge from "../../components/project/Challenge.astro";
+import Actions from "../../components/project/Actions.astro";
+import Results from "../../components/project/Results.astro";
+import Learnings from "../../components/project/Learnings.astro";
+import Keywords from "../../components/project/Keywords.astro";
 import heroImage from "../../assets/perso/coach-pizza/hero.png";
 import inputNum from "../../assets/perso/coach-pizza/input-num.png";
 ---
@@ -11,7 +17,7 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
   image={heroImage}
   externalLink="https://coach.pizza/"
 >
-  <Fragment slot="contexte">
+  <Context>
     <p>
       Celles et ceux qui me connaissent savent combien je suis un estomac sur
       pattes. Et comme beaucoup, je ne résiste pas à une bonne pizza, au point
@@ -19,9 +25,9 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
       nécessaires à chaque session s'est vite avéré pénible. Alors j'ai décidé
       de créer mon propre calculateur de pizza.
     </p>
-  </Fragment>
+  </Context>
 
-  <Fragment slot="challenge">
+  <Challenge>
     <p>
       Après <a href="/perso/galleries">Galleries</a>, j'ai monté mes exigences
       d'un cran :
@@ -34,9 +40,9 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
       <li>Supporter plusieurs langues</li>
       <li>Et pourquoi pas en faire une application mobile ?</li>
     </ul>
-  </Fragment>
+  </Challenge>
 
-  <Fragment slot="actions">
+  <Actions>
     <h3>v1 avec Astro</h3>
     <p>
       Fort de mes connaissances acquises avec Astro, j'ai développé une première
@@ -58,29 +64,29 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
     <li>Migration vers Expo pour une vraie application mobile</li>
     <li>Développement avec assistance IA</li>
     <li>Itérations basées sur mon usage réel</li>
-  </Fragment>
+  </Actions>
 
-  <Fragment slot="resultats">
+  <Results>
     <li>Un calculateur que j'utilise régulièrement</li>
     <li>Montée en compétence React Native et développement mobile</li>
     <li>
       Reconnaissance inattendue : un champion du monde de la pizza m'a contacté
       pour collaboration
     </li>
-  </Fragment>
+  </Results>
 
-  <Fragment slot="apprentissages">
+  <Learnings>
     <p>
       <em>[Section à compléter avec vos propres réflexions et learnings]</em>
     </p>
-  </Fragment>
+  </Learnings>
 
-  <Fragment slot="keywords">
+  <Keywords>
     <span class="keyword">Astro</span>
     <span class="keyword">Expo</span>
     <span class="keyword">IA générative</span>
     <span class="keyword">Mobile</span>
     <span class="keyword">React Native</span>
     <span class="keyword">SaaS</span>
-  </Fragment>
+  </Keywords>
 </ProjectPersonal>

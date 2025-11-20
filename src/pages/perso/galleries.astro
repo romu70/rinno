@@ -1,5 +1,10 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Context from "../../components/project/Context.astro";
+import Challenge from "../../components/project/Challenge.astro";
+import Actions from "../../components/project/Actions.astro";
+import Learnings from "../../components/project/Learnings.astro";
+import Keywords from "../../components/project/Keywords.astro";
 import heroImage from "../../assets/perso/galleries/hero.png";
 ---
 
@@ -9,7 +14,7 @@ import heroImage from "../../assets/perso/galleries/hero.png";
   image={heroImage}
   externalLink="https://romu70.github.io/galleries/"
 >
-  <Fragment slot="contexte">
+  <Context>
     <p>
       Passionné par les polices de caractères et le street art, je collecte des
       photos, qui s'accumulent sur mon téléphone depuis des années.
@@ -19,9 +24,9 @@ import heroImage from "../../assets/perso/galleries/hero.png";
       lancé dans le développement d'une galerie virtuelle pour exposer les
       images capturées aufil du temps.
     </p>
-  </Fragment>
+  </Context>
 
-  <Fragment slot="challenge">
+  <Challenge>
     <p>Avec ce projet, je visais plusieurs objectifs :</p>
     <ul class="list-arrow">
       <li>Aiguiser mes compétences en développement web</li>
@@ -29,9 +34,9 @@ import heroImage from "../../assets/perso/galleries/hero.png";
       <li>Gérer efficacement de nombreuses images</li>
       <li>Approfondir l'approche composants en web</li>
     </ul>
-  </Fragment>
+  </Challenge>
 
-  <Fragment slot="actions">
+  <Actions>
     <h3>Choix de la stack</h3>
     <p>
       J'ai choisi Astro sur les conseils d'un développeur front-end avec qui je
@@ -78,16 +83,9 @@ import heroImage from "../../assets/perso/galleries/hero.png";
       pour en traiter 10. Ce temps gagné me permet de mettre à jour les galeries
       plus souvent et plus rapidement.
     </p>
-  </Fragment>
+  </Actions>
 
-  <!-- <Fragment slot="resultats">
-    <li>Site fonctionnel exposant mes collections</li>
-    <li>Meilleure maîtrise de l'approche composants</li>
-    <li>Compétences TypeScript et JavaScript renforcées</li>
-    <li>Performance optimale pour les images</li>
-  </Fragment> -->
-
-  <Fragment slot="apprentissages">
+  <Learnings>
     <h2>Apprentissages et Résultats</h2>
     <ul class="list-arrow">
       <li>Site fonctionnel qui expose mes collections</li>
@@ -100,9 +98,9 @@ import heroImage from "../../assets/perso/galleries/hero.png";
         >, et d'avoir la permission de reproduire leur travail.
       </li>
     </ul>
-  </Fragment>
+  </Learnings>
 
-  <Fragment slot="keywords">
+  <Keywords>
     <span class="keyword">Astro</span>
     <span class="keyword">Galerie</span>
     <span class="keyword">GitHub Pages</span>
@@ -110,14 +108,5 @@ import heroImage from "../../assets/perso/galleries/hero.png";
     <span class="keyword">Street art</span>
     <span class="keyword">TypeScript</span>
     <span class="keyword">Typographie</span>
-  </Fragment>
-
-  <!-- <Fragment slot="extra">
-    <section class="content-section">
-      <h2>Lien</h2>
-      <p>
-        <em>[Ajoutez ici l'URL de votre site galleries si publique]</em>
-      </p>
-    </section>
-  </Fragment> -->
+  </Keywords>
 </ProjectPersonal>

@@ -75,37 +75,9 @@ const nextProject =
       }
     </header>
 
-    <section class="content-section">
-      <h2>Contexte</h2>
-      <slot name="contexte" />
-    </section>
-
-    <section class="content-section">
-      <h2>Challenge</h2>
-      <slot name="challenge" />
-    </section>
-
-    <section class="content-section">
-      <h2>Actions</h2>
-      <slot name="actions" />
-    </section>
-
-    <section class="content-section">
-      <slot name="resultats" />
-    </section>
-
-    <Highlight>
-      <slot name="apprentissages" />
-    </Highlight>
-
-    <section class="content-section">
-      <h2>Mots-Clés</h2>
-      <div class="keywords">
-        <slot name="keywords" />
-      </div>
-    </section>
-
-    <slot name="extra" />
+    <div class="project-content">
+      <slot />
+    </div>
 
     <nav class="project-navigation">
       <div class="nav-item nav-prev">
@@ -141,6 +113,17 @@ const nextProject =
     display: flex;
     flex-direction: column;
     gap: 0rem;
+  }
+
+  .project-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  :global(.project-content > .content-section),
+  :global(.project-content > .highlight) {
+    flex: 1 1 100%;
   }
 
   .back-link {
@@ -449,6 +432,18 @@ const nextProject =
 
   /* Responsive large screens */
   @media (min-width: 1440px) {
+    /* 2-column layout for project content */
+    :global(.project-content > .content-section),
+    :global(.project-content > .highlight) {
+      flex: 1 1 calc(50% - 1rem);
+    }
+
+    /* Full-width override */
+    :global(.project-content > .content-section.full-width),
+    :global(.project-content > .highlight.full-width) {
+      flex: 1 1 100%;
+    }
+
     .hero-overlay {
       padding: 2rem 2.5rem;
     }
