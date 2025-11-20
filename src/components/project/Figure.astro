@@ -2,18 +2,21 @@
 interface Props {
   caption: string;
   fullWidth?: boolean;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
 }
 
 const { caption, fullWidth = false, width, height } = Astro.props;
 ---
 
-<figure class:list={["content-section", { "full-width": fullWidth }]}>
+<figure
+  class:list={["content-section", { "full-width": fullWidth }]}
+  style={width ? `flex-basis: ${width}; max-width: ${width};` : undefined}
+>
   <div
     class="image-wrapper"
     style={width || height
-      ? `max-width: ${width}px; max-height: ${height}px;`
+      ? `max-width: ${width}; max-height: ${height};`
       : undefined}
   >
     <slot />
