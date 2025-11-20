@@ -16,7 +16,7 @@ const { caption, fullWidth = false, width, height } = Astro.props;
   <div
     class="image-wrapper"
     style={width || height
-      ? `max-width: ${width}; max-height: ${height};`
+      ? `${width ? `max-width: ${width};` : ""} ${height ? `height: ${height};` : ""}`
       : undefined}
   >
     <slot />
@@ -40,7 +40,9 @@ const { caption, fullWidth = false, width, height } = Astro.props;
   }
 
   .image-wrapper :global(img) {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
     display: block;
   }
