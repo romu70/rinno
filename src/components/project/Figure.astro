@@ -2,13 +2,20 @@
 interface Props {
   caption: string;
   fullWidth?: boolean;
+  width?: number;
+  height?: number;
 }
 
-const { caption, fullWidth = false } = Astro.props;
+const { caption, fullWidth = false, width, height } = Astro.props;
 ---
 
 <figure class:list={["content-section", { "full-width": fullWidth }]}>
-  <div class="image-wrapper">
+  <div
+    class="image-wrapper"
+    style={width || height
+      ? `max-width: ${width}px; max-height: ${height}px;`
+      : undefined}
+  >
     <slot />
   </div>
   <figcaption>{caption}</figcaption>
@@ -39,7 +46,7 @@ const { caption, fullWidth = false } = Astro.props;
     margin-top: 1rem;
     font-variant: small-caps;
     color: var(--color-dark);
-    text-align: center;
+    text-align: left;
     font-size: 0.9rem;
   }
 
