@@ -68,9 +68,9 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
             href="https://www.linkedin.com/in/guillaume-denier/"
             target="_blank">Guillaume Denier</a
           >, j'ai choisi Astro comme framework pour créer cette galerie.
-          Guillaume m'a vanté les mérites de cette solution :
-          simplicité,performances, respect des standards et facilité d'évolution
-          selon ma montée en compétences.
+          Génération statique, proche des standards web, approche composants
+          accessible : parfait pour un développeur non-professionnel qui veut
+          monter en compétences progressivement.
         </p>
         <p>Promesses tenues !</p>
       </SubSection>
@@ -90,23 +90,24 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
       </SubSection>
       <SubSection title="Développement d'une galerie responsive">
         <p>
-          Astro fournissait le support parfait via ses Content Collections. Il
-          m'a cependant fallu développer en TypeScript tout le fonctionnement de
-          la galerie : gestion du format des images (portrait vs paysage),
-          gestion de la navigation, gestion du clavier, etc.
+          Astro fournissait le support parfait via ses Content Collections.
+          Néanmoins, ce système était prévu plus pour un affichage type blog que
+          pour une galerie. Il m'a donc fallu développer en TypeScript tout le
+          fonctionnement de la galerie : gestion du format des images (portrait
+          vs paysage), gestion de la navigation, gestion du clavier, etc.
         </p>
       </SubSection>
     </div>
   </Section>
 
   <Section title="Itération 2" fullWidth>
-    <SubSection title="Constats : La flemme">
+    <SubSection title="Constat : La flemme">
       <p>
         Au fil du temps, les images s'accumulaient quand même beaucoup sur mon
-        téléphone, et ma motivation pour les ajouter au site baissait. En
-        modélisant mon propre"user journey", j'ai compris. Le traitement d'une
-        image me prend beaucoup trop de temps : ouvrir l'image, récupérer sa
-        position, chercher cette position sur OpenStreetMap, puis renseigner les
+        téléphone, et ma motivation pour les ajouter au site baissait. Modéliser
+        mon propre "user journey" m'a éclairé. Le traitement d'une image me
+        prend beaucoup trop de temps : ouvrir l'image, récupérer sa position,
+        chercher cette position sur OpenStreetMap, puis renseigner les
         métadonnées associées dans un fichier Astro créé pour l'occasion,
         redimensionner l'image et la compresser. C'est beaucoup (trop).
       </p>
@@ -129,14 +130,14 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
     </SubSection>
   </Section>
   <Section title="En situation" fullWidth>
-    <div class="actions-flex">
+    <div class="actions-flex situation-flex">
       <SubSection title="Ecran large">
         <Figure caption="Rendu sur écran large">
           <Image src={widescreen} alt="wide screen rendering" />
         </Figure>
       </SubSection>
       <SubSection title="Mobile">
-        <Figure caption="Rendu sur mobile">
+        <Figure caption="Rendu sur mobile" height="40rem">
           <Image src={mobile} alt="mobile rendering" />
         </Figure>
       </SubSection>
@@ -146,14 +147,28 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   <Learnings>
     <h2>Apprentissages et Résultats</h2>
     <ul class="list-arrow">
-      <li>Site fonctionnel qui expose mes collections</li>
-      <li>Reproduction fidèle de la galerie de DuckDuckGo</li>
-      <li>Compétences TypeScript et JavaScript renforcées</li>
       <li>
-        Ce projet m'a aussi permis de rencontrer des artistes exposés ici, comme
+        Site fonctionnel qui expose mes collections, adapté pour gérer quelques
+        centaines d'images
+      </li>
+      <li>
+        Reproduction fidèle de la galerie de DuckDuckGo à quelques détails prêts
+      </li>
+      <li>
+        Compétences TypeScript renforcées : typage, gestion d'événements,
+        responsivité
+      </li>
+      <li>
+        Expérience concrête de développement augmenté par l'IA (vibe coding),
+        ici avec Gemini, de l'expression de besoins initiale, aux itérations
+        jusqu'au script fonctionnel final
+      </li>
+      <li>
+        Ce projet m'a permis de rencontrer certains des artistes exposés ici,
+        comme
         <strong>Ador</strong>, <strong>Ratz One</strong> et <strong
           >Stend</strong
-        >, et d'avoir la permission de reproduire leur travail.
+        >, que je remercie pour m'avoir autorisé à reproduire leur travail.
       </li>
     </ul>
   </Learnings>
@@ -182,6 +197,24 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
 
     #ui-design > :global(figure) {
       flex: 0 1 auto;
+    }
+
+    .actions-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .actions-flex > :global(.subsection) {
+      flex: 1 1 300px;
+    }
+
+    .situation-flex > :global(.subsection:first-child) {
+      flex: 2 1 400px;
+    }
+
+    .situation-flex > :global(.subsection:last-child) {
+      flex: 1 1 300px;
     }
   </style>
 </ProjectPersonal>
