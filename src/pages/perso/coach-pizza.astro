@@ -1,24 +1,59 @@
 ---
+import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import heroImage from "../../assets/perso/coach-pizza/hero.png";
+import inputNum from "../../assets/perso/coach-pizza/input-num.png";
 ---
 
-<ProjectPersonal title="Coach Pizza" year="2024 - présent">
+<ProjectPersonal
+  title="Coach Pizza"
+  year="2023 - présent"
+  image={heroImage}
+  externalLink="https://coach.pizza/"
+>
   <Fragment slot="contexte">
     <p>
-      Passionné de cuisine et de pizzas maison, j'ai créé Coach Pizza pour me
-      faciliter la vie avec un calculateur simple de proportions. Double
-      objectif : un outil utile au quotidien et parfaire mes compétences en
-      développement web et mobile.
+      Celles et ceux qui me connaissent savent combien je suis un estomac sur
+      pattes. Et comme beaucoup, je ne résiste pas à une bonne pizza, au point
+      d'avoir appris à faire ma propre pâte. Sauf que calculer les ingrédients
+      nécessaires à chaque session s'est vite avéré pénible. Alors j'ai décidé
+      de créer mon propre calculateur de pizza.
     </p>
   </Fragment>
 
   <Fragment slot="challenge">
-    <li>Créer un calculateur précis et ergonomique</li>
-    <li>Évoluer de web vers mobile</li>
-    <li>Monter en compétence sur React Native et Expo</li>
+    <p>
+      Après <a href="/perso/galleries">Galleries</a>, j'ai monté mes exigences
+      d'un cran :
+    </p>
+    <ul class="list-arrow">
+      <li>Mettre en oeuvre un formulaire simple et facile...</li>
+      <li>
+        ...tout en conservant une DA "fun" autour de l'Italie et de la pizza
+      </li>
+      <li>Supporter plusieurs langues</li>
+      <li>Et pourquoi pas en faire une application mobile ?</li>
+    </ul>
   </Fragment>
 
   <Fragment slot="actions">
+    <h3>v1 avec Astro</h3>
+    <p>
+      Fort de mes connaissances acquises avec Astro, j'ai développé une première
+      version web, très proche de cette actuellement en ligne.
+    </p>
+    <p>
+      Dès le départ, la DA est assumée : ambiance italienne, univers pizza,
+      orientation "touch first". Ainsi les contrôles de saisie numérique sont
+      adaptés et inspirés du drapeau italien.
+    </p>
+    <Image
+      src={inputNum}
+      alt={"Contrôle de saisie numérique adaptés et inspirés du drapeau italien."}
+      width={800}
+      format="webp"
+      quality={100}
+    />
     <li>V1 web développée avec Astro</li>
     <li>Migration vers Expo pour une vraie application mobile</li>
     <li>Développement avec assistance IA</li>
@@ -41,12 +76,11 @@ import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
   </Fragment>
 
   <Fragment slot="keywords">
-    <span class="keyword">SaaS</span>
     <span class="keyword">Astro</span>
     <span class="keyword">Expo</span>
-    <span class="keyword">React Native</span>
-    <span class="keyword">Mobile</span>
-    <span class="keyword">No-code</span>
     <span class="keyword">IA générative</span>
+    <span class="keyword">Mobile</span>
+    <span class="keyword">React Native</span>
+    <span class="keyword">SaaS</span>
   </Fragment>
 </ProjectPersonal>
