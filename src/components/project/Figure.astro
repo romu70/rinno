@@ -1,0 +1,67 @@
+---
+interface Props {
+  caption: string;
+  fullWidth?: boolean;
+}
+
+const { caption, fullWidth = false } = Astro.props;
+---
+
+<figure class:list={["content-section", { "full-width": fullWidth }]}>
+  <div class="image-wrapper">
+    <slot />
+  </div>
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  figure {
+    background-color: var(--color-light);
+    margin: 0;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color);
+  }
+
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-wrapper :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  figcaption {
+    margin-top: 1rem;
+    font-variant: small-caps;
+    color: var(--color-dark);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .image-wrapper {
+      /*padding: 1.5rem;*/
+    }
+
+    figcaption {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .image-wrapper {
+      /*padding: 2.5rem;*/
+    }
+
+    figcaption {
+      font-size: 1rem;
+    }
+  }
+</style>
