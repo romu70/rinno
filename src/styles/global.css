@@ -153,6 +153,13 @@ a:hover {
   padding: 2rem;
 }
 
+/* Responsive adjustments for container-narrow */
+@media (min-width: 1440px) {
+  .container-narrow {
+    max-width: 1280px;
+  }
+}
+
 .glass-effect {
   background-color: color-mix(in srgb, var(--color-light) 80%, transparent);
   backdrop-filter: blur(1px) saturate(100%);
