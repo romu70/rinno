@@ -1,8 +1,6 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
-import Context from "../../components/project/Context.astro";
-import Challenge from "../../components/project/Challenge.astro";
-import Actions from "../../components/project/Actions.astro";
+import Section from "../../components/project/Section.astro";
 import Learnings from "../../components/project/Learnings.astro";
 import Keywords from "../../components/project/Keywords.astro";
 import heroImage from "../../assets/perso/galleries/hero.png";
@@ -14,7 +12,7 @@ import heroImage from "../../assets/perso/galleries/hero.png";
   image={heroImage}
   externalLink="https://romu70.github.io/galleries/"
 >
-  <Context>
+  <Section title="Contexte" fullWidth>
     <p>
       Passionné par les polices de caractères et le street art, je collecte des
       photos, qui s'accumulent sur mon téléphone depuis des années.
@@ -24,9 +22,9 @@ import heroImage from "../../assets/perso/galleries/hero.png";
       lancé dans le développement d'une galerie virtuelle pour exposer les
       images capturées aufil du temps.
     </p>
-  </Context>
+  </Section>
 
-  <Challenge>
+  <Section title="Challenge">
     <p>Avec ce projet, je visais plusieurs objectifs :</p>
     <ul class="list-arrow">
       <li>Aiguiser mes compétences en développement web</li>
@@ -34,9 +32,9 @@ import heroImage from "../../assets/perso/galleries/hero.png";
       <li>Gérer efficacement de nombreuses images</li>
       <li>Approfondir l'approche composants en web</li>
     </ul>
-  </Challenge>
+  </Section>
 
-  <Actions>
+  <Section title="Actions">
     <h3>Choix de la stack</h3>
     <p>
       J'ai choisi Astro sur les conseils d'un développeur front-end avec qui je
@@ -83,7 +81,7 @@ import heroImage from "../../assets/perso/galleries/hero.png";
       pour en traiter 10. Ce temps gagné me permet de mettre à jour les galeries
       plus souvent et plus rapidement.
     </p>
-  </Actions>
+  </Section>
 
   <Learnings>
     <h2>Apprentissages et Résultats</h2>

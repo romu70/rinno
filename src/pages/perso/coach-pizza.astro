@@ -1,10 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
-import Context from "../../components/project/Context.astro";
-import Challenge from "../../components/project/Challenge.astro";
-import Actions from "../../components/project/Actions.astro";
-import Results from "../../components/project/Results.astro";
+import Section from "../../components/project/Section.astro";
+import Figure from "../../components/project/Figure.astro";
 import Learnings from "../../components/project/Learnings.astro";
 import Keywords from "../../components/project/Keywords.astro";
 import heroImage from "../../assets/perso/coach-pizza/hero.png";
@@ -17,7 +15,7 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
   image={heroImage}
   externalLink="https://coach.pizza/"
 >
-  <Context>
+  <Section title="Contexte">
     <p>
       Celles et ceux qui me connaissent savent combien je suis un estomac sur
       pattes. Et comme beaucoup, je ne résiste pas à une bonne pizza, au point
@@ -25,9 +23,9 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
       nécessaires à chaque session s'est vite avéré pénible. Alors j'ai décidé
       de créer mon propre calculateur de pizza.
     </p>
-  </Context>
+  </Section>
 
-  <Challenge>
+  <Section title="Challenge">
     <p>
       Après <a href="/perso/galleries">Galleries</a>, j'ai monté mes exigences
       d'un cran :
@@ -40,9 +38,9 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
       <li>Supporter plusieurs langues</li>
       <li>Et pourquoi pas en faire une application mobile ?</li>
     </ul>
-  </Challenge>
+  </Section>
 
-  <Actions>
+  <Section title="Actions">
     <h3>v1 avec Astro</h3>
     <p>
       Fort de mes connaissances acquises avec Astro, j'ai développé une première
@@ -53,27 +51,31 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
       orientation "touch first". Ainsi les contrôles de saisie numérique sont
       adaptés et inspirés du drapeau italien.
     </p>
-    <Image
-      src={inputNum}
-      alt={"Contrôle de saisie numérique adaptés et inspirés du drapeau italien."}
-      width={800}
-      format="webp"
-      quality={100}
-    />
+    <Figure
+      caption="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
+    >
+      <Image
+        src={inputNum}
+        alt={"Contrôle de saisie numérique adaptés et inspirés du drapeau italien."}
+        width={800}
+        format="webp"
+        quality={100}
+      />
+    </Figure>
     <li>V1 web développée avec Astro</li>
     <li>Migration vers Expo pour une vraie application mobile</li>
     <li>Développement avec assistance IA</li>
     <li>Itérations basées sur mon usage réel</li>
-  </Actions>
+  </Section>
 
-  <Results>
+  <Section title="Résultats">
     <li>Un calculateur que j'utilise régulièrement</li>
     <li>Montée en compétence React Native et développement mobile</li>
     <li>
       Reconnaissance inattendue : un champion du monde de la pizza m'a contacté
       pour collaboration
     </li>
-  </Results>
+  </Section>
 
   <Learnings>
     <p>
