@@ -1,15 +1,14 @@
 ---
 // Column component - content block with optional h3 title
-// Only used inside Section components
 interface Props {
   title?: string;
-  flex?: string; // e.g., "1", "2", "1 1 400px"
+  fullWidth?: boolean;
 }
 
-const { title, flex = "1" } = Astro.props;
+const { title, fullWidth = false } = Astro.props;
 ---
 
-<div class="column" style={`flex: ${flex};`}>
+<div class:list={["column", { "full-width": fullWidth }]}>
   {title && <h3>{title}</h3>}
   <div class="column-content">
     <slot />
@@ -18,7 +17,11 @@ const { title, flex = "1" } = Astro.props;
 
 <style>
   .column {
-    min-width: 0;
+    /* Minimal styling, no flex rules */
+  }
+
+  .column.full-width {
+    flex: 1 1 100% !important;
   }
 
   .column h3 {
@@ -33,18 +36,12 @@ const { title, flex = "1" } = Astro.props;
     gap: 1rem;
   }
 
-  /* Responsive mobile */
   @media (max-width: 768px) {
-    .column {
-      flex: 1 1 100% !important;
-    }
-
     .column h3 {
       font-size: 1.2rem;
     }
   }
 
-  /* Responsive large screens */
   @media (min-width: 1440px) {
     .column h3 {
       font-size: 1.6rem;
