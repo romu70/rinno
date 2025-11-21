@@ -205,8 +205,6 @@ a:hover {
   max-width: calc(50% - 1rem);
 }
 
-/* New layout system - Row/Section/Column components handle their own styling */
-
 /* List with arrow bullets */
 .list-arrow {
   list-style: none;
@@ -283,6 +281,6 @@ a:hover {
   }
 
   .list-arrow li {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 }
