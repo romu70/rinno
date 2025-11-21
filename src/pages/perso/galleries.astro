@@ -47,7 +47,7 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   </Section>
 
   <Section title="UI Design" fullWidth>
-    <div id="ui-design">
+    <div class="flex-row">
       <p>
         Les images capturées sont très colorées, il était donc essentiel ne de
         pas perturber le visionnage et d'avoir une charte graphique neutre.<br
@@ -61,7 +61,7 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   </Section>
 
   <Section title="Itération 1" fullWidth>
-    <div class="actions-flex">
+    <div class="subsections-flex">
       <SubSection title="Choix de la stack">
         <p>
           Sur les conseils d'un ami développeur front-end, <a
@@ -130,7 +130,7 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
     </SubSection>
   </Section>
   <Section title="En situation" fullWidth>
-    <div class="actions-flex situation-flex">
+    <div class="subsections-flex situation-flex">
       <SubSection title="Ecran large">
         <Figure caption="Rendu sur écran large">
           <Image src={widescreen} alt="wide screen rendering" />
@@ -149,19 +149,20 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
     <ul class="list-arrow">
       <li>
         Site fonctionnel qui expose mes collections, adapté pour gérer quelques
-        centaines d'images
+        centaines d'images.
       </li>
       <li>
-        Reproduction fidèle de la galerie de DuckDuckGo à quelques détails prêts
+        Reproduction fidèle de la galerie de DuckDuckGo à quelques détails
+        prêts.
       </li>
       <li>
         Compétences TypeScript renforcées : typage, gestion d'événements,
-        responsivité
+        responsivité.
       </li>
       <li>
         Expérience concrête de développement augmenté par l'IA (vibe coding),
         ici avec Gemini, de l'expression de besoins initiale, aux itérations
-        jusqu'au script fonctionnel final
+        jusqu'au script fonctionnel final.
       </li>
       <li>
         Ce projet m'a permis de rencontrer certains des artistes exposés ici,
@@ -184,31 +185,6 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   </Keywords>
 
   <style>
-    #ui-design {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    #ui-design > p {
-      flex: 1 1 300px;
-      min-width: 0;
-    }
-
-    #ui-design > :global(figure) {
-      flex: 0 1 auto;
-    }
-
-    .actions-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .actions-flex > :global(.subsection) {
-      flex: 1 1 300px;
-    }
-
     .situation-flex > :global(.subsection:first-child) {
       flex: 2 1 400px;
     }
