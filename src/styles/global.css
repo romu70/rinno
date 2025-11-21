@@ -2,7 +2,7 @@
 @font-face {
   font-family: "Cormorant Garamond";
   src: url("/fonts/CormorantGaramond-Light.ttf") format("truetype");
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -178,7 +178,7 @@ a:hover {
   display: inline-block;
 }
 
-/* Flex container utilities for project pages */
+/* Legacy flex container utilities - kept for backward compatibility */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
@@ -204,6 +204,8 @@ a:hover {
   flex: 1 1 calc(50% - 1rem);
   max-width: calc(50% - 1rem);
 }
+
+/* New layout system - Row/Section/Column components handle their own styling */
 
 /* List with arrow bullets */
 .list-arrow {

@@ -1,13 +1,70 @@
 ---
+// Section component - content block with required h2 title
+// Can contain Columns or direct content
 interface Props {
-  title?: string;
-  fullWidth?: boolean;
+  title: string;
+  flex?: string; // Optional flex value for when inside Row
 }
 
-const { title, fullWidth = false } = Astro.props;
+const { title, flex } = Astro.props;
 ---
 
-<section class:list={["content-section", { "full-width": fullWidth }]}>
-  {title && <h2>{title}</h2>}
-  <slot />
+<section class="section" style={flex ? `flex: ${flex};` : undefined}>
+  <h2>{title}</h2>
+  <div class="section-content">
+    <slot />
+  </div>
 </section>
+
+<style>
+  .section {
+    background-color: transparent;
+    border-radius: var(--radius);
+  }
+
+  .section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-darkest);
+  }
+
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* When section contains columns, make them flex row */
+  .section-content:has(> :global(.column)) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-content {
+      gap: 1rem;
+    }
+
+    .section-content:has(> :global(.column)) {
+      flex-direction: column;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .section h2 {
+      font-size: 2.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-content {
+      gap: 2rem;
+    }
+  }
+</style>
