@@ -1,6 +1,5 @@
 ---
 // Row component - horizontal container for Sections or Columns
-// Wraps to vertical stack on mobile
 ---
 
 <div class="row">
@@ -15,21 +14,9 @@
     width: 100%;
   }
 
-  /* Children (Sections or Columns) default to equal width with max 2 per row */
-  .row > :global(*) {
-    flex: 1 1 calc(50% - 1rem);
-    min-width: 0;
-  }
-
-  /* Mobile: stack vertically */
   @media (max-width: 768px) {
     .row {
-      flex-direction: column;
       gap: 1.5rem;
-    }
-
-    .row > :global(*) {
-      flex: 1 1 100%;
     }
   }
 </style>
