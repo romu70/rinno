@@ -178,6 +178,33 @@ a:hover {
   display: inline-block;
 }
 
+/* Flex container utilities for project pages */
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.flex-row > p {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.flex-row > figure {
+  flex: 0 1 auto;
+}
+
+.subsections-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.subsections-flex > .subsection {
+  flex: 1 1 calc(50% - 1rem);
+  max-width: calc(50% - 1rem);
+}
+
 /* List with arrow bullets */
 .list-arrow {
   list-style: none;
