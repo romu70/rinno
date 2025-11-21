@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
+import Column from "../../components/project/Column.astro";
 import Learnings from "../../components/project/Learnings.astro";
 import Keywords from "../../components/project/Keywords.astro";
 import Figure from "../../components/project/Figure.astro";
@@ -20,49 +22,56 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   image={heroImage}
   externalLink="https://romu70.github.io/galleries/"
 >
-  <Section title="Contexte">
-    <p>
-      Passionné par les polices de caractères et le street art, je capture et
-      collecte des photos, qui s'accumulent sur mon téléphone depuis des années.
-    </p>
-    <p>
-      Je me suis donc lancé dans le développement d'une galerie virtuelle,
-      calquée sur celle de DuckDuckGo que j'aime beaucoup, pour exposer toutes
-      ces images capturées au fil du temps.
-    </p>
-  </Section>
-
-  <Section title="Challenge">
-    <p>Avec ce projet, je visais plusieurs objectifs :</p>
-    <ul class="list-arrow">
-      <li>Aiguiser mes compétences en développement web</li>
-      <li>Créer une galerie performante et esthétique</li>
-      <li>Gérer efficacement de nombreuses images</li>
-      <li>Approfondir l'approche composants en web</li>
-    </ul>
-    <p>
-      Bien sûr, cette galerie se devrait d'être utilisable sur télépohone et
-      écran large.
-    </p>
-  </Section>
-
-  <Section title="UI Design" fullWidth>
-    <div class="flex-row">
+  <Row>
+    <Section title="Contexte">
       <p>
-        Les images capturées sont très colorées, il était donc essentiel ne de
-        pas perturber le visionnage et d'avoir une charte graphique neutre.<br
-        />Ici, seulement 3 couleurs : un fond gris, le blanc pour les textes et
-        un fond plus clair pour les états "hover" et "active".
+        Passionné par les polices de caractères et le street art, je capture et
+        collecte des photos, qui s'accumulent sur mon téléphone depuis des
+        années.
       </p>
-      <Figure caption="Palette de couleurs simple et neutre" width="30rem">
-        <Image src={palette} alt="colors palette" />
-      </Figure>
-    </div>
-  </Section>
+      <p>
+        Je me suis donc lancé dans le développement d'une galerie virtuelle,
+        calquée sur celle de DuckDuckGo que j'aime beaucoup, pour exposer toutes
+        ces images capturées au fil du temps.
+      </p>
+    </Section>
 
-  <Section title="Itération 1" fullWidth>
-    <div class="subsections-flex">
-      <SubSection title="Choix de la stack">
+    <Section title="Challenge">
+      <p>Avec ce projet, je visais plusieurs objectifs :</p>
+      <ul class="list-arrow">
+        <li>Aiguiser mes compétences en développement web</li>
+        <li>Créer une galerie performante et esthétique</li>
+        <li>Gérer efficacement de nombreuses images</li>
+        <li>Approfondir l'approche composants en web</li>
+      </ul>
+      <p>
+        Bien sûr, cette galerie se devrait d'être utilisable sur téléphone et
+        écran large.
+      </p>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="UI Design">
+      <Column>
+        <p>
+          Les images capturées sont très colorées, il était donc essentiel ne de
+          pas perturber le visionnage et d'avoir une charte graphique neutre.<br
+          />Ici, seulement 3 couleurs : un fond gris, le blanc pour les textes
+          et un fond plus clair pour les états "hover" et "active".
+        </p>
+      </Column>
+      <Column>
+        <Figure caption="Palette de couleurs simple et neutre" width="30rem">
+          <Image src={palette} alt="colors palette" />
+        </Figure>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Itération 1">
+      <Column title="Choix de la stack">
         <p>
           Sur les conseils d'un ami développeur front-end, <a
             href="https://www.linkedin.com/in/guillaume-denier/"
@@ -73,22 +82,22 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
           monter en compétences progressivement.
         </p>
         <p>Promesses tenues !</p>
-      </SubSection>
-      <SubSection title="Hébergement sur GitHub Pages">
+      </Column>
+      <Column title="Hébergement sur GitHub Pages">
         <p>
           Le code est hébergé sur GitHub. Galleries est un site statique, je n'y
           collecte aucune donnée. L'hébergement sur GitHub Pages était un choix
           naturel compte tenu du pipeline CI/CD totalement intégré.
         </p>
-      </SubSection>
-      <SubSection title="Organisation des collections par thème">
+      </Column>
+      <Column title="Organisation des collections par thème">
         <p>
           Les 2 galeries reposent sur les Content Collection de Astro. Et pour
           bénéficier d'une meilleure connaissance du système, l'une est en
           markdown, l'autre en JSON.
         </p>
-      </SubSection>
-      <SubSection title="Développement d'une galerie responsive">
+      </Column>
+      <Column title="Développement d'une galerie responsive">
         <p>
           Astro fournissait le support parfait via ses Content Collections.
           Néanmoins, ce système était prévu plus pour un affichage type blog que
@@ -96,101 +105,99 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
           fonctionnement de la galerie : gestion du format des images (portrait
           vs paysage), gestion de la navigation, gestion du clavier, etc.
         </p>
-      </SubSection>
-    </div>
-  </Section>
+      </Column>
+    </Section>
+  </Row>
 
-  <Section title="Itération 2" fullWidth>
-    <SubSection title="Constat : La flemme">
-      <p>
-        Au fil du temps, les images s'accumulaient quand même beaucoup sur mon
-        téléphone, et ma motivation pour les ajouter au site baissait. Modéliser
-        mon propre "user journey" m'a éclairé. Le traitement d'une image me
-        prend beaucoup trop de temps : ouvrir l'image, récupérer sa position,
-        chercher cette position sur OpenStreetMap, puis renseigner les
-        métadonnées associées dans un fichier Astro créé pour l'occasion,
-        redimensionner l'image et la compresser. C'est beaucoup (trop).
-      </p>
-      <br />
-      <Figure caption="User Journey original">
-        <Image src={userJourney1} alt="user journey 1" />
-      </Figure>
-    </SubSection>
-    <SubSection title="Enter Gemini">
-      <p>
-        En utilisant Gemini, j'ai pu créer en 2 heures de travail un script qui
-        me soulage au maximum de toute la partie chronophage. Une fois les
-        images sur mon ordinateur, le script se charge de tous les traitements.
-        Je n'ai plus qu'à renseigner ce qu'il ne peut pas faire à ma place.
-      </p>
-      <br />
-      <Figure caption="User Journey amélioré">
-        <Image src={userJourney2} alt="user journey 1" />
-      </Figure>
-    </SubSection>
-  </Section>
-  <Section title="En situation" fullWidth>
-    <div class="subsections-flex situation-flex">
-      <SubSection title="Ecran large">
+  <Row>
+    <Section title="Itération 2">
+      <Column title="Constat : La flemme" fullWidth>
+        <p>
+          Au fil du temps, les images s'accumulaient quand même beaucoup sur mon
+          téléphone, et ma motivation pour les ajouter au site baissait.
+          Modéliser mon propre "user journey" m'a éclairé. Le traitement d'une
+          image me prend beaucoup trop de temps : ouvrir l'image, récupérer sa
+          position, chercher cette position sur OpenStreetMap, puis renseigner
+          les métadonnées associées dans un fichier Astro créé pour l'occasion,
+          redimensionner l'image et la compresser. C'est beaucoup (trop).
+        </p>
+        <br />
+        <Figure caption="User Journey original">
+          <Image src={userJourney1} alt="user journey 1" />
+        </Figure>
+      </Column>
+      <Column title="Enter Gemini" fullWidth>
+        <p>
+          En utilisant Gemini, j'ai pu créer en 2 heures de travail un script
+          qui me soulage au maximum de toute la partie chronophage. Une fois les
+          images sur mon ordinateur, le script se charge de tous les
+          traitements. Je n'ai plus qu'à renseigner ce qu'il ne peut pas faire à
+          ma place.
+        </p>
+        <br />
+        <Figure caption="User Journey amélioré">
+          <Image src={userJourney2} alt="user journey 1" />
+        </Figure>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="En situation">
+      <Column title="Ecran large">
         <Figure caption="Rendu sur écran large">
           <Image src={widescreen} alt="wide screen rendering" />
         </Figure>
-      </SubSection>
-      <SubSection title="Mobile">
+      </Column>
+      <Column title="Mobile">
         <Figure caption="Rendu sur mobile" height="40rem">
           <Image src={mobile} alt="mobile rendering" />
         </Figure>
-      </SubSection>
-    </div>
-  </Section>
+      </Column>
+    </Section>
+  </Row>
 
-  <Learnings>
-    <h2>Apprentissages et Résultats</h2>
-    <ul class="list-arrow">
-      <li>
-        Site fonctionnel qui expose mes collections, adapté pour gérer quelques
-        centaines d'images.
-      </li>
-      <li>
-        Reproduction fidèle de la galerie de DuckDuckGo à quelques détails
-        prêts.
-      </li>
-      <li>
-        Compétences TypeScript renforcées : typage, gestion d'événements,
-        responsivité.
-      </li>
-      <li>
-        Expérience concrête de développement augmenté par l'IA (vibe coding),
-        ici avec Gemini, de l'expression de besoins initiale, aux itérations
-        jusqu'au script fonctionnel final.
-      </li>
-      <li>
-        Ce projet m'a permis de rencontrer certains des artistes exposés ici,
-        comme
-        <strong>Ador</strong>, <strong>Ratz One</strong> et <strong
-          >Stend</strong
-        >, que je remercie pour m'avoir autorisé à reproduire leur travail.
-      </li>
-    </ul>
-  </Learnings>
+  <Row>
+    <Learnings>
+      <h2>Apprentissages et Résultats</h2>
+      <ul class="list-arrow">
+        <li>
+          Site fonctionnel qui expose mes collections, adapté pour gérer
+          quelques centaines d'images.
+        </li>
+        <li>
+          Reproduction fidèle de la galerie de DuckDuckGo à quelques détails
+          prêts.
+        </li>
+        <li>
+          Compétences TypeScript renforcées : typage, gestion d'événements,
+          responsivité.
+        </li>
+        <li>
+          Expérience concrête de développement augmenté par l'IA (vibe coding),
+          ici avec Gemini, de l'expression de besoins initiale, aux itérations
+          jusqu'au script fonctionnel final.
+        </li>
+        <li>
+          Ce projet m'a permis de rencontrer certains des artistes exposés ici,
+          comme
+          <strong>Ador</strong>, <strong>Ratz One</strong> et <strong
+            >Stend</strong
+          >, que je remercie pour m'avoir autorisé à reproduire leur travail.
+        </li>
+      </ul>
+    </Learnings>
+  </Row>
 
-  <Keywords>
-    <span class="keyword">Astro</span>
-    <span class="keyword">Galerie</span>
-    <span class="keyword">GitHub Pages</span>
-    <span class="keyword">JavaScript</span>
-    <span class="keyword">Street art</span>
-    <span class="keyword">TypeScript</span>
-    <span class="keyword">Typographie</span>
-  </Keywords>
-
-  <style>
-    .situation-flex > :global(.subsection:first-child) {
-      flex: 2 1 400px;
-    }
-
-    .situation-flex > :global(.subsection:last-child) {
-      flex: 1 1 300px;
-    }
-  </style>
+  <Row>
+    <Keywords>
+      <span class="keyword">Astro</span>
+      <span class="keyword">Galerie</span>
+      <span class="keyword">GitHub Pages</span>
+      <span class="keyword">JavaScript</span>
+      <span class="keyword">Street art</span>
+      <span class="keyword">TypeScript</span>
+      <span class="keyword">Typographie</span>
+    </Keywords>
+  </Row>
 </ProjectPersonal>
