@@ -1,0 +1,80 @@
+---
+interface Props {
+  author: string;
+  fullWidth?: boolean;
+}
+
+const { author, fullWidth = false } = Astro.props;
+---
+
+<blockquote class:list={["quote-block", { "full-width": fullWidth }]}>
+  <div class="quote-content">
+    <slot />
+  </div>
+  <cite class="quote-author">{author}</cite>
+</blockquote>
+
+<style>
+  .quote-block {
+    background-color: var(--color-light);
+    padding: 2rem;
+    border-radius: var(--radius);
+    border-left: 4px solid var(--primary-color);
+    margin: 0;
+  }
+
+  .quote-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--primary-color);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .quote-content :global(p) {
+    margin: 0;
+  }
+
+  .quote-author {
+    display: block;
+    font-variant: small-caps;
+    color: var(--color-dark);
+    text-align: left;
+    font-size: 0.9rem;
+    font-style: normal;
+  }
+
+  .quote-author::before {
+    content: "— ";
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .quote-block {
+      padding: 1.5rem;
+    }
+
+    .quote-content {
+      font-size: 1rem;
+    }
+
+    .quote-author {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .quote-block {
+      padding: 2.5rem;
+    }
+
+    .quote-content {
+      font-size: 1.3rem;
+    }
+
+    .quote-author {
+      font-size: 1rem;
+    }
+  }
+</style>
