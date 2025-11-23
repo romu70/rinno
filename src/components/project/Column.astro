@@ -3,12 +3,18 @@
 interface Props {
   title?: string;
   fullWidth?: boolean;
+  alignWithContent?: boolean;
 }
 
-const { title, fullWidth = false } = Astro.props;
+const { title, fullWidth = false, alignWithContent = false } = Astro.props;
 ---
 
-<div class:list={["column", { "full-width": fullWidth }]}>
+<div
+  class:list={[
+    "column",
+    { "full-width": fullWidth, "align-with-content": alignWithContent },
+  ]}
+>
   {title && <h3>{title}</h3>}
   <div class="column-content">
     <slot />
@@ -22,6 +28,11 @@ const { title, fullWidth = false } = Astro.props;
 
   .column.full-width {
     flex: 1 1 100% !important;
+  }
+
+  /* Align content with adjacent column that has a title */
+  .column.align-with-content .column-content {
+    padding-top: calc(1.6rem + 1.4rem * 1.3 + 0.8rem);
   }
 
   .column h3 {
@@ -45,6 +56,10 @@ const { title, fullWidth = false } = Astro.props;
   @media (min-width: 1440px) {
     .column h3 {
       font-size: 1.6rem;
+    }
+
+    .column.align-with-content .column-content {
+      padding-top: calc(1.6rem + 1.6rem * 1.3 + 0.8rem);
     }
   }
 </style>
