@@ -37,8 +37,8 @@ const nextProject =
             <Image
               src={image}
               alt={title}
-              width={1200}
-              height={600}
+              width={900}
+              height={450}
               format="webp"
               quality={95}
             />
@@ -146,6 +146,8 @@ const nextProject =
   .hero-image-container {
     position: relative;
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
