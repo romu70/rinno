@@ -1,0 +1,184 @@
+---
+// Accordion component - content block with collapsible/expandable behavior
+interface Props {
+  title: string;
+  defaultOpen?: boolean;
+  id?: string;
+}
+
+const { title, defaultOpen = false, id } = Astro.props;
+const sectionId =
+  id || `collapsible-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<section class="accordion" data-section-id={sectionId}>
+  <button
+    class="section-header"
+    aria-expanded={defaultOpen}
+    aria-controls={`${sectionId}-content`}
+  >
+    <h2>{title}</h2>
+    <span class="chevron" aria-hidden="true"></span>
+  </button>
+  <div
+    class="section-content"
+    id={`${sectionId}-content`}
+    data-default-open={defaultOpen}
+  >
+    <div class="section-content-inner">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .collapsible-section {
+    background-color: transparent;
+    border-radius: var(--radius);
+  }
+
+  .section-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    transition: opacity 0.2s ease;
+  }
+
+  .section-header:hover {
+    opacity: 0.7;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 1.5rem;
+    color: var(--color-darkest);
+  }
+
+  .chevron {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-right: 3px solid var(--color-darkest);
+    border-bottom: 3px solid var(--color-darkest);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-header[aria-expanded="true"] .chevron {
+    transform: rotate(-135deg);
+  }
+
+  .section-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  .section-content[data-default-open="true"] {
+    max-height: 5000px;
+    opacity: 1;
+  }
+
+  .section-content-inner {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  /* Columns get equal space, max 2 per row */
+  .section-content-inner > :global(.column) {
+    flex: 1 1 40%;
+  }
+
+  /* Non-column content takes full width */
+  .section-content-inner > :global(:not(.column)) {
+    flex: 1 1 100%;
+  }
+
+  @media (max-width: 768px) {
+    /* Stack columns vertically on mobile */
+    .section-content-inner > :global(.column) {
+      flex: 1 1 100%;
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .chevron {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-content,
+    .section-content-inner {
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .section-header h2 {
+      font-size: 2.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .chevron {
+      width: 1.7rem;
+      height: 1.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-content,
+    .section-content-inner {
+      gap: 2rem;
+    }
+  }
+</style>
+
+<script>
+  // Handle collapsible sections
+  document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".collapsible-section");
+
+    sections.forEach((section) => {
+      const button = section.querySelector(".section-header");
+      const content = section.querySelector(".section-content");
+
+      if (!button || !content) return;
+
+      button.addEventListener("click", () => {
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        // Toggle aria-expanded
+        button.setAttribute("aria-expanded", (!isExpanded).toString());
+
+        // Toggle content visibility
+        if (isExpanded) {
+          content.style.maxHeight = "0";
+          content.style.opacity = "0";
+        } else {
+          content.style.maxHeight = "5000px";
+          content.style.opacity = "1";
+        }
+      });
+    });
+  });
+</script>
