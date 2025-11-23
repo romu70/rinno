@@ -1,12 +1,20 @@
 ---
 import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
+import Column from "../../components/project/Column.astro";
 import Figure from "../../components/project/Figure.astro";
 import Learnings from "../../components/project/Learnings.astro";
 import Keywords from "../../components/project/Keywords.astro";
+import SubSection from "../../components/project/SubSection.astro";
+import Quote from "../../components/project/Quote.astro";
 import heroImage from "../../assets/perso/coach-pizza/hero.png";
 import inputNum from "../../assets/perso/coach-pizza/input-num.png";
+import palette from "../../assets/perso/coach-pizza/palette.png";
+import imperial from "../../assets/perso/coach-pizza/imperial-units.png";
+import ios from "../../assets/perso/coach-pizza/ios.png";
+import webapp from "../../assets/perso/coach-pizza/web-app.png";
 ---
 
 <ProjectPersonal
@@ -15,80 +23,242 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
   image={heroImage}
   externalLink="https://coach.pizza/"
 >
-  <Section title="Contexte">
-    <p>
-      Celles et ceux qui me connaissent savent combien je suis un estomac sur
-      pattes. Et comme beaucoup, je ne résiste pas à une bonne pizza, au point
-      d'avoir appris à faire ma propre pâte. Sauf que calculer les ingrédients
-      nécessaires à chaque session s'est vite avéré pénible. Alors j'ai décidé
-      de créer mon propre calculateur de pizza.
-    </p>
-  </Section>
+  <Row>
+    <Section title="Contexte">
+      <p>
+        Mes proches disent que je suis un estomac sur pattes. Comme beaucoup, je
+        ne résiste pas à une bonne pizza, au point d'avoir appris à faire ma
+        propre pâte.
+      </p>
+      <p>
+        Calculer les ingrédients nécessaires à chaque préparation s'est vite
+        avéré pénible. Alors j'ai décidé de créer mon propre calculateur de
+        pizza.
+      </p>
+      <p>
+        La maîtrise de la fermentation, influencée par le type de farine, le
+        type et la quantité de levure, la durée et la température de pousse,
+        l'hydratation de la pâte, etc, est la clé pour réaliser une bonne pâte à
+        pizza.
+      </p>
+    </Section>
 
-  <Section title="Challenge">
-    <p>
-      Après <a href="/perso/galleries">Galleries</a>, j'ai monté mes exigences
-      d'un cran :
-    </p>
-    <ul class="list-arrow">
-      <li>Mettre en oeuvre un formulaire simple et facile...</li>
-      <li>
-        ...tout en conservant une DA "fun" autour de l'Italie et de la pizza
-      </li>
-      <li>Supporter plusieurs langues</li>
-      <li>Et pourquoi pas en faire une application mobile ?</li>
-    </ul>
-  </Section>
+    <Section title="Challenge">
+      <p>
+        <a href="/perso/galleries">Galleries</a> m'a appris Astro et la conception
+        des sites statiques. Avec Coach Pizza je monte mes exigences d'un cran :
+      </p>
+      <ul class="list-arrow">
+        <li>
+          <strong>UX Touch first</strong> : une main dans la farine, l'autre sur
+          l'app
+        </li>
+        <li>
+          <strong>Formulaires dynamiques</strong> pour calculer les quantités d'ingrédients
+          adaptées au nombre de pâtons
+        </li>
+        <li><strong>DA "fun"</strong> parce que la pizza c'est ludique</li>
+        <li>
+          <strong>Multi-langues</strong> pour en faire profiter les non francophones
+        </li>
+      </ul>
+    </Section>
+  </Row>
 
-  <Section title="Actions">
-    <h3>v1 avec Astro</h3>
-    <p>
-      Fort de mes connaissances acquises avec Astro, j'ai développé une première
-      version web, très proche de cette actuellement en ligne.
-    </p>
-    <p>
-      Dès le départ, la DA est assumée : ambiance italienne, univers pizza,
-      orientation "touch first". Ainsi les contrôles de saisie numérique sont
-      adaptés et inspirés du drapeau italien.
-    </p>
-    <Figure
-      caption="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
-    >
-      <Image
-        src={inputNum}
-        alt={"Contrôle de saisie numérique adaptés et inspirés du drapeau italien."}
-        width={800}
-        format="webp"
-        quality={100}
-      />
-    </Figure>
-    <li>V1 web développée avec Astro</li>
-    <li>Migration vers Expo pour une vraie application mobile</li>
-    <li>Développement avec assistance IA</li>
-    <li>Itérations basées sur mon usage réel</li>
-  </Section>
+  <Row>
+    <Section title="UI Design">
+      <Column>
+        <p>
+          Je voulais une app qui soit fun, colorée et ludique. A cette fin, j'ai
+          volontairement forcé le trait de l'italie au travers du charte
+          graphique qui utilise massivement les couleurs du drapeau italien.
+        </p>
+      </Column>
+      <Column>
+        <Figure caption="Palette de couleurs italiennes">
+          <Image src={palette} alt="Palette de couleurs italiennes" />
+        </Figure>
+      </Column>
+    </Section>
+  </Row>
 
-  <Section title="Résultats">
-    <li>Un calculateur que j'utilise régulièrement</li>
-    <li>Montée en compétence React Native et développement mobile</li>
-    <li>
-      Reconnaissance inattendue : un champion du monde de la pizza m'a contacté
-      pour collaboration
-    </li>
-  </Section>
+  <Row>
+    <Section title="Touch-first : concevoir pour les doigts">
+      <Column title="Astro + GitHub Pages" fullWidth>
+        <p>
+          J'ai développé une première version web, hébergée sur GitHub Pages
+          comme Galleries. Cette version est très proche de celle actuellement
+          en ligne.
+        </p>
+      </Column>
+      <Column title="Saisir des quantités au doigt">
+        <p>
+          Utilisée sur mobile en priorité, l'app devait être "touch first", donc
+          avec des contrôles facilement utilisables au doigt.
+        </p>
+        <br />
+        <p>
+          Ici, il y a 3 contrôles HTML : un input de type number, un bouton "+"
+          et un bouton "-", avec un logique de "pas" adaptée à la saisie de
+          l'ingrédient souhaité. Le pas des pâtons est de 5g, quand celui de la
+          levure est de 0,1g.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
+        >
+          <Image
+            src={inputNum}
+            alt={"Contrôle de saisie numérique adaptés et inspirés du drapeau italien."}
+          />
+        </Figure>
+      </Column>
+      <Column title="Désactiver le double 'Tap'">
+        <p>
+          Sur mobile, la norme est de zoomer l'écran en cas de 2 tap rapidement
+          effectués. Ici, l'utilisateur prend l'habitude de taper vite pour
+          augmenter ou baisser une quantité. Ce qui provoquait un zoom de
+          l'écran, rendant l'app difficilement utilisable..
+        </p>
+        <br />
+        <p>J'ai donc désactivé ce mécanisme pour conserver l'UX agréable.</p>
+        <br />
+      </Column>
+    </Section>
+  </Row>
 
-  <Learnings>
-    <p>
-      <em>[Section à compléter avec vos propres réflexions et learnings]</em>
-    </p>
-  </Learnings>
+  <Row>
+    <Section title="De l'outil perso à la publication">
+      <Column title="Support Multi-langues">
+        <p>
+          Astro offre beaucoup de facilités pour supporter plusieurs langues.
+          Ici, j'ai mis en place non seulement le support de l'Anglais, mais
+          aussi la compatiblité avec les unités impériales.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure caption="Support des unités impériales">
+          <Image src={imperial} alt={"support des unités impériales"} />
+        </Figure>
+      </Column>
+      <Column title="Domaine Coach.Pizza">
+        <p>
+          L'application est accessible publiquement depuis un domaine dédié :
+        </p>
+        <p>
+          <a href="https://coach.pizza" target="_blank">https://coach.pizza</a>
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure caption="Application Web" width="20rem">
+          <Image src={webapp} alt={"application web"} />
+        </Figure>
+      </Column>
+    </Section>
+  </Row>
 
+  <Row>
+    <Section title="Concept validé par un multi-champion du monde">
+      <Column title="Contact avec Aymeric Provence">
+        <p>
+          Après des publications sur les réseaux sociaux, je suis contacté par
+          Aymeric Provence, multi-champion du monde de la pizza.
+        </p>
+        <br />
+        <Quote author="Aymeric Provence">
+          <p>
+            "Il est chouette ton projet, c'est un bon début. J'ai pleins d'idées
+            pour qu'on en fasse un vrai outil. Ca te dirait qu'on avance
+            ensemble ?"
+          </p>
+        </Quote>
+      </Column>
+      <Column title="Premier obstacle : définir les protocoles">
+        <p>
+          Aymeric insiste : un calculateur générique ne suffit pas. Il faut des
+          protocoles validés par type de farine (T45, T55, Manitoba...), avec
+          températures et durées précises.
+        </p>
+        <p>
+          Problème : ce travail nécessite des semaines de tests en labo. Aymeric
+          n'a pas cette disponibilité à court terme.
+        </p>
+      </Column>
+      <Column title="Pendant ce temps : migration mobile">
+        <p>
+          En parallèle, je prépare le terrain technique. Mon choix : Expo/React
+          Native pour le mobile + Supabase pour le back-end.
+        </p>
+        <p>
+          La migration isofonctionnelle se fait rapidement, aidé par l'IA
+          (Gemini). L'app tourne en émulateur iOS.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure caption="Coach Pizza dans l'émulateur iOS" width="20rem">
+          <Image src={ios} alt={"Coach Pizza dans l'émulateur iOS"} />
+        </Figure>
+      </Column>
+      <Column title="Mise en pause">
+        <p>
+          Sans les protocoles d'Aymeric, l'app mobile reste un coquille vide.
+        </p>
+        <p>Le projet est mis en pause, en attendant sa disponibilité.</p>
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Learnings>
+      <h2>Ce que j'ai appris</h2>
+      <h3>Validation ≠ Vision partagée</h3>
+      <p>
+        <strong>Réalisation</strong> : Le contact avec Aymeric a révélé l'écart entre
+        "outil qui marche pour moi" et "produit professionnel". Les pizzaïolos attendent
+        des protocoles validés par farine (T45, T55...), pas un calculateur générique.
+      </p>
+      <p>
+        <strong>Impact</strong> : Sans ces protocoles, impossible de continuer. Le
+        projet reste bloqué sur cette dépendance externe.
+      </p>
+      <h3>Mobile-first ≠ Mobile-native</h3>
+      <p>
+        <strong>Réalisation</strong> : Expo promet le développement mobile facile,
+        mais les exigences Apple/Google 2024 pour la publication sur les app stores
+        ont multiplié la complexité.
+      </p>
+      <p>
+        <strong>Impact</strong> : Le SaaS web reste plus agile pour l'itération rapide.
+        Si je relance le projet, je pense rester en SaaS.
+      </p>
+      <h3>Insights contre-intuitifs</h3>
+      <p>
+        Des utilisateurs US (amateurs et pros) m'ont dit que <strong
+          >les unités impériales ne servent à rien</strong
+        > pour la pizza. La précision nécessaire pour des résultats reproducibles
+        impose le système métrique.
+      </p>
+      <p>
+        <strong>Learning</strong> : Faut toujours valider avec les utilisateurs cibles.
+      </p>
+      <br />
+      <p class="conclusion">
+        Même en pause, ce projet m'a appris Expo/React Native. Je n'abandonne
+        pas l'idée de le relancer plus tard.
+      </p>
+    </Learnings>
+  </Row>
+</ProjectPersonal>
+
+<Row>
   <Keywords>
+    <span class="keyword">Android</span>
     <span class="keyword">Astro</span>
     <span class="keyword">Expo</span>
     <span class="keyword">IA générative</span>
+    <span class="keyword">iOS</span>
     <span class="keyword">Mobile</span>
     <span class="keyword">React Native</span>
     <span class="keyword">SaaS</span>
   </Keywords>
-</ProjectPersonal>
+</Row>
