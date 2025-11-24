@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
 import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
@@ -62,9 +61,12 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
         </p>
       </Column>
       <Column>
-        <Figure caption="Palette de couleurs simple et neutre" width="30rem">
-          <Image src={palette} alt="colors palette" />
-        </Figure>
+        <Figure
+          caption="Palette de couleurs simple et neutre"
+          image={palette}
+          alt="Palette de couleurs simple et neutre"
+          width="30rem"
+        />
       </Column>
     </Section>
   </Row>
@@ -122,9 +124,11 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
           redimensionner l'image et la compresser. C'est beaucoup (trop).
         </p>
         <br />
-        <Figure caption="User Journey original">
-          <Image src={userJourney1} alt="user journey 1" />
-        </Figure>
+        <Figure
+          caption="User Journey original"
+          image={userJourney1}
+          alt="user journey 1"
+        />
       </Column>
       <Column title="Enter Gemini" fullWidth>
         <p>
@@ -135,9 +139,11 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
           ma place.
         </p>
         <br />
-        <Figure caption="User Journey amélioré">
-          <Image src={userJourney2} alt="user journey 1" />
-        </Figure>
+        <Figure
+          caption="User Journey amélioré"
+          image={userJourney2}
+          alt="user journey 2"
+        />
       </Column>
     </Section>
   </Row>
@@ -145,14 +151,19 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   <Row>
     <Section title="En situation">
       <Column title="Ecran large">
-        <Figure caption="Rendu sur écran large">
-          <Image src={widescreen} alt="wide screen rendering" />
-        </Figure>
+        <Figure
+          caption="Rendu sur écran large"
+          image={widescreen}
+          alt="wide screen rendering"
+        />
       </Column>
       <Column title="Mobile">
-        <Figure caption="Rendu sur mobile" height="40rem">
-          <Image src={mobile} alt="mobile rendering" />
-        </Figure>
+        <Figure
+          caption="Rendu sur mobile"
+          height="40rem"
+          image={mobile}
+          alt="mobile rendering"
+        />
       </Column>
     </Section>
   </Row>

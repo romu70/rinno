@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
 import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
@@ -75,9 +74,11 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
         </p>
       </Column>
       <Column>
-        <Figure caption="Palette de couleurs italiennes">
-          <Image src={palette} alt="Palette de couleurs italiennes" />
-        </Figure>
+        <Figure
+          caption="Palette de couleurs italiennes"
+          image={palette}
+          alt="Palette de couleurs italiennes"
+        />
       </Column>
     </Section>
   </Row>
@@ -107,12 +108,9 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
       <Column alignWithContent>
         <Figure
           caption="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
-        >
-          <Image
-            src={inputNum}
-            alt={"Contrôle de saisie numérique adaptés et inspirés du drapeau italien."}
-          />
-        </Figure>
+          image={inputNum}
+          alt="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
+        />
       </Column>
       <Column title="Désactiver le double 'Tap'">
         <p>
@@ -138,9 +136,11 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
         </p>
       </Column>
       <Column alignWithContent>
-        <Figure caption="Support des unités impériales">
-          <Image src={imperial} alt={"support des unités impériales"} />
-        </Figure>
+        <Figure
+          caption="Support des unités impériales"
+          image={imperial}
+          alt="support des unités impériales"
+        />
       </Column>
       <Column title="Domaine Coach.Pizza">
         <p>
@@ -151,9 +151,12 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
         </p>
       </Column>
       <Column alignWithContent>
-        <Figure caption="Application Web" width="20rem">
-          <Image src={webapp} alt={"application web"} />
-        </Figure>
+        <Figure
+          caption="Application Web"
+          width="20rem"
+          image={webapp}
+          alt="application web"
+        />
       </Column>
     </Section>
   </Row>
@@ -196,9 +199,12 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
         </p>
       </Column>
       <Column alignWithContent>
-        <Figure caption="Coach Pizza dans l'émulateur iOS" width="20rem">
-          <Image src={ios} alt={"Coach Pizza dans l'émulateur iOS"} />
-        </Figure>
+        <Figure
+          caption="Coach Pizza dans l'émulateur iOS"
+          width="20rem"
+          image={ios}
+          alt="Coach Pizza dans l'émulateur iOS"
+        />
       </Column>
       <Column title="Mise en pause">
         <p>

@@ -1,12 +1,26 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
   caption: string;
+  image?: ImageMetadata;
+  alt?: string;
   fullWidth?: boolean;
   width?: string;
   height?: string;
+  clickable?: boolean;
 }
 
-const { caption, fullWidth = false, width, height } = Astro.props;
+const {
+  caption,
+  image,
+  alt = "",
+  fullWidth = false,
+  width,
+  height,
+  clickable = false,
+} = Astro.props;
 ---
 
 <figure
@@ -14,12 +28,24 @@ const { caption, fullWidth = false, width, height } = Astro.props;
   style={width ? `max-width: ${width};` : undefined}
 >
   <div
-    class="image-wrapper"
+    class:list={["image-wrapper", { clickable: clickable }]}
     style={width || height
       ? `${width ? `max-width: ${width};` : ""} ${height ? `height: ${height};` : ""}`
       : undefined}
   >
-    <slot />
+    {
+      image ? (
+        clickable ? (
+          <a href={image.src} target="_blank" rel="noopener noreferrer">
+            <Image src={image} alt={alt} />
+          </a>
+        ) : (
+          <Image src={image} alt={alt} />
+        )
+      ) : (
+        <slot />
+      )
+    }
   </div>
   <figcaption>{caption}</figcaption>
 </figure>
@@ -40,6 +66,15 @@ const { caption, fullWidth = false, width, height } = Astro.props;
     justify-content: center;
     align-items: flex-start;
     height: auto;
+  }
+
+  .image-wrapper.clickable a {
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+
+  .image-wrapper.clickable a:hover {
+    opacity: 0.8;
   }
 
   .image-wrapper :global(img) {
