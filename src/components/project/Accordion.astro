@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import chevronIcon from "../../assets/chevron.svg";
+
 // Accordion component - content block with collapsible/expandable behavior
 interface Props {
   title: string;
@@ -18,7 +21,7 @@ const sectionId =
     aria-controls={`${sectionId}-content`}
   >
     <h2>{title}</h2>
-    <span class="chevron" aria-hidden="true"></span>
+    <Image src={chevronIcon} alt="" class="chevron" aria-hidden="true" />
   </button>
   <div
     class="section-content"
@@ -64,17 +67,18 @@ const sectionId =
   .chevron {
     width: 1.5rem;
     height: 1.5rem;
-    border-right: 3px solid var(--color-darkest);
-    border-bottom: 3px solid var(--color-darkest);
-    transform: rotate(45deg);
+    /*border-right: 3px solid var(--color-darkest);*/
+    /*border-bottom: 3px solid var(--color-darkest);*/
+    transform: rotate(180deg);
     transition: transform 0.3s ease;
     flex-shrink: 0;
     margin-left: 1rem;
     margin-bottom: 1.5rem;
+    color: var(--color-darkest);
   }
 
   .section-header[aria-expanded="true"] .chevron {
-    transform: rotate(-135deg);
+    transform: rotate(0deg);
   }
 
   .section-content {
@@ -156,11 +160,11 @@ const sectionId =
 <script>
   // Handle collapsible sections
   document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll(".collapsible-section");
+    const sections = document.querySelectorAll(".accordion");
 
     sections.forEach((section) => {
-      const button = section.querySelector(".section-header");
-      const content = section.querySelector(".section-content");
+      const button = section.querySelector(".section-header") as HTMLElement;
+      const content = section.querySelector(".section-content") as HTMLElement;
 
       if (!button || !content) return;
 
