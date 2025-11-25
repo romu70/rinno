@@ -35,6 +35,19 @@ const sectionId =
 </section>
 
 <style>
+  .accordion {
+    padding: 0;
+    border-radius: var(--radius);
+    transition:
+      background-color 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  .accordion[data-expanded="true"] {
+    background-color: hsla(var(--hue), 40%, 90%, 0.6);
+    padding: 1.5rem;
+  }
+
   .collapsible-section {
     background-color: transparent;
     border-radius: var(--radius);
@@ -111,6 +124,10 @@ const sectionId =
   }
 
   @media (max-width: 768px) {
+    .accordion[data-expanded="true"] {
+      padding: 1rem;
+    }
+
     /* Stack columns vertically on mobile */
     .section-content-inner > :global(.column) {
       flex: 1 1 100%;
@@ -132,6 +149,10 @@ const sectionId =
   }
 
   @media (min-width: 1440px) {
+    .accordion[data-expanded="true"] {
+      padding: 2rem;
+    }
+
     .section-header h3 {
       font-size: 1.5rem;
     }
@@ -165,11 +186,13 @@ const sectionId =
         // Toggle aria-expanded
         button.setAttribute("aria-expanded", (!isExpanded).toString());
 
-        // Toggle content visibility
+        // Toggle background on accordion wrapper
         if (isExpanded) {
+          section.removeAttribute("data-expanded");
           content.style.maxHeight = "0";
           content.style.opacity = "0";
         } else {
+          section.setAttribute("data-expanded", "true");
           content.style.maxHeight = "5000px";
           content.style.opacity = "1";
         }
