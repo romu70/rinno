@@ -14,6 +14,18 @@
     width: 100%;
   }
 
+  /* Section children: single section takes full width, multiple sections share space */
+  .row > :global(.section) {
+    flex: 1 1 100%;
+  }
+
+  /* When multiple sections in a row, they share space equally on larger screens */
+  @media (min-width: 768px) {
+    .row > :global(.section:not(:only-child)) {
+      flex: 1 1 calc(50% - 1rem);
+    }
+  }
+
   /* Remove border from section in first row */
   .row:first-of-type :global(.section) {
     border-top: none;
