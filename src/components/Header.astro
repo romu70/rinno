@@ -13,9 +13,6 @@ const currentPath = Astro.url.pathname;
             href="/perso"
             class:list={[{ active: currentPath.startsWith("/perso") }]}>Perso</a
         >
-        <a href="/contact" class:list={[{ active: currentPath === "/contact" }]}
-            >Contact</a
-        >
         <a href="/about" class:list={[{ active: currentPath === "/about" }]}
             >A Propos</a
         >
