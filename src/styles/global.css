@@ -213,7 +213,7 @@ a:hover {
 }
 
 .list-arrow li {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
   line-height: 1.8;
   padding-left: 1.5rem;
@@ -250,9 +250,6 @@ a:hover {
     padding: 0.4rem 0.8rem;
   }
 
-  .list-arrow li {
-    font-size: 1rem;
-  }
 }
 
 /* Medium screens (tablets/small desktops) */
@@ -281,7 +278,4 @@ a:hover {
     padding: 0.5rem 1.2rem;
   }
 
-  .list-arrow li {
-    font-size: 1.5rem;
-  }
 }
