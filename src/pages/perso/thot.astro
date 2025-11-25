@@ -29,7 +29,24 @@ import ticket from "../../assets/perso/thot/ticket.png";
   externalLink="/Sia/index.html"
 >
   <Row>
-    <Section title="Contexte">
+    <Section title="Brief du projet">
+      <Column>
+        <p>
+          <strong>Commanditaire :</strong> École THoT, qui enseigne le français aux
+          aux personnes en exil, représentée par sa présidente et fondatrice <a
+            href="https://www.linkedin.com/in/judith-aquien/"
+            target="_blank">Judith Aquien</a
+          >.
+        </p>
+        <br />
+        <Quote author="Judith Aquien">
+          Permettre aux personnes en exil de trouver leurs marques dans Paris et
+          d’apprendre au passage les bases qui leur donneront une autonomie en
+          français.
+        </Quote>
+      </Column>
+    </Section>
+      <Section title="Contexte">
       <Column>
         <p>
           Projet de fin de formation de la certification UX Design aux Gobelins
@@ -56,21 +73,6 @@ import ticket from "../../assets/perso/thot/ticket.png";
         </ul>
         <p><strong>Rôle : </strong>UX Designer</p>
       </Column>
-      <Column>
-        <p>
-          <strong>Commanditaire :</strong> École THoT, qui enseigne le français aux
-          aux personnes en exil, représentée par sa présidente et fondatrice <a
-            href="https://www.linkedin.com/in/judith-aquien/"
-            target="_blank">Judith Aquien</a
-          >.
-        </p>
-        <br />
-        <Quote author="Judith Aquien">
-          Permettre aux personnes en exil de trouver leurs marques dans Paris et
-          d’apprendre au passage les bases qui leur donneront une autonomie en
-          français.
-        </Quote>
-      </Column>
     </Section>
   </Row>
 
@@ -82,13 +84,13 @@ import ticket from "../../assets/perso/thot/ticket.png";
           nous avons arpenté le terrain pendant 2 jours.
         </p>
         <ul class="list-arrow">
+          <li>Visite à la Porte de la Chapelle avec l'ONG Utopia 56</li>
+          <li>Rencontre avec la directrice du Centre Primo Lévi</li>
+          <li>Rencontre avec des personnels de RFI Savoirs</li>
           <li>
             Echanges directs avec 6 réfugiés venant d'Afghanistan, Érythrée et
             Soudan
           </li>
-          <li>Visite à la Porte de la Chapelle avec l'ONG Utopia 56</li>
-          <li>Rencontre avec la directrice du Centre Primo Lévi</li>
-          <li>Rencontre avec des personnels de RFI Savoirs</li>
         </ul>
         <!-- <br /> -->
         <Figure
@@ -100,7 +102,7 @@ import ticket from "../../assets/perso/thot/ticket.png";
       </Column>
       <Column title="L'isolement est le problème">
         <p>
-          Cette recherche a montré que la problématique n°1 des réfugiés n'est
+          <strong>Enseignement :</strong> la problématique n°1 des réfugiés n'est
           pas de trouver leur marque dans Paris, mais de sortir de l'isolement.
         </p>
         <p>
@@ -109,7 +111,7 @@ import ticket from "../../assets/perso/thot/ticket.png";
           la culture, ni les codes de socialisation.
         </p>
         <p>
-          Leur seul souhait est des'insérer dans la société pour y mener
+          Leur seul souhait est de s'insérer dans la société pour y mener
           une vie normale.
         </p>
         <Quote author="E. Morel - Directrice du Centre Primo Lévi">
@@ -178,28 +180,6 @@ import ticket from "../../assets/perso/thot/ticket.png";
             <li>Acquérir des bases de la culture française par l'intégration des saynètes, en partenariat avec RFI Savoirs</li>
           </ul>
       </Column>
-      <Column title="Taxonomie des activités" fullWidth>
-        <p>
-          Avoir un filtre d'activités pertinent nécessitait d'avoir correctement défini la taxonomie et la hiérarchie des activités.
-        </p>
-        <Figure
-          caption="Hiérarchie des activités"
-          image={architecture}
-          alt="Hiérarchie des activités"
-          clickable
-        />
-      </Column>
-      <Column title="Parcours utilisateur" fullWidth>
-        <p>
-          Après les premières phases de conception, nous avions les idées claires pour le parcours utilisateur de l'application.
-        </p>
-        <Figure
-          caption="Parcours utilisateur"
-          image={userflow}
-          alt="Parcours utilisateur"
-          clickable
-        />
-      </Column>
       <Column title="Prototype interactif final" fullWidth>
         <p>
           Le design a été réalisé sur Sketch, le prototype interactif avec Marvel.
@@ -257,6 +237,34 @@ import ticket from "../../assets/perso/thot/ticket.png";
           papier des maquettes très basiques, visibles ici. Ces premiers essais ont permis
           de valider le concept tout en donnant des pistes d'améliorations.
         </p>
+        <ul class="list-arrow">
+          <li>Tous ne lisent pas bien, l'iconographie est critique pour identifier les activités.</li>
+          <li>Les cercles gris sensés montrer des personnes n'ont pas été compris.</li>
+          <li>Il est plus important d'illustrer que l'activité est une projection de fillm (compréhension directe) que de montrer le visuel d'un film qu'ils ne connaissent pas.</li>
+          <li>Le bouton "Yes I go" n'a pas été compris.</li>
+        </ul>
+      </Column>
+      <Column title="Taxonomie des activités" fullWidth>
+        <p>
+          Avoir un filtre d'activités pertinent nécessitait d'avoir correctement défini la taxonomie et la hiérarchie des activités.
+        </p>
+        <Figure
+          caption="Hiérarchie des activités"
+          image={architecture}
+          alt="Hiérarchie des activités"
+          clickable
+        />
+      </Column>
+      <Column title="Parcours utilisateur" fullWidth>
+        <p>
+          Après les premières phases de conception, nous avions les idées claires pour le parcours utilisateur de l'application.
+        </p>
+        <Figure
+          caption="Parcours utilisateur"
+          image={userflow}
+          alt="Parcours utilisateur"
+          clickable
+        />
       </Column>
       <Column title="Affiner le prototype">
         <p>
@@ -318,8 +326,10 @@ import ticket from "../../assets/perso/thot/ticket.png";
         <h2>Enseignements</h2>
         <ul class="list-arrow">
           <li>
-            Savoir maintenir rigueur méthodologique même quand le sujet touche
-            émotionnellement
+            Les informations collectées lors de la recherche terrain peuvent amener à invalider le brief de départ et conduire à un pivot du projet.
+          </li>
+          <li>
+            Même quand le sujet touche émotionnellement, il est important de maintenir une rigueur méthodologique pour garantir la qualité du travail.
           </li>
           <li>
             Ce projet reste un "one shot" réalisé sur commande. Il n'a malheureusement pas vu le jour, Sia illustre le décalage entre un projet de design et la réalisatiob concrète.          </li>
