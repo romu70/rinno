@@ -20,8 +20,8 @@ const sectionId =
     aria-expanded={defaultOpen}
     aria-controls={`${sectionId}-content`}
   >
-    <h2>{title}</h2>
     <Image src={chevronIcon} alt="" class="chevron" aria-hidden="true" />
+    <h3>{title}</h3>
   </button>
   <div
     class="section-content"
@@ -43,38 +43,33 @@ const sectionId =
   .section-header {
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
     text-align: left;
-    transition: opacity 0.2s ease;
   }
 
-  .section-header:hover {
-    opacity: 0.7;
-  }
-
-  .section-header h2 {
-    font-size: 2rem;
+  .section-header h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
     margin: 0;
-    margin-bottom: 1.5rem;
     color: var(--color-darkest);
   }
 
   .chevron {
-    width: 1.5rem;
-    height: 1.5rem;
-    /*border-right: 3px solid var(--color-darkest);*/
-    /*border-bottom: 3px solid var(--color-darkest);*/
+    width: 1.2rem;
+    height: 1.2rem;
     transform: rotate(180deg);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.2s ease;
     flex-shrink: 0;
-    margin-left: 1rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-darkest);
+    color: var(--color-dark);
+  }
+
+  .section-header:hover .chevron {
+    color: var(--color);
   }
 
   .section-header[aria-expanded="true"] .chevron {
@@ -121,15 +116,13 @@ const sectionId =
       flex: 1 1 100%;
     }
 
-    .section-header h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
+    .section-header h3 {
+      font-size: 1.1rem;
     }
 
     .chevron {
-      width: 1.2rem;
-      height: 1.2rem;
-      margin-bottom: 1rem;
+      width: 1rem;
+      height: 1rem;
     }
 
     .section-content,
@@ -139,15 +132,13 @@ const sectionId =
   }
 
   @media (min-width: 1440px) {
-    .section-header h2 {
-      font-size: 2.3rem;
-      margin-bottom: 2rem;
+    .section-header h3 {
+      font-size: 1.5rem;
     }
 
     .chevron {
-      width: 1.7rem;
-      height: 1.7rem;
-      margin-bottom: 2rem;
+      width: 1.4rem;
+      height: 1.4rem;
     }
 
     .section-content,

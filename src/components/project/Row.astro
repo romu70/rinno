@@ -14,6 +14,11 @@
     width: 100%;
   }
 
+  /* Remove border from section in first row */
+  .row:first-of-type :global(.section) {
+    border-top: none;
+  }
+
   @media (max-width: 768px) {
     .row {
       gap: 1.5rem;
