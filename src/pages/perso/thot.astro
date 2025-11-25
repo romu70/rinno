@@ -1,73 +1,382 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
+import Column from "../../components/project/Column.astro";
 import Learnings from "../../components/project/Learnings.astro";
 import Keywords from "../../components/project/Keywords.astro";
+import Figure from "../../components/project/Figure.astro";
+import Accordion from "../../components/project/Accordion.astro";
+import Quote from "../../components/project/Quote.astro";
+import heroImage from "../../assets/perso/thot/hero.png";
+import refugees from "../../assets/perso/thot/refugees.png";
+import persona1 from "../../assets/perso/thot/persona-azeem.jpeg";
+import persona2 from "../../assets/perso/thot/persona-mohammad.jpeg";
+import journey from "../../assets/perso/thot/experience-map.jpeg";
+import paper from "../../assets/perso/thot/paper.png";
+import architecture from "../../assets/perso/thot/architecture.png";
+import userflow from "../../assets/perso/thot/userflow.png";
+import wireframes from "../../assets/perso/thot/wireframes.png";
+import test from "../../assets/perso/thot/test.png";
+import charte from "../../assets/perso/thot/charte.png";
+import ticket from "../../assets/perso/thot/ticket.png";
 ---
 
-<ProjectPersonal title="THoT - Sia" year="2017">
-  <Section title="Contexte">
-    <p>Projet de fin de formation de la certification UX Design auxGobelins.</p>
-    <p>
-      Projet de groupe (3 personnes) réalisé dans le cadre de la formation UX
-      Design aux Gobelins, sur 3 mois.
-    </p>
-    <p>
-      <strong>Commanditaire :</strong> École THoT qui enseigne le français aux réfugiés<br
-      />
-      <strong>Brief initial :</strong> Aider les réfugiés à s'orienter dans Paris
-    </p>
-  </Section>
+<ProjectPersonal
+  title="THoT - Sia"
+  year="2017"
+  image={heroImage}
+  externalLink="/Sia/index.html"
+>
+  <Row>
+    <Section title="Contexte">
+      <Column>
+        <p>
+          Projet de fin de formation de la certification UX Design aux Gobelins
+          à Paris.
+        </p>
+        <p><strong>Durée : </strong>3 mois</p>
+        <p><strong>Equipe : </strong>3 personnes</p>
+        <ul class="list-arrow">
+          <li>
+            <a href="https://www.linkedin.com/in/aureliedunier/" target="_blank"
+              >Aurélie Dunier</a
+            >
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/jpchevin/" target="_blank"
+              >Jean-Philippe Chevin</a
+            >
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/romutisserand/" target="_blank"
+              >Moi même</a
+            >
+          </li>
+        </ul>
+        <p><strong>Rôle : </strong>UX Designer</p>
+      </Column>
+      <Column>
+        <p>
+          <strong>Commanditaire :</strong> École THoT, qui enseigne le français aux
+          aux personnes en exil, représentée par sa présidente et fondatrice <a
+            href="https://www.linkedin.com/in/judith-aquien/"
+            target="_blank">Judith Aquien</a
+          >.
+        </p>
+        <br />
+        <Quote author="Judith Aquien">
+          Permettre aux personnes en exil de trouver leurs marques dans Paris et
+          d’apprendre au passage les bases qui leur donneront une autonomie en
+          français.
+        </Quote>
+      </Column>
+    </Section>
+  </Row>
 
-  <Section title="Challenge">
-    <li>Comprendre les vrais besoins des utilisateurs</li>
-    <li>Brief initial vs réalité terrain</li>
-    <li>Livrer une solution impactante en 3 mois</li>
-  </Section>
+  <Row>
+    <Section title="De la recherche terrain au pivot">
+      <Column title="Recherche terrain">
+        <p>
+          Après quelques lectures sur la problématique des exilés en France,
+          nous avons arpenté le terrain pendant 2 jours.
+        </p>
+        <ul class="list-arrow">
+          <li>
+            Echanges directs avec 6 réfugiés venant d'Afghanistan, Érythrée et
+            Soudan
+          </li>
+          <li>Visite à la Porte de la Chapelle avec l'ONG Utopia 56</li>
+          <li>Rencontre avec la directrice du Centre Primo Lévi</li>
+          <li>Rencontre avec des personnels de RFI Savoirs</li>
+        </ul>
+        <!-- <br /> -->
+        <Figure
+          caption="5 des 6 réfugiés interrogés"
+          width="30rem"
+          image={refugees}
+          alt="5 des 6 réfugiés interrogés"
+        />
+      </Column>
+      <Column title="L'isolement est le problème">
+        <p>
+          Cette recherche a montré que la problématique n°1 des réfugiés n'est
+          pas de trouver leur marque dans Paris, mais de sortir de l'isolement.
+        </p>
+        <p>
+          Ils sont seuls, dépendants des personnels des ONG, dans un
+          pays dont ils ne maîtrisent ni la langue, ni
+          la culture, ni les codes de socialisation.
+        </p>
+        <p>
+          Leur seul souhait est des'insérer dans la société pour y mener
+          une vie normale.
+        </p>
+        <Quote author="E. Morel - Directrice du Centre Primo Lévi">
+          <p>La première souffrance des réfugiés est l’isolement.</p>
+        </Quote>
+        <p>
+          Pourtant, beaucoup d'activités de socialisation sont organisées par
+          les ONG et la population pour aider les réfugiés. Mais ils ne le savent
+          pas. Ce sera le point de départ de notre proposition.
+        </p>
+      </Column>
+      <Accordion title="Aller plus loin sur cette recherche">
+        <Column title="Personas">
+          <Figure
+            caption="Persona Azeem (Prénom changé)"
+            width="30rem"
+            image={persona1}
+            alt="Persona Azeem (Prénom changé)"
+            clickable
+          />
+          </Column>
+          <Column alignWithContent>
+          <Figure
+            caption="Persona Mohammad (Prénom changé)"
+            width="30rem"
+            image={persona2}
+            alt="Persona Mohammad (Prénom changé)"
+            clickable
+          />
+        </Column>
+        <Column title="Refugee journey" fullWidth>
+          <Figure
+            caption="Parcours d'un réfugié à Paris"
+            image={journey}
+            alt="Parcours d'un réfugié à Paris"
+            clickable
+          />
+        </Column>
+      </Accordion>
+    </Section>
+  </Row>
 
-  <Section title="Actions">
-    <li>Phase de recherche approfondie avec les réfugiés</li>
-    <li>Découverte : le vrai pain point est l'isolement, pas l'orientation</li>
-    <li>Pivot du concept vers une solution de connexion sociale</li>
-    <li>Conception d'une application mobile</li>
-    <li>Itérations : idées papier → wireframes → prototype haute fidélité</li>
-  </Section>
+  <Row>
+    <Section
+      title="Connecter les réfugiés aux manifestations locales"
+    >
+      <Column title="Concept" fullWidth>
+        <p>
+          Pour lutter contre l'isolement des réfugiés, et leur permettre de
+          pratiquer le Français, nous avons imaginé l'application <strong>Sia</strong>.
+        </p>
+        <p>
+          Comme THoT, Sia est une figure de la mythologie égyptienne qui représente
+          l'intuition et la clairvoyance. Le S représente le lien et la relation
+          sociale.
+        </p>
+        <p>
+          Les réfugiés peuvent utiliser <strong>Sia</strong> pour :
+        </p>
+          <ul class="list-arrow">
+            <li>Consulter les manifestations organisées par les associations et la population</li>
+            <li>S'inscrire pour participer aux activités</li>
+            <li>Apporter de la confiance en montrant qui participe aux activités</li>
+            <li>Obtenir des bases sur le vocabulaire français, avec une facilité de traduction activable à la demande</li>
+            <li>Partager leurs expériences et leurs connaissances avec d'autres réfugiés</li>
+            <li>Acquérir des bases de la culture française par l'intégration des saynètes, en partenariat avec RFI Savoirs</li>
+          </ul>
+      </Column>
+      <Column title="Taxonomie des activités" fullWidth>
+        <p>
+          Avoir un filtre d'activités pertinent nécessitait d'avoir correctement défini la taxonomie et la hiérarchie des activités.
+        </p>
+        <Figure
+          caption="Hiérarchie des activités"
+          image={architecture}
+          alt="Hiérarchie des activités"
+          clickable
+        />
+      </Column>
+      <Column title="Parcours utilisateur" fullWidth>
+        <p>
+          Après les premières phases de conception, nous avions les idées claires pour le parcours utilisateur de l'application.
+        </p>
+        <Figure
+          caption="Parcours utilisateur"
+          image={userflow}
+          alt="Parcours utilisateur"
+          clickable
+        />
+      </Column>
+      <Column title="Prototype interactif final" fullWidth>
+        <p>
+          Le design a été réalisé sur Sketch, le prototype interactif avec Marvel.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Maquette haute fidélité"
+          image={heroImage}
+          alt="Maquette haute fidélité"
+        />
+      </Column>
+      <Column>
+        <Figure
+          caption="Test du protype"
+          image={test}
+          alt="Test du protype"
+        />
+      </Column>
+      <Column fullWidth>
+      <p>
+        Un lien vers le prototype interactif est disponible dans la section dédiée ci-dessous.
+      </p>
+      </Column>
+    </Section>
+    <Accordion title="En voir plus sur la conception">
+      <Column title="PWA pour rester furtif">
+        <p>
+          Un téléphone est indispensable avant de prendre le chemin
+          de l'exil. Tous les réfugiés sont équipés d'un smartphone.
+        </p>
+        <p>
+          Cependant, utiliser les app stores représente un risque (perçu
+          par les réfugiés) d'être géolocalisé par les autorités. C'est
+          pourquoi notre proposition est celle d'une PWA.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <p>
+          <strong>PWA - Progressive Web App :</strong> Application web utilisable
+          sur un téléphone sans passer par les app stores.
+        </p>
+      </Column>
+      <Column title="Tester notre concept">
+        <Figure
+          caption="Prototype papier"
+          width="30rem"
+          image={paper}
+          alt="Prototype papier"
+        />
+      </Column>
+      <Column alignWithContent>
+        <p>
+          Les premiers tests du concept ont été réalisés en imprimant sur
+          papier des maquettes très basiques, visibles ici. Ces premiers essais ont permis
+          de valider le concept tout en donnant des pistes d'améliorations.
+        </p>
+      </Column>
+      <Column title="Affiner le prototype">
+        <p>
+          Le concept validé, nous avons commencé à travailler
+          l'expérience utilisateur avec des wireframes.
+        </p>
+        <p> On retrouve la navigation initialement envisagée, plus quelques
+          idées nouvelles révélées par les tests, comme la nécessaire maîtrise du Français.
+        </p>
+        <p>
+        <ul class="list-arrow">
+          <li>
+            Une aide linguistique activable à la demande pour acculturer
+            les réfugiés au Français.
+          </li>
+          <li>Un menu qui se révèle et se cache pour filtrer les catégories
+            d'activités.</li>
+        </ul>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Wireframes"
+          width="30rem"
+          image={wireframes}
+          alt="Wireframes"
+        />
+        <p> Le menu de navigation pour s'orienter dans les activités proposées
+          reprenait le symbole de la boussole, en lien avec l'exil des réfugiés.
+          Mais c'était les ramener à une expérience qui reste douloureuse, l'avons
+          remplacé par un symbole plus neutre.
+        </p>
+      </Column>
+      <Column title="Charte graphique">
+        <p>La direction artistique est majoritairement l'oeuvre d'Aurélie.</p>
+        <p>Une charte colorée a été choisie pour l'application. Malgré le contexte
+          émotionnel lourd des réfugiés, nous voulions proposer une peu de gaité
+          et de légèreté, en ligne avec le côté "plaisir" des activités proposées.</p>
+        <Figure
+          caption="Charte graphique"
+          width="30rem"
+          image={charte}
+          alt="Charte graphique"
+        />
+      </Column>
+      <Column title="Métaphore du ticket">
+        <p>Le symbole duticket est l'élement central de l'application. C'est le sésame pour accéder aux activités proposées.</p>
+        <Figure
+          caption="Métaphore du ticket"
+          width="30rem"
+          image={ticket}
+          alt="Métaphore du ticket"
+        />
+      </Column>
+    </Accordion>
+  </Row>
 
-  <Section title="Résultats">
-    <li>
-      Meilleure note jamais attribuée à un projet de cette formation aux
-      Gobelins
-    </li>
-    <li>Prototype fonctionnel validé par les utilisateurs</li>
-    <li>Démonstration de l'importance du user research</li>
-  </Section>
+    <Row>
+      <Learnings>
+        <h2>Enseignements</h2>
+        <ul class="list-arrow">
+          <li>
+            Savoir maintenir rigueur méthodologique même quand le sujet touche
+            émotionnellement
+          </li>
+          <li>
+            Ce projet reste un "one shot" réalisé sur commande. Il n'a malheureusement pas vu le jour, Sia illustre le décalage entre un projet de design et la réalisatiob concrète.          </li>
+        </ul>
+      </Learnings>
+    </Row>
 
-  <Learnings>
-    <h3>L'importance du problème réel vs le problème perçu</h3>
-    <p>
-      Ce projet a été une leçon fondamentale : le commanditaire pensait
-      connaître le problème (orientation), mais la recherche terrain a révélé un
-      besoin bien plus profond (isolement). Cette expérience a façonné ma
-      pratique du product management : toujours valider les hypothèses avant de
-      concevoir.
-    </p>
+    <Row>
+      <Section title="Liens utiles">
+        <Column fullWidth>
+          <ul class="list-arrow">
+            <li>
+              <a href="/Sia/index.html" target="_blank">Prototype Interactif</a>
+            </li>
+            <li>
+              <a
+                href="https://designinteractif.gobelins.fr/wp-content/uploads/2017/07/UX2017_Thot_dossier.pdf"
+                target="_blank">Dossier du projet - Gobelins</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://designinteractif.gobelins.fr/2017/07/09/sia/"
+                target="_blank">Page du projet - Gobelins</a
+              >
+            </li>
+            <li>
+              <a href="https://thot-fle.fr/" target="_blank">Ecole THoT</a>
+            </li>
+            <li>
+              <a href="https://primolevi.org/" target="_blank"
+                >Centre Primo Levi</a
+              >
+            </li>
+            <li>
+              <a href="https://francaisfacile.rfi.fr/fr/" target="_blank"
+                >RFI Savoirs</a
+              >
+            </li>
+            <li>
+              <a href="https://utopia56.org/" target="_blank">Utopia 56</a>
+            </li>
+          </ul>
+        </Column>
+      </Section>
+    </Row>
 
-    <h3>Impact sur ma pratique ultérieure</h3>
-    <p>
-      Cette approche de discovery rigoureuse, je l'ai systématiquement appliquée
-      ensuite chez Smart Rx, Meditect et Novyspec. C'est devenu un réflexe :
-      comprendre d'abord, concevoir ensuite.
-    </p>
-  </Learnings>
-
-  <Keywords>
-    <span class="keyword">UX Design</span>
-    <span class="keyword">Mobile</span>
-    <span class="keyword">Figma</span>
-    <span class="keyword">User Research</span>
-    <span class="keyword">Gobelins</span>
-    <span class="keyword">UX Research</span>
-    <span class="keyword">Design Thinking</span>
-    <span class="keyword">Prototypage mobile</span>
-  </Keywords>
+    <Row>
+      <Keywords>
+        <span class="keyword">Design Thinking</span>
+        <span class="keyword">Gobelins</span>
+        <span class="keyword">Mobile</span>
+        <span class="keyword">Sketch</span>
+        <span class="keyword">Prototypage mobile</span>
+        <span class="keyword">User Research</span>
+        <span class="keyword">UX Design</span>
+      </Keywords>
+    </Row>
+  </Row>
 </ProjectPersonal>
