@@ -1,11 +1,241 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import Row from "../components/project/Row.astro";
+import Section from "../components/project/Section.astro";
+import Column from "../components/project/Column.astro";
+import Learnings from "../components/project/Learnings.astro";
+import Keywords from "../components/project/Keywords.astro";
+import Figure from "../components/project/Figure.astro";
+import Accordion from "../components/project/Accordion.astro";
+import Quote from "../components/project/Quote.astro";
 import UnderConstruction from "../components/UnderConstruction.astro";
+import portrait from "../assets/portrait.jpeg";
 ---
 
-<Layout title="About - Romuald Tisserand">
-  <UnderConstruction
-    pageTitle="About"
-    teaser="Mon parcours, mes compétences, ma vision"
-  />
+<Layout title="A propos - Romuald Tisserand">
+  <article class="container-narrow content-detail">
+    <div class="content-area">
+      <Row>
+        <Section title="">
+          <h1>Bienvenue !</h1>
+          <Column>
+            <p>Je suis <strong>Romuald</strong>, leader produit & design avec une longue histoire de plus de 20 ans dans la tech en B2B.</p>
+            <p>Depuis 2019, j'ai conçu et mis sur le marché 3 produits. Le dernier a conquis 5% de son marché cible, été déployé dans 7 pays, en 2 ans.</p>
+            <p>Ci-dessous, un aperçu de mon parcours. Et <a href="https://www.linkedin.com/in/romutisserand/">LinkedIn</a> vous apprendra tout le reste.</p>
+            <br/>
+            <Quote author="Mon mantra">
+              On gagne ensemble, on perd ensemble.
+            </Quote>
+          </Column>
+          <Column>
+            <div class="photo-container">
+              <Image src={portrait} alt="Portrait de Romuald Tisserand" style="width: 20rem; height: 20rem; border: 3px solid var(--color); border-radius: 50%;"/>
+            </div>
+            <div class="caption">Crédit photo: <a href="https://yriss.fr/" target="_blank">maison Yriss</a></div>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Mon parcours">
+          <Column title="D'où je viens">
+            <p>Après 15 ans dans des fonctions techniques (Dev, DevOps, Infra), j'ai opéré une transition
+            vers le product management et le design.
+            </p>
+          </Column>
+            <Column title="Mes réalisations">
+            <p>Depuis 2017, j'ai structuré des pratiques produit
+            modernes, unifié l'expérience utilisateur de pharmacies françaises, conçu une app Android de logistique et lancé un ERP de pharmacie
+            en Afrique subsaharienne.</p>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Mon approche">
+          <Column title="Double compétence produit/design">
+            <p>Cette double casquette associée à mon background technique me permet de :</p>
+            <ul class="list-arrow">
+              <li>Structurer des organisations produit "from scratch"</li>
+              <li>Arbitrer entre faisabilité technique et impact business</li>
+              <li>Dialoguer efficacement avec les équipes engineering</li>
+            </ul>
+          </Column>
+            <Column title="Ma conviction">
+            <p>Les meilleurs produits naissent d'une
+              <strong>obsession pour l'utilisateur</strong>, d'une rigueur méthodologique,
+            et d'équipes alignées sur l'impact.</p>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Compétences clés" threeColumns>
+          <Column><Learnings>
+            <h3>🎯 Produit</h3>
+            <ul>
+              <li>Stratégie</li>
+              <li>Roadmapping</li>
+              <li>Product Ops</li>
+            </ul>
+          </Learnings></Column>
+          <Column><Learnings>
+            <h3>🎨 Design</h3>
+            <ul>
+              <li>Discovery</li>
+              <li>Design Systems</li>
+              <li>Design Ops</li>
+            </ul>
+          </Learnings></Column>
+          <Column><Learnings>
+            <h3>👫 Leadership</h3>
+            <ul>
+              <li>Team Building</li>
+              <li>Stakeholder Management</li>
+              <li>Mentoring</li>
+            </ul>
+          </Learnings></Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="" class="notitle-section">
+          <Column><Learnings>
+            <h3>🎯 Produit</h3>
+            <ul>
+              <li>Stratégie</li>
+              <li>Roadmapping</li>
+              <li>Product Ops</li>
+            </ul>
+          </Learnings></Column>
+        </Section>
+      </Row>
+    </div>
+  </article>
 </Layout>
+
+<style>
+  :global(section.notitle-section) {
+    border-top: none !important;
+    padding-top: 0 !important;
+    background-color: green;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  tag {}
+
+  .content-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+
+  .content-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .photo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .caption {
+    margin-top: 1rem;
+    font-variant: small-caps;
+    color: var(--color-dark);
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+
+  :global(.content-area > .content-section),
+  :global(.content-area > .highlight) {
+    flex: 1 1 100%;
+  }
+
+  :global(.keywords) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.keyword) {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    background-color: var(--color-light);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius);
+  }
+
+  :global(.content-section h2) {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--color-darkest);
+  }
+
+  :global(.content-section h3) {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  :global(.content-section p) {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 0rem;
+  }
+
+  :global(.content-section strong) {
+    color: var(--color-darkest);
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .content-detail {
+      gap: 2rem;
+    }
+
+    :global(.content-section h2) {
+      font-size: 1.6rem;
+    }
+
+    :global(.content-section h3) {
+      font-size: 1.2rem;
+    }
+
+    :global(.content-section p) {
+      font-size: 1rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    /* 2-column layout for content */
+    :global(.content-area > .content-section),
+    :global(.content-area > .highlight) {
+      flex: 1 1 calc(50% - 1rem);
+    }
+
+    /* Full-width override */
+    :global(.content-area > .content-section.full-width),
+    :global(.content-area > .highlight.full-width) {
+      flex: 1 1 100%;
+    }
+
+    :global(.content-section h2) {
+      font-size: 2.3rem;
+    }
+
+    :global(.content-section h3) {
+      font-size: 1.6rem;
+    }
+
+    :global(.content-section p) {
+      font-size: 1.2rem;
+    }
+  }
+</style>
