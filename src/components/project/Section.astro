@@ -2,12 +2,13 @@
 // Section component - content block with required h2 title
 interface Props {
   title: string;
+  threeColumns?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, threeColumns = false } = Astro.props;
 ---
 
-<section class="section">
+<section class="section" class:list={{ "three-columns": threeColumns }}>
   <h2>{title}</h2>
   <div class="section-content">
     <slot />
@@ -19,11 +20,13 @@ const { title } = Astro.props;
     background-color: transparent;
     border-radius: var(--radius);
     border-top: 1px solid var(--color);
+    padding-top: 2rem;
   }
 
   .section h2 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
     color: var(--color-darkest);
   }
 
@@ -38,19 +41,27 @@ const { title } = Astro.props;
     flex: 1 1 40%;
   }
 
+  /* Three columns mode */
+  .section.three-columns .section-content > :global(.column) {
+    flex: 1 1 30%;
+  }
+
   /* Non-column content takes full width */
   .section-content > :global(:not(.column)) {
     flex: 1 1 100%;
   }
 
   @media (max-width: 768px) {
+    .section {
+      padding-top: 1.5rem;
+    }
+
     /* Stack columns vertically on mobile */
     .section-content > :global(.column) {
       flex: 1 1 100%;
     }
     .section h2 {
       font-size: 1.6rem;
-      margin-bottom: 1rem;
     }
 
     .section-content {
@@ -59,9 +70,12 @@ const { title } = Astro.props;
   }
 
   @media (min-width: 1440px) {
+    .section {
+      padding-top: 2.5rem;
+    }
+
     .section h2 {
       font-size: 2.3rem;
-      margin-bottom: 2rem;
     }
 
     .section-content {
