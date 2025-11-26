@@ -20,9 +20,9 @@ import portrait from "../assets/portrait.jpeg";
         <Section title="">
           <h1>Bienvenue !</h1>
           <Column>
-            <p>Je suis <strong>Romuald</strong>, leader produit & design avec une longue histoire de plus de 20 ans dans la tech en B2B.</p>
+            <p>Je suis <strong>Romuald</strong>, leader produit & design avec plus de 20 ans dans la tech en B2B.</p>
             <p>Depuis 2019, j'ai conçu et mis sur le marché 3 produits. Le dernier a conquis 5% de son marché cible, été déployé dans 7 pays, en 2 ans.</p>
-            <p>Ci-dessous, un aperçu de mon parcours. Et <a href="https://www.linkedin.com/in/romutisserand/">LinkedIn</a> vous apprendra tout le reste.</p>
+            <p>Ci-dessous, un aperçu de mon parcours. <a href="https://www.linkedin.com/in/romutisserand/">LinkedIn</a> vous apprendra tout le reste.</p>
             <br/>
             <Quote author="Mon mantra">
               On gagne ensemble, on perd ensemble.
@@ -33,6 +33,18 @@ import portrait from "../assets/portrait.jpeg";
               <Image src={portrait} alt="Portrait de Romuald Tisserand" style="width: 20rem; height: 20rem; border: 3px solid var(--color); border-radius: 50%;"/>
             </div>
             <div class="caption">Crédit photo: <a href="https://yriss.fr/" target="_blank">maison Yriss</a></div>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Pour me joindre et discuter de vos enjeux">
+          <Column>
+            <div class="contact-info">
+              <p>📧 <a href="mailto:r@tisserand.eu">r@tisserand.eu</a></p>
+              <p>☎️ <a href="tel:+33666729963">+33 666 72 99 63</a></p>
+              <p>🔗 <a href="https://www.linkedin.com/in/romutisserand/" target="_blank">LinkedIn</a></p>
+              <p>🔗 <a href="https://github.com/romu70" target="_blank">GitHub</a></p>
+            </div>
           </Column>
         </Section>
       </Row>
@@ -95,23 +107,17 @@ import portrait from "../assets/portrait.jpeg";
           </Learnings></Column>
         </Section>
       </Row>
-      <Row>
-        <Section title="">
-          <Column><Learnings>
-            <h3>🎯 Produit</h3>
-            <ul>
-              <li>Stratégie</li>
-              <li>Roadmapping</li>
-              <li>Product Ops</li>
-            </ul>
-          </Learnings></Column>
-        </Section>
-      </Row>
     </div>
   </article>
 </Layout>
 
 <style>
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
   h1 {
     text-align: left;
   }
@@ -140,7 +146,7 @@ import portrait from "../assets/portrait.jpeg";
     font-variant: small-caps;
     color: var(--color-dark);
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
 
