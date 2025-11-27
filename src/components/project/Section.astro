@@ -3,12 +3,13 @@
 interface Props {
   title: string;
   threeColumns?: boolean;
+  vertical?: boolean;
 }
 
-const { title, threeColumns = false } = Astro.props;
+const { title, threeColumns = false, vertical = false } = Astro.props;
 ---
 
-<section class="section" class:list={{ "three-columns": threeColumns }}>
+<section class="section" class:list={{ "three-columns": threeColumns, "vertical": vertical }}>
   <h2>{title}</h2>
   <div class="section-content">
     <slot />
@@ -34,6 +35,15 @@ const { title, threeColumns = false } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+  }
+
+  /* Vertical layout mode */
+  .section.vertical .section-content {
+    flex-direction: column;
+  }
+
+  .section.vertical .section-content > :global(.column) {
+    flex: 1 1 auto;
   }
 
   /* Columns get equal space, max 2 per row */
