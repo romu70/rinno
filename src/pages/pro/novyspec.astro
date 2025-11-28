@@ -1,0 +1,476 @@
+---
+import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
+import Row from "../../components/project/Row.astro";
+import Section from "../../components/project/Section.astro";
+import Column from "../../components/project/Column.astro";
+import Learnings from "../../components/project/Learnings.astro";
+import Keywords from "../../components/project/Keywords.astro";
+import Figure from "../../components/project/Figure.astro";
+import Accordion from "../../components/project/Accordion.astro";
+import Quote from "../../components/project/Quote.astro";
+import heroImage from "../../assets/pro/novyspec/hero.png";
+import empathy from "../../assets/pro/novyspec/empathy-map.png";
+import team from "../../assets/pro/novyspec/persona-1.jpeg";
+import persona from "../../assets/pro/novyspec/persona.png";
+import postit from "../../assets/pro/novyspec/persona-4.jpeg";
+import ds from "../../assets/pro/novyspec/ds.png";
+import userflow from "../../assets/pro/novyspec/navigation.png";
+import task from "../../assets/pro/novyspec/task.png";
+import taskfinal from "../../assets/pro/novyspec/task-final.png";
+import wireframes from "../../assets/pro/novyspec/wireframes.png";
+import ui from "../../assets/pro/novyspec/ui.png";
+import sixtoone from "../../assets/pro/novyspec/6-to-1.jpg";
+import editor from "../../assets/pro/novyspec/editor.jpg";
+import epi from "../../assets/pro/novyspec/epi.png";
+import clim1 from "../../assets/pro/novyspec/clim1.jpg";
+import clim2 from "../../assets/pro/novyspec/clim2.jpg";
+import climuj from "../../assets/pro/novyspec/clim-uj.png";
+import netagro from "../../assets/pro/novyspec/netagro.png";
+import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
+
+---
+
+<ProjectPersonal
+  title="Novyspec"
+  year="2017 - 2018"
+  image={heroImage}
+  externalLink=""
+>
+  <Row>
+    <Section title="Contexte" vertical>
+      <Column title="Contexte personnel">
+      <p>
+        Après plusieurs années dans des fonctions techniques, Novyspec m'accorde
+        sa confiance pour mener la conception de sa nouvelle application
+        d'inspection industrielle, en parallèle de ma formation UX Design aux
+        Gobelins. Novyspec marque mon <strong>pivot</strong> vers le product
+        management et le design.
+      </p>
+      <p>
+        Ce produit n'a pas vu le jour, mais cette expérience m'a
+        donné les fondations pour réussir ensuite chez Smart-Rx et Meditect.
+      </p>
+      </Column>
+      <Column title="Entreprise">
+        <p>
+          L'équipe venait d'un produit similaire, mais d'une techonologie obsolète
+          et sans approche centrée sur l'utilisateur.
+        </p>
+        <p>Nous devions développer une nouvelle solution, en repartant d'une
+          feuille blanche.
+        </p>
+        <p><strong>Durée : </strong>2 ans</p>
+        <p><strong>Equipe : </strong>10 personnes</p>
+        <p><strong>Mon Rôle : </strong>Product Manager & Designer</p>
+      </Column>
+  </Section>
+    <Section title="Enjeux" vertical>
+      <Column title="Structuration méthodologique">
+        <p>
+          Le 1er enjeu était de mettre en place la bonne méthodologie de travail
+          et les bons outils pour concevoir le produit avec une approche
+          produit et design rigoureuse, au sein d'une équipe très orientée tech.
+        </p>
+      </Column>
+        <Column title="Conception UX">
+        <p>
+          Concevoir une application d'inspection industrielle
+          moderne, pensée pour les entreprises, et capable d'interagir avec son
+          écosystème d'object connectés.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Réalisations produit">
+      <Column title="Recherche & Proto-persona" fullWidth>
+        <p>
+          L'équipe ayant déjà réalisé une solution d'inspection industrielle mon
+          objectif était de guider ce collectif à formaliser la connaissance
+          utilisateur acquise avec la précédente solution. Pour que tout le monde
+          soit au même niveau de connaissance, mais aussi parce que nous n'avions
+          pas accès aux utilisateurs au démarrage du projet.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="L'équipe en atelier persona"
+          width="30rem"
+          image={team}
+          alt="L'équipe en atelier persona"
+        />
+      </Column>
+      <Column>
+        <Figure
+          caption="Le proto-persona finalisé"
+          width="30rem"
+          image={persona}
+          alt="Le proto-persona finalisé"
+          clickable
+        />
+      </Column>
+      <Column fullWidth>
+        <p>Avec un atelier de 2 heures, nous avons pu consolider la connaissance
+          acquise pendant plusieurs années.</p>
+      </Column>
+      <Accordion title="En savoir plus sur l'atelier persona">
+        <Column title="Modèle d'empathy map">
+          <p>Un modèle d'empathy map a été distribué à chaque membre de l'équipe,
+            ainsi que des post-it.</p>
+          <Figure
+            caption="Modèle d'empathy map utilisé"
+            width="30rem"
+            image={empathy}
+            alt="Modèle d'empathy map utilisé"
+          />
+          </Column>
+          <Column title="Mise en commun des post-it">
+            <p>La mise en commun des post-it a permis de regrouper les informations et de définir notre persona "inspecteur".</p>
+          <Figure
+            caption="Regroupement des post-it du persona"
+            width="30rem"
+            image={postit}
+            alt="Regroupement des post-it du persona"
+          />
+        </Column>
+      </Accordion>
+      <Column title="UI & Design system" fullWidth>
+        <p>
+          <strong>Choix d'une librairie UI</strong> : nos critères : compatible
+          ReactJs, maintenue, communauté active, documentation claire et
+          possibilités de personnalisation. Librairies candidates :
+          <a href="https://semantic-ui.com/" target="_blank">Semantic UI</a>,
+          <a href="https://material.io/" target="_blank">Material UI</a> et
+          <a href="https://ant.design/"target="_blank">Ant Design</a>. Nous
+          avons choisi <strong>Ant Design</strong>.
+        </p>
+        <p>
+          <strong>Design system :</strong> mise en place d'un design system
+          préliminaire en parallèle de la conception du produit. La couleur
+          orange du logo de Novyspec a servi de base.
+        </p>
+        <br/>
+        <Figure
+          caption="Design system préliminaire"
+          image={ds}
+          alt="Design system préliminaire"
+        />
+      </Column>
+      <Column title="Conception de l'application d'inspection" fullWidth>
+        <p>
+          L'application a été conçue en nous basant sur la connaissance
+          accumulée par l'équipe avec la solution précédente. Le userflow
+          suivant présente le fonctionnement général, les écrans vides sont ceux
+          dans lesquels les formulaires métiers prennent place.
+        </p>
+        <p>
+          Ici, on remarque que la validation de la tâche se fait en 2 temps :
+          un appui sur <em>Complete</em>, puis un appui sur <em>
+            Validate</em>. Cette <strong>friction</strong> a été introduite pour éviter
+            les erreurs de manipulation induites par les interfaces tactiles.
+        </p>
+        <Figure
+          caption="Userflow général"
+          image={userflow}
+          alt="Userflow général"
+          clickable
+        />
+      </Column>
+      <Accordion title="Voir plus d'informations sur la conception">
+        <Column title="Atelier de conception d'une tâche">
+          <p>
+            Le fonctionnement général de l'application est commun à tous les
+            utilisateurs. Seuls les formulaires d'inspection sont spécifiques
+            à un métier. Ici, j'ai sollicité des utilisateurs "proxies" des
+            utilisateurs finaux pour concevoir une tâche telle quelle apparaît
+            dans l'application.
+          </p>
+          <p>
+            Avec des éléments de UI papier, ils devaient proposer ce qui
+            faisaient sens pour eux quand on considère une "tâche" dans
+            l'application.
+          </p>
+          <Figure
+            caption="Conception d'une tâche"
+            width="30rem"
+            image={task}
+            alt="Conception d'une tâche"
+          />
+          </Column>
+          <Column title="Design finalisé d'une tâche">
+            <p>Après mise en commun des propositions, j'avais les éléments
+              nécessaires pour concevoir une tâche.</p>
+          <Figure
+            caption="Design finalisé d'une tâche"
+            width="30rem"
+            image={taskfinal}
+            alt="Design finalisé d'une tâche"
+          />
+        </Column>
+          <Column title="Des wireframes...">
+            <p>
+              Des wireframes ont nourri la réflexion sur le parcours
+              utilisateur, ici la vue des tâches et une tâche ouverte.
+            </p>
+            <Figure
+              caption="Wireframes de l'application"
+              width="30rem"
+              image={wireframes}
+              alt="Wireframes de l'application"
+            />
+            <p>
+              Ils ont été animés dans un prototype InVision, et
+              testés avec des utilisateurs "proxies".
+            </p>
+          </Column>
+            <Column title="...au design final">
+            <p>
+              Les résultats des tests des wireframes ont été analysés et intégrés
+              dans la conception finale.
+            </p>
+            <Figure
+              caption="UI Finalisée"
+              width="30rem"
+              image={ui}
+              alt="UI Finalisée"
+            />
+            </Column>
+      </Accordion>
+      <Column title="Conception du concepteur de formulaire" fullWidth>
+        <p>
+          Le concepteur de formulaire sert à définir le contenu des campagnes
+          d'inspection. Il n'est utilisé qu'au bureau.
+        </p>
+        <p>
+          Organisation d'une session d'idéation selon le modèle 6-to-1. Ce
+          travail a permis de dégagé des pistes pour le design final des écrans
+          du concepteur.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Idéation 6-to-1"
+          image={sixtoone}
+          alt="Idéation 6-to-1"
+        />
+      </Column>
+      <Column>
+        <Figure
+          caption="Editeur de formulaire"
+          image={editor}
+          alt="Editeur de formulaire"
+        />
+      </Column>
+      <Column title="Etude de la détection du port des EPI" fullWidth>
+        <p>
+          Etude a durée environ 3 mois, dans le cadre de mon mémoire
+          professionnel de la formation UX Design aux Gobelins.
+        </p>
+        <p>
+          <strong>Enjeu business :</strong> Si notre produit peut détecter le port des EPI
+          (Equipements de Protection Individuelle), alors nous pourrons
+          contribuer à faire baisser la prime d'assurance de nos clients.
+        </p>
+        <p>
+          <strong>Méthodologie :</strong> Etudier différents scénarios pour
+          intégrer cette détection dans l'application d'inspection.
+        </p>
+        <ul class="list-arrow">
+          <li>Scénario minimal : balayage visuel et analyse d'image</li>
+          <li><strong>Scénario intermédiaire</strong> : capture de QR-Code
+            apposés sur les EPI, illustré dans l'image ci-dessous.</li>
+          <li>Scénario maximal : support d'EPI connectés en Bluetooth Low-
+            Energy</li>
+        </ul>
+        <Figure
+          caption="Etude de la détection des EPI"
+          image={epi}
+          alt="Etude de la détection des EPI"
+        />
+        <p>
+          Le scénario ci-dessus était le plus facile. La difficulté était reportée
+          sur la pose de QR-Code robuste sur les EPI, point qui n'a pas été testé.
+        </p>
+        <p>
+          Les résultats de cette étude, selon les 3 scénarios, sont disponibles
+          dans le mémoire dont le lien est ci-dessous.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Discovery multi-verticales">
+      <p>
+        Lors de la phase d'exploration des opportunités de marché, j'ai étudié
+        plusieurs verticales métier identifiées comme potentiellement intéressantes.
+      </p>
+      <p>
+        Deux de ces verticales sont présentées ci-dessous.
+      </p>
+      <Column title="Contrôle qualité de climatiseurs industriels" fullWidth>
+        <p>
+          J'ai suivi pendant une matinée Ludovic, chargé de la vérification
+          de la conformité des climatiseurs industriels en sortie de chaîne de fabrication.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Vérication des circuits hydrauliques"
+          width="30rem"
+          image={clim1}
+          alt="Vérication des circuits hydrauliques"
+        />
+      </Column>
+      <Column>
+        <Figure
+          caption="Vérication des circuits électroniques"
+          width="30rem"
+          image={clim2}
+          alt="Vérication des circuits électroniques"
+        />
+      </Column>
+      <Column fullWidth>
+        <p>
+          Avec les informations collectés, j'ai pu modéliser le user-journey de
+          Ludovic, et présenter ce parcours à l'équipe.
+        </p>
+        <Figure
+          caption="User journey de Ludovic"
+          image={climuj}
+          alt="User journey de Ludovic"
+        />
+        <p>
+          Notre produit aurait pu grandement améliorer l'efficacité du travail
+          de Ludovic. Mais aucun budget n'était disponible pour ça. Fin du
+          projet.
+        </p>
+      </Column>
+      <Column title="Contrôle du nettoyage dans une usine agroalimentaire" fullWidth>
+        <p>
+          Pour étudier ce cas, nous avons travaillé avec une consultante experte
+          qui connaîssait cette usine agroalimentaire. Il s'agissait de proposer
+          une solution pour contrôler la prestation de nettoyage, qui change
+          (fréquence, opérations, produits utilisés) selon la production.
+        </p>
+      </Column>
+      <Column>
+        <p>
+          <strong>Workflow :</strong> Pour cette première étape, nous avons
+          modélisé tout ce qui touche aux enjeux du nettoyage dans l'usine.
+          Après plusieurs échanges avec la consultant experte, nous avons pu
+          illustrer nos découvertes sur le schéma suivant.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Nettoyage usine agro-alimentaire"
+          image={netagro}
+          alt="Nettoyage usine agro-alimentaire"
+          clickable
+        />
+      </Column>
+      <Column>
+        <p>
+          <strong>Idéation :</strong> Lors de la phase d'idéation, nous avons
+          imaginé un scénario basé sur l'installation d'une tablette et le port
+          de bracelets NFC pour afficher les instructions de nettoyage lors du
+          passage des employés dans les zones à nettoyer. Le scénario
+          fonctionnait de la sorte :
+        </p>
+        <ul class="list-arrow">
+          <li>Une tablette est installée dans chaque salle à nettoyer.</li>
+          <li>Chaque opérateur de nettoyage est équipé d'un bracelet NFC.</li>
+        </ul>
+        <ol>
+          <li>Quand un opérateur entre dans une salle, il passe son bracelet
+            NFC devant la tablette.</li>
+          <li>La tablette identifie l'opérateur, puis affiche les instructions
+            de nettoyage.</li>
+          <li>L'opérateur n'a plus qu'à nettoyer selon les instructions
+            affichées à l'écran.</li>
+        </ol>
+        <p>
+          <strong>Résultat :</strong> L'usine a refusé ce scénario crainte d'une
+          possible contamination bactérienne induite par l'introduction d'une
+          tablette dans les salles à nettoyer. Fin du projet.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Idéation de scénario avec bracelets NFC"
+          image={netagro2}
+          alt="Idéation de scénario avec bracelets NFC"
+          clickable
+        />
+      </Column>
+  </Section>
+  </Row>
+
+  <Row>
+    <Accordion title="Succès & Echecs" headingLevel="h2">
+      <ul class="list-arrow">
+        <li><strong>✅ Design system : </strong>Conçu et intégré dans tous les
+          designs de l'application.</li>
+        <li><strong>✅ Conception de l'application : </strong>L'application a
+          été conçue en applicant une méthodologie aussi rigoureuse que possible
+          compte tenu du contexte de l'entreprise.</li>
+        <li><strong>✅ 4 verticales métier explorées et qualifiées</strong>. J'ai
+          montré les plus pertinentes et celles pour lesquelles j'ai encore accès
+          aux artefacts produits.</li>
+        <li><strong>❌ Application partiellement développée : </strong>
+          L'application a été partiellement développée mais n'a jamais été mise
+          en production sur le marché.</li>
+        <li><strong>❌ Echec business : </strong>Product market-fit non trouvé, aucun contrat signé.</li>
+      </ul>
+    </Accordion>
+  </Row>
+
+  <Row>
+      <Learnings>
+        <h2>Enseignements clés</h2>
+        <ul class="list-arrow">
+          <li>
+            <strong>Rigueur méthodologique </strong>que j'ai appliquée ensuite
+            avec succès chez Smart-Rx et Meditect.
+          </li>
+          <li>
+            <strong>Capacité à travailler dans l'incertitude </strong>qui m'a
+            beaucoup servi lors de mon expérience chez Meditect.
+          </li>
+          <li>
+            <strong>Importance d'étudier le marché </strong> avant de passer
+            à la technique.
+          </li>
+        </ul>
+        <br/>
+        <p><strong>Pourquoi l'échec ?</strong> Le contexte spécifique de l'équipe
+, déjà expérimentée sur une solution de niche proche, pouvait faire
+          croire que cette offre répondait à un problème. Si les domaines
+          explorés, comme 2 verticales ci-dessus avaient de réels besoins,
+          ils n'avaient pas le budget qui aurait pu lancer le produit sur le
+          marché.</p>
+        <p><strong>La leçon : </strong>la discovery ne sert pas qu'à concevoir,
+          elle sert d'abord à explorer s'il y a un marché pour résoudre le
+          problème identifié.</p>
+        <p></p>
+      </Learnings>
+    </Row>
+
+
+    <Row>
+      <Keywords>
+        <span class="keyword">Ant Design</span>
+        <span class="keyword">Design System</span>
+        <span class="keyword">Gobelins</span>
+        <span class="keyword">Mobile</span>
+        <span class="keyword">Sketch</span>
+        <span class="keyword">Prototypage mobile</span>
+        <span class="keyword">React Js</span>
+        <span class="keyword">User Research</span>
+        <span class="keyword">UX Design</span>
+      </Keywords>
+    </Row>
+  </Row>
+</ProjectPersonal>
