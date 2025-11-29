@@ -1,21 +1,25 @@
 ---
-// Column component - content block with optional h3 title
+// Column component - content block with optional title
 interface Props {
   title?: string;
   fullWidth?: boolean;
   alignWithContent?: boolean;
+  headingLevel?: 'h2' | 'h3' | 'h4';
 }
 
-const { title, fullWidth = false, alignWithContent = false } = Astro.props;
+const { title, fullWidth = false, alignWithContent = false, headingLevel = 'h3' } = Astro.props;
+const HeadingTag = headingLevel;
+// Only apply align-with-content class when there's no title
+const shouldAlignContent = alignWithContent && !title;
 ---
 
 <div
   class:list={[
     "column",
-    { "full-width": fullWidth, "align-with-content": alignWithContent },
+    { "full-width": fullWidth, "align-with-content": shouldAlignContent },
   ]}
 >
-  {title && <h3>{title}</h3>}
+  {title && <HeadingTag>{title}</HeadingTag>}
   <div class="column-content">
     <slot />
   </div>
@@ -30,36 +34,26 @@ const { title, fullWidth = false, alignWithContent = false } = Astro.props;
     flex: 1 1 100% !important;
   }
 
-  /* Align content with adjacent column that has a title */
-  .column.align-with-content .column-content {
-    padding-top: calc(1.6rem + 1.4rem * 1.3 + 0.8rem);
+  .column.align-with-content > .column-content {
+    /* Add top padding to align with sibling column headings */
+    padding-top: 2.5rem;
   }
 
-  .column h3 {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    margin-bottom: 0.8rem;
+  @media (max-width: 768px) {
+    .column.align-with-content > .column-content {
+      padding-top: 2rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .column.align-with-content > .column-content {
+      padding-top: 3rem;
+    }
   }
 
   .column-content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .column h3 {
-      font-size: 1.2rem;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .column h3 {
-      font-size: 1.6rem;
-    }
-
-    .column.align-with-content .column-content {
-      padding-top: calc(1.6rem + 1.6rem * 1.3 + 0.8rem);
-    }
   }
 </style>

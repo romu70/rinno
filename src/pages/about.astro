@@ -122,8 +122,6 @@ import portrait from "../assets/portrait.jpeg";
     text-align: left;
   }
 
-  tag {}
-
   .content-detail {
     display: flex;
     flex-direction: column;
@@ -169,46 +167,10 @@ import portrait from "../assets/portrait.jpeg";
     border-radius: var(--radius);
   }
 
-  :global(.content-section h2) {
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--color-darkest);
-  }
-
-  :global(.content-section h3) {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
-  }
-
-  :global(.content-section p) {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 0rem;
-  }
-
-  :global(.content-section strong) {
-    color: var(--color-darkest);
-  }
-
   /* Responsive mobile */
   @media (max-width: 768px) {
     .content-detail {
       gap: 2rem;
-    }
-
-    :global(.content-section h2) {
-      font-size: 1.6rem;
-    }
-
-    :global(.content-section h3) {
-      font-size: 1.2rem;
-    }
-
-    :global(.content-section p) {
-      font-size: 1rem;
     }
   }
 
@@ -224,18 +186,6 @@ import portrait from "../assets/portrait.jpeg";
     :global(.content-area > .content-section.full-width),
     :global(.content-area > .highlight.full-width) {
       flex: 1 1 100%;
-    }
-
-    :global(.content-section h2) {
-      font-size: 2.3rem;
-    }
-
-    :global(.content-section h3) {
-      font-size: 1.6rem;
-    }
-
-    :global(.content-section p) {
-      font-size: 1.2rem;
     }
   }
 </style>

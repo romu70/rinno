@@ -69,6 +69,41 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
   --hue: 45deg;
   --color-ligthest: hsl(var(--hue), 50%, 96%);
@@ -108,16 +143,39 @@ body {
 
 /* Typography */
 h1 {
-  font-size: 3rem;
-  color: var(--primary-color);
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--color-darkest);
   text-align: center;
+  margin: 0;
 }
 
 h2 {
-  font-size: 2rem;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 2.3rem;
   color: var(--primary-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
+}
+
+h3 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+h4 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 p {
@@ -127,6 +185,10 @@ p {
   margin-top: 0rem;
   margin-bottom: 0rem;
   line-height: 140%;
+}
+
+p strong {
+  white-space: nowrap;
 }
 
 /* Links */
@@ -214,7 +276,8 @@ a:hover {
   padding: 0;
 }
 
-.list-arrow li {
+.list-arrow li,
+ol li {
   font-size: 1.5rem;
   color: var(--primary-color);
   line-height: 1.8;
@@ -239,6 +302,22 @@ a:hover {
     font-size: 14px;
   }
 
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
   .container {
     padding: 1rem;
   }
@@ -251,7 +330,6 @@ a:hover {
     font-size: 1.1rem;
     padding: 0.4rem 0.8rem;
   }
-
 }
 
 /* Medium screens (tablets/small desktops) */
@@ -267,6 +345,22 @@ a:hover {
     font-size: 18px;
   }
 
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  h3 {
+    font-size: 2.3rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
+
   .container {
     padding: 3rem;
   }
@@ -279,5 +373,4 @@ a:hover {
     font-size: 1.3rem;
     padding: 0.5rem 1.2rem;
   }
-
 }
