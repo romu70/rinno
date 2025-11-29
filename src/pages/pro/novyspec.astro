@@ -114,8 +114,8 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
         <p>Avec un atelier de 2 heures, nous avons pu consolider la connaissance
           acquise pendant plusieurs années.</p>
       </Column>
-      <Accordion title="En savoir plus sur l'atelier persona">
-        <Column title="Modèle d'empathy map">
+      <Accordion title="En savoir plus sur l'atelier persona" headingLevel="h3">
+        <Column title="Modèle d'empathy map" headingLevel="h4">
           <p>Un modèle d'empathy map a été distribué à chaque membre de l'équipe,
             ainsi que des post-it.</p>
           <Figure
@@ -125,7 +125,7 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
             alt="Modèle d'empathy map utilisé"
           />
           </Column>
-          <Column title="Mise en commun des post-it">
+          <Column title="Mise en commun des post-it" headingLevel="h4">
             <p>La mise en commun des post-it a permis de regrouper les informations et de définir notre persona "inspecteur".</p>
           <Figure
             caption="Regroupement des post-it du persona"
@@ -137,13 +137,13 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
       </Accordion>
       <Column title="UI & Design system" fullWidth>
         <p>
-          <strong>Choix d'une librairie UI</strong> : nos critères : compatible
+          <strong>Choix d'une librairie UI.</strong> Nos critères : compatible
           ReactJs, maintenue, communauté active, documentation claire et
           possibilités de personnalisation. Librairies candidates :
           <a href="https://semantic-ui.com/" target="_blank">Semantic UI</a>,
           <a href="https://material.io/" target="_blank">Material UI</a> et
-          <a href="https://ant.design/"target="_blank">Ant Design</a>. Nous
-          avons choisi <strong>Ant Design</strong>.
+          <a href="https://ant.design/"target="_blank">Ant Design</a>. Notre
+          choix : <strong>Ant Design</strong>.
         </p>
         <p>
           <strong>Design system :</strong> mise en place d'un design system
@@ -167,7 +167,7 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
         <p>
           Ici, on remarque que la validation de la tâche se fait en 2 temps :
           un appui sur <em>Complete</em>, puis un appui sur <em>
-            Validate</em>. Cette <strong>friction</strong> a été introduite pour éviter
+            Validate</em>. Cette <strong>friction</strong> permet d'éviter
             les erreurs de manipulation induites par les interfaces tactiles.
         </p>
         <Figure
@@ -177,8 +177,8 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
           clickable
         />
       </Column>
-      <Accordion title="Voir plus d'informations sur la conception">
-        <Column title="Atelier de conception d'une tâche">
+      <Accordion title="Voir plus d'informations sur la conception" headingLevel="h3">
+        <Column title="Atelier de conception d'une tâche" headingLevel="h4">
           <p>
             Le fonctionnement général de l'application est commun à tous les
             utilisateurs. Seuls les formulaires d'inspection sont spécifiques
@@ -198,7 +198,7 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
             alt="Conception d'une tâche"
           />
           </Column>
-          <Column title="Design finalisé d'une tâche">
+          <Column title="Design finalisé d'une tâche" headingLevel="h4">
             <p>Après mise en commun des propositions, j'avais les éléments
               nécessaires pour concevoir une tâche.</p>
           <Figure
@@ -208,7 +208,7 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
             alt="Design finalisé d'une tâche"
           />
         </Column>
-          <Column title="Des wireframes...">
+          <Column title="Des wireframes..." headingLevel="h4">
             <p>
               Des wireframes ont nourri la réflexion sur le parcours
               utilisateur, ici la vue des tâches et une tâche ouverte.
@@ -224,7 +224,7 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
               testés avec des utilisateurs "proxies".
             </p>
           </Column>
-            <Column title="...au design final">
+            <Column title="...au design final" headingLevel="h4">
             <p>
               Les résultats des tests des wireframes ont été analysés et intégrés
               dans la conception finale.
@@ -277,25 +277,39 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
           intégrer cette détection dans l'application d'inspection.
         </p>
         <ul class="list-arrow">
-          <li>Scénario minimal : balayage visuel et analyse d'image</li>
+          <li>Scénario minimal : balayage visuel du corps de l'utilisateur avec
+            ses EPI, et analyse d'image pour détecter le port des équipements.
+          </li>
           <li><strong>Scénario intermédiaire</strong> : capture de QR-Code
-            apposés sur les EPI, illustré dans l'image ci-dessous.</li>
-          <li>Scénario maximal : support d'EPI connectés en Bluetooth Low-
+            apposés sur les EPI, illustré ci-dessous.</li>
+          <li>Scénario maximal : détection d'EPI connectés en Bluetooth Low-
             Energy</li>
         </ul>
         <Figure
-          caption="Etude de la détection des EPI"
+          caption="Etude de la détection des EPI via QR-Code"
           image={epi}
-          alt="Etude de la détection des EPI"
+          alt="Etude de la détection des EPI via QR-Code"
         />
         <p>
-          Le scénario ci-dessus était le plus facile. La difficulté était reportée
-          sur la pose de QR-Code robuste sur les EPI, point qui n'a pas été testé.
+          Résultat de l'étude :
         </p>
-        <p>
-          Les résultats de cette étude, selon les 3 scénarios, sont disponibles
-          dans le mémoire dont le lien est ci-dessous.
-        </p>
+        <ul class="list-arrow">
+          <li>Scénario minimal (balayage visuel et analyse d'image) : les
+            manipulations requises avec la tablette pour détecter visuellement
+            le port des équipements se sont avérées inconfortables pour les
+            testeurs.
+          </li>
+          <li><strong>Scénario intermédiaire (capture de QR-Code)</strong> : ce
+            scénario s'est avéré le plus simple à mettre en oeuvre. La
+            difficulté était reportée sur la pose de QR-Code robustes sur les
+            EPI, point qui n'a pas été testé.
+          </li>
+          <li>Scénario maximal (EPI connectés en Bluetooth) : Au moment de
+            l'étude, le marché des EPI connectés était balbutiant. Les EPI
+            connectés se limitaient à des chaussures, à l'état de prototype,
+            ce qui ne permettait pas de satisfaire les exigences de sécurité
+            des inspecteurs.</li>
+        </ul>
       </Column>
     </Section>
   </Row>
@@ -303,7 +317,7 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
   <Row>
     <Section title="Discovery multi-verticales">
       <p>
-        Lors de la phase d'exploration des opportunités de marché, j'ai étudié
+        Phase d'exploration des opportunités de marché durant laquelle j'ai étudié
         plusieurs verticales métier identifiées comme potentiellement intéressantes.
       </p>
       <p>
@@ -349,18 +363,18 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
       </Column>
       <Column title="Contrôle du nettoyage dans une usine agroalimentaire" fullWidth>
         <p>
-          Pour étudier ce cas, nous avons travaillé avec une consultante experte
-          qui connaîssait cette usine agroalimentaire. Il s'agissait de proposer
-          une solution pour contrôler la prestation de nettoyage, qui change
-          (fréquence, opérations, produits utilisés) selon la production.
+          Nous avons travaillé avec une consultante experte qui connaîssait l'
+          usine concernée. Nous devions proposer une solution pour contrôler
+          la prestation de nettoyage, qui change (fréquence, opérations,
+          produits utilisés) au gré de la production.
         </p>
       </Column>
       <Column>
         <p>
-          <strong>Workflow :</strong> Pour cette première étape, nous avons
-          modélisé tout ce qui touche aux enjeux du nettoyage dans l'usine.
-          Après plusieurs échanges avec la consultant experte, nous avons pu
-          illustrer nos découvertes sur le schéma suivant.
+          <strong>Etape 1 - Workflow :</strong> Modélisation des enjeux du
+          nettoyage dans l'usine. Plusieurs échanges avec la consultante ont été
+          nécessaire pour comprendre toujours les flux d'information et les
+          besoins de l'entreprise.
         </p>
       </Column>
       <Column>
@@ -373,10 +387,10 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
       </Column>
       <Column>
         <p>
-          <strong>Idéation :</strong> Lors de la phase d'idéation, nous avons
-          imaginé un scénario basé sur l'installation d'une tablette et le port
-          de bracelets NFC pour afficher les instructions de nettoyage lors du
-          passage des employés dans les zones à nettoyer. Le scénario
+          <strong>Etape 2 - Idéation :</strong> Nous proposition était basée
+          sur l'installation d'une tablette et le port de bracelets NFC, par les
+          personnels de nettoyage pour afficher les instructions de nettoyage
+          lors dupassage dans les zones à nettoyer. Le scénario
           fonctionnait de la sorte :
         </p>
         <ul class="list-arrow">
@@ -392,9 +406,9 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
             affichées à l'écran.</li>
         </ol>
         <p>
-          <strong>Résultat :</strong> L'usine a refusé ce scénario crainte d'une
-          possible contamination bactérienne induite par l'introduction d'une
-          tablette dans les salles à nettoyer. Fin du projet.
+          <strong>Résultat :</strong> L'usine a refusé ce scénario par crainte
+          d'unepossible contamination bactérienne induite par l'introduction
+          d'une tablette dans les salles à nettoyer. Fin du projet.
         </p>
       </Column>
       <Column>
@@ -414,8 +428,8 @@ import netagro2 from "../../assets/pro/novyspec/netagro2.jpg";
         <li><strong>✅ Design system : </strong>Conçu et intégré dans tous les
           designs de l'application.</li>
         <li><strong>✅ Conception de l'application : </strong>L'application a
-          été conçue en applicant une méthodologie aussi rigoureuse que possible
-          compte tenu du contexte de l'entreprise.</li>
+          été conçue de A à Z en applicant une méthodologie aussi rigoureuse que
+          possible compte tenu du contexte de l'entreprise.</li>
         <li><strong>✅ 4 verticales métier explorées et qualifiées</strong>. J'ai
           montré les plus pertinentes et celles pour lesquelles j'ai encore accès
           aux artefacts produits.</li>
