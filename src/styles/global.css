@@ -70,36 +70,36 @@
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: url("/fonts/Quicksand-Light.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Thin.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: url("/fonts/Quicksand-Regular.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Light.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: url("/fonts/Quicksand-Medium.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: url("/fonts/Quicksand-SemiBold.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: url("/fonts/Quicksand-Bold.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -143,7 +143,7 @@ body {
 
 /* Typography */
 h1 {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
   color: var(--color-darkest);
@@ -152,7 +152,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2.3rem;
   color: var(--primary-color);
@@ -161,7 +161,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2rem;
   color: var(--primary-color);
@@ -170,7 +170,7 @@ h3 {
 }
 
 h4 {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
   color: var(--primary-color);
