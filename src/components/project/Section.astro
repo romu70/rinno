@@ -9,7 +9,10 @@ interface Props {
 const { title, threeColumns = false, vertical = false } = Astro.props;
 ---
 
-<section class="section" class:list={{ "three-columns": threeColumns, "vertical": vertical }}>
+<section
+  class="section"
+  class:list={{ "three-columns": threeColumns, vertical: vertical }}
+>
   <h2>{title}</h2>
   <div class="section-content">
     <slot />
@@ -26,7 +29,6 @@ const { title, threeColumns = false, vertical = false } = Astro.props;
 
   .section h2 {
     margin-top: 0;
-    color: var(--color-darkest);
   }
 
   .section-content {

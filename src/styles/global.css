@@ -114,7 +114,6 @@
   --radius: 0.25rem;
 
   --background-color: var(--color-ligthest);
-  --primary-color: var(--color-darkest);
   --accent-color: var(--color-dark);
   /*--accent-color: #fa7921;*/
 
@@ -146,7 +145,7 @@ h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
-  color: var(--color-darkest);
+  color: var(--color-dark);
   text-align: center;
   margin: 0;
 }
@@ -155,7 +154,7 @@ h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2.3rem;
-  color: var(--primary-color);
+  color: var(--color-dark);
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
@@ -164,7 +163,7 @@ h3 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 2rem;
-  color: var(--primary-color);
+  color: var(--color-dark);
   margin-top: 1.5rem;
   margin-bottom: 0.8rem;
 }
@@ -173,14 +172,14 @@ h4 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
-  color: var(--primary-color);
+  color: var(--color-dark);
   margin-top: 1rem;
   margin-bottom: 0.8rem;
 }
 
 p {
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: var(--color-dark);
   /*font-style: italic;*/
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -193,7 +192,7 @@ p strong {
 
 /* Links */
 a {
-  color: var(--primary-color);
+  color: var(--color-dark);
   transition: color 0.3s ease;
 }
 
@@ -279,7 +278,7 @@ a:hover {
 .list-arrow li,
 ol li {
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: var(--color-dark);
   line-height: 1.8;
   padding-left: 1.5rem;
   position: relative;
@@ -346,7 +345,7 @@ ol li {
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
 
   h2 {

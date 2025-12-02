@@ -4,91 +4,89 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header>
-    <nav class="glass-effect">
-        <a href="/" class:list={[{ active: currentPath === "/" }]}>Accueil</a>
-        <a href="/pro" class:list={[{ active: currentPath.startsWith("/pro") }]}
-            >Pro</a
-        >
-        <a
-            href="/perso"
-            class:list={[{ active: currentPath.startsWith("/perso") }]}>Perso</a
-        >
-        <a href="/about" class:list={[{ active: currentPath === "/about" }]}
-            >A Propos</a
-        >
-    </nav>
+  <nav class="glass-effect">
+    <a href="/" class:list={[{ active: currentPath === "/" }]}>Accueil</a>
+    <a href="/pro" class:list={[{ active: currentPath.startsWith("/pro") }]}
+      >Pro</a
+    >
+    <a href="/perso" class:list={[{ active: currentPath.startsWith("/perso") }]}
+      >Perso</a
+    >
+    <a href="/about" class:list={[{ active: currentPath === "/about" }]}
+      >A Propos</a
+    >
+  </nav>
 </header>
 
 <style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  a {
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition:
+      color 0.3s ease,
+      transform 0.2s ease,
+      text-decoration 0.3s ease;
+    position: relative;
+  }
+
+  a:hover {
+    color: var(--color-dark);
+    transform: translateY(-2px);
+    text-decoration: underline;
+  }
+
+  a.active {
+    color: var(--color-dark);
+    font-style: italic;
+    text-decoration: underline;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
     header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 0;
-        z-index: 1000;
+      padding: 0;
     }
 
     nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        padding: 1rem 2rem;
-        border-top: none;
-        border-radius: 0 0 var(--radius) var(--radius);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      gap: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    header {
+      padding: 0;
     }
 
-    a {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 500;
-        transition:
-            color 0.3s ease,
-            transform 0.2s ease,
-            text-decoration 0.3s ease;
-        position: relative;
+    nav {
+      gap: 3rem;
+      padding: 1.25rem 2.5rem;
     }
-
-    a:hover {
-        color: var(--color-dark);
-        transform: translateY(-2px);
-        text-decoration: underline;
-    }
-
-    a.active {
-        color: var(--color-dark);
-        font-style: italic;
-        text-decoration: underline;
-    }
-
-    /* Responsive mobile */
-    @media (max-width: 768px) {
-        header {
-            padding: 0;
-        }
-
-        nav {
-            gap: 1rem;
-            padding: 0.75rem 1.5rem;
-        }
-
-    }
-
-    /* Responsive large screens */
-    @media (min-width: 1440px) {
-        header {
-            padding: 0;
-        }
-
-        nav {
-            gap: 3rem;
-            padding: 1.25rem 2.5rem;
-        }
-    }
+  }
 </style>
