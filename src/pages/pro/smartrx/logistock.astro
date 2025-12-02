@@ -1,0 +1,346 @@
+---
+import ProjectPersonal from "../../../layouts/ProjectPersonal.astro";
+import Row from "../../../components/project/Row.astro";
+import Section from "../../../components/project/Section.astro";
+import Column from "../../../components/project/Column.astro";
+import Learnings from "../../../components/project/Learnings.astro";
+import Keywords from "../../../components/project/Keywords.astro";
+import Figure from "../../../components/project/Figure.astro";
+import Accordion from "../../../components/project/Accordion.astro";
+import Quote from "../../../components/project/Quote.astro";
+import heroImage from "../../../assets/pro/novyspec/hero.png";
+import palette from "../../../assets/pro/smartrx/palette.png";
+import ds from "../../../assets/pro/smartrx/DS.png";
+import team from "../../../assets/pro/novyspec/persona-1.jpeg";
+import persona from "../../../assets/pro/novyspec/persona.png";
+import postit from "../../../assets/pro/novyspec/persona-4.jpeg";
+import userflow from "../../../assets/pro/novyspec/navigation.png";
+import task from "../../../assets/pro/novyspec/task.png";
+import taskfinal from "../../../assets/pro/novyspec/task-final.png";
+import wireframes from "../../../assets/pro/novyspec/wireframes.png";
+import ui from "../../../assets/pro/novyspec/ui.png";
+import sixtoone from "../../../assets/pro/novyspec/6-to-1.jpg";
+import editor from "../../../assets/pro/novyspec/editor.jpg";
+import epi from "../../../assets/pro/novyspec/epi.png";
+import clim1 from "../../../assets/pro/novyspec/clim1.jpg";
+import clim2 from "../../../assets/pro/novyspec/clim2.jpg";
+import climuj from "../../../assets/pro/novyspec/clim-uj.png";
+import netagro from "../../../assets/pro/novyspec/netagro.png";
+import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
+---
+
+<ProjectPersonal
+  title="Logi-Stock"
+  year="2019 - 2020"
+  image={heroImage}
+  externalLink="https://www.smart-rx.com/logi-stock/"
+>
+  <Row>
+    <Section title="Contexte" vertical>
+      <Column>
+        <p>
+          Application Android sur terminaux spécialisés Honeywell équipés d'un
+          scanner 1D/2D (code barres/data-matrix).
+        </p>
+        <br />
+        <p>
+          <strong>Durée : </strong>6 mois à temps plein, répartis sur une année.
+        </p>
+        <p>
+          <strong>Rôle : </strong>Product Designer.
+        </p>
+        <p>
+          <strong>Equipe :</strong> J'ai travaillé étroitement avec <a
+            href="https://www.linkedin.com/in/audrey-mandin-931663168/"
+            target="_blank">Audrey Mandin</a
+          > (PO), ainsi qu'une équipe de 3 développeurs.
+        </p>
+      </Column>
+    </Section>
+    <Section title="Enjeux" vertical>
+      <Column>
+        <p>
+          Adresser les besoins des grandes pharmacies dans la gestion de leur
+          stock et des mouvements de produits entre la réserve de stockage et le
+          lieu de vente.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Discovery">
+      <Column fullWidth>
+        <p>
+          Nous connaissions déjà le travail en
+          pharmacie. C'est pourquoi nous avons concentré notre recherche sur tout
+          ce qui touche à la gestion de stock.
+        </p>
+        <ul class="list-arrow">
+          <p>Nous avons visité<p/>
+          <li>Structurer le design : DesignOps.</li>
+          <li>
+            Concevoir un design system unifié pour toutes les verticales de
+            l'ERP.
+          </li>
+          <li>Former et accompagner les POs à la démarche design.</li>
+        </ul>
+      </Column>
+      <Column title="Résultats">
+        <ul class="list-arrow">
+          <li>
+            DesignOps en place et 10 POs formés et accompagnés dans la démarche
+            design. 👇
+          </li>
+          <li>
+            Application Android de gestion logistique déployée dans +500 grandes
+            pharmacies. 👇
+          </li>
+          <li>
+            Editeur d'étiquettes SaaS déployé dans +2000 pharmacies (+30% de la
+            base clients), ~10% du marché. 👇
+          </li>
+        </ul>
+        <p>
+          Avant mon départ, le management de Smart-Rx m'a proposé de prendre la
+          responsabilité du marketing produit.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section>
+      <Accordion title="DesignOps" headingLevel="h2">
+        <Column title="Accessibilité -> Design System">
+          <p>
+            Une de mes première tâches fut d'auditer le design system existant
+            et la palette de couleurs associée. J'ai relevé des problèmes
+            importants d'accessiblité.
+          </p>
+          <p>
+            Les couleurs du logo de Smart-Rx, un globe dégradé de vert et bleu
+            et un gris foncé, m'ont servi de base pour une nouvelle palettes de
+            couleurs. Notons que l'association vert/blanc qui n'est pas
+            accessible est due à une préférence des utilisateurs à qui j'ai
+            soumis ces nouvelles couleurs.
+          </p>
+        </Column>
+        <Column alignWithContent>
+          <Figure
+            caption="Vers une nouvelle palette de couleurs"
+            width="30rem"
+            image={palette}
+            alt="Vers une nouvelle palette de couleurs"
+            clickable
+          />
+        </Column>
+        <Column>
+          <p>
+            Historiquement, le code front-end était écrit avec une librairie
+            maison, inspirée de ReactJs. Avec l'architecte technique, nous avons
+            choisi de basculer sur React, et de baser nos interfaces sur Ant.
+          </p>
+          <p>
+            Avec la nouvelle palette de couleurs, et ces choix techniques, j'ai
+            pu mettre en place un design system moderne, cohérent et accessible
+            avec une approche Atomic Design. Ce design system a été transcrit en
+            code et hébergé sur serveur Storybook interne.
+          </p>
+        </Column>
+        <Column>
+          <Figure
+            caption="Extrait du design system"
+            width="30rem"
+            image={ds}
+            alt="Extrait du design system"
+            clickable
+          />
+        </Column>
+        <Column fullWidth>
+          <p>
+            En parallèle, j'ai documenté les principes UI pour harmoniser le
+            comportement des interfaces. <a
+              href="./smartrx/srx-regles-UI.pdf"
+              target="_blank">Règles UI</a
+            >
+          </p>
+          <p>
+            La nouvelle palette de couleurs a été adoptée aussi par le service
+            marketing pour les supports de communication.
+          </p>
+        </Column>
+        <Column title="DesignOps" fullWidth>
+          <p>
+            <strong>Dual-Track Scrum: </strong> C'est la manière dont j'ai travaillé
+            sur les process internes de conception pour intégrer le design, sans
+            trop perturber les habitudes basées sur Scrum :
+          </p>
+          <ul class="list-arrow">
+            <li>
+              <strong>Un sprint d'avance minimum : </strong>La conception, menée
+              par la PO et moi même, doit commencer au moins un sprint le début
+              du développement.
+            </li>
+            <li>
+              <strong>Discovery continue : </strong>La discovery s'exécute en
+              continu, indépendamment des sprints, pour tenir compte de la
+              disponibilité des pharmaciens et de la mienne. Cela demande de
+              connaître les sujets de travail à venir à l'avance. Chaque séance
+              de discovery est documentée dans Confluence, un <a
+                href="./smartrx/srx-reception-commande.pdf"
+                target="_blank">exemple</a
+              >.
+            </li>
+            <li>
+              <strong>Communauté de pharmaciens : </strong>J'ai noué des liens
+              avec une vingtaine de pharmaciens plus disponibles pour une
+              collaboration proche, et que je sollicitais en priorité.
+            </li>
+            <li>
+              <strong>Tests avec Zoom : </strong>J'ai défini une procédure pour
+              les tests utilisateur effectuées à distance, via Zoom. Chaque
+              séance était enregistrée, ce qui nous permettait de partager nos
+              observations en interne et de rejouer chaque séance au besoin.
+              Exemple d'un <a
+                href="./smartrx/srx-test-maquette.pdf"
+                target="_blank">document de test</a
+              >.
+            </li>
+          </ul>
+          <p>
+            <em
+              >Je n'ai malheureusement plus accès aux documents qui décrivent le
+              dual-track Scrum.</em
+            >
+          </p>
+          <Column title="Formation Design" />
+          <p>
+            Nous pouvant allouer 100% de mon temps sur chaque sujet et à chaque
+            PO et sur chaque sujet, j'ai conçu un cursus de formation pour les
+            faire monter en compétence, afin qu'ils acquièrent quelques bases de
+            l'approche UX. Je restais bien entendu disponible en support pour
+            les accompagner.
+          </p>
+          <ul class="list-arrow">
+            <li>
+              <a href="./smartrx/srx-2020-intro-UX.pdf" target="_blank"
+                >Introduction à l'UX</a
+              >
+            </li>
+            <li>
+              <a href="./smartrx/srx-2020-UX-research.pdf" target="_blank"
+                >UX Research (Recherche utilisateur)</a
+              >
+            </li>
+            <li>
+              <a href="./smartrx/srx-2020-UI-basics-1-X.pdf" target="_blank"
+                >UI Fondamentaux - 1</a
+              >
+            </li>
+            <li>
+              <a href="./smartrx/srx-2021-UI-basics-2.pdf" target="_blank"
+                >UI Fondamentaux - 2</a
+              >
+            </li>
+          </ul>
+        </Column>
+      </Accordion>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Application Android Logi-Stock" />
+  </Row>
+
+  <Row>
+    <Section title="Editeur d'étiquettes SaaS" />
+  </Row>
+
+  <Row>
+    <Keywords>
+      <span class="keyword">Android</span>
+      <span class="keyword">Ant Design</span>
+      <span class="keyword">Confluence</span>
+      <span class="keyword">Design Ops</span>
+      <span class="keyword">Design System</span>
+      <span class="keyword">Discovery</span>
+      <span class="keyword">Figma</span>
+      <span class="keyword">Jira</span>
+      <span class="keyword">React</span>
+      <span class="keyword">Storybook</span>
+      <span class="keyword">User Research</span>
+      <span class="keyword">UX Design</span>
+    </Keywords>
+  </Row>
+  <!-- <Row>
+  <Section title="Logi-Stock : App Android de gestion logistique" />
+</Row>
+
+<Row>
+  <Section title="Editeur d'étiquettes SaaS" />
+</Row>
+
+<Row>
+  <Accordion title="Succès & Echecs" headingLevel="h2">
+    <ul class="list-arrow">
+      <li>
+        <strong>✅ Design system : </strong>Conçu et intégré dans tous les
+        designs de l'application.
+      </li>
+      <li>
+        <strong>✅ Conception de l'application : </strong>L'application a été
+        conçue de A à Z en applicant une méthodologie aussi rigoureuse que
+        possible compte tenu du contexte de l'entreprise.
+      </li>
+      <li>
+        <strong>✅ 4 verticales métier explorées et qualifiées</strong>. J'ai
+        montré les plus pertinentes et celles pour lesquelles j'ai encore accès
+        aux artefacts produits.
+      </li>
+      <li>
+        <strong>❌ Application partiellement développée : </strong>
+        L'application a été partiellement développée mais n'a jamais été mise en
+        production sur le marché.
+      </li>
+      <li>
+        <strong>❌ Echec business : </strong>Product market-fit non trouvé,
+        aucun contrat signé.
+      </li>
+    </ul>
+  </Accordion>
+</Row>
+
+<Row>
+  <Learnings>
+    <h2>Enseignements clés</h2>
+    <ul class="list-arrow">
+      <li>
+        <strong>Rigueur méthodologique </strong>que j'ai appliquée ensuite avec
+        succès chez Smart-Rx et Meditect.
+      </li>
+      <li>
+        <strong>Capacité à travailler dans l'incertitude </strong>qui m'a
+        beaucoup servi lors de mon expérience chez Meditect.
+      </li>
+      <li>
+        <strong>Importance d'étudier le marché </strong> avant de passer à la technique.
+      </li>
+    </ul>
+    <br />
+    <p>
+      <strong>Pourquoi l'échec ?</strong> Le contexte spécifique de l'équipe , déjà
+      expérimentée sur une solution de niche proche, pouvait faire croire que cette
+      offre répondait à un problème. Si les domaines explorés, comme 2 verticales
+      ci-dessus avaient de réels besoins, ils n'avaient pas le budget qui aurait
+      pu lancer le produit sur le marché.
+    </p>
+    <p>
+      <strong>La leçon : </strong>la discovery ne sert pas qu'à concevoir, elle
+      sert d'abord à explorer s'il y a un marché pour résoudre le problème
+      identifié.
+    </p>
+    <p></p>
+  </Learnings>
+</Row> -->
+</ProjectPersonal>
