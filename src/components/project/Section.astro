@@ -4,14 +4,24 @@ interface Props {
   title?: string;
   threeColumns?: boolean;
   vertical?: boolean;
+  centered?: boolean;
 }
 
-const { title, threeColumns = false, vertical = false } = Astro.props;
+const {
+  title,
+  threeColumns = false,
+  vertical = false,
+  centered = false,
+} = Astro.props;
 ---
 
 <section
   class="section"
-  class:list={{ "three-columns": threeColumns, vertical: vertical }}
+  class:list={{
+    "three-columns": threeColumns,
+    vertical: vertical,
+    centered: centered,
+  }}
 >
   {title && <h2>{title}</h2>}
   <div class="section-content">
@@ -61,6 +71,13 @@ const { title, threeColumns = false, vertical = false } = Astro.props;
     flex: 1 1 100%;
   }
 
+  /* Centered mode */
+  .section.centered .section-content {
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
   @media (max-width: 768px) {
     .section {
       padding-top: 1.5rem;
@@ -74,6 +91,16 @@ const { title, threeColumns = false, vertical = false } = Astro.props;
     .section-content {
       gap: 1rem;
     }
+
+    .section.centered .section-content {
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .section.centered .section-content {
+      max-width: 600px;
+    }
   }
 
   @media (min-width: 1440px) {
@@ -83,6 +110,10 @@ const { title, threeColumns = false, vertical = false } = Astro.props;
 
     .section-content {
       gap: 2rem;
+    }
+
+    .section.centered .section-content {
+      max-width: 900px;
     }
   }
 </style>
