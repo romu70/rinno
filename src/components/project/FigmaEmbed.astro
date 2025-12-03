@@ -1,0 +1,123 @@
+---
+interface Props {
+  url: string;
+  caption: string;
+  fullWidth?: boolean;
+  width?: string;
+  height?: string;
+  aspectRatio?: string;
+}
+
+const {
+  url,
+  caption,
+  fullWidth = false,
+  width,
+  height = "600px",
+  aspectRatio,
+} = Astro.props;
+
+// Convert Figma prototype URL to embed URL format
+let embedUrl: string;
+if (url.includes("figma.com/embed")) {
+  // Already an embed URL
+  embedUrl = url;
+} else if (url.includes("figma.com/proto/")) {
+  // It's a prototype URL - convert to embed format
+  // Extract the base URL and all parameters
+  const urlObj = new URL(url);
+  const params = new URLSearchParams(urlObj.search);
+
+  // Build embed URL with all original parameters preserved
+  embedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`;
+} else {
+  // Fallback for other Figma URLs
+  embedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`;
+}
+---
+
+<figure
+  class:list={["content-section", { "full-width": fullWidth }]}
+  style={width ? `max-width: ${width};` : undefined}
+>
+  <div
+    class="iframe-wrapper"
+    style={`${width ? `width: ${width}; max-width: 100%;` : ""} ${height ? `height: ${height};` : ""} ${aspectRatio ? `aspect-ratio: ${aspectRatio};` : ""}`}
+  >
+    <iframe src={embedUrl} allowfullscreen title={caption}></iframe>
+  </div>
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  figure {
+    background-color: var(--color-light);
+    margin: 0;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color);
+    align-self: flex-start;
+    height: fit-content;
+  }
+
+  .iframe-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  /* When explicit width is set, don't stretch to 100% */
+  .iframe-wrapper:has(iframe[style*="width"]) {
+    width: auto;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: calc(var(--radius) * 0.5);
+    background-color: white;
+  }
+
+  figcaption {
+    margin-top: 1rem;
+    font-variant: small-caps;
+    color: var(--color-dark);
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    figure {
+      padding: 1rem;
+    }
+
+    .iframe-wrapper {
+      height: 400px;
+    }
+
+    figcaption {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    figure {
+      padding: 2rem;
+    }
+
+    .iframe-wrapper {
+      height: 700px;
+    }
+
+    figcaption {
+      font-size: 1rem;
+    }
+  }
+</style>
