@@ -1,0 +1,339 @@
+---
+import Layout from "./Layout.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  year: string;
+  image?: ImageMetadata;
+  externalLink?: string;
+  parentPage?: {
+    title: string;
+    url: string;
+  };
+}
+
+const { title, year, image, externalLink, parentPage } = Astro.props;
+const pageTitle = `${title} - Romuald Tisserand`;
+---
+
+<Layout title={pageTitle}>
+  <article class="container-narrow project-detail">
+    {
+      parentPage && (
+        <div class="parent-nav">
+          <a href={parentPage.url} class="nav-link">
+            <span class="nav-label">← Retour</span>
+            <span class="nav-title">{parentPage.title}</span>
+          </a>
+        </div>
+      )
+    }
+
+    <header class="hero">
+      {
+        image && (
+          <div class="hero-image-container">
+            <Image
+              src={image}
+              alt={title}
+              width={900}
+              height={450}
+              format="webp"
+              quality={95}
+            />
+            <div class="hero-overlay">
+              <div class="hero-info">
+                <h1>{title}</h1>
+                <div class="timeline">
+                  <span class="year">{year}</span>
+                </div>
+              </div>
+              {externalLink && (
+                <a
+                  href={externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="visit-link"
+                >
+                  Visiter le site ↗
+                </a>
+              )}
+            </div>
+          </div>
+        )
+      }
+      {
+        !image && (
+          <div class="hero-content">
+            <h1>{title}</h1>
+            <div class="timeline">
+              <span class="year">{year}</span>
+            </div>
+          </div>
+        )
+      }
+    </header>
+
+    <div class="project-content">
+      <slot />
+    </div>
+
+    {
+      parentPage && (
+        <nav class="project-navigation">
+          <a href={parentPage.url} class="nav-link">
+            <span class="nav-label">← Retour</span>
+            <span class="nav-title">{parentPage.title}</span>
+          </a>
+        </nav>
+      )
+    }
+  </article>
+</Layout>
+
+<style>
+  .project-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+
+  .parent-nav {
+    margin-bottom: 2rem;
+  }
+
+  .project-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  :global(.project-content > .content-section),
+  :global(.project-content > .highlight) {
+    flex: 1 1 100%;
+  }
+
+  .hero {
+    margin-bottom: 2rem;
+    border-bottom: var(--border-divider);
+  }
+
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: hsla(var(--hue), 40%, 90%, 0.8);
+    backdrop-filter: blur(0.5rem);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .hero-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-overlay h1 {
+    margin: 0;
+    text-align: left;
+  }
+
+  .hero-overlay .timeline {
+    margin: 0;
+  }
+
+  .visit-link {
+    font-size: 1.4rem;
+    color: var(--color-darkest);
+    text-decoration: none;
+    font-weight: 500;
+    transition:
+      color 0.3s ease,
+      transform 0.2s ease,
+      text-decoration 0.3s ease;
+    display: inline-block;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .visit-link:hover {
+    color: var(--color-dark);
+    transform: translateY(-2px);
+    text-decoration: underline;
+  }
+
+  .hero-overlay .year {
+    font-size: 1.2rem;
+    color: var(--color-darkest);
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--color-darkest);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .timeline {
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.keywords) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.keyword) {
+    font-size: 1.2rem;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius);
+  }
+
+  .project-navigation {
+    padding-top: 2rem;
+    border-top: var(--border-divider);
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--color-dark);
+    transition: color 0.3s ease;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .nav-link:hover {
+    color: var(--color-dark);
+  }
+
+  .nav-label {
+    font-size: 1.2rem;
+    color: var(--color-dark);
+  }
+
+  .nav-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .project-detail {
+      gap: 2rem;
+    }
+
+    .parent-nav {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-overlay {
+      padding: 1rem 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .hero-info {
+      gap: 0.3rem;
+    }
+
+    .visit-link {
+      font-size: 1.4rem;
+      align-self: flex-start;
+    }
+
+    .hero-overlay .year {
+      font-size: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+    }
+
+    .timeline {
+      margin-bottom: 1rem;
+    }
+
+    .nav-label {
+      font-size: 1rem;
+    }
+
+    .nav-title {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .parent-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-overlay {
+      padding: 2rem 2.5rem;
+    }
+
+    .hero-info {
+      gap: 0.6rem;
+    }
+
+    .visit-link {
+      font-size: 1.4rem;
+    }
+
+    .hero-overlay .year {
+      font-size: 1.3rem;
+    }
+
+    .subtitle {
+      font-size: 1.7rem;
+    }
+
+    .nav-label {
+      font-size: 1.3rem;
+    }
+
+    .nav-title {
+      font-size: 1.7rem;
+    }
+  }
+</style>
