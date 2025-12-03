@@ -1,5 +1,5 @@
 ---
-import ProjectPersonal from "../../../layouts/ProjectPersonal.astro";
+import ProjectPro from "../../../layouts/ProjectPro.astro";
 import Row from "../../../components/project/Row.astro";
 import Section from "../../../components/project/Section.astro";
 import Column from "../../../components/project/Column.astro";
@@ -8,8 +8,11 @@ import Keywords from "../../../components/project/Keywords.astro";
 import Figure from "../../../components/project/Figure.astro";
 import Accordion from "../../../components/project/Accordion.astro";
 import Quote from "../../../components/project/Quote.astro";
+import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
 import heroImage from "../../../assets/pro/novyspec/hero.png";
-import palette from "../../../assets/pro/smartrx/palette.png";
+import workflow from "../../../assets/pro/smartrx/ls-workflow.png";
+import test from "../../../assets/pro/smartrx/test-maquette.png";
+
 import ds from "../../../assets/pro/smartrx/DS.png";
 import team from "../../../assets/pro/novyspec/persona-1.jpeg";
 import persona from "../../../assets/pro/novyspec/persona.png";
@@ -29,11 +32,12 @@ import netagro from "../../../assets/pro/novyspec/netagro.png";
 import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
 ---
 
-<ProjectPersonal
+<ProjectPro
   title="Logi-Stock"
   year="2019 - 2020"
   image={heroImage}
   externalLink="https://www.smart-rx.com/logi-stock/"
+  parentPage={{ title: "Smart-Rx", url: "/pro/smartrx" }}
 >
   <Row>
     <Section title="Contexte" vertical>
@@ -70,277 +74,270 @@ import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
 
   <Row>
     <Section title="Discovery">
+      <Column title="User research">
+        <p>
+          Nous connaissions déjà le travail en pharmacie. Notre recherche a
+          porté sur les aspects spécifiques à la gestion de stock.
+        </p>
+        <ul class="list-arrow">
+          <p>
+            Nous avons mené :<p></p>
+            <li>
+              Des visites dans deux entrepots de deux groupements de pharmacies
+              à Angers et à Nîmes, en charge d'approvisionner les pharmacies de
+              leur secteur géographique.
+            </li>
+            <li>
+              Une visite à l'antenne de Niort du répartiteur Alliance
+              Healthcare, pour comprendre leurs enjeux de flux de produits.
+            </li>
+            <li>
+              Une visio conférence avec le responsable d'un groupement de
+              pharmacies familial (3 pharmacies) en région parisienne.
+            </li>
+            <li>
+              Une visio conférence avec le pharmacien titulaire de la "Pharmacie
+              du voyage" à Roissy CDG.
+            </li>
+          </p>
+        </ul>
+      </Column>
+      <Column title="Enseignements">
+        <ul class="list-arrow">
+          <li>
+            Une réserve de stockage peut servir à alimenter plusieurs
+            pharmacies.
+          </li>
+          <li>Une pharmacie peut avoir plusieurs réserves de stockage.</li>
+          <li>
+            Une réserve peut être proche (quelques mètres) ou éloignée de
+            plusieurs km de la pharmacie.
+          </li>
+          <li>
+            La capacité de stockage en espace de vente est volontairement
+            limitée pour garder l'espace agréable.
+          </li>
+          <li>
+            Du fait de l'éloignement de la réserve, les mouvements de stock sont
+            généralement organisés par lot pour minimiser les déplacements.
+          </li>
+          <li>
+            Mais un mouvement de stock d'une petite quantité peut aussi survenir
+            pour faire face à la demande des patients.
+          </li>
+        </ul>
+      </Column>
       <Column fullWidth>
         <p>
-          Nous connaissions déjà le travail en
-          pharmacie. C'est pourquoi nous avons concentré notre recherche sur tout
-          ce qui touche à la gestion de stock.
+          <em
+            >Je n'ai malheureusement plus accès aux documents produits lors de
+            cette recherche, ni aux photos.</em
+          >
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Contraintes et worflow">
+      <Column fullWidth>
+        <p>
+          <strong>Contrainte forte</strong> : ce sera la première application Android
+          développée par Smart-Rx. Cette contrainte nous a amené à prendre les décisions
+          suivantes :
         </p>
         <ul class="list-arrow">
-          <p>Nous avons visité<p/>
-          <li>Structurer le design : DesignOps.</li>
           <li>
-            Concevoir un design system unifié pour toutes les verticales de
-            l'ERP.
+            <strong>Une réserve = une pharmacie : </strong>Nous ne tiendrons pas
+            compte qu'une réserve peut servir plusieurs pharmacies. Une
+            pharmacie peut néanmoins avoir plusieurs réserves de stockage.
           </li>
-          <li>Former et accompagner les POs à la démarche design.</li>
+          <li>
+            <strong>Material Design : </strong>Les développeurs ont tout à
+            apprendre sur Android, la couche UI sera Material Design, même si ce
+            n'est pas cohérent avec le design system. Pour une application
+            "compagnon", détachée de l'ERP, ce n'est pas critique.
+          </li>
+        </ul>
+        <br />
+        <p>
+          A la suite de ces décisions, nous avons travaillé le workflow suivant
+          :
+        </p>
+        <Figure
+          caption="Workflow de l'application Logi-Stock"
+          image={workflow}
+          alt="Workflow de l'application Logi-Stock"
+          clickable
+        />
+        <ul class="list-arrow">
+          <p>
+            Ce workflow permettait de satisfaire les besoins fonctionnels
+            identifiés comme prioritaires :
+          </p>
+          <li>Effectuer un mouvement de stock immédiat</li>
+          <li>
+            Organiser un mouvement de stock de plusieurs produits, imagé par un
+            "chariot"
+          </li>
+          <li>Réaliser une réception de commande directement à la réserve</li>
         </ul>
       </Column>
-      <Column title="Résultats">
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Wireframes et tests utilisateurs">
+      <Column>
+        <p>
+          Après la phase de discovery, et nous avons sollicité nos pharmaciens
+          pour une première phase de test de wireframes.
+        </p>
+        <p>
+          J'ai rédigé un protocole de test que nous avons déroulé auprès de 4
+          pharmaciens potentiellement intéressés par l'application.
+        </p>
+        <br />
+        <p>
+          <em
+            >Durant cette période, les fichiers de design ont été migrés de
+            Adobe XD à Figma. Les wireframes de ce produit n'ont pas été migrés.
+            Je n'y ai plus accès.</em
+          >
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Protocole de test de transfert de produits"
+          image={test}
+          alt="Protocole de test de transfert de produits"
+          clickable
+        />
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Prototype haute-fidélité">
+      <Column fullWidth>
+        <p>
+          Avec les informations collectées lors des tests des wireframes, j'ai
+          conçu une maquette haute fidélité pour les workflow identifiés :
+        </p>
         <ul class="list-arrow">
-          <li>
-            DesignOps en place et 10 POs formés et accompagnés dans la démarche
-            design. 👇
-          </li>
-          <li>
-            Application Android de gestion logistique déployée dans +500 grandes
-            pharmacies. 👇
-          </li>
-          <li>
-            Editeur d'étiquettes SaaS déployé dans +2000 pharmacies (+30% de la
-            base clients), ~10% du marché. 👇
-          </li>
+          <li>Réception de commande à la réserve</li>
+          <li>Modification du stock</li>
+          <li><strong>Transfert direct</strong></li>
+          <li>Transfert d'un chariot de produits</li>
+          <li>Transfert par réassort</li>
+          <li>Activation de la gestion d'un produit en réserve</li>
+          <li><strong>Vérification des produits du chariot</strong></li>
+          <li>Filtrage de la liste des produits du chariot</li>
         </ul>
         <p>
-          Avant mon départ, le management de Smart-Rx m'a proposé de prendre la
-          responsabilité du marketing produit.
+          Les scénarios en <strong>gras</strong> sont ceux que vous pouvez manipuler
+          ci-dessous.
+        </p>
+        <p>
+          Lors de la phase de discovery, des besoins de fonctionnalités
+          d'inventaires ont été identifiés. Ils ont été intégrés dans le design
+          de la page d'accueil pour
         </p>
       </Column>
+      <Column>
+        <FigmaEmbed
+          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13268&node-id=1214-5422"
+          caption="Transfert direct (Le bouton orange simule le scan hardware)"
+          width="360px"
+          height="690px"
+        />
+      </Column>
+      <Column>
+        <FigmaEmbed
+          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13269&node-id=1-8384"
+          caption="Vérification des produits du chariot"
+          width="360px"
+          height="690px"
+        />
+      </Column>
+      <Column fullWidth>
+        <p>
+          Ces prototypes ont été validés avec nos pharmaciens témoins. Les
+          développements ont pu commencer sur cette base.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section centered>
+      <Learnings>
+        <h3>+500 grandes pharmacies</h3>
+        <p>~10% de la base client</p>
+      </Learnings>
+      <p>
+        Ces chiffres m'ont été communiqués après mon départ, suite à la mise sur
+        le marché de Logi-Stock.
+      </p>
     </Section>
   </Row>
 
   <Row>
     <Section>
-      <Accordion title="DesignOps" headingLevel="h2">
-        <Column title="Accessibilité -> Design System">
-          <p>
-            Une de mes première tâches fut d'auditer le design system existant
-            et la palette de couleurs associée. J'ai relevé des problèmes
-            importants d'accessiblité.
-          </p>
-          <p>
-            Les couleurs du logo de Smart-Rx, un globe dégradé de vert et bleu
-            et un gris foncé, m'ont servi de base pour une nouvelle palettes de
-            couleurs. Notons que l'association vert/blanc qui n'est pas
-            accessible est due à une préférence des utilisateurs à qui j'ai
-            soumis ces nouvelles couleurs.
-          </p>
-        </Column>
-        <Column alignWithContent>
-          <Figure
-            caption="Vers une nouvelle palette de couleurs"
-            width="30rem"
-            image={palette}
-            alt="Vers une nouvelle palette de couleurs"
-            clickable
-          />
-        </Column>
-        <Column>
-          <p>
-            Historiquement, le code front-end était écrit avec une librairie
-            maison, inspirée de ReactJs. Avec l'architecte technique, nous avons
-            choisi de basculer sur React, et de baser nos interfaces sur Ant.
-          </p>
-          <p>
-            Avec la nouvelle palette de couleurs, et ces choix techniques, j'ai
-            pu mettre en place un design system moderne, cohérent et accessible
-            avec une approche Atomic Design. Ce design system a été transcrit en
-            code et hébergé sur serveur Storybook interne.
-          </p>
-        </Column>
-        <Column>
-          <Figure
-            caption="Extrait du design system"
-            width="30rem"
-            image={ds}
-            alt="Extrait du design system"
-            clickable
-          />
-        </Column>
-        <Column fullWidth>
-          <p>
-            En parallèle, j'ai documenté les principes UI pour harmoniser le
-            comportement des interfaces. <a
-              href="./smartrx/srx-regles-UI.pdf"
-              target="_blank">Règles UI</a
-            >
-          </p>
-          <p>
-            La nouvelle palette de couleurs a été adoptée aussi par le service
-            marketing pour les supports de communication.
-          </p>
-        </Column>
-        <Column title="DesignOps" fullWidth>
-          <p>
-            <strong>Dual-Track Scrum: </strong> C'est la manière dont j'ai travaillé
-            sur les process internes de conception pour intégrer le design, sans
-            trop perturber les habitudes basées sur Scrum :
-          </p>
-          <ul class="list-arrow">
-            <li>
-              <strong>Un sprint d'avance minimum : </strong>La conception, menée
-              par la PO et moi même, doit commencer au moins un sprint le début
-              du développement.
-            </li>
-            <li>
-              <strong>Discovery continue : </strong>La discovery s'exécute en
-              continu, indépendamment des sprints, pour tenir compte de la
-              disponibilité des pharmaciens et de la mienne. Cela demande de
-              connaître les sujets de travail à venir à l'avance. Chaque séance
-              de discovery est documentée dans Confluence, un <a
-                href="./smartrx/srx-reception-commande.pdf"
-                target="_blank">exemple</a
-              >.
-            </li>
-            <li>
-              <strong>Communauté de pharmaciens : </strong>J'ai noué des liens
-              avec une vingtaine de pharmaciens plus disponibles pour une
-              collaboration proche, et que je sollicitais en priorité.
-            </li>
-            <li>
-              <strong>Tests avec Zoom : </strong>J'ai défini une procédure pour
-              les tests utilisateur effectuées à distance, via Zoom. Chaque
-              séance était enregistrée, ce qui nous permettait de partager nos
-              observations en interne et de rejouer chaque séance au besoin.
-              Exemple d'un <a
-                href="./smartrx/srx-test-maquette.pdf"
-                target="_blank">document de test</a
-              >.
-            </li>
-          </ul>
-          <p>
-            <em
-              >Je n'ai malheureusement plus accès aux documents qui décrivent le
-              dual-track Scrum.</em
-            >
-          </p>
-          <Column title="Formation Design" />
-          <p>
-            Nous pouvant allouer 100% de mon temps sur chaque sujet et à chaque
-            PO et sur chaque sujet, j'ai conçu un cursus de formation pour les
-            faire monter en compétence, afin qu'ils acquièrent quelques bases de
-            l'approche UX. Je restais bien entendu disponible en support pour
-            les accompagner.
-          </p>
-          <ul class="list-arrow">
-            <li>
-              <a href="./smartrx/srx-2020-intro-UX.pdf" target="_blank"
-                >Introduction à l'UX</a
-              >
-            </li>
-            <li>
-              <a href="./smartrx/srx-2020-UX-research.pdf" target="_blank"
-                >UX Research (Recherche utilisateur)</a
-              >
-            </li>
-            <li>
-              <a href="./smartrx/srx-2020-UI-basics-1-X.pdf" target="_blank"
-                >UI Fondamentaux - 1</a
-              >
-            </li>
-            <li>
-              <a href="./smartrx/srx-2021-UI-basics-2.pdf" target="_blank"
-                >UI Fondamentaux - 2</a
-              >
-            </li>
-          </ul>
-        </Column>
-      </Accordion>
+      <Learnings>
+        <h2>Enseignements clés</h2>
+        <ul class="list-arrow">
+          <li>
+            <strong>La Discovery</strong> a été cruciale pour appréhender la complexité
+            de la logistique, qui semblait pourtant simple. Comprendre 1 réserve
+            → N pharmacies, N réserves → 1 pharmacie, distances variables (mètres
+            vs km) a été déterminant pour restreindre le scope et livrer plus vite
+            la v1.
+          </li>
+          <li>
+            <strong>Restreindre le scope </strong> de cette v1 (1 réserve = 1 pharmacie),
+            pour livrer plus rapidement n'a pas empêché l'adoption rapide de la solution
+            (+500 pharmacies, ~10% de la base client).
+          </li>
+          <li>
+            Choisir <strong>Material Design </strong>, et accepter une
+            incohérence temporaire avec le design system pour permettre à
+            l'équipe de se former sur Android a été le bon choix. Pour une app
+            "compagnon", la cohérence fonctionnelle prime sur la cohérence
+            visuelle.
+          </li>
+        </ul>
+      </Learnings>
     </Section>
   </Row>
-
   <Row>
-    <Section title="Application Android Logi-Stock" />
-  </Row>
-
-  <Row>
-    <Section title="Editeur d'étiquettes SaaS" />
+    <Section title="Liens utiles">
+      <Column fullWidth>
+        <ul class="list-arrow">
+          <li>
+            <a href="https://www.smart-rx.com/logi-stock/" target="_blank"
+              >Présentation du terminal Logi-Stock</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.smart-rx.com/applications/smart-rx-logi-stock/"
+              target="_blank">Page de l'application Logi-Stock</a
+            >
+          </li>
+        </ul>
+      </Column>
+    </Section>
   </Row>
 
   <Row>
     <Keywords>
       <span class="keyword">Android</span>
-      <span class="keyword">Ant Design</span>
-      <span class="keyword">Confluence</span>
-      <span class="keyword">Design Ops</span>
-      <span class="keyword">Design System</span>
       <span class="keyword">Discovery</span>
       <span class="keyword">Figma</span>
-      <span class="keyword">Jira</span>
-      <span class="keyword">React</span>
-      <span class="keyword">Storybook</span>
+      <span class="keyword">Mobile</span>
       <span class="keyword">User Research</span>
       <span class="keyword">UX Design</span>
     </Keywords>
   </Row>
-  <!-- <Row>
-  <Section title="Logi-Stock : App Android de gestion logistique" />
-</Row>
-
-<Row>
-  <Section title="Editeur d'étiquettes SaaS" />
-</Row>
-
-<Row>
-  <Accordion title="Succès & Echecs" headingLevel="h2">
-    <ul class="list-arrow">
-      <li>
-        <strong>✅ Design system : </strong>Conçu et intégré dans tous les
-        designs de l'application.
-      </li>
-      <li>
-        <strong>✅ Conception de l'application : </strong>L'application a été
-        conçue de A à Z en applicant une méthodologie aussi rigoureuse que
-        possible compte tenu du contexte de l'entreprise.
-      </li>
-      <li>
-        <strong>✅ 4 verticales métier explorées et qualifiées</strong>. J'ai
-        montré les plus pertinentes et celles pour lesquelles j'ai encore accès
-        aux artefacts produits.
-      </li>
-      <li>
-        <strong>❌ Application partiellement développée : </strong>
-        L'application a été partiellement développée mais n'a jamais été mise en
-        production sur le marché.
-      </li>
-      <li>
-        <strong>❌ Echec business : </strong>Product market-fit non trouvé,
-        aucun contrat signé.
-      </li>
-    </ul>
-  </Accordion>
-</Row>
-
-<Row>
-  <Learnings>
-    <h2>Enseignements clés</h2>
-    <ul class="list-arrow">
-      <li>
-        <strong>Rigueur méthodologique </strong>que j'ai appliquée ensuite avec
-        succès chez Smart-Rx et Meditect.
-      </li>
-      <li>
-        <strong>Capacité à travailler dans l'incertitude </strong>qui m'a
-        beaucoup servi lors de mon expérience chez Meditect.
-      </li>
-      <li>
-        <strong>Importance d'étudier le marché </strong> avant de passer à la technique.
-      </li>
-    </ul>
-    <br />
-    <p>
-      <strong>Pourquoi l'échec ?</strong> Le contexte spécifique de l'équipe , déjà
-      expérimentée sur une solution de niche proche, pouvait faire croire que cette
-      offre répondait à un problème. Si les domaines explorés, comme 2 verticales
-      ci-dessus avaient de réels besoins, ils n'avaient pas le budget qui aurait
-      pu lancer le produit sur le marché.
-    </p>
-    <p>
-      <strong>La leçon : </strong>la discovery ne sert pas qu'à concevoir, elle
-      sert d'abord à explorer s'il y a un marché pour résoudre le problème
-      identifié.
-    </p>
-    <p></p>
-  </Learnings>
-</Row> -->
-</ProjectPersonal>
+</ProjectPro>
