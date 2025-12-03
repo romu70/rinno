@@ -1,7 +1,7 @@
 ---
-// Section component - content block with required h2 title
+// Section component - content block with optional h2 title
 interface Props {
-  title: string;
+  title?: string;
   threeColumns?: boolean;
   vertical?: boolean;
 }
@@ -13,7 +13,7 @@ const { title, threeColumns = false, vertical = false } = Astro.props;
   class="section"
   class:list={{ "three-columns": threeColumns, vertical: vertical }}
 >
-  <h2>{title}</h2>
+  {title && <h2>{title}</h2>}
   <div class="section-content">
     <slot />
   </div>
