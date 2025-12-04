@@ -10,9 +10,11 @@ interface Props {
   status: "available" | "soon";
   link?: string;
   image?: ImageMetadata;
+  bottomText?: string;
 }
 
-const { title, year, description, status, link, image } = Astro.props;
+const { title, year, description, status, link, image, bottomText } =
+  Astro.props;
 const isClickable = status === "available" && link;
 const Tag = isClickable ? "a" : "div";
 ---
@@ -53,6 +55,7 @@ const Tag = isClickable ? "a" : "div";
         <div class="status-badge soon">Bientôt disponible</div>
       )
     }
+    {bottomText && <p class="bottom-text">{bottomText}</p>}
   </div>
 </Tag>
 
@@ -174,6 +177,17 @@ const Tag = isClickable ? "a" : "div";
     border: 1px solid #f1c40f;
   }
 
+  .bottom-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-darkest);
+    line-height: 1.4;
+    margin: 0;
+    font-style: italic;
+    opacity: 0.8;
+    font-variant: small-caps;
+  }
+
   /* Responsive mobile */
   @media (max-width: 768px) {
     .project-card {
@@ -195,7 +209,11 @@ const Tag = isClickable ? "a" : "div";
     }
 
     .description {
-      font-size: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .bottom-text {
+      font-size: 1.3rem;
     }
   }
 
@@ -212,6 +230,10 @@ const Tag = isClickable ? "a" : "div";
 
     .description {
       font-size: 1.4rem;
+    }
+
+    .bottom-text {
+      font-size: 1.2rem;
     }
   }
 </style>
