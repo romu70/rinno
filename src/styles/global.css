@@ -293,6 +293,13 @@ ol li {
   font-weight: bold;
 }
 
+.learnings-title {
+  font-variant: small-caps;
+  color: var(--color-dark);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
 /* Responsive breakpoints */
 
 /* Ajuster la taille de base pour les écrans plus petits */
