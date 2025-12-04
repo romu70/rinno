@@ -7,11 +7,11 @@ import Learnings from "../../../components/project/Learnings.astro";
 import Keywords from "../../../components/project/Keywords.astro";
 import Figure from "../../../components/project/Figure.astro";
 import Accordion from "../../../components/project/Accordion.astro";
-import Quote from "../../../components/project/Quote.astro";
+import ProjectCard from "../../../components/ProjectCard.astro";
 import heroImage from "../../../assets/pro/novyspec/hero.png";
 import palette from "../../../assets/pro/smartrx/palette.png";
 import ds from "../../../assets/pro/smartrx/DS.png";
-import team from "../../../assets/pro/novyspec/persona-1.jpeg";
+import lsthumb from "../../../assets/pro/smartrx/ls-thumbnail.png";
 import persona from "../../../assets/pro/novyspec/persona.png";
 import postit from "../../../assets/pro/novyspec/persona-4.jpeg";
 import userflow from "../../../assets/pro/novyspec/navigation.png";
@@ -266,13 +266,31 @@ import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
   </Row>
 
   <Row>
-    <Section title="Application Android Logi-Stock">
-      <a href="./smartrx/logistock">Logi-Stock</a>
+    <Section title="Design produit">
+      <br />
+      <Column fullWidth>
+        <ProjectCard
+          title="Logi-Stock"
+          year="6 mois répartis sur 1 an"
+          description="Application Android pour résoudre les problèmes de gestion logistique de grandes pharmacies françaises."
+          status="available"
+          link="/pro/smartrx/logistock"
+          image={lsthumb}
+          bottomText="+500 pharmacies installées / ~10% de la base client"
+        />
+      </Column>
+      <Column fullWidth>
+        <ProjectCard
+          title="Éditeur d'étiquettes SaaS"
+          year="6 mois répartis sur 1 an"
+          description="Permettre aux pharmacies clientes de créer leurs propres modèles étiquettes personnalisées."
+          status="available"
+          link="/pro/smartrx/tageditor"
+          image={lsthumb}
+          bottomText="+2000 pharmacies installées / ~10% du marché FR (+30% de la base client)"
+        />
+      </Column>
     </Section>
-  </Row>
-
-  <Row>
-    <Section title="Editeur d'étiquettes SaaS" />
   </Row>
 
   <Row>
