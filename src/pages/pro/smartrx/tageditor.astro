@@ -10,41 +10,26 @@ import Accordion from "../../../components/project/Accordion.astro";
 import Quote from "../../../components/project/Quote.astro";
 import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
 import heroImage from "../../../assets/pro/smartrx/ls-hero.png";
-import workflow from "../../../assets/pro/smartrx/ls-workflow.png";
+import wfbefore from "../../../assets/pro/smartrx/tag-wf-before.jpg";
+import wfafter from "../../../assets/pro/smartrx/tag-wf-after.jpg";
 import test from "../../../assets/pro/smartrx/test-maquette.png";
-
-import ds from "../../../assets/pro/smartrx/DS.png";
-import team from "../../../assets/pro/novyspec/persona-1.jpeg";
-import persona from "../../../assets/pro/novyspec/persona.png";
-import postit from "../../../assets/pro/novyspec/persona-4.jpeg";
-import userflow from "../../../assets/pro/novyspec/navigation.png";
-import task from "../../../assets/pro/novyspec/task.png";
-import taskfinal from "../../../assets/pro/novyspec/task-final.png";
-import wireframes from "../../../assets/pro/novyspec/wireframes.png";
-import ui from "../../../assets/pro/novyspec/ui.png";
-import sixtoone from "../../../assets/pro/novyspec/6-to-1.jpg";
-import editor from "../../../assets/pro/novyspec/editor.jpg";
-import epi from "../../../assets/pro/novyspec/epi.png";
-import clim1 from "../../../assets/pro/novyspec/clim1.jpg";
-import clim2 from "../../../assets/pro/novyspec/clim2.jpg";
-import climuj from "../../../assets/pro/novyspec/clim-uj.png";
-import netagro from "../../../assets/pro/novyspec/netagro.png";
-import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
+import wfcreate from "../../../assets/pro/smartrx/tag-wf-create.png";
+import wfdesign from "../../../assets/pro/smartrx/tag-wf-design.png";
+import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
 ---
 
 <ProjectPro
-  title="Logi-Stock"
-  year="2019 - 2020"
+  title="Éditeur d'étiquettes"
+  year="6 mois répartis sur 1 an"
   image={heroImage}
-  externalLink="https://www.smart-rx.com/logi-stock/"
   parentPage={{ title: "Smart-Rx", url: "/pro/smartrx" }}
 >
   <Row>
     <Section title="Contexte" vertical>
       <Column>
         <p>
-          Application Android sur terminaux spécialisés Honeywell équipés d'un
-          scanner 1D/2D (code barres/data-matrix).
+          Module SaaS de l'ERP de pharmacies pour permettre la conception de
+          modèles d'étiquettes et affichettes personnalisées.
         </p>
         <br />
         <p>
@@ -57,16 +42,26 @@ import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
           <strong>Equipe :</strong> J'ai travaillé étroitement avec <a
             href="https://www.linkedin.com/in/audrey-mandin-931663168/"
             target="_blank">Audrey Mandin</a
-          > (PO), ainsi qu'une équipe de 3 développeurs.
+          > (PO), ainsi qu'une équipe de 2 développeurs.
         </p>
       </Column>
     </Section>
     <Section title="Enjeux" vertical>
       <Column>
         <p>
-          Adresser les besoins des grandes pharmacies dans la gestion de leur
-          stock et des mouvements de produits entre la réserve de stockage et le
-          lieu de vente.
+          <strong>Constat :</strong> A chaque fois qu'une pharmacie a besoin de personnaliser
+          ses étiquettes, elle appelle le support Smart-Rx qui va réaliser le travail.
+        </p>
+        <ul class="list-arrow">
+          <p>
+            <strong>Impacts :</strong>
+          </p>
+          <li>Support dérangé pour des sujets non critiques</li>
+          <li>Des menus à rallonge avec tous les modèles disponibles</li>
+        </ul>
+        <p>
+          <strong>Brief :</strong> Concevoir un éditeur d'étiquettes qui rendent
+          les pharmacies autonomes sur ce sujet.
         </p>
       </Column>
     </Section>
@@ -76,143 +71,166 @@ import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
     <Section title="Discovery">
       <Column title="User research">
         <p>
-          Nous connaissions déjà le travail en pharmacie. Notre recherche a
-          porté sur les aspects spécifiques à la gestion de stock.
+          Audrey avait déjà collecté des informations sur les problèmes
+          rencontrés par les pharmacies pour imprimer des étiquettes.
         </p>
-        <ul class="list-arrow">
-          <p>
-            Nous avons mené :<p></p>
-            <li>
-              Des visites dans deux entrepots de deux groupements de pharmacies
-              à Angers et à Nîmes, en charge d'approvisionner les pharmacies de
-              leur secteur géographique.
-            </li>
-            <li>
-              Une visite à l'antenne de Niort du répartiteur Alliance
-              Healthcare, pour comprendre leurs enjeux de flux de produits.
-            </li>
-            <li>
-              Une visio conférence avec le responsable d'un groupement de
-              pharmacies familial (3 pharmacies) en région parisienne.
-            </li>
-            <li>
-              Une visio conférence avec le pharmacien titulaire de la "Pharmacie
-              du voyage" à Roissy CDG.
-            </li>
-          </p>
-        </ul>
+        <br />
+        <p>
+          Nous avons étudié l'ensemble des problèmes pour définir la liste des
+          problèmes que nous souhaitions résoudre.
+        </p>
       </Column>
       <Column title="Enseignements">
         <ul class="list-arrow">
+          <li>Menus à rallonge avec tous les modèles proposés</li>
           <li>
-            Une réserve de stockage peut servir à alimenter plusieurs
-            pharmacies.
-          </li>
-          <li>Une pharmacie peut avoir plusieurs réserves de stockage.</li>
-          <li>
-            Une réserve peut être proche (quelques mètres) ou éloignée de
-            plusieurs km de la pharmacie.
+            Difficulté à comprendre la différence entre les modèles en lisant le
+            menu
           </li>
           <li>
-            La capacité de stockage en espace de vente est volontairement
-            limitée pour garder l'espace agréable.
+            Impossibilité de concevoir un modèle sans contacter le support
+            Smart-Rx
           </li>
           <li>
-            Les mouvements de stock sont généralement organisés par lot pour
-            minimiser les déplacements.
+            Délai de plusieurs jours pour la conception d'un modèle qui prend
+            moins d'une heure de travail
           </li>
+          <li>Parcours utilisateur d'impression d'étiquettes illogique</li>
           <li>
-            Un mouvement de stock d'une seule unité peut aussi survenir pour
-            faire face à la demande des patients.
+            Les pharmacies peuvent imprimer des étiquettes pour des dizaines de
+            produits, en une seule passe
           </li>
         </ul>
       </Column>
-      <Column fullWidth>
-        <p>
-          <em
-            >Je n'ai malheureusement plus accès aux documents produits lors de
-            cette recherche, ni aux photos.</em
-          >
-        </p>
-      </Column>
     </Section>
   </Row>
-
   <Row>
     <Section title="Contraintes et worflow">
       <Column fullWidth>
         <p>
-          <strong>Contrainte forte</strong> : ce sera la première application Android
-          développée par Smart-Rx. Cette contrainte nous a amené à prendre les décisions
-          suivantes :
+          <strong>Contrainte technique</strong> : le choix de basculer les développements
+          front-end sur React venait d'être acté, mais les délais de formation des
+          développeurs étaient trop longs pour que le produit sorte à la date attendue.
+          Aussi ces développeurs ont été réalisés sur la couche front-end déjà en
+          place, une librairie maison inspirée de React.
         </p>
-        <ul class="list-arrow">
-          <li>
-            <strong>Une réserve = une pharmacie : </strong>Nous ne tiendrons pas
-            compte qu'une réserve peut servir plusieurs pharmacies. Une
-            pharmacie peut néanmoins avoir plusieurs réserves de stockage.
-          </li>
-          <li>
-            <strong>Material Design : </strong>Les développeurs ont tout à
-            apprendre sur Android, la couche UI sera Material Design, même si ce
-            n'est pas cohérent avec le design system. Pour une application
-            "compagnon", détachée de l'ERP, ce n'est pas critique.
-          </li>
-        </ul>
-        <br />
+      </Column>
+      <Column title="Parcours original">
         <p>
-          A la suite de ces décisions, nous avons travaillé le workflow suivant
-          :
+          Audrey avait identifié que le parcours utilisateur original était
+          illogique. Comme le montre le dessin ci-dessous, l'utilisateur devait
+          d'abord sélectionner le modèle à utiliser, puis les produits pour
+          lesquels il souhaitait imprimer les étiquettes.
         </p>
         <Figure
-          caption="Workflow de l'application Logi-Stock"
-          image={workflow}
-          alt="Workflow de l'application Logi-Stock"
-          clickable
+          caption="Parcours d'impression original"
+          image={wfbefore}
+          alt="Parcours d'impression original"
         />
-        <ul class="list-arrow">
-          <p>
-            Ce workflow permettait de satisfaire les besoins fonctionnels
-            identifiés comme prioritaires :
-          </p>
-          <li>Effectuer un mouvement de stock immédiat</li>
-          <li>
-            Organiser un mouvement de stock de plusieurs produits, imagé par un
-            "chariot"
-          </li>
-          <li>Réaliser une réception de commande directement à la réserve</li>
-        </ul>
+      </Column>
+      <Column title="Nouveau parcours">
+        <p>
+          Nous avons défini un nouveau parcours, plus logique, où l'utilisateur
+          choisit d'abord les produits pour lesquels il souhaite imprimer les
+          étiquettes, puis le modèle à utiliser.
+        </p>
+        <Figure
+          caption="Parcours d'impression revu"
+          image={wfafter}
+          alt="Parcours d'impression revu"
+        />
+        <p>
+          Ce nouveau parcours nous permettait de chaîner les étapes de
+          l'impression de manière plus efficace et intuitive, et nous permettait
+          d'y insérer le parcours de conception de nouveaux modèles.
+        </p>
       </Column>
     </Section>
   </Row>
-
   <Row>
-    <Section title="Wireframes et tests utilisateurs">
-      <Column>
+    <Section title="Wireframes et tests utilisateurs" threeColumns>
+      <Column fullWidth>
         <p>
-          Après la phase de discovery, et nous avons sollicité nos pharmaciens
-          pour une première phase de test de wireframes.
+          <strong>Utilisateurs "proxy"</strong> : L'impression d'étiquettes et la
+          conception de modèles ne sont pas des actions spécifiques du métier de
+          la pharmacie.
         </p>
         <p>
-          J'ai rédigé un protocole de test que nous avons déroulé auprès de 4
-          pharmaciens potentiellement intéressés par l'application.
+          Aussi, pour accélérer le go-to-market du produit, et moins déranger
+          les pharmaciens, des salariés de Smart-Rx, non impliqués dans la
+          conception du produit, ont testé et validé la conception.
         </p>
         <br />
+        <p>Les wireframes ont permis de valider les scénarios :</p>
+        <ul class="list-arrow">
+          <li>
+            <strong
+              >Nouveau parcours de sélection de modèles en partant d'une liste
+              de produits</strong
+            >
+          </li>
+          <li>
+            Filtrage de cette liste pour faciliter l'attribution des modèles
+          </li>
+          <li>Édition simplifiée des libellés de produits</li>
+          <li><strong>Création d'un modèle</strong></li>
+          <li><strong>Conception d'un modèle</strong></li>
+          <li>
+            Chaînage de la conception d'un modèle avec le parcours d'impression
+          </li>
+        </ul>
         <p>
-          <em
-            >Durant cette période, les fichiers de design ont été migrés de
-            Adobe XD à Figma. Les wireframes de ce produit n'ont pas été migrés.
-            Je n'y ai plus accès.</em
+          En <strong>gras</strong>, les scénarios disponibles en wireframes
+          ci-dessous, avec le lien pour exécuter le prototype.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Impression d'étiquettes"
+          image={wfprint}
+          alt="Impression d'étiquettes"
+          clickable
+        />
+        <p>
+          <a
+            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=1-6926&viewport=4763%2C3170%2C0.15&t=5oki3ziaOsFCXroF-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A6926&show-proto-sidebar=0"
+            target="_blank">Exécuter le prototype</a
           >
         </p>
       </Column>
       <Column>
         <Figure
-          caption="Protocole de test de transfert de produits"
-          image={test}
-          alt="Protocole de test de transfert de produits"
+          caption="Création d'un modèle"
+          image={wfcreate}
+          alt="Création d'un modèle"
           clickable
         />
+        <p>
+          <a
+            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=1-6669&viewport=4763%2C3170%2C0.15&t=5oki3ziaOsFCXroF-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A6669&show-proto-sidebar=0"
+            target="_blank">Exécuter le prototype</a
+          >
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Design d'un modèle"
+          image={wfdesign}
+          alt="Design d'un modèle"
+          clickable
+        />
+        <p>
+          <a
+            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=1-6270&viewport=4763%2C3170%2C0.15&t=5oki3ziaOsFCXroF-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A6270&show-proto-sidebar=0"
+            target="_blank">Exécuter le prototype</a
+          >
+        </p>
+      </Column>
+      <Column fullWidth>
+        <p>
+          Les tests menés avec nos utilisateurs "proxy" ont validé la pertinence
+          et l'efficacité des parcours, qui ont été jugé intuitifs et faciles.
+        </p>
       </Column>
     </Section>
   </Row>
@@ -337,10 +355,9 @@ import netagro2 from "../../../assets/pro/novyspec/netagro2.jpg";
 
   <Row>
     <Keywords>
-      <span class="keyword">Android</span>
       <span class="keyword">Discovery</span>
       <span class="keyword">Figma</span>
-      <span class="keyword">Mobile</span>
+      <span class="keyword">SaaS</span>
       <span class="keyword">User Research</span>
       <span class="keyword">UX Design</span>
     </Keywords>
