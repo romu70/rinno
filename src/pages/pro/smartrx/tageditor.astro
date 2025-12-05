@@ -6,16 +6,17 @@ import Column from "../../../components/project/Column.astro";
 import Learnings from "../../../components/project/Learnings.astro";
 import Keywords from "../../../components/project/Keywords.astro";
 import Figure from "../../../components/project/Figure.astro";
-import Accordion from "../../../components/project/Accordion.astro";
 import Quote from "../../../components/project/Quote.astro";
-import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
-import heroImage from "../../../assets/pro/smartrx/ls-hero.png";
+import Accordion from "../../../components/project/Accordion.astro";
+import heroImage from "../../../assets/pro/smartrx/tag-hero.png";
 import wfbefore from "../../../assets/pro/smartrx/tag-wf-before.jpg";
 import wfafter from "../../../assets/pro/smartrx/tag-wf-after.jpg";
-import test from "../../../assets/pro/smartrx/test-maquette.png";
 import wfcreate from "../../../assets/pro/smartrx/tag-wf-create.png";
 import wfdesign from "../../../assets/pro/smartrx/tag-wf-design.png";
 import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
+import tagcomponent from "../../../assets/pro/smartrx/tag-component.jpg";
+import taginspectoritems from "../../../assets/pro/smartrx/tag-inspector-items.jpg";
+import tageditorprod from "../../../assets/pro/smartrx/tag-editor-prod.png";
 ---
 
 <ProjectPro
@@ -29,7 +30,7 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
       <Column>
         <p>
           Module SaaS de l'ERP de pharmacies pour permettre la conception de
-          modèles d'étiquettes et affichettes personnalisées.
+          modèles d'étiquettes et affichettes personnalisés.
         </p>
         <br />
         <p>
@@ -57,11 +58,14 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
             <strong>Impacts :</strong>
           </p>
           <li>Support dérangé pour des sujets non critiques</li>
-          <li>Des menus à rallonge avec tous les modèles disponibles</li>
+          <li>
+            Une interface avec des menus surchargés par tous les modèles
+            disponibles
+          </li>
         </ul>
         <p>
           <strong>Brief :</strong> Concevoir un éditeur d'étiquettes qui rendent
-          les pharmacies autonomes sur ce sujet.
+          les pharmacies autonomes, et décharge le support Smart-Rx.
         </p>
       </Column>
     </Section>
@@ -79,23 +83,30 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
           Nous avons étudié l'ensemble des problèmes pour définir la liste des
           problèmes que nous souhaitions résoudre.
         </p>
+        <br />
+        <p>
+          <em
+            >Je n'ai plus accès aux informations de recherche pour fournir des
+            informations plus détaillées.</em
+          >
+        </p>
       </Column>
       <Column title="Enseignements">
+        <p>
+          <strong>Enseignement clé : </strong>Pour imprimer des étiquettes, les
+          pharmaciens démarrent par les produits, pas par le modèle d'étiquette.
+          Le parcours utilisateur original est illogique.
+        </p>
+        <p>Autres enseignements :</p>
         <ul class="list-arrow">
           <li>Menus à rallonge avec tous les modèles proposés</li>
+          <li>Difficulté à s'y retrouver parmi tous les modèles propsés</li>
+          <li>Devoir contacter le support Smart-Rx pour tout changement</li>
           <li>
-            Difficulté à comprendre la différence entre les modèles en lisant le
-            menu
+            Délai d'attente de plusieurs jours pour avoir un nouveau modèle, qui
+            prend moins d'une heure de travail effectif (source: le support
+            Smart-Rx)
           </li>
-          <li>
-            Impossibilité de concevoir un modèle sans contacter le support
-            Smart-Rx
-          </li>
-          <li>
-            Délai de plusieurs jours pour la conception d'un modèle qui prend
-            moins d'une heure de travail
-          </li>
-          <li>Parcours utilisateur d'impression d'étiquettes illogique</li>
           <li>
             Les pharmacies peuvent imprimer des étiquettes pour des dizaines de
             produits, en une seule passe
@@ -108,19 +119,21 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
     <Section title="Contraintes et worflow">
       <Column fullWidth>
         <p>
-          <strong>Contrainte technique</strong> : le choix de basculer les développements
-          front-end sur React venait d'être acté, mais les délais de formation des
-          développeurs étaient trop longs pour que le produit sorte à la date attendue.
-          Aussi ces développeurs ont été réalisés sur la couche front-end déjà en
-          place, une librairie maison inspirée de React.
+          <strong>Contrainte technique</strong> : le choix de basculer le front-end
+          sur React venait d'être acté, mais la montée en compétence des développeurs
+          aurait ralentit les développements de l'application.
+        </p>
+        <p>
+          <strong>Choix technique</strong> : Collégialement, avec l'équipe de développement
+          et l'architecte technique, nous avons décidé de conserver ces développements
+          basés sur la librairie front-end maison.
         </p>
       </Column>
-      <Column title="Parcours original">
+      <Column title="Parcours initial">
         <p>
-          Audrey avait identifié que le parcours utilisateur original était
-          illogique. Comme le montre le dessin ci-dessous, l'utilisateur devait
-          d'abord sélectionner le modèle à utiliser, puis les produits pour
-          lesquels il souhaitait imprimer les étiquettes.
+          Le parcours utilisateur initial était illogique. La recherche nous
+          avait appris que les pharmaciens démarrent des produits pour imprimer
+          les étiquettes, pas des modèles.
         </p>
         <Figure
           caption="Parcours d'impression original"
@@ -161,28 +174,21 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
           conception du produit, ont testé et validé la conception.
         </p>
         <br />
-        <p>Les wireframes ont permis de valider les scénarios :</p>
+        <p>
+          Les wireframes ont permis de valider les 3 groupes de fonctionnalités
+          :
+        </p>
         <ul class="list-arrow">
           <li>
-            <strong
-              >Nouveau parcours de sélection de modèles en partant d'une liste
-              de produits</strong
-            >
+            Impression d'étiquettes à partir d'une liste de produits, avec
+            sélection des modèles.
           </li>
           <li>
-            Filtrage de cette liste pour faciliter l'attribution des modèles
+            Création d'un modèle, en partant d'un modèle vierge ou déjà
+            existant.
           </li>
-          <li>Édition simplifiée des libellés de produits</li>
-          <li><strong>Création d'un modèle</strong></li>
-          <li><strong>Conception d'un modèle</strong></li>
-          <li>
-            Chaînage de la conception d'un modèle avec le parcours d'impression
-          </li>
+          <li>Design graphique d'un modèle.</li>
         </ul>
-        <p>
-          En <strong>gras</strong>, les scénarios disponibles en wireframes
-          ci-dessous, avec le lien pour exécuter le prototype.
-        </p>
       </Column>
       <Column>
         <Figure
@@ -207,7 +213,7 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
         />
         <p>
           <a
-            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=1-6669&viewport=4763%2C3170%2C0.15&t=5oki3ziaOsFCXroF-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A6669&show-proto-sidebar=0"
+            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=40-2074&p=f&viewport=2493%2C2044%2C0.16&t=9JyXHICetk7f0WeC-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=40%3A2074&show-proto-sidebar=0"
             target="_blank">Exécuter le prototype</a
           >
         </p>
@@ -221,15 +227,71 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
         />
         <p>
           <a
-            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=1-6270&viewport=4763%2C3170%2C0.15&t=5oki3ziaOsFCXroF-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A6270&show-proto-sidebar=0"
+            href="https://www.figma.com/proto/1yh9FqrP6Z7qaIB7krutc4/srx-etiquettes?page-id=1%3A2&node-id=1-2465&p=f&viewport=2493%2C2044%2C0.16&t=9JyXHICetk7f0WeC-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A2465&show-proto-sidebar=0"
             target="_blank">Exécuter le prototype</a
           >
         </p>
       </Column>
+      <Accordion title="Evolutions du concept" headingLevel="h3">
+        <br />
+        <p>
+          Les tests des wireframes ont permis d'identifier les frictions des
+          premiers prototypes, que nous avons pu corriger avant de passer au
+          design haute-fidélité.
+        </p>
+        <h4>Affectation groupée du modèle</h4>
+        <p>
+          Le parcours démarre des produits, mais il fallait garder la
+          possibilité de changer le modèle sélectionné pour toute ou partie des
+          produits.
+        </p>
+        <p>La nouvelle approche :</p>
+        <ul class="list-arrow">
+          <li>
+            Un clic sur l'en-tête <em>Modèle</em> dans le tableau permet de sélectionner
+            un modèle pour tous les produits de la liste.
+          </li>
+          <li>
+            Un clic sur le modèle d'un produit permet de sélectionner un modèle
+            spécifiquement pour ce produit.
+          </li>
+        </ul>
+        <p>
+          On préserve ainsi à la fois l'efficacité maximum (affectation globale
+          du modèle) et la spécificité d'un modèle au cas par cas.
+        </p>
+        <h4>Spécifier les dimensions</h4>
+        <p>
+          Les étiquettes sont généralement imprimées sur des planches adhésives
+          prédécoupées, dont avec des dimensions prédéfinies. Or, comment
+          spécifier ces dimensions et permettre le design graphique, sans
+          alourdir l'utilisation ?
+        </p>
+        <p>
+          Nos premiers tests montraient que c'étaient un point clé. Mélanger les
+          2 aspects (dimensions et design) compliquait beaucoup la fluidité du
+          parcours.
+        </p>
+        <p>
+          Pour résoudre cette difficulté, j'ai découpé le parcours en 2 étapes :
+        </p>
+        <ul class="list-arrow">
+          <li>
+            La première partie est réservée à la manipulation des modèles,
+            création, duplication, suppression. Et c'est ici, pour chaque
+            modèle, que l'utilisateur va décider des dimensions finales.
+          </li>
+          <li>
+            Dans la deuxième partie du parcours, c'est sur le contenu du modèle
+            que l'on va travailler.
+          </li>
+        </ul>
+      </Accordion>
       <Column fullWidth>
         <p>
-          Les tests menés avec nos utilisateurs "proxy" ont validé la pertinence
-          et l'efficacité des parcours, qui ont été jugé intuitifs et faciles.
+          Les premiers tests nous ont permis de d'identifier et de résoudre les
+          difficultés rencontrées lors d'une deuxième itération. Lors de cette
+          deuxième itération, les parcours ont été jugés intuitifs et faciles.
         </p>
       </Column>
     </Section>
@@ -239,50 +301,87 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
     <Section title="Prototype haute-fidélité">
       <Column fullWidth>
         <p>
-          Avec les informations collectées lors des tests des wireframes, j'ai
-          conçu une maquette haute fidélité pour les workflow identifiés :
+          Les parcours validés par nos tests, j'ai pu passer au design visuel de
+          l'application.
+        </p>
+        <p>Le défi portait sur l'espace de création des modèles :</p>
+        <ul class="list-arrow">
+          <li>
+            Ajouter supprimer des éléments, comme un caractéristique du produit
+            (libellé, prix, quantité, etc), ou un message libre.
+          </li>
+          <li>
+            Pour modifier les caractéristiques des éléments du modèle (police,
+            couleur, etc).
+          </li>
+          <li>Enregistrer le modèle.</li>
+          <li>
+            Reprendre le parcours d'impression, puisque la création d'un modèle
+            s'insère dans le workflow de l'impression.
+          </li>
+        </ul>
+        <br />
+        <p>
+          <strong>Observation :</strong> Les pharmaciens n'impriment pas que des
+          étiquettes, mais aussi des affiches promotionnelles, et autres supports
+          pour faciliter la vente. Et pour ça, ils utilisent des outils répandus
+          comme PowerPoint ou Canva.
+        </p>
+        <p>
+          Le choix de baser la conception sur des paradigmes d'outils de
+          création connus, comme Canva, Figma, PowerPoint, ou Sketch, s'est donc
+          imposé naturellement :
         </p>
         <ul class="list-arrow">
-          <li>Réception de commande à la réserve</li>
-          <li>Modification du stock</li>
-          <li><strong>Transfert direct</strong></li>
-          <li>Transfert d'un chariot de produits</li>
-          <li>Transfert par réassort</li>
-          <li>Activation de la gestion d'un produit en réserve</li>
-          <li><strong>Vérification des produits du chariot</strong></li>
-          <li>Filtrage de la liste des produits du chariot</li>
+          <li>
+            A gauche, une liste d'éléments que l'on peut ajouter ou supprimer du
+            canvas de travail.
+          </li>
+          <li>Au centre, le canvas de travail avec un rendu wysiwyg.</li>
+          <li>
+            A droite, un inspecteur de propriétés de l'élement sélectionné.
+          </li>
         </ul>
         <p>
-          Les scénarios en <strong>gras</strong> sont ceux que vous pouvez manipuler
-          ci-dessous.
-        </p>
-        <p>
-          Lors de la phase de discovery, des besoins de fonctionnalités
-          d'inventaires ont été identifiés. Ils ont été intégrés dans le design
-          de la page d'accueil pour
+          Côté UI, les défis ont porté sur la création de composants spécifiques
+          pour :
+          <ul class="list-arrow">
+            <li>
+              Afficher le rendu visuel des modèles dans le parcours de création.
+            </li>
+            <li>Afficher les propriétés dans l'inspecteur.</li>
+          </ul>
         </p>
       </Column>
       <Column>
-        <FigmaEmbed
-          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13268&node-id=1214-5422"
-          caption="Transfert direct (Le bouton orange simule le scan hardware)"
-          width="360px"
-          height="690px"
+        <Figure
+          caption="Composant pour le rendu des modèles"
+          image={tagcomponent}
+          alt="Composant pour le rendu des modèles"
         />
       </Column>
       <Column>
-        <FigmaEmbed
-          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13269&node-id=1-8384"
-          caption="Vérification des produits du chariot"
-          width="360px"
-          height="690px"
+        <Figure
+          caption="Composants des propriétés dans l'inspecteur (avec zoning)"
+          image={taginspectoritems}
+          alt="Composants des propriétés dans l'inspecteur (avec zoning)"
         />
       </Column>
       <Column fullWidth>
         <p>
-          Ces prototypes ont été validés avec nos pharmaciens témoins. Les
-          développements ont pu commencer sur cette base.
+          <em
+            >Pas d'auto-layout dans Adobe XD (outil initial), ni dans Figma à ce
+            moment là, vers lequel nous avons migré.</em
+          >
         </p>
+      </Column>
+      <Column title="En production" fullWidth>
+        <Figure
+          caption="Editeur de modèles en production"
+          image={tageditorprod}
+          alt="Editeur de modèles en production"
+          clickable
+        />
       </Column>
     </Section>
   </Row>
@@ -292,16 +391,17 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
       <Column>
         <Learnings>
           <p class="learnings-title">Adoption</p>
-          <h3>+500 grandes pharmacies</h3>
-          <p>~10% de la base client</p>
+          <h3>+2000 pharmacies</h3>
+          <p>+30% de la base client / ~10% du marché français</p>
         </Learnings>
       </Column>
       <Column>
-        <Learnings>
-          <p class="learnings-title">Conception</p>
-          <h3>8 parcours complets conçus et testés</h3>
-          <p>~100 écrans</p>
-        </Learnings>
+        <Quote author="Pharmacie Massé - La Rochelle">
+          <p>
+            C'est très facile et intuitif à utiliser. Merci pour ce beau travail
+            !
+          </p>
+        </Quote>
       </Column>
     </Section>
   </Row>
@@ -310,55 +410,63 @@ import wfprint from "../../../assets/pro/smartrx/tag-wf-print.png";
     <Section>
       <Learnings>
         <h2>Enseignements clés</h2>
+        <p>
+          Avec cette application, nous avons appris à faire des compromis qui
+          nous ont permis d'accélérer la conception, de faciliter le
+          développement, et au final d'avoir un go-to-market plus rapide.
+        </p>
         <ul class="list-arrow">
           <li>
-            <strong>La Discovery</strong> a été cruciale pour appréhender la complexité
-            de la logistique, qui semblait pourtant simple. Comprendre 1 réserve
-            → N pharmacies, N réserves → 1 pharmacie, distances variables (mètres
-            vs km) a été déterminant pour restreindre le scope et livrer plus vite
-            la v1.
+            Sur un sujet qui n'est pas <em>métier</em>, utiliser des
+            utilisateurs "proxy" est aussi efficace et permet d'itérer plus
+            rapidement sur la conception. Mais la validation avec les
+            utilisateurs finaux reste essentielle pour garantir l'adéquation du
+            produit aux besoins réels.
           </li>
           <li>
-            <strong>Restreindre le scope </strong> de cette v1 (1 réserve = 1 pharmacie),
-            pour livrer plus rapidement n'a pas empêché l'adoption rapide de la solution
-            (+500 pharmacies, ~10% de la base client).
+            Conserver la librairie front-end maison, et ne pas forcer la
+            transition vers React, a permis de maintenir la maîtrise technique
+            par l'équipe. Ce choix n'est pas gratuit, il imposera une récriture
+            totale du code front-end quand l'application passera sur React.
+          </li>
+        </ul>
+        <h3>Ce que je ferais différemment</h3>
+        <ul class="list-arrow">
+          <li>
+            <strong>Mesurer le temps</strong> de création de modèle (baseline vs
+            après lancement). Même si le support était le goulet d'étranglement évident,
+            avoir des chiffres aurait permis de connaître l'impact avant/après.
           </li>
           <li>
-            Choisir <strong>Material Design </strong>, et accepter une
-            incohérence avec le design system pour permettre à l'équipe de se
-            former sur Android a été le bon choix. Pour une app "compagnon", la
-            cohérence fonctionnelle prime sur la cohérence visuelle.
+            <strong>Suivre le taux de complétion</strong> des parcours pour identifier
+            les points de blocage et améliorer l'expérience utilisateur.
+          </li>
+          <li>
+            <strong>Mesurer la baisse des tickets support</strong> qui portaient
+            sur les modèles d'étiquettes.
+          </li>
+        </ul>
+        <h3>Pourquoi ne pas l'avoir fait</h3>
+        <ul class="list-arrow">
+          <li>
+            <strong>RGPD : </strong> Smart-Rx était en cours de définition de sa
+            politique analytics. Et dans le contexte sensible de la santé, il était
+            totalement impossible de mettre des sondes type Google.
+          </li>
+          <li>
+            Aucun <strong>outil technique</strong>, conforme à la politique de
+            traitement des données personnelles de Smart-Rx, n'était disponible.
           </li>
         </ul>
       </Learnings>
     </Section>
   </Row>
   <Row>
-    <Section title="Liens utiles">
-      <Column fullWidth>
-        <ul class="list-arrow">
-          <li>
-            <a href="https://www.smart-rx.com/logi-stock/" target="_blank"
-              >Présentation du terminal Logi-Stock</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.smart-rx.com/applications/smart-rx-logi-stock/"
-              target="_blank">Page de l'application Logi-Stock</a
-            >
-          </li>
-        </ul>
-      </Column>
-    </Section>
-  </Row>
-
-  <Row>
     <Keywords>
-      <span class="keyword">Discovery</span>
       <span class="keyword">Figma</span>
       <span class="keyword">SaaS</span>
       <span class="keyword">User Research</span>
+      <span class="keyword">UI Design</span>
       <span class="keyword">UX Design</span>
     </Keywords>
   </Row>
