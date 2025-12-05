@@ -1,6 +1,5 @@
 ---
 import Layout from "./Layout.astro";
-import Highlight from "../components/Highlight.astro";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
@@ -122,7 +121,7 @@ const nextProject =
   }
 
   :global(.project-content > .content-section),
-  :global(.project-content > .highlight) {
+  :global(.project-content > .learnings) {
     flex: 1 1 100%;
   }
 
@@ -378,13 +377,13 @@ const nextProject =
   @media (min-width: 1440px) {
     /* 2-column layout for project content */
     :global(.project-content > .content-section),
-    :global(.project-content > .highlight) {
+    :global(.project-content > .learnings) {
       flex: 1 1 calc(50% - 1rem);
     }
 
     /* Full-width override */
     :global(.project-content > .content-section.full-width),
-    :global(.project-content > .highlight.full-width) {
+    :global(.project-content > .learnings.full-width) {
       flex: 1 1 100%;
     }
 
