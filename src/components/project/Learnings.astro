@@ -1,6 +1,5 @@
 ---
-import Highlight from "../Highlight.astro";
-
+// Learnings component for emphasizing key takeaways and lessons learned
 interface Props {
   fullWidth?: boolean;
 }
@@ -8,6 +7,87 @@ interface Props {
 const { fullWidth = false } = Astro.props;
 ---
 
-<Highlight class:list={[{ "full-width": fullWidth }]}>
+<div class:list={["learnings", { "full-width": fullWidth }]}>
   <slot />
-</Highlight>
+</div>
+
+<style>
+  .learnings {
+    background-color: hsla(var(--hue), 40%, 90%, 0.6);
+    border-left: 4px solid var(--color-dark);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin-top: 2rem;
+  }
+
+  .learnings :global(h2) {
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .learnings :global(h3) {
+    font-size: 1.4rem;
+    color: var(--color-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .learnings :global(p) {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .learnings :global(strong) {
+    color: var(--color-darkest);
+  }
+
+  .learnings :global(ul) {
+    list-style: none;
+    padding: 0;
+  }
+
+  .learnings :global(ul li) {
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    line-height: 1.8;
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.8rem;
+  }
+
+  .learnings :global(ul li::before) {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-darkest);
+    font-weight: bold;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .learnings {
+      padding: 1rem;
+    }
+
+    .learnings :global(h2) {
+      font-size: 1.6rem;
+    }
+
+    .learnings :global(h3) {
+      font-size: 1.2rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .learnings :global(h2) {
+      font-size: 2.3rem;
+    }
+
+    .learnings :global(h3) {
+      font-size: 1.6rem;
+    }
+  }
+</style>
