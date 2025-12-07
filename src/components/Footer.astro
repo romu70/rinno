@@ -4,93 +4,90 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-    <div class="footer-content glass-effect">
-        <p>&copy; {currentYear} - Tous droits réservés</p>
-        <a href="/legal">Mentions légales</a>
-    </div>
+  <div class="footer-content glass-effect">
+    <p>&copy; {currentYear} - Tous droits réservés</p>
+    <a href="/legal">Mentions légales</a>
+  </div>
 </footer>
 
 <style>
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .footer-content {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    border-bottom: none;
+    border-radius: var(--radius) var(--radius) 0 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: var(--color-dark);
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  a {
+    font-size: 1.2rem;
+    color: var(--color-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition:
+      color 0.3s ease,
+      transform 0.2s ease,
+      text-decoration 0.3s ease;
+    position: relative;
+  }
+
+  a:hover {
+    color: var(--color-dark);
+    transform: translateY(-2px);
+    text-decoration: underline;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
     footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 0;
-        z-index: 1000;
+      padding: 0;
     }
 
     .footer-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        padding: 1rem 2rem;
-        border-bottom: none;
-        border-radius: var(--radius) var(--radius) 0 0;
-        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
-        flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    footer {
+      padding: 0;
     }
 
-    p {
-        font-size: 0.9rem;
-        color: var(--primary-color);
-        margin: 0;
-        font-style: normal;
+    .footer-content {
+      width: auto;
+      padding: 1.25rem 2.5rem;
     }
 
+    p,
     a {
-        font-size: 0.9rem;
-        color: var(--primary-color);
-        text-decoration: none;
-        transition:
-            color 0.3s ease,
-            transform 0.2s ease,
-            text-decoration 0.3s ease;
-        position: relative;
+      font-size: 1rem;
     }
-
-    a:hover {
-        color: var(--color-dark);
-        transform: translateY(-2px);
-        text-decoration: underline;
-    }
-
-    /* Responsive mobile */
-    @media (max-width: 768px) {
-        footer {
-            padding: 0;
-        }
-
-        .footer-content {
-            flex-direction: column;
-            gap: 0.5rem;
-            text-align: center;
-            padding: 0.75rem 1.5rem;
-        }
-
-        p,
-        a {
-            font-size: 0.8rem;
-        }
-    }
-
-    /* Responsive large screens */
-    @media (min-width: 1440px) {
-        footer {
-            padding: 0;
-        }
-
-        .footer-content {
-            padding: 1.25rem 2.5rem;
-        }
-
-        p,
-        a {
-            font-size: 1rem;
-        }
-    }
+  }
 </style>
