@@ -19,6 +19,7 @@ const pageTitle = `${title} - Romuald Tisserand`;
 
 // Define project navigation
 const projects = [
+  { title: "Meditect", slug: "meditect" },
   { title: "Smart-Rx", slug: "smartrx" },
   { title: "Novyspec", slug: "novyspec" },
 ];
@@ -97,7 +98,7 @@ const nextProject =
         {
           prevProject ? (
             <a href={`/pro/${prevProject.slug}`}>
-              <span class="nav-label">← Projet plus récent</span>
+              <span class="nav-label">← Expérience plus récente</span>
               <span class="nav-title">{prevProject.title}</span>
             </a>
           ) : (
@@ -109,7 +110,7 @@ const nextProject =
         {
           nextProject ? (
             <a href={`/pro/${nextProject.slug}`}>
-              <span class="nav-label">Projet plus ancien →</span>
+              <span class="nav-label">Expérience plus ancienne →</span>
               <span class="nav-title">{nextProject.title}</span>
             </a>
           ) : (
@@ -323,7 +324,7 @@ const nextProject =
 
     .visit-link {
       font-size: 1.4rem;
-      align-self: flex-start;
+      align-self: flex-end;
     }
 
     .hero-overlay .year {
@@ -347,10 +348,14 @@ const nextProject =
       width: 100%;
     }
 
-    .nav-prev,
-    .nav-next {
+    .nav-prev {
       align-items: flex-start;
       text-align: left;
+    }
+
+    .nav-next {
+      align-items: flex-end;
+      text-align: right;
     }
 
     .nav-label {
