@@ -9,10 +9,19 @@ import Figure from "../../../components/project/Figure.astro";
 import Accordion from "../../../components/project/Accordion.astro";
 import ProjectCard from "../../../components/ProjectCard.astro";
 import heroImage from "../../../assets/pro/meditect/hero.png";
-import palette from "../../../assets/pro/smartrx/palette.png";
-import ds from "../../../assets/pro/smartrx/DS.png";
-import lsthumb from "../../../assets/pro/smartrx/ls-thumbnail.png";
-import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
+import segmentation from "../../../assets/pro/meditect/segmentation.png";
+import mapping from "../../../assets/pro/meditect/mapping.png";
+import roadmap from "../../../assets/pro/meditect/roadmap.png";
+import sprint from "../../../assets/pro/meditect/sprint.png";
+import medina from "../../../assets/pro/meditect/medina.jpg";
+import belier from "../../../assets/pro/meditect/belier.jpg";
+import depotsikensi from "../../../assets/pro/meditect/depot-sikensi.jpg";
+import wireframes from "../../../assets/pro/meditect/wireframes.png";
+import couleurs from "../../../assets/pro/meditect/couleurs.webp";
+import refold from "../../../assets/pro/meditect/ref-old.webp";
+import refnew from "../../../assets/pro/meditect/ref-new.jpg";
+import dsbtn from "../../../assets/pro/meditect/ds-button.png";
+import dsshell from "../../../assets/pro/meditect/ds-shell.png";
 ---
 
 <ProjectPro
@@ -51,8 +60,10 @@ import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
         </ul>
         <Learnings>
           <p>
-            <strong>Le pharmacien est le maillon central</strong> d'un système de
-            santé, il est l'interlocuteur de toutes les autres parties prenantes.
+            Dans un système de santé, le pharmacien est l'interlocuteur de
+            toutes les parties prenantes, <strong
+              >c'est le maillon central</strong
+            >.
           </p>
           <ul class="list-arrow">
             <li>Nous commencerons donc par le pharmacien.</li>
@@ -102,15 +113,267 @@ import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
             <li>Partenariats avec 2 laboratoires pharmaceutiques majeurs</li>
             <li>
               1er catalogue d'Afrique subsaharienne validé par des pharmaciens
-              (+27k produits)
+              (+27k produits), monétisé auprès d'un acteur majeur de l'assurance
+              santé privée (S&P 500)
             </li>
           </ul>
         </Learnings>
       </Column>
+      <Accordion title="Artefacts de la stratégie produit" headingLevel="h3">
+        <Column title="Segmentation commerciale" headingLevel="h4">
+          <p>
+            Les segments, issus du livre <em>Crossing the chasm</em>
+            de G. A. Moore, ont permis de cartographier et ordonner les cibles commerciales.
+          </p>
+          <p>
+            2 segments ont été ajoutés pour coller aux besoins spécifiques du
+            marché africain :
+          </p>
+          <ul class="list-arrow">
+            <li>
+              <em>Dépôts de médicaments</em> : a débloqué nos ventes après 12 mois
+              de développement.
+            </li>
+            <li>
+              <em>Pharmacies avec dépôts</em> : pour anticiper un impact majeur sur
+              le produit.
+            </li>
+          </ul>
+        </Column>
+        <Column alignWithContent>
+          <Figure
+            caption="Segmentation commerciale"
+            width="30rem"
+            image={segmentation}
+            alt="Segmentation commerciale"
+            clickable
+          />
+        </Column>
+        <Column title="Product Planning" headingLevel="h4" fullWidth>
+          <p>
+            Planification produit organisée autour de 3 temporalités pour
+            aligner la stratégie et l'exécution :
+          </p>
+          <ul class="list-arrow">
+            <li>
+              <strong>Mapping</strong> : Temps long, actualisation continue
+            </li>
+            <li>
+              <strong>Roadmap du trimestre</strong> : Enveloppe fonctionnelle à 3
+              mois
+            </li>
+            <li>
+              <strong>Sprint</strong> : Exécution court terme (développement)
+            </li>
+          </ul>
+        </Column>
+        <Figure
+          caption="Tasks mapping"
+          width="18rem"
+          image={mapping}
+          alt="Tasks mapping"
+          clickable
+        />
+        <Figure
+          caption="Roadmap trimestrielle"
+          width="18rem"
+          image={roadmap}
+          alt="Roadmap trimestrielle"
+          clickable
+        />
+        <Figure
+          caption="Sprint"
+          width="18rem"
+          image={sprint}
+          alt="Sprint"
+          clickable
+        />
+      </Accordion>
     </Section>
   </Row>
-
   <Row>
+    <Section title="Discovery et process de recherche">
+      <Column fullWidth>
+        <br />
+        <p>
+          <strong>Priorité n°1 : Comprendre le terrain.</strong>
+        </p>
+      </Column>
+      <Column title="Principes fondateurs">
+        <!-- <p>Principes fondateurs :</p> -->
+        <ul class="list-arrow">
+          <li>
+            <strong>Recherche terrain structurée</strong> : plus de 300 comptes-rendus
+            d'échanges avec les pharmaciens. La majorité sur le terrain, et le reste
+            via WhatsApp, très prisé en Afrique.
+          </li>
+          <li>
+            <strong>Multi-stakeholders </strong> : Plus de 20 échanges avec les autres
+            acteurs de la chaîne de valeur, assurances, grossistes et laboratoires.
+          </li>
+          <li>
+            <strong>Documentation systématique</strong> : Tous les échanges sont
+            retranscrits, tous les parcours décrits et illustrés de photos in-situ.
+          </li>
+          <li>
+            <strong>Recherche continue</strong> : Pas une semaine sans échange avec
+            au moins un.e pharmacien.ne.
+          </li>
+        </ul>
+      </Column>
+      <Column title="Principes opérationnels">
+        <p>La recherche est organisée dans des bases de données Notion :</p>
+        <ul class="list-arrow">
+          <li>
+            <strong>To Learn</strong> : Nous y notons nos questions, au fil de l'eau.
+            Quand nous avons des réponses, la question est marquée comme résolue.
+          </li>
+          <li>
+            <strong>Sessions </strong> : Retranscription des échanges avec les pharmaciens
+            + photos + vidéos + scan de documents, etc. Les sujets évoqués ont été
+            préparés en avance.
+          </li>
+        </ul>
+        <p>
+          Les informations collectées vont nourrir le processus de conception et
+          la roadmap produit.
+        </p>
+      </Column>
+      <Figure
+        caption="Pharmacie Medina - Dakar - Sénégal"
+        width="18rem"
+        image={medina}
+        alt="Pharmacie Medina - Dakar - Sénégal"
+      />
+      <Figure
+        caption="Observation processus de commande"
+        width="18rem"
+        image={belier}
+        alt="Observation processus de commande"
+        clickable
+      />
+      <Figure
+        caption="Dépôt de médicaments à Sikensi - Côte d'Ivoire"
+        width="18rem"
+        image={depotsikensi}
+        alt="Dépôt de médicaments à Sikensi - Côte d'Ivoire"
+        clickable
+      />
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Product Design">
+      <Column title="Wireframes">
+        <p>
+          Lors de mon expérience chez Smart-Rx, j'avais formé une idée de ce que
+          pourrait donner une interface efficace pour un produit aussi complexe.
+        </p>
+        <ul class="list-arrow">
+          <li>
+            <strong>Navigation principale :</strong>pour passer de l'espace de
+            vente aux commandes, en passant par la gestion financière.
+          </li>
+          <li>
+            <strong>Navigation secondaire : </strong>pour spécialiser le travail
+            dans un espace. Exemple pour les commandes : préparer, agir sur les
+            commandes, réceptionner.
+          </li>
+        </ul>
+        <p>
+          Je voulais qu'on fasse un logiciel aussi simple à prendre en main que
+          possible, malgré la complexité sous-jacente.
+        </p>
+        <p>Nos pharmaciens ont validé cette vision du produit.</p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Wireframes du logiciel"
+          width="30rem"
+          image={wireframes}
+          alt="Wireframes du logiciel"
+        />
+      </Column>
+      <Column title="Charte de couleurs : KO" fullWidth>
+        <p>
+          Avec l'équipe, nous avions imaginé une charte de couleurs inspirées
+          des couleurs africaines : le rouge de la terre et le vert de la
+          végétation. Nous avons présenté le prototype de notre catalogue de
+          produits, avec cette charte.
+        </p>
+      </Column>
+      <!-- <Column> -->
+      <Figure
+        caption="Inspiration de la charte"
+        width="18rem"
+        image={couleurs}
+        alt="Inspiration de la charte"
+      />
+      <!-- </Column>
+      <Column> -->
+      <Figure
+        caption="Protype du catalogue"
+        width="18rem"
+        image={refold}
+        alt="Protype du catalogue"
+        clickable
+      />
+      <!-- </Column>
+      <Column> -->
+      <Figure
+        caption="Catalogue en production"
+        width="18rem"
+        image={refnew}
+        alt="Catalogue en production"
+        clickable
+      />
+      <!-- </Column> -->
+      <Column fullWidth>
+        <Learnings>
+          <p>
+            👎 Les pharmaciens ont massivement rejeté cette charte "africaine".
+            A leur demande, nous avons basculé vers des couleurs classiques en
+            vigueur dans le monde de la santé en occident : du bleu et du vert
+            (image du catalogue en production).
+          </p>
+        </Learnings>
+      </Column>
+      <Column title="Design system" fullWidth>
+        <p>
+          Avec l'équipe tech, nous avons mené un benchmark de librairies UI, et
+          porté notre sur sur <a
+            href="https://www.chakra-ui.com/"
+            target="_blank">Chakra UI</a
+          >. C'est sur cette base que nous avons construit notre design system,
+          en suivant les principes de Atomic Design, et qui repose massivement
+          sur les composants, variables et variants et auto-layout de Figma.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Design system : Boutons"
+          image={dsbtn}
+          alt="Design system : Boutons"
+          clickable
+        />
+      </Column>
+      <Column>
+        <Figure
+          caption="Design system : Shell"
+          image={dsshell}
+          alt="Design system : Shell"
+          clickable
+        />
+      </Column>
+      <Column>
+        <p>
+          Tous les design sont disponibles en version écran tablette et mobile.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+</ProjectPro>
+
+<!-- <Row>
     <Section>
       <Accordion title="DesignOps" headingLevel="h2">
         <Column title="Design System & UI">
@@ -128,15 +391,7 @@ import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
             soumis ces nouvelles couleurs.
           </p>
         </Column>
-        <Column alignWithContent>
-          <Figure
-            caption="Vers une nouvelle palette de couleurs"
-            width="30rem"
-            image={palette}
-            alt="Vers une nouvelle palette de couleurs"
-            clickable
-          />
-        </Column>
+        <Column alignWithContent />
         <h4>Design system & Librairie Front-End</h4>
         <Column>
           <p>
@@ -249,15 +504,14 @@ import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
         </Column>
       </Accordion>
     </Section>
-  </Row>
+  </Row> -->
 
-  <Row>
+<!-- <Row>
     <Section title="Design produit">
       <p>
         Ces fondations DesignOps ont permis de concevoir et déployer 2 produits
         majeurs ayant touché +2000 pharmacies.
       </p>
-      <!-- <br /> -->
       <Column fullWidth>
         <ProjectCard
           title="Logi-Stock"
@@ -281,9 +535,9 @@ import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
         />
       </Column>
     </Section>
-  </Row>
+  </Row> -->
 
-  <Row>
+<!-- <Row>
     <Section>
       <Learnings>
         <h2>Enseignements clés</h2>
@@ -311,54 +565,53 @@ import tagthumb from "../../../assets/pro/smartrx/tag-thumbnail.png";
         </ul>
       </Learnings>
     </Section>
-  </Row>
-  <Row>
-    <Section title="Liens utiles">
-      <Column fullWidth>
-        <ul class="list-arrow">
-          <li>
-            <a href="https://pharmacie.meditect.com/" target="_blank"
-              >Accueil de l'application pharmacien</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://tisserand.notion.site/R-clamations-et-avoirs-grossistes-1c8000ee8f6f8049a3dcecb1cebb6de3"
-              target="_blank"
-              >User Research : prototype de gestion des réclamations et des
-              avoirs grossistes.</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://meditect.notion.site/Aide-du-LGO-Meditect-75c8777c4474403bad7fc9ca07032033"
-              target="_blank">Aide de l'application pharmacien</a
-            >
-          </li>
-          <li>
-            <a href="https://www.meditect.com/" target="_blank"
-              >Site de Meditect</a
-            >
-          </li>
-        </ul>
-      </Column>
-    </Section>
-  </Row>
-  <Row>
-    <Keywords>
-      <span class="keyword">Android</span>
-      <span class="keyword">Design Ops</span>
-      <span class="keyword">Design System</span>
-      <span class="keyword">Discovery</span>
-      <span class="keyword">Figma</span>
-      <span class="keyword">Notion</span>
-      <span class="keyword">OKRs</span>
-      <span class="keyword">React</span>
-      <span class="keyword">SaaS</span>
-      <span class="keyword">Healthtech</span>
-      <span class="keyword">Storybook</span>
-      <span class="keyword">User Research</span>
-      <span class="keyword">UX Design</span>
-    </Keywords>
-  </Row></ProjectPro
->
+  </Row> -->
+<Row>
+  <Section title="Liens utiles">
+    <Column fullWidth>
+      <ul class="list-arrow">
+        <li>
+          <a href="https://pharmacie.meditect.com/" target="_blank"
+            >Accueil de l'application pharmacien</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tisserand.notion.site/R-clamations-et-avoirs-grossistes-1c8000ee8f6f8049a3dcecb1cebb6de3"
+            target="_blank"
+            >User Research : prototype de gestion des réclamations et des avoirs
+            grossistes.</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://meditect.notion.site/Aide-du-LGO-Meditect-75c8777c4474403bad7fc9ca07032033"
+            target="_blank">Aide de l'application pharmacien</a
+          >
+        </li>
+        <li>
+          <a href="https://www.meditect.com/" target="_blank"
+            >Site de Meditect</a
+          >
+        </li>
+      </ul>
+    </Column>
+  </Section>
+</Row>
+<Row>
+  <Keywords>
+    <span class="keyword">Android</span>
+    <span class="keyword">Design Ops</span>
+    <span class="keyword">Design System</span>
+    <span class="keyword">Discovery</span>
+    <span class="keyword">Figma</span>
+    <span class="keyword">Notion</span>
+    <span class="keyword">OKRs</span>
+    <span class="keyword">React</span>
+    <span class="keyword">SaaS</span>
+    <span class="keyword">Healthtech</span>
+    <span class="keyword">Storybook</span>
+    <span class="keyword">User Research</span>
+    <span class="keyword">UX Design</span>
+  </Keywords>
+</Row>
