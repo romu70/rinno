@@ -7,6 +7,7 @@ import Learnings from "../../../components/project/Learnings.astro";
 import Keywords from "../../../components/project/Keywords.astro";
 import Figure from "../../../components/project/Figure.astro";
 import Accordion from "../../../components/project/Accordion.astro";
+import Quote from "../../../components/project/Quote.astro";
 import ProjectCard from "../../../components/ProjectCard.astro";
 import heroImage from "../../../assets/pro/meditect/hero.png";
 import segmentation from "../../../assets/pro/meditect/segmentation.png";
@@ -22,6 +23,9 @@ import refold from "../../../assets/pro/meditect/ref-old.webp";
 import refnew from "../../../assets/pro/meditect/ref-new.jpg";
 import dsbtn from "../../../assets/pro/meditect/ds-button.png";
 import dsshell from "../../../assets/pro/meditect/ds-shell.png";
+import test from "../../../assets/pro/meditect/test-etiquettes.png";
+import result from "../../../assets/pro/meditect/test-etiquettes-resultats.jpg";
+import tracabilite from "../../../assets/pro/meditect/tracabilite.png";
 ---
 
 <ProjectPro
@@ -42,8 +46,11 @@ import dsshell from "../../../assets/pro/meditect/ds-shell.png";
           <strong>Equipe : </strong>environ 20 personnes.
         </p>
         <p>
-          <strong>Mon rôle : </strong>Directeur produit & design.
+          <strong>Mon rôle : </strong>Directeur produit & design, avec une
+          équipe de 3 personnes (Designer, PO, Intégrateur front-end).
         </p>
+
+        <p>Membre du comité de direction.</p>
       </Column>
       <Column>
         <p>Recruté lors d'un pivot stratégique :</p>
@@ -270,12 +277,12 @@ import dsshell from "../../../assets/pro/meditect/ds-shell.png";
         </p>
         <ul class="list-arrow">
           <li>
-            <strong>Navigation principale :</strong>pour passer de l'espace de
-            vente aux commandes, en passant par la gestion financière.
+            <strong>Navigation principale :</strong> pour passer de l'espace de vente
+            aux commandes, en passant par la gestion financière.
           </li>
           <li>
             <strong>Navigation secondaire : </strong>pour spécialiser le travail
-            dans un espace. Exemple pour les commandes : préparer, agir sur les
+            dans un espace. Ex. pour les commandes : préparer, agir sur les
             commandes, réceptionner.
           </li>
         </ul>
@@ -295,10 +302,10 @@ import dsshell from "../../../assets/pro/meditect/ds-shell.png";
       </Column>
       <Column title="Charte de couleurs : KO" fullWidth>
         <p>
-          Avec l'équipe, nous avions imaginé une charte de couleurs inspirées
-          des couleurs africaines : le rouge de la terre et le vert de la
-          végétation. Nous avons présenté le prototype de notre catalogue de
-          produits, avec cette charte.
+          Nous avions imaginé une charte de couleurs inspirées des couleurs
+          africaines : le rouge de la terre et le vert de la végétation. Nous
+          avons présenté le prototype de notre catalogue de produits, avec cette
+          charte.
         </p>
       </Column>
       <!-- <Column> -->
@@ -330,22 +337,22 @@ import dsshell from "../../../assets/pro/meditect/ds-shell.png";
       <Column fullWidth>
         <Learnings>
           <p>
-            👎 Les pharmaciens ont massivement rejeté cette charte "africaine".
-            A leur demande, nous avons basculé vers des couleurs classiques en
-            vigueur dans le monde de la santé en occident : du bleu et du vert
-            (image du catalogue en production).
+            👎 Cette charte "africaine" a fortement déplu aux pharmaciens. Ils
+            voulaient un outil "pro", pas un marqueur culturel. Nous avons
+            basculé vers des couleurs classiques en vigueur dans le monde de la
+            santé en occident : du bleu et du vert (image du catalogue en
+            production).
           </p>
         </Learnings>
       </Column>
       <Column title="Design system" fullWidth>
         <p>
-          Avec l'équipe tech, nous avons mené un benchmark de librairies UI, et
-          porté notre sur sur <a
+          Nous avons mené un benchmark de librairies UI, et choisi <a
             href="https://www.chakra-ui.com/"
             target="_blank">Chakra UI</a
-          >. C'est sur cette base que nous avons construit notre design system,
-          en suivant les principes de Atomic Design, et qui repose massivement
-          sur les composants, variables et variants et auto-layout de Figma.
+          >. Sur cette base, nous avons construit notre design system, en
+          suivant les principes de Atomic Design, qui repose massivement sur les
+          composants, variables et variants et auto-layout de Figma.
         </p>
       </Column>
       <Column>
@@ -366,252 +373,186 @@ import dsshell from "../../../assets/pro/meditect/ds-shell.png";
       </Column>
       <Column>
         <p>
-          Tous les design sont disponibles en version écran tablette et mobile.
+          Ce design system contient environ 120 composants, tous disponibles en
+          version écran large et mobile.
         </p>
+      </Column>
+      <Column title="Tests utilisateurs" fullWidth>
+        <p>
+          Pas facile les tests utilisateurs à 6500 km de distance ! Ma présence
+          sur le terrain était consacrée à la discovery et à l'accompagnement
+          des commerciaux. Pour les tests utilisateurs, nous nous sommes
+          inspirés de ce qu'avait réalisé Doctolib :
+        </p>
+        <ol>
+          <li>Réalisation d'une vidéo d'exécution du prototype.</li>
+          <li>
+            Publication d'une page Notion avec la vidéo accompagnée d'un
+            questionnaire d'évaluation.
+          </li>
+          <li>Envoi du lien de la page aux pharmaciens via WhatsApp.</li>
+        </ol>
+        <p>
+          Sauf cas spécifiques, le questionnaire contient des questions portant
+          sur la compréhension du fonctionnement et de la simplicité perçue à
+          l'utilisation. Chaque question porte un score de 1 (faible) à 10
+          (fort), ce qui nous donne un score global. La personne qui répond peut
+          bien sûr nous laisser des commentaires.
+        </p>
+        <p>
+          Exemple avec <a
+            href="https://tisserand.notion.site/Impression-des-tiquettes-1c8000ee8f6f80fb9be7e2f1105cfb51"
+            target="_blank">l'impression des étiquettes</a
+          >.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Page de tests pour l'impression des étiquettes"
+          image={test}
+          width="20rem"
+          alt="Page de tests pour l'impression des étiquettes"
+          clickable
+        />
+      </Column>
+      <Column>
+        <Figure
+          caption="Résultats des tests pour l'impression des étiquettes"
+          image={result}
+          alt="Résultats des tests pour l'impression des étiquettes"
+          clickable
+        />
+      </Column>
+      <Column fullWidth>
+        <p>
+          Cette approche asynchrone nous a permis d'effacer une partie de la
+          distance. Nous avons pu collecter des retours quantifiés qui ont
+          permis de valider nos concepts et d'itérer sur certains points (modèle
+          d'étiquette par exemple).
+        </p>
+      </Column>
+      <Column title="Traçabilité">
+        <p>Chaque fichier de design est organisé comme suit :</p>
+        <ul class="list-arrow">
+          <li>
+            <strong>components</strong> : page qui contient les composants pour ce
+            fichier. Ils sont issus du design system, et spécialisés.
+          </li>
+          <li>
+            <strong>[YYQX] sujet</strong> : page identifiée par le trimestre de développement
+            et le sujet traité. Exemple : [23Q1] Editer un BL des produits de la
+            vente.
+          </li>
+          <li>
+            <strong>vignette de traçabilité :</strong> dans chaque page d'un sujet,
+            une vignette permet de revenir au ticket concerné (et vice versa).
+          </li>
+        </ul>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Traçabilité Figma/Notion"
+          image={tracabilite}
+          alt="Traçabilité Figma/Notion"
+        />
       </Column>
     </Section>
   </Row>
-</ProjectPro>
-
-<!-- <Row>
-    <Section>
-      <Accordion title="DesignOps" headingLevel="h2">
-        <Column title="Design System & UI">
-          <h4>Accessibilité et couleurs</h4>
-          <p>
-            Une de mes première tâches fut d'auditer le design system existant
-            et la palette de couleurs associée. J'ai relevé des problèmes
-            importants d'accessiblité.
-          </p>
-          <p>
-            Les couleurs du logo de Smart-Rx, un globe dégradé de vert et bleu
-            et un gris foncé, m'ont servi de base pour une nouvelle palettes de
-            couleurs. Notons que l'association vert/blanc qui n'est pas
-            accessible est due à une préférence des utilisateurs à qui j'ai
-            soumis ces nouvelles couleurs.
-          </p>
-        </Column>
-        <Column alignWithContent />
-        <h4>Design system & Librairie Front-End</h4>
-        <Column>
-          <p>
-            Historiquement, le code front-end était écrit avec une librairie
-            maison, inspirée de ReactJs. Avec l'architecte technique, nous avons
-            choisi de basculer sur React, et de baser nos interfaces sur Ant.
-          </p>
-          <p>
-            Avec la nouvelle palette de couleurs, et ces choix techniques, j'ai
-            pu mettre en place un design system moderne, cohérent et accessible
-            avec une approche Atomic Design. Ce design system a été transcrit en
-            code et hébergé sur serveur Storybook interne.
-          </p>
-        </Column>
-        <Column>
-          <Figure
-            caption="Extrait du design system"
-            width="30rem"
-            image={ds}
-            alt="Extrait du design system"
-            clickable
-          />
-        </Column>
-        <Column fullWidth>
-          <p>
-            En parallèle, j'ai documenté les principes UI pour harmoniser le
-            comportement des interfaces. <a
-              href="./smartrx/srx-regles-UI.pdf"
-              target="_blank">Règles UI</a
-            >
-          </p>
-          <p>
-            La nouvelle palette de couleurs a été adoptée aussi par le service
-            marketing pour les supports de communication.
-          </p>
-        </Column>
-        <Column title="Structuration & Process" fullWidth>
-          <p>
-            <strong>Dual-Track Scrum: </strong> C'est la manière dont j'ai travaillé
-            sur les process internes de conception pour intégrer le design, sans
-            trop perturber les habitudes basées sur Scrum :
-          </p>
-          <ul class="list-arrow">
-            <li>
-              <strong>Un sprint d'avance minimum : </strong>La conception, menée
-              par la PO et moi même, doit commencer au moins un sprint le début
-              du développement.
-            </li>
-            <li>
-              <strong>Discovery continue : </strong>La discovery s'exécute en
-              continu, indépendamment des sprints, pour tenir compte de la
-              disponibilité des pharmaciens et de la mienne. Cela demande de
-              connaître les sujets de travail à venir à l'avance. Chaque séance
-              de discovery est documentée dans Confluence, un <a
-                href="./smartrx/srx-reception-commande.pdf"
-                target="_blank">exemple</a
-              >.
-            </li>
-            <li>
-              <strong>Communauté de pharmaciens : </strong>J'ai noué des liens
-              avec une vingtaine de pharmaciens plus disponibles pour une
-              collaboration proche, et que je sollicitais en priorité.
-            </li>
-            <li>
-              <strong>Tests avec Zoom : </strong>J'ai défini une procédure pour
-              les tests utilisateur effectuées à distance, via Zoom. Chaque
-              séance était enregistrée, ce qui nous permettait de partager nos
-              observations en interne et de rejouer chaque séance au besoin.
-              Exemple d'un <a
-                href="./smartrx/srx-test-maquette.pdf"
-                target="_blank">document de test</a
-              >.
-            </li>
-          </ul>
-          <p>
-            <em
-              >Je n'ai malheureusement plus accès aux documents qui décrivent le
-              dual-track Scrum.</em
-            >
-          </p>
-          <Column title="Formation Design" />
-          <p>
-            Ne pouvant allouer 100% de mon temps sur chaque sujet et à chaque PO
-            et sur chaque sujet, j'ai conçu un cursus de formation, délivré à 12
-            personnes (10POs + DPO + responsable documentation), pour les faire
-            monter en compétence sur les fondamentaux de l'UX.
-          </p>
-          <ul class="list-arrow">
-            <li>
-              <a href="./smartrx/srx-2020-intro-UX.pdf" target="_blank"
-                >Introduction à l'UX</a
-              >
-            </li>
-            <li>
-              <a href="./smartrx/srx-2020-UX-research.pdf" target="_blank"
-                >UX Research (Recherche utilisateur)</a
-              >
-            </li>
-            <li>
-              <a href="./smartrx/srx-2020-UI-basics-1-X.pdf" target="_blank"
-                >UI Fondamentaux - 1</a
-              >
-            </li>
-            <li>
-              <a href="./smartrx/srx-2021-UI-basics-2.pdf" target="_blank"
-                >UI Fondamentaux - 2</a
-              >
-            </li>
-          </ul>
-        </Column>
-      </Accordion>
-    </Section>
-  </Row> -->
-
-<!-- <Row>
-    <Section title="Design produit">
-      <p>
-        Ces fondations DesignOps ont permis de concevoir et déployer 2 produits
-        majeurs ayant touché +2000 pharmacies.
-      </p>
+  <Row>
+    <Section title="Cas pratiques">
+      <br />
       <Column fullWidth>
         <ProjectCard
-          title="Logi-Stock"
-          year="6 mois répartis sur 1 an"
-          description="Application Android pour résoudre les problèmes de gestion logistique de grandes pharmacies françaises."
+          title="Design system"
+          description="Accélérer la conception du produits et renforcer la cohérence UX et UI."
           status="available"
-          link="/pro/smartrx/logistock"
-          image={lsthumb}
-          bottomText="+500 pharmacies installées / ~10% de la base client"
+          link="/pro/meditect/designsystem"
+          bottomText="120 composants génériques / +100 composants spécialisés"
         />
       </Column>
       <Column fullWidth>
         <ProjectCard
-          title="Éditeur d'étiquettes SaaS"
-          year="6 mois répartis sur 1 an"
-          description="Permettre aux pharmacies clientes de créer leurs propres modèles étiquettes personnalisées."
+          title="Réception de commande"
+          description="Faciliter l'alimentation du stock par une fonctionnalité exécutée plusieurs fois chaque jour."
           status="available"
-          link="/pro/smartrx/tageditor"
-          image={tagthumb}
-          bottomText="+2000 pharmacies installées / ~10% du marché FR (+30% de la base client)"
+          link="/pro/meditect/receiving"
+          bottomText="Fonctionnalité 0 → 1"
         />
       </Column>
     </Section>
-  </Row> -->
-
-<!-- <Row>
+  </Row>
+  <Row>
     <Section>
-      <Learnings>
-        <h2>Enseignements clés</h2>
+      <Column>
+        <Quote author="Dr Mansour - Yaoundé  - Cameroun">
+          <p>
+            Votre produit, il est quand même révolutionnaire si on compare à ce
+            qui existe chez nous.
+          </p>
+        </Quote>
+      </Column>
+      <Column>
+        <Quote author="Dr Eteki - Douala - Cameroun">
+          <p>...votre logiciel est quand même bien pensé...</p>
+        </Quote>
+      </Column>
+      <Column>
+        <Quote author="Nadia - Commerciale Meditect">
+          <p>
+            Les clients sont plutôt satisfaits, la preuve : déjà plusieurs
+            recommandations !
+          </p>
+        </Quote>
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Liens utiles">
+      <Column fullWidth>
         <ul class="list-arrow">
           <li>
-            Travailler avec 10 POs simultanément m'a forcé à <strong
-              >systématiser la discovery</strong
-            > : documentation Confluence standardisée, communauté utilisateurs permanente,
-            tests à distance formalisés. Sans cette structuration, impossible de
-            maintenir la qualité avec cette charge.
+            <a href="https://pharmacie.meditect.com/" target="_blank"
+              >Accueil de l'application pharmacien</a
+            >
           </li>
           <li>
-            Face à une contrainte de capacité (10 POs vs 1 Designer), former 12
-            personnes aux fondamentaux UX est devenu un levier stratégique. POs
-            plus autonomes, moins de goulet d'étranglement sur le design, et
-            principes d'unification partagés.
+            <a
+              href="https://tisserand.notion.site/R-clamations-et-avoirs-grossistes-1c8000ee8f6f8049a3dcecb1cebb6de3"
+              target="_blank"
+              >User Research : prototype de gestion des réclamations et des
+              avoirs grossistes.</a
+            >
           </li>
           <li>
-            Le verbatim d'une pharmacienne sur l'éditeur d'étiquettes – "merci
-            pour ce beau travail" – confirme que le design B2B n'est pas
-            qu'ergonomie fonctionnelle. Quand un outil professionnel devient
-            agréable à utiliser, l'adoption suit naturellement (+2000
-            pharmacies).
+            <a
+              href="https://meditect.notion.site/Aide-du-LGO-Meditect-75c8777c4474403bad7fc9ca07032033"
+              target="_blank">Aide de l'application pharmacien</a
+            >
+          </li>
+          <li>
+            <a href="https://www.meditect.com/" target="_blank"
+              >Site de Meditect</a
+            >
           </li>
         </ul>
-      </Learnings>
+      </Column>
     </Section>
-  </Row> -->
-<Row>
-  <Section title="Liens utiles">
-    <Column fullWidth>
-      <ul class="list-arrow">
-        <li>
-          <a href="https://pharmacie.meditect.com/" target="_blank"
-            >Accueil de l'application pharmacien</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://tisserand.notion.site/R-clamations-et-avoirs-grossistes-1c8000ee8f6f8049a3dcecb1cebb6de3"
-            target="_blank"
-            >User Research : prototype de gestion des réclamations et des avoirs
-            grossistes.</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://meditect.notion.site/Aide-du-LGO-Meditect-75c8777c4474403bad7fc9ca07032033"
-            target="_blank">Aide de l'application pharmacien</a
-          >
-        </li>
-        <li>
-          <a href="https://www.meditect.com/" target="_blank"
-            >Site de Meditect</a
-          >
-        </li>
-      </ul>
-    </Column>
-  </Section>
-</Row>
-<Row>
-  <Keywords>
-    <span class="keyword">Android</span>
-    <span class="keyword">Design Ops</span>
-    <span class="keyword">Design System</span>
-    <span class="keyword">Discovery</span>
-    <span class="keyword">Figma</span>
-    <span class="keyword">Notion</span>
-    <span class="keyword">OKRs</span>
-    <span class="keyword">React</span>
-    <span class="keyword">SaaS</span>
-    <span class="keyword">Healthtech</span>
-    <span class="keyword">Storybook</span>
-    <span class="keyword">User Research</span>
-    <span class="keyword">UX Design</span>
-  </Keywords>
-</Row>
+  </Row>
+  <Row>
+    <Keywords>
+      <span class="keyword">Android</span>
+      <span class="keyword">Design Ops</span>
+      <span class="keyword">Design System</span>
+      <span class="keyword">Discovery</span>
+      <span class="keyword">Figma</span>
+      <span class="keyword">Notion</span>
+      <span class="keyword">OKRs</span>
+      <span class="keyword">React</span>
+      <span class="keyword">SaaS</span>
+      <span class="keyword">Healthtech</span>
+      <span class="keyword">Storybook</span>
+      <span class="keyword">User Research</span>
+      <span class="keyword">UX Design</span>
+    </Keywords>
+  </Row>
+</ProjectPro>
