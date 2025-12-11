@@ -1,0 +1,349 @@
+---
+import ProjectPro from "../../../layouts/ProjectPro.astro";
+import Row from "../../../components/project/Row.astro";
+import Section from "../../../components/project/Section.astro";
+import Column from "../../../components/project/Column.astro";
+import Learnings from "../../../components/project/Learnings.astro";
+import Keywords from "../../../components/project/Keywords.astro";
+import Figure from "../../../components/project/Figure.astro";
+import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
+import Quote from "../../../components/project/Quote.astro";
+import heroImage from "../../../assets/pro/meditect/rec-final.jpg";
+import arrival from "../../../assets/pro/meditect/rec-arrival.jpg";
+import control from "../../../assets/pro/meditect/rec-control.jpg";
+import workflow from "../../../assets/pro/meditect/rec-workflow.jpg";
+import wireframes from "../../../assets/pro/meditect/rec-wireframes.jpg";
+import data from "../../../assets/pro/meditect/rec-data.webp";
+import drawer from "../../../assets/pro/meditect/rec-drawer.png";
+---
+
+<ProjectPro
+  title="Réception de commande"
+  image={heroImage}
+  parentPage={{ title: "Meditect", url: "/pro/medite  " }}
+>
+  <Row>
+    <Section title="Contexte">
+      <Column>
+        <p>
+          Un des sous-module de l'ERP pour les pharmaciens, pour réceptionner
+          les produits commandés.
+        </p>
+      </Column>
+    </Section>
+    <Section title="Enjeux">
+      <Column>
+        <p>
+          Permettre aux membres de la pharmacie de réceptionner les produits
+          commandés efficacement, facilement et de manière fiable pour la
+          gestion de stock.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Discovery">
+      <Column title="User research">
+        <p>
+          J'ai assisté sur site à plusieurs réceptions de commandes pour bien
+          m'imprégner du sujet :
+        </p>
+        <ul class="list-arrow">
+          <li>Dans des grandes pharmacies des quartiers d'affaires.</li>
+          <li>Dans des pharmacies des quartiers populaires.</li>
+        </ul>
+      </Column>
+      <Column title="Enseignements">
+        <ul class="list-arrow">
+          <li>
+            Le process de réception reste identique, quel que soit le type de
+            pharmacie.
+          </li>
+          <li>
+            Sauf exception, il n'y a pas de corrélation entre un bordereau de
+            livraison (BL) et une commande.
+          </li>
+          <li>
+            Le processus est en 2 temps, seule la personne avec les droits peut
+            valider la réception, et ainsi provoquer la mise à jour du stock.
+          </li>
+          <li>
+            Importer directement le BL en CSV dans l'application rendrait le
+            processus beaucoup plus rapide.
+          </li>
+        </ul>
+      </Column>
+      <Column fullWidth>
+        <p>
+          Le résultat exhaustif de cette recherche est disponible dans ce
+          document : <a href="/pro/meditect/receiving.pdf" target="_blank"
+            >Réception de commande</a
+          >. C'est un export Notion, la mise en page est altérée.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Arrivée des produits"
+          image={arrival}
+          alt="Arrivée des produits"
+        />
+      </Column>
+      <Column>
+        <Figure caption="Pointage du BL" image={control} alt="Pointage du BL" />
+      </Column>
+      <Column fullWidth>
+        <Figure
+          caption="Workflow de la réception"
+          image={workflow}
+          alt="Workflow de la réception"
+          clickable
+        />
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Priorisation MVP">
+      <Column fullWidth>
+        <p>
+          Nous commençons la conception du MVP en priorisant les fonctionnalités <em
+            >core</em
+          > (réceptionner les produits pour mettre à jour le stock, et tout ce qui
+          touche à la gestion financière) et en réservant les autres pour des itérations
+          ultérieures.
+        </p>
+      </Column>
+      <Column title="MVP">
+        <ul class="list-arrow">
+          <li>
+            Créer un objet <em>Réception</em> avec les informations importants (n°
+            du BL, date, fournisseur, etc).
+          </li>
+          <li>
+            Ajouter des produits dans cette réception, avec les informations
+            nécessaires (quantités, prix, etc).
+          </li>
+          <li>
+            Afficher une synthèse à la fin pour contrôler les chiffres entre le
+            BL et le calcul de l'application.
+          </li>
+          <li>
+            Validation et mise à jour du stock par une personne autorisée.
+          </li>
+        </ul>
+      </Column>
+      <Column title="Pour plus tard">
+        <ul class="list-arrow">
+          <li>Import du BL CSV.</li>
+          <li>Gestion des dates de péremption.</li>
+          <li>Déconditionnement des produits réceptionnés.</li>
+          <li>Gestion des réclamations.</li>
+          <li>Impression des étiquettes.</li>
+          <li>Suivi de la facturation.</li>
+          <li>Chaînage de ces parcours.</li>
+          <li>Et bien d'autres facilités.</li>
+        </ul>
+      </Column>
+
+      <Column fullWidth>
+        <p>
+          A la suite de ces décisions, nous avons travaillé le workflow suivant
+          :
+        </p>
+        <Figure
+          caption="Workflow de la réception de commande"
+          image={workflow}
+          alt="Workflow de la réception de commande"
+          clickable
+        />
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Wireframes">
+      <Column>
+        <p>
+          Les premières du logiciel ont été réalisées avec 3 fonctionnalités :
+          la gestion de stock, les inventaires, et la vente.
+        </p>
+        <p>
+          La réception de commande arrive dans un environnement applicatif déjà
+          en place et va inaugurer une nouvelle entrée dans la navigation
+          principale : <strong>Commandes</strong>.
+        </p>
+        <p>
+          Pour gagner du temps et raccourcir notre Go-To-Market, j'ai pris la
+          décision de ne faire des tests qu'avec mes collègues pharmaciens.
+        </p>
+        <Figure
+          caption="Protocole de test de transfert de produits"
+          image={wireframes}
+          alt="Protocole de test de transfert de produits"
+          clickable
+        />
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Design haute-fidélité">
+      <Column title="v1" fullWidth>
+        <p>
+          Le cadre applicatif déjà en place nous permet de concevoir facilement
+          les interfaces finales de la fonctionnalité.
+        </p>
+        <p>
+          La toute première version utilise un composant stepper pour
+          matérialiser la saisie :
+        </p>
+        <ol>
+          <li>Des informations du BL</li>
+          <li>Du contenu du bac réceptionné</li>
+        </ol>
+        <p>
+          Nous mettons en production et pouvons observer la courbe d'adoption.
+        </p>
+        <Figure
+          caption="Adoption de la fonctionnalité"
+          image={data}
+          alt="Adoption de la fonctionnalité"
+        />
+        <p>
+          <em>Je n'ai plus accès à cette version du design.</em>
+        </p>
+      </Column>
+      <Column title="v2" fullWidth>
+        <p>Rapidement, nous constatons 2 problèmes :</p>
+        <ul class="list-arrow">
+          <li>
+            Les data nous montrent que beaucoup de réceptions sont démarrées,
+            mais jamais clôturées. Une enquête auprès des pharmacies indique que
+            le stepper n'est pas compris.
+          </li>
+          <li>
+            L'équipe technique demande à ce que l'on fusionne le parcours à une
+            seule étape, plus simple à gérer techniquement.
+          </li>
+        </ul>
+        <p>
+          Pour cette 2é itération, nous fusionnons le parcours, et introduisons
+          un composant drawer, pour masquer les informations inutiles à
+          l'instant T. Ce drawer sera beaucoup déployé dans les autres modules
+          de l'application par la suite, pour maintenir la cohérence de
+          l'expérience utilisateur.
+        </p>
+        <Figure
+          caption="Version 2 avec le drawer"
+          image={drawer}
+          alt="Version 2 avec le drawer"
+        />
+      </Column>
+      <Column>
+        <p>
+          Avec cette version, les réceptions sont correctement clôturées,
+          problème résolu, mais...
+        </p>
+      </Column>
+      <Column>
+        <Quote author="Un pharmacien">
+          <p>
+            Votre système est bien, mais c'est trop lent comparé à mon logiciel
+            actuel.
+          </p>
+        </Quote>
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Tests comparatifs">
+      <Column>
+        <p>
+          La remarque du pharmacien porte sur l'absence de la fonction d'import
+          du BL en CSV dans l'application. Lors d'un séjour à Abidjan, nous nous
+          rendons dans une pharmacie pour un test comparatif en condition
+          réelles.
+        </p>
+        <p>
+          <strong>Objectif</strong> : sur un cas en conditions réelles, comparer
+          l'efficacité des parcours entre notre logiciel et celui utilisé par ce
+          pharmacien.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Résultats">
+      <Column>
+        <Learnings>
+          <p class="learnings-title">Adoption</p>
+          <h3>+500 grandes pharmacies</h3>
+          <p>~10% de la base client</p>
+        </Learnings>
+      </Column>
+      <Column>
+        <Learnings>
+          <p class="learnings-title">Livrables design</p>
+          <h3>8 parcours utilisateurs</h3>
+          <p>~100 écrans haute-fidélité</p>
+        </Learnings>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section>
+      <Learnings>
+        <h2>Enseignements clés</h2>
+        <ul class="list-arrow">
+          <li>
+            <strong>La Discovery</strong> a été cruciale pour appréhender la complexité
+            de la logistique, qui semblait pourtant simple. Comprendre 1 réserve
+            → N pharmacies, N réserves → 1 pharmacie, distances variables (mètres
+            vs km) a été déterminant pour restreindre le scope et livrer plus vite
+            la v1.
+          </li>
+          <li>
+            <strong>Restreindre le scope </strong> de cette v1 (1 réserve = 1 pharmacie),
+            pour livrer plus rapidement n'a pas empêché l'adoption rapide de la solution
+            (+500 pharmacies, ~10% de la base client).
+          </li>
+          <li>
+            Choisir <strong>Material Design </strong>, et accepter une
+            incohérence avec le design system pour permettre à l'équipe de se
+            former sur Android a été le bon choix. Pour une app "compagnon", la
+            cohérence fonctionnelle prime sur la cohérence visuelle.
+          </li>
+        </ul>
+      </Learnings>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Liens utiles">
+      <Column fullWidth>
+        <ul class="list-arrow">
+          <li>
+            <a href="https://www.smart-rx.com/logi-stock/" target="_blank"
+              >Présentation du terminal Logi-Stock</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.smart-rx.com/applications/smart-rx-logi-stock/"
+              target="_blank">Page de l'application Logi-Stock</a
+            >
+          </li>
+        </ul>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Keywords>
+      <span class="keyword">Android</span>
+      <span class="keyword">Discovery</span>
+      <span class="keyword">Figma</span>
+      <span class="keyword">Mobile</span>
+      <span class="keyword">User Research</span>
+      <span class="keyword">UX Design</span>
+    </Keywords>
+  </Row>
+</ProjectPro>

@@ -1,0 +1,326 @@
+---
+import ProjectPro from "../../../layouts/ProjectPro.astro";
+import Row from "../../../components/project/Row.astro";
+import Section from "../../../components/project/Section.astro";
+import Column from "../../../components/project/Column.astro";
+import Learnings from "../../../components/project/Learnings.astro";
+import Keywords from "../../../components/project/Keywords.astro";
+import Figure from "../../../components/project/Figure.astro";
+import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
+import heroImage from "../../../assets/pro/smartrx/ls-hero.png";
+import workflow from "../../../assets/pro/smartrx/ls-workflow.png";
+import test from "../../../assets/pro/smartrx/test-maquette.png";
+---
+
+<ProjectPro
+  title="Design System"
+  year="6 mois répartis sur 1 an"
+  image={heroImage}
+  externalLink="https://www.smart-rx.com/logi-stock/"
+  parentPage={{ title: "Smart-Rx", url: "/pro/smartrx" }}
+>
+  <Row>
+    <Section title="Contexte" vertical>
+      <Column>
+        <p>
+          Application Android sur terminaux spécialisés Honeywell équipés d'un
+          scanner 1D/2D (code barres/data-matrix).
+        </p>
+        <br />
+        <p>
+          <strong>Durée : </strong>6 mois à temps plein, répartis sur une année.
+        </p>
+        <p>
+          <strong>Rôle : </strong>Product Designer.
+        </p>
+        <p>
+          <strong>Equipe :</strong> J'ai travaillé étroitement avec <a
+            href="https://www.linkedin.com/in/audrey-mandin-931663168/"
+            target="_blank">Audrey Mandin</a
+          > (PO), ainsi qu'une équipe de 3 développeurs.
+        </p>
+      </Column>
+    </Section>
+    <Section title="Enjeux" vertical>
+      <Column>
+        <p>
+          Adresser les besoins des grandes pharmacies dans la gestion de leur
+          stock et des mouvements de produits entre la réserve de stockage et le
+          lieu de vente.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Discovery">
+      <Column title="User research">
+        <p>
+          Nous connaissions déjà le travail en pharmacie. Notre recherche a
+          porté sur les aspects spécifiques à la gestion de stock.
+        </p>
+        <ul class="list-arrow">
+          <p>Nous avons mené :</p>
+          <li>
+            Des visites dans deux entrepots de deux groupements de pharmacies à
+            Angers et à Nîmes, en charge d'approvisionner les pharmacies de leur
+            secteur géographique.
+          </li>
+          <li>
+            Une visite à l'antenne de Niort du répartiteur Alliance Healthcare,
+            pour comprendre leurs enjeux de flux de produits.
+          </li>
+          <li>
+            Une visio conférence avec le responsable d'un groupement de
+            pharmacies familial (3 pharmacies) en région parisienne.
+          </li>
+          <li>
+            Une visio conférence avec le pharmacien titulaire de la "Pharmacie
+            du voyage" à Roissy CDG.
+          </li>
+        </ul>
+      </Column>
+      <Column title="Enseignements">
+        <ul class="list-arrow">
+          <li>
+            Une réserve de stockage peut servir à alimenter plusieurs
+            pharmacies.
+          </li>
+          <li>Une pharmacie peut avoir plusieurs réserves de stockage.</li>
+          <li>
+            Une réserve peut être proche (quelques mètres) ou éloignée de
+            plusieurs km de la pharmacie.
+          </li>
+          <li>
+            La capacité de stockage en espace de vente est volontairement
+            limitée pour garder l'espace agréable.
+          </li>
+          <li>
+            Les mouvements de stock sont généralement organisés par lot pour
+            minimiser les déplacements.
+          </li>
+          <li>
+            Un mouvement de stock d'une seule unité peut aussi survenir pour
+            faire face à la demande des patients.
+          </li>
+        </ul>
+      </Column>
+      <Column fullWidth>
+        <p>
+          <em
+            >Je n'ai malheureusement plus accès aux documents produits lors de
+            cette recherche, ni aux photos.</em
+          >
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Contraintes et worflow">
+      <Column fullWidth>
+        <p>
+          <strong>Contrainte forte</strong> : ce sera la première application Android
+          développée par Smart-Rx. Cette contrainte nous a amené à prendre les décisions
+          suivantes :
+        </p>
+        <ul class="list-arrow">
+          <li>
+            <strong>Une réserve = une pharmacie : </strong>Nous ne tiendrons pas
+            compte qu'une réserve peut servir plusieurs pharmacies. Une
+            pharmacie peut néanmoins avoir plusieurs réserves de stockage.
+          </li>
+          <li>
+            <strong>Material Design : </strong>Les développeurs ont tout à
+            apprendre sur Android, la couche UI sera Material Design, même si ce
+            n'est pas cohérent avec le design system. Pour une application
+            "compagnon", détachée de l'ERP, ce n'est pas critique.
+          </li>
+        </ul>
+        <br />
+        <p>
+          A la suite de ces décisions, nous avons travaillé le workflow suivant
+          :
+        </p>
+        <Figure
+          caption="Workflow de l'application Logi-Stock"
+          image={workflow}
+          alt="Workflow de l'application Logi-Stock"
+          clickable
+        />
+        <ul class="list-arrow">
+          <p>
+            Ce workflow permettait de satisfaire les besoins fonctionnels
+            identifiés comme prioritaires :
+          </p>
+          <li>Effectuer un mouvement de stock immédiat</li>
+          <li>
+            Organiser un mouvement de stock de plusieurs produits, imagé par un
+            "chariot"
+          </li>
+          <li>Réaliser une réception de commande directement à la réserve</li>
+        </ul>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Wireframes et tests utilisateurs">
+      <Column>
+        <p>
+          Après la phase de discovery, et nous avons sollicité nos pharmaciens
+          pour une première phase de test de wireframes.
+        </p>
+        <p>
+          J'ai rédigé un protocole de test que nous avons déroulé auprès de 4
+          pharmaciens potentiellement intéressés par l'application.
+        </p>
+        <br />
+        <p>
+          <em
+            >Durant cette période, les fichiers de design ont été migrés de
+            Adobe XD à Figma. Les wireframes de ce produit n'ont pas été migrés.
+            Je n'y ai plus accès.</em
+          >
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Protocole de test de transfert de produits"
+          image={test}
+          alt="Protocole de test de transfert de produits"
+          clickable
+        />
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Prototype haute-fidélité">
+      <Column fullWidth>
+        <p>
+          Avec les informations collectées lors des tests des wireframes, j'ai
+          conçu une maquette haute fidélité pour les workflow identifiés :
+        </p>
+        <ul class="list-arrow">
+          <li>Réception de commande à la réserve</li>
+          <li>Modification du stock</li>
+          <li><strong>Transfert direct</strong></li>
+          <li>Transfert d'un chariot de produits</li>
+          <li>Transfert par réassort</li>
+          <li>Activation de la gestion d'un produit en réserve</li>
+          <li><strong>Vérification des produits du chariot</strong></li>
+          <li>Filtrage de la liste des produits du chariot</li>
+        </ul>
+        <p>
+          Les scénarios en <strong>gras</strong> sont ceux que vous pouvez manipuler
+          ci-dessous.
+        </p>
+        <p>
+          Lors de la phase de discovery, des besoins de fonctionnalités
+          d'inventaires ont été identifiés. Ils ont été intégrés dans le design
+          de la page d'accueil pour
+        </p>
+      </Column>
+      <Column>
+        <FigmaEmbed
+          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13268&node-id=1214-5422"
+          caption="Transfert direct (Le bouton orange simule le scan hardware)"
+          width="360px"
+          height="690px"
+        />
+      </Column>
+      <Column>
+        <FigmaEmbed
+          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13269&node-id=1-8384"
+          caption="Vérification des produits du chariot (le clic simule un scan)"
+          width="360px"
+          height="690px"
+        />
+      </Column>
+      <Column fullWidth>
+        <p>
+          Ces prototypes ont été validés avec nos pharmaciens témoins. Les
+          développements ont pu commencer sur cette base.
+        </p>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section title="Résultats">
+      <Column>
+        <Learnings>
+          <p class="learnings-title">Adoption</p>
+          <h3>+500 grandes pharmacies</h3>
+          <p>~10% de la base client</p>
+        </Learnings>
+      </Column>
+      <Column>
+        <Learnings>
+          <p class="learnings-title">Livrables design</p>
+          <h3>8 parcours utilisateurs</h3>
+          <p>~100 écrans haute-fidélité</p>
+        </Learnings>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Section>
+      <Learnings>
+        <h2>Enseignements clés</h2>
+        <ul class="list-arrow">
+          <li>
+            <strong>La Discovery</strong> a été cruciale pour appréhender la complexité
+            de la logistique, qui semblait pourtant simple. Comprendre 1 réserve
+            → N pharmacies, N réserves → 1 pharmacie, distances variables (mètres
+            vs km) a été déterminant pour restreindre le scope et livrer plus vite
+            la v1.
+          </li>
+          <li>
+            <strong>Restreindre le scope </strong> de cette v1 (1 réserve = 1 pharmacie),
+            pour livrer plus rapidement n'a pas empêché l'adoption rapide de la solution
+            (+500 pharmacies, ~10% de la base client).
+          </li>
+          <li>
+            Choisir <strong>Material Design </strong>, et accepter une
+            incohérence avec le design system pour permettre à l'équipe de se
+            former sur Android a été le bon choix. Pour une app "compagnon", la
+            cohérence fonctionnelle prime sur la cohérence visuelle.
+          </li>
+        </ul>
+      </Learnings>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Liens utiles">
+      <Column fullWidth>
+        <ul class="list-arrow">
+          <li>
+            <a href="https://www.smart-rx.com/logi-stock/" target="_blank"
+              >Présentation du terminal Logi-Stock</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.smart-rx.com/applications/smart-rx-logi-stock/"
+              target="_blank">Page de l'application Logi-Stock</a
+            >
+          </li>
+        </ul>
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
+    <Keywords>
+      <span class="keyword">Android</span>
+      <span class="keyword">Discovery</span>
+      <span class="keyword">Figma</span>
+      <span class="keyword">Mobile</span>
+      <span class="keyword">User Research</span>
+      <span class="keyword">UX Design</span>
+    </Keywords>
+  </Row>
+</ProjectPro>
