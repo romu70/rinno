@@ -5,7 +5,7 @@ import type { ImageMetadata } from "astro";
 
 interface Props {
   title: string;
-  year: string;
+  year?: string;
   image?: ImageMetadata;
   externalLink?: string;
   parentPage?: {
@@ -59,9 +59,11 @@ const nextProject =
             <div class="hero-overlay">
               <div class="hero-info">
                 <h1>{title}</h1>
-                <div class="timeline">
-                  <span class="year">{year}</span>
-                </div>
+                {year && (
+                  <div class="timeline">
+                    <span class="year">{year}</span>
+                  </div>
+                )}
               </div>
               {externalLink && (
                 <a
@@ -81,9 +83,11 @@ const nextProject =
         !image && (
           <div class="hero-content">
             <h1>{title}</h1>
-            <div class="timeline">
-              <span class="year">{year}</span>
-            </div>
+            {year && (
+              <div class="timeline">
+                <span class="year">{year}</span>
+              </div>
+            )}
           </div>
         )
       }

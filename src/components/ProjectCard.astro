@@ -5,7 +5,7 @@ import type { ImageMetadata } from "astro";
 // Composant carte projet
 interface Props {
   title: string;
-  year: string;
+  year?: string;
   description: string;
   status: "available" | "soon";
   link?: string;
@@ -47,7 +47,7 @@ const Tag = isClickable ? "a" : "div";
   <div class="project-content">
     <div class="card-header">
       <h3>{title}</h3>
-      <span class="badge">{year}</span>
+      {year && <span class="badge">{year}</span>}
     </div>
     <p class="description">{description}</p>
     {
