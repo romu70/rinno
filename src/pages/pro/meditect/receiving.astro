@@ -4,9 +4,7 @@ import Row from "../../../components/project/Row.astro";
 import Section from "../../../components/project/Section.astro";
 import Column from "../../../components/project/Column.astro";
 import Learnings from "../../../components/project/Learnings.astro";
-import Keywords from "../../../components/project/Keywords.astro";
 import Figure from "../../../components/project/Figure.astro";
-import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
 import Quote from "../../../components/project/Quote.astro";
 import heroImage from "../../../assets/pro/meditect/rec-final.jpg";
 import arrival from "../../../assets/pro/meditect/rec-arrival.jpg";
@@ -20,7 +18,7 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
 <ProjectPro
   title="Réception de commande"
   image={heroImage}
-  parentPage={{ title: "Meditect", url: "/pro/medite  " }}
+  parentPage={{ title: "Meditect", url: "/pro/meditect" }}
 >
   <Row>
     <Section title="Contexte">
@@ -227,8 +225,8 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
           Pour cette 2é itération, nous fusionnons le parcours, et introduisons
           un composant drawer, pour masquer les informations inutiles à
           l'instant T. Ce drawer sera beaucoup déployé dans les autres modules
-          de l'application par la suite, pour maintenir la cohérence de
-          l'expérience utilisateur.
+          de l'application par la suite, pour la simplicité des parcours qu'il
+          permet et pour la cohérence de l'expérience utilisateur.
         </p>
         <Figure
           caption="Version 2 avec le drawer"
@@ -254,7 +252,7 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
   </Row>
   <Row>
     <Section title="Tests comparatifs">
-      <Column>
+      <Column fullWidth>
         <p>
           La remarque du pharmacien porte sur l'absence de la fonction d'import
           du BL en CSV dans l'application. Lors d'un séjour à Abidjan, nous nous
@@ -264,28 +262,44 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
         <p>
           <strong>Objectif</strong> : sur un cas en conditions réelles, comparer
           l'efficacité des parcours entre notre logiciel et celui utilisé par ce
-          pharmacien.
+          pharmacien, Easy Pharma, n°2 du marché.
+        </p>
+        <p>
+          <strong>Processus commun</strong> : Ouvrir un bac, déposer tous les produits
+          sur la table de tri.
         </p>
       </Column>
-    </Section>
-  </Row>
-
-  <Row>
-    <Section title="Résultats">
-      <Column>
-        <Learnings>
-          <p class="learnings-title">Adoption</p>
-          <h3>+500 grandes pharmacies</h3>
-          <p>~10% de la base client</p>
-        </Learnings>
+      <Column title="Réception Meditect">
+        <p>Avec Meditect, pour chaque référence :</p>
+        <ul class="list-arrow">
+          <li>Scanner les boîtes, ce qui met à jour la quantité reçue</li>
+          <li>Saisir la quantité commandée</li>
+          <li>Vérifier que les prix sont corrects</li>
+        </ul>
+        <p>
+          A la fin, on contrôle le bilan financier de la réception. Et on
+          valide, ce qui met à jour le stock.
+        </p>
       </Column>
-      <Column>
-        <Learnings>
-          <p class="learnings-title">Livrables design</p>
-          <h3>8 parcours utilisateurs</h3>
-          <p>~100 écrans haute-fidélité</p>
-        </Learnings>
+      <Column title="Réception Easy Pharma">
+        <p>Pour chaque référence :</p>
+        <ul class="list-arrow">
+          <li>Compter les boîtes</li>
+          <li>Contrôler les informations avec le BL papier</li>
+        </ul>
+        <p>Puis passer sur Easy Pharma :</p>
+        <ul class="list-arrow">
+          <li>Charger le BL CSV dans le logiciel</li>
+          <li>Contrôler les quantités et les prix</li>
+          <li>Valider pour mettre à jour le stock</li>
+        </ul>
       </Column>
+      <Learnings>
+        <!-- <p class="learnings-title">
+          Sur le parcours total, nous sommes plus rapides !
+        </p> -->
+        <h3>Sur le parcours total, nous sommes plus rapides !</h3>
+      </Learnings>
     </Section>
   </Row>
 
@@ -295,55 +309,33 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
         <h2>Enseignements clés</h2>
         <ul class="list-arrow">
           <li>
-            <strong>La Discovery</strong> a été cruciale pour appréhender la complexité
-            de la logistique, qui semblait pourtant simple. Comprendre 1 réserve
-            → N pharmacies, N réserves → 1 pharmacie, distances variables (mètres
-            vs km) a été déterminant pour restreindre le scope et livrer plus vite
-            la v1.
+            <strong>Admettre l'erreur pour progresser : </strong>Même si le
+            stepper faisait sens, ne pas rester sur cet échec a permis de
+            débloquer l'usage de la fonctionnalité. Plusieurs centaines de
+            commandes sont aujourd'hui réceptionnées dans le logiciel.
           </li>
           <li>
-            <strong>Restreindre le scope </strong> de cette v1 (1 réserve = 1 pharmacie),
-            pour livrer plus rapidement n'a pas empêché l'adoption rapide de la solution
-            (+500 pharmacies, ~10% de la base client).
+            <strong
+              >Faire d'une contrainte une opportunité d'amélioration :
+            </strong>La demande de l'équipe tech de fusionner le parcours en une
+            seul étape a finalement été l'occasion d'introduire le drawer et de
+            proposer une UX efficace et cohérente partout dans l'ERP.
           </li>
           <li>
-            Choisir <strong>Material Design </strong>, et accepter une
-            incohérence avec le design system pour permettre à l'équipe de se
-            former sur Android a été le bon choix. Pour une app "compagnon", la
-            cohérence fonctionnelle prime sur la cohérence visuelle.
+            <strong>S'en tenir au MVP : </strong>Valider le parcours <em
+              >core</em
+            > avant d'ajouter les facilitateurs. L'import CSV manquant semblait critique,
+            mais le comparatif a prouvé que notre MVP était déjà plus rapide que
+            le concurrent #2 du marché.
+          </li>
+          <li>
+            <strong>Comparer le process complet : </strong>Ne pas s'en tenir à
+            un retour sur une fonctionnalité manquante. C'est tout le process
+            métier qui doit servir de comparaison pour juger de la performance
+            du produit.
           </li>
         </ul>
       </Learnings>
     </Section>
-  </Row>
-  <Row>
-    <Section title="Liens utiles">
-      <Column fullWidth>
-        <ul class="list-arrow">
-          <li>
-            <a href="https://www.smart-rx.com/logi-stock/" target="_blank"
-              >Présentation du terminal Logi-Stock</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.smart-rx.com/applications/smart-rx-logi-stock/"
-              target="_blank">Page de l'application Logi-Stock</a
-            >
-          </li>
-        </ul>
-      </Column>
-    </Section>
-  </Row>
-
-  <Row>
-    <Keywords>
-      <span class="keyword">Android</span>
-      <span class="keyword">Discovery</span>
-      <span class="keyword">Figma</span>
-      <span class="keyword">Mobile</span>
-      <span class="keyword">User Research</span>
-      <span class="keyword">UX Design</span>
-    </Keywords>
   </Row>
 </ProjectPro>
