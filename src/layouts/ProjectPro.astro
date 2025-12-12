@@ -36,7 +36,7 @@ const nextProject =
     {
       parentPage && (
         <div class="parent-nav">
-          <a href={parentPage.url} class="nav-link">
+          <a href={parentPage.url}>
             <span class="nav-label">← Retour</span>
             <span class="nav-title">{parentPage.title}</span>
           </a>
@@ -93,32 +93,39 @@ const nextProject =
       <slot />
     </div>
 
-    <nav class="project-navigation">
-      <div class="nav-item nav-prev">
-        {
-          prevProject ? (
-            <a href={`/pro/${prevProject.slug}`}>
-              <span class="nav-label">← Expérience plus récente</span>
-              <span class="nav-title">{prevProject.title}</span>
-            </a>
-          ) : (
-            <div />
-          )
-        }
-      </div>
-      <div class="nav-item nav-next">
-        {
-          nextProject ? (
-            <a href={`/pro/${nextProject.slug}`}>
-              <span class="nav-label">Expérience plus ancienne →</span>
-              <span class="nav-title">{nextProject.title}</span>
-            </a>
-          ) : (
-            <div />
-          )
-        }
-      </div>
-    </nav>
+    {
+      !parentPage ? (
+        <nav class="project-navigation">
+          <div class="nav-item nav-prev">
+            {prevProject ? (
+              <a href={`/pro/${prevProject.slug}`}>
+                <span class="nav-label">← Expérience plus récente</span>
+                <span class="nav-title">{prevProject.title}</span>
+              </a>
+            ) : (
+              <div />
+            )}
+          </div>
+          <div class="nav-item nav-next">
+            {nextProject ? (
+              <a href={`/pro/${nextProject.slug}`}>
+                <span class="nav-label">Expérience plus ancienne →</span>
+                <span class="nav-title">{nextProject.title}</span>
+              </a>
+            ) : (
+              <div />
+            )}
+          </div>
+        </nav>
+      ) : (
+        <div class="parent-nav">
+          <a href={parentPage.url}>
+            <span class="nav-label">← Retour</span>
+            <span class="nav-title">{parentPage.title}</span>
+          </a>
+        </div>
+      )
+    }
   </article>
 </Layout>
 
@@ -131,6 +138,11 @@ const nextProject =
 
   .parent-nav {
     margin-bottom: 2rem;
+  }
+
+  .project-content + .parent-nav {
+    margin-top: 2rem;
+    margin-bottom: 0;
   }
 
   .project-content {
