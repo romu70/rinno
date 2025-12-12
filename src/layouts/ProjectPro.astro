@@ -14,7 +14,13 @@ interface Props {
   };
 }
 
-const { title, year, image, externalLink, parentPage } = Astro.props;
+const {
+  title,
+  year,
+  image,
+  externalLink,
+  parentPage: explicitParentPage,
+} = Astro.props;
 const pageTitle = `${title} - Romuald Tisserand`;
 
 // Define project navigation
@@ -29,6 +35,24 @@ const currentIndex = projects.findIndex((p) => currentPath.includes(p.slug));
 const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
 const nextProject =
   currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+// Auto-detect parent page for nested pages
+// If we're in /pro/smartrx/logistock, detect parent as /pro/smartrx
+let parentPage = explicitParentPage;
+if (!parentPage) {
+  const pathParts = currentPath.split("/").filter(Boolean);
+  // Check if we're nested (more than 2 levels deep: pro/project/subpage)
+  if (pathParts.length >= 3 && pathParts[0] === "pro") {
+    const projectSlug = pathParts[1];
+    const project = projects.find((p) => p.slug === projectSlug);
+    if (project) {
+      parentPage = {
+        title: project.title,
+        url: `/pro/${projectSlug}`,
+      };
+    }
+  }
+}
 ---
 
 <Layout title={pageTitle}>
