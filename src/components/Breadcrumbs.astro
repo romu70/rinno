@@ -12,10 +12,10 @@ interface Props {
 const { items } = Astro.props;
 
 // Add home as the first item if not present
-const breadcrumbItems = items[0]?.name === "Accueil" ? items : [
-  { name: "Accueil", url: "/" },
-  ...items,
-];
+const breadcrumbItems =
+  items[0]?.name === "Accueil"
+    ? items
+    : [{ name: "Accueil", url: "/" }, ...items];
 
 // Generate structured data
 const structuredData = {
@@ -75,6 +75,8 @@ const structuredData = {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin: 0;
+    padding: 0;
   }
 
   a {
