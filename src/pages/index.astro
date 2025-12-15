@@ -1,26 +1,188 @@
 ---
-import Home from "../components/Home.astro";
-import Link from "../components/Link.astro";
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Row from "../components/project/Row.astro";
+import Section from "../components/project/Section.astro";
+import Column from "../components/project/Column.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import portrait from "../assets/portrait.jpeg";
+import novyspec from "../assets/pro/novyspec/thumbnail.png";
+import meditect from "../assets/pro/meditect/thumbnail.png";
+import galleriesImg from "../assets/perso/galleries/thumbnail.jpg";
 ---
 
-<Layout>
-  <div id="home">
-    <Home />
-    <Link value="./legal" label="Mentions légales" />
-  </div>
+<Layout title="A propos - Romuald Tisserand">
+  <article class="container-narrow content-detail">
+    <div class="project-content">
+      <Row>
+        <Section title="">
+          <Column>
+            <div class="photo-container">
+              <Image
+                src={portrait}
+                alt="Portrait de Romuald Tisserand"
+                style="width: 20rem; height: 20rem; border: 3px solid var(--color); border-radius: 50%;"
+              />
+            </div>
+            <div class="caption">
+              Crédit photo: <a href="https://yriss.fr/" target="_blank"
+                >maison Yriss</a
+              >
+            </div>
+          </Column>
+          <Column title="Romuald Tisserand">
+            <h4>Product & Design Leader</h4>
+            <p>
+              J'ai construit un ERP de pharmacie SaaS & Touch-First en Afrique
+              subsaharienne (7 pays - 5% du marché en 2 ans).
+            </p>
+            <p>
+              Avant ça, j'ai lancé une application Android de gestion logistique
+              et un éditeur graphique d'étiquettes SaaS.
+            </p>
+            <p>
+              De la discovery terrain à la delivery, je structure et conçois des
+              produits qui marchent dans des contextes contraints.
+            </p>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section>
+          <Column>
+            <p class="centered-link">
+              <a href="/pro">Mes travaux professionnels</a>
+            </p>
+          </Column>
+          <Column>
+            <p class="centered-link">
+              <a href="/perso">Mes projets personnels</a>
+            </p>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Quelques travaux" centered>
+          <Column fullWidth />
+          <Column>
+            <ProjectCard
+              title="Meditect"
+              year="2021 - 2024"
+              description="Digitaliser la santé en Afrique subsaharienne, en commençant par les pharmacies."
+              status="available"
+              link="/pro/meditect"
+              image={meditect}
+              bottomText="5% du marché - 7 pays - en 2 ans"
+            />
+            <ProjectCard
+              title="Novyspec"
+              year="2017 - 2018"
+              description="Solution SaaS & touch-first pour moderniser l'audit industriel."
+              status="available"
+              link="/pro/novyspec"
+              image={novyspec}
+              bottomText="4 verticales métier qualifiées - Structuration UX"
+            />
+            <ProjectCard
+              title="Galleries"
+              year="2023 - présent"
+              description="Photographier des typographies et du street art, et réaliser une galerie virtuelle pour les présenter."
+              status="available"
+              link="/perso/galleries"
+              image={galleriesImg}
+              bottomText="Un site Astro qui reproduit l'effet galerie de DuckDuckGo"
+            />
+          </Column>
+        </Section>
+      </Row>
+    </div>
+  </article>
 </Layout>
 
 <style>
-  #home {
+  .project-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .contact-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  .content-detail {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
+    gap: 0rem;
+  }
+
+  .content-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .photo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .caption {
+    margin-top: 1rem;
+    font-variant: small-caps;
+    color: var(--color-dark);
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .centered-link {
+    text-align: center;
+  }
+
+  :global(.content-area > .content-section),
+  :global(.content-area > .highlight) {
+    flex: 1 1 100%;
+  }
+
+  :global(.keywords) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.keyword) {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    background-color: var(--color-light);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius);
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .content-detail {
+      gap: 2rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    /* 2-column layout for content */
+    :global(.content-area > .content-section),
+    :global(.content-area > .highlight) {
+      flex: 1 1 calc(50% - 1rem);
+    }
+
+    /* Full-width override */
+    :global(.content-area > .content-section.full-width),
+    :global(.content-area > .highlight.full-width) {
+      flex: 1 1 100%;
+    }
   }
 </style>
