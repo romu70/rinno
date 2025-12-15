@@ -7,9 +7,21 @@ import Learnings from "../../../components/project/Learnings.astro";
 import Keywords from "../../../components/project/Keywords.astro";
 import Figure from "../../../components/project/Figure.astro";
 import FigmaEmbed from "../../../components/project/FigmaEmbed.astro";
-import heroImage from "../../../assets/pro/smartrx/ls-hero.png";
+import heroImage from "../../../assets/pro/meditect/ds-hero.jpg";
 import workflow from "../../../assets/pro/smartrx/ls-workflow.png";
 import test from "../../../assets/pro/smartrx/test-maquette.png";
+import benchmark from "../../../assets/pro/meditect/ds-benchmark.png";
+import chakrabtn from "../../../assets/pro/meditect/ds-chakra-button.jpg";
+import meditectbtn from "../../../assets/pro/meditect/ds-btn-generic.jpg";
+import actionbtn from "../../../assets/pro/meditect/ds-buttons.jpg";
+import spebtn from "../../../assets/pro/meditect/ds-btn-specialized.jpg";
+import dsatoms from "../../../assets/pro/meditect/ds-list-atoms.jpg";
+import dsnum from "../../../assets/pro/meditect/ds-list-num.jpg";
+import dsbb from "../../../assets/pro/meditect/ds-bottombar.jpg";
+import dspage from "../../../assets/pro/meditect/ds-page.jpg";
+import salescomponent from "../../../assets/pro/meditect/sales-component.jpg";
+import saleswindow from "../../../assets/pro/meditect/sales-window.jpg";
+import salesfinal from "../../../assets/pro/meditect/sales-final.jpg";
 ---
 
 <ProjectPro title="Design System" image={heroImage}>
@@ -17,304 +29,437 @@ import test from "../../../assets/pro/smartrx/test-maquette.png";
     <Section title="Contexte" vertical>
       <Column>
         <p>
-          Application Android sur terminaux spécialisés Honeywell équipés d'un
-          scanner 1D/2D (code barres/data-matrix).
+          Design system conçu pour supporter la conception de tous les parcours
+          de l'ERP pour les pharmacies africaines.
         </p>
         <br />
         <p>
-          <strong>Durée : </strong>6 mois à temps plein, répartis sur une année.
+          <strong>Equipe :</strong> 3 personnes
         </p>
-        <p>
-          <strong>Rôle : </strong>Product Designer.
-        </p>
-        <p>
-          <strong>Equipe :</strong> J'ai travaillé étroitement avec <a
-            href="https://www.linkedin.com/in/audrey-mandin-931663168/"
-            target="_blank">Audrey Mandin</a
-          > (PO), ainsi qu'une équipe de 3 développeurs.
-        </p>
+        <ul class="list-arrow">
+          <li>
+            <a href="https://www.linkedin.com/in/aureliedunier/" target="_blank"
+              >Aurélie Dunier</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/adrien-becker-bdx/"
+              target="_blank">Adrien Becker</a
+            >
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/romutisserand/" target="_blank"
+              >Moi même</a
+            >
+          </li>
+        </ul>
       </Column>
     </Section>
     <Section title="Enjeux" vertical>
       <Column>
         <p>
-          Adresser les besoins des grandes pharmacies dans la gestion de leur
-          stock et des mouvements de produits entre la réserve de stockage et le
-          lieu de vente.
+          Pour supporter et faciliter la conception des fonctionnalités de
+          l'ERP, nous demandions à ce design system de :
         </p>
+        <ul class="list-arrow">
+          <li>
+            Assurer la cohérence de l'UX au travers de tous les modules de
+            l'application, sur le temps long
+          </li>
+          <li>Supporter des écrans de téléphone jusqu'aux ordinateurs</li>
+          <li>Assurer le respect de l'approche <em>touch-first</em></li>
+          <li>
+            Rendre accessible la complexité de l'ERP à des personnes manquant de
+            maîtrise des outils numériques
+          </li>
+        </ul>
       </Column>
     </Section>
   </Row>
 
   <Row>
-    <Section title="Discovery">
-      <Column title="User research">
-        <p>
-          Nous connaissions déjà le travail en pharmacie. Notre recherche a
-          porté sur les aspects spécifiques à la gestion de stock.
-        </p>
-        <ul class="list-arrow">
-          <p>Nous avons mené :</p>
-          <li>
-            Des visites dans deux entrepots de deux groupements de pharmacies à
-            Angers et à Nîmes, en charge d'approvisionner les pharmacies de leur
-            secteur géographique.
-          </li>
-          <li>
-            Une visite à l'antenne de Niort du répartiteur Alliance Healthcare,
-            pour comprendre leurs enjeux de flux de produits.
-          </li>
-          <li>
-            Une visio conférence avec le responsable d'un groupement de
-            pharmacies familial (3 pharmacies) en région parisienne.
-          </li>
-          <li>
-            Une visio conférence avec le pharmacien titulaire de la "Pharmacie
-            du voyage" à Roissy CDG.
-          </li>
-        </ul>
-      </Column>
-      <Column title="Enseignements">
-        <ul class="list-arrow">
-          <li>
-            Une réserve de stockage peut servir à alimenter plusieurs
-            pharmacies.
-          </li>
-          <li>Une pharmacie peut avoir plusieurs réserves de stockage.</li>
-          <li>
-            Une réserve peut être proche (quelques mètres) ou éloignée de
-            plusieurs km de la pharmacie.
-          </li>
-          <li>
-            La capacité de stockage en espace de vente est volontairement
-            limitée pour garder l'espace agréable.
-          </li>
-          <li>
-            Les mouvements de stock sont généralement organisés par lot pour
-            minimiser les déplacements.
-          </li>
-          <li>
-            Un mouvement de stock d'une seule unité peut aussi survenir pour
-            faire face à la demande des patients.
-          </li>
-        </ul>
-      </Column>
+    <Section title="Stratégie & Process">
       <Column fullWidth>
         <p>
-          <em
-            >Je n'ai malheureusement plus accès aux documents produits lors de
-            cette recherche, ni aux photos.</em
-          >
-        </p>
-      </Column>
-    </Section>
-  </Row>
-
-  <Row>
-    <Section title="Contraintes et worflow">
-      <Column fullWidth>
-        <p>
-          <strong>Contrainte forte</strong> : ce sera la première application Android
-          développée par Smart-Rx. Cette contrainte nous a amené à prendre les décisions
-          suivantes :
+          La conception du design system s'inscrit dans une démarche d'ensemble
+          qui tient compte des enjeux de l'ERP, des choix et contraintes
+          techniques et de nos propres décisions design.
         </p>
         <ul class="list-arrow">
+          <li>L'ERP sera développé avec des technologies web</li>
           <li>
-            <strong>Une réserve = une pharmacie : </strong>Nous ne tiendrons pas
-            compte qu'une réserve peut servir plusieurs pharmacies. Une
-            pharmacie peut néanmoins avoir plusieurs réserves de stockage.
+            Pour supporter les coupures de courant, notre appareil cible
+            prioritaire est auto-alimenté et avec un écran assez grand, donc
+            tablette d'abord et téléphone ensuite
           </li>
+          <li>Le design system sera conçu selon la méthologie Atomic Design</li>
+          <li>Les composants seront versionnés</li>
+        </ul>
+      </Column>
+      <Column title="Appareils cibles">
+        <p>
+          Grâce à un fournisseur de Côte d'Ivoire, nous avons pu arrêter 2
+          équipements cibles sur lesquels les design étaient testés :
+        </p>
+        <ul class="list-arrow">
+          <li>Tablette Samsung Galaxy Tab A7 Lite, écran 1334*800</li>
+          <li>Téléphone de marque Tecno, un écran de 360*806</li>
+        </ul>
+      </Column>
+      <Column title="Principes UI">
+        <p>Quelques principes UI pour le design system :</p>
+        <ul class="list-arrow">
           <li>
-            <strong>Material Design : </strong>Les développeurs ont tout à
-            apprendre sur Android, la couche UI sera Material Design, même si ce
-            n'est pas cohérent avec le design system. Pour une application
-            "compagnon", détachée de l'ERP, ce n'est pas critique.
+            Des couleurs classiques pour les actions classiques (rouge pour le
+            danger, orange pour les warning, etc.)
+          </li>
+          <li>L'accessibilité n'est pas négociable</li>
+          <li>
+            Les actions principales sont actionnables avec des contrôles d'au
+            moins 40px, taille qui représente le meilleur compromis
+            densité/accessibilité sur les appareils cibles
+          </li>
+          <li>Une information n'est jamais véhiculée par la couleur seule</li>
+          <li>
+            Le design system propose des composants génériques à spécialiser
+            pour chaque parcours métier
           </li>
         </ul>
-        <br />
+      </Column>
+      <Column title="Librarie front-end">
         <p>
-          A la suite de ces décisions, nous avons travaillé le workflow suivant
-          :
+          L'équipe technique avait fait le choix de ReactJs comme framework
+          front-end, il nous fallait choisir une librarie de composants de base
+          compatible.
+        </p>
+        <p>
+          Nous avons dédié une semaine à un benchmark de librairies front-end.
+          Nos critères :
+        </p>
+        <ul class="list-arrow">
+          <li>Repose sur ReactJs</li>
+          <li>Maintenue par une communauté active</li>
+          <li>Documentation claire et complète</li>
+          <li>Capacité de personnalisation</li>
+          <li>
+            Les composants ne sont pas visuellement marqués Android ou iOS
+          </li>
+        </ul>
+      </Column>
+      <Column alignWithContent>
+        <p>
+          Le défi : concevoir un contrôle de filtre avec champ de recherche.
         </p>
         <Figure
-          caption="Workflow de l'application Logi-Stock"
-          image={workflow}
-          alt="Workflow de l'application Logi-Stock"
-          clickable
+          caption="Composant à créer lors du benchmark"
+          image={benchmark}
+          alt="Composant à créer lors du benchmark"
         />
-        <ul class="list-arrow">
-          <p>
-            Ce workflow permettait de satisfaire les besoins fonctionnels
-            identifiés comme prioritaires :
-          </p>
-          <li>Effectuer un mouvement de stock immédiat</li>
-          <li>
-            Organiser un mouvement de stock de plusieurs produits, imagé par un
-            "chariot"
-          </li>
-          <li>Réaliser une réception de commande directement à la réserve</li>
-        </ul>
+      </Column>
+      <Column fullWidth>
+        <p>
+          Nous avons évalué : Ant Design, Chakra UI,Semantic UI ainsi qu'une
+          approche "in house", pour arrêter le choix sur <a
+            href="https://chakra-ui.com/"
+            target="_blank">Chakra UI</a
+          >.
+        </p>
       </Column>
     </Section>
   </Row>
 
   <Row>
-    <Section title="Wireframes et tests utilisateurs">
+    <Section title="Atome - Boutons">
       <Column>
         <p>
-          Après la phase de discovery, et nous avons sollicité nos pharmaciens
-          pour une première phase de test de wireframes.
+          Nos principes UI nous ont beaucoup aidé à tamiser les variations du
+          composant bouton.
+        </p>
+        <p>Le composant Chakra propose 770 variations.</p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Bouton Chakra UI - 770 variations"
+          image={chakrabtn}
+          alt="Bouton Chakra UI - 770 variations"
+          width="20rem"
+          clickable
+        />
+      </Column>
+      <Column>
+        <p>
+          En éliminant les variations qui n'utilisent pas des couleurs
+          classiques d'action, nous avons obtenu un composant générique
+          comprennant 140 variations.
         </p>
         <p>
-          J'ai rédigé un protocole de test que nous avons déroulé auprès de 4
-          pharmaciens potentiellement intéressés par l'application.
-        </p>
-        <br />
-        <p>
-          <em
-            >Durant cette période, les fichiers de design ont été migrés de
-            Adobe XD à Figma. Les wireframes de ce produit n'ont pas été migrés.
-            Je n'y ai plus accès.</em
-          >
+          Certaines de ces variations n'ont d'ailleurs jamais été utilisées.
         </p>
       </Column>
       <Column>
         <Figure
-          caption="Protocole de test de transfert de produits"
-          image={test}
-          alt="Protocole de test de transfert de produits"
+          caption="Bouton générique Meditect - 140 variations"
+          image={meditectbtn}
+          alt="Bouton générique Meditect - 140 variations"
+          width="20rem"
+          clickable
+        />
+      </Column>
+      <Column>
+        <p>
+          Puis nous avons défini notre convention pour les boutons d'action.
+        </p>
+        <p>
+          Nous sommes passés à 108 variations. Là aussi, certaines n'ont jamais
+          été utilisées.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="Bouton d'actions Meditect - 108 variations"
+          image={actionbtn}
+          alt="Bouton d'actions Meditect - 108 variations"
+          width="20rem"
+          clickable
+        />
+      </Column>
+      <Column>
+        <p>
+          Enfin, nous avons spécialisé les boutons pour les actions les plus
+          communes du produit.
+        </p>
+        <p>
+          Ces boutons spécialisés permettent : de maintenir la cohérence du
+          produit, et d'éviter de nous poser certaines questions inutiles.
+        </p>
+      </Column>
+      <Column>
+        <Figure
+          caption="3 Boutons spécialisés sur 24"
+          image={spebtn}
+          alt="3 Boutons spécialisés sur 24"
+          width="20rem"
           clickable
         />
       </Column>
     </Section>
   </Row>
-
   <Row>
-    <Section title="Prototype haute-fidélité">
+    <Section title="Atomes → Molécules → Organismes">
       <Column fullWidth>
         <p>
-          Avec les informations collectées lors des tests des wireframes, j'ai
-          conçu une maquette haute fidélité pour les workflow identifiés :
+          L'approche Atomic Design n'a pas été inutile pour concevoir ce design
+          system. Examinons ici comment nous avons conçu des composants plus
+          complexes.
         </p>
+        <p>
+          Notre produit faisant massivement usage de listes, nous avons consacré
+          le temps nécessaire à réaliser un ensemble de composants pour
+          concevoir des listes spécialisées rapidement.
+        </p>
+      </Column>
+      <Column title="Atomes">
+        <p>Nous démarrons avec 3 atomes : label, value et caption.</p>
+        <p>
+          Ce n'est pas visible ici, mais ces composants ne sont pas exportés en
+          dehors du design system.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Atomes pour les éléments d'une cellule de liste"
+          image={dsatoms}
+          alt="Atomes pour les éléments d'une cellule de liste"
+          width="20rem"
+          clickable
+        />
+      </Column>
+      <Column title="Molécule : Number cell">
+        <p>
+          Ces 3 composants sont assemblés pour former une cellule de liste, ici
+          pour afficher un nombre (alignement à droite).
+        </p>
+        <p>Ils sont bien sûr disponibles pour la tablette et le téléphone.</p>
+        <p>
+          Petite astuce : pour contourner certains limitations de auto-layout,
+          des versions avec des espaces vides ont dû être conçues, de manière à
+          obtenir l'effet souhaité.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Molécule Number"
+          image={dsnum}
+          alt="Molécule Number"
+          width="20rem"
+          clickable
+        />
+      </Column>
+      <Column title="Organisme : BottomBar">
+        <p>
+          Ce composant <em>Number</em> est lui même embarqué dans plusieurs composants
+          plus conséquents, comme les listes, ou comme ici dans la BottomBar, avec
+          des boutons et une barre de progression.
+        </p>
+        <p>
+          La version mobile est adaptée à l'espace disponible : boutons réduits
+          et seulement les informations essentielles.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Organisme BottomBar"
+          image={dsbb}
+          alt="Organisme BottomBar"
+          clickable
+        />
+      </Column>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="Templates">
+      <Column>
+        <p>
+          Pour les templates, nous avons mis en oeuvre un système de <em
+            >placeholders</em
+          >, qui permet de se réserver l'espace sur les interfaces, et de
+          déléguer l'usage précis de cet espace aux cas métiers spécifiques.
+        </p>
+        <p>Pour adapter le template :</p>
         <ul class="list-arrow">
-          <li>Réception de commande à la réserve</li>
-          <li>Modification du stock</li>
-          <li><strong>Transfert direct</strong></li>
-          <li>Transfert d'un chariot de produits</li>
-          <li>Transfert par réassort</li>
-          <li>Activation de la gestion d'un produit en réserve</li>
-          <li><strong>Vérification des produits du chariot</strong></li>
-          <li>Filtrage de la liste des produits du chariot</li>
+          <li>L'intégrer dans le design métier</li>
+          <li>Adapter les onglets de la navigation secondaire</li>
+          <li>
+            Ajuster les propriétes aux besoins du cas métier : zone du haut,
+            champ de recherche, etc
+          </li>
         </ul>
-        <p>
-          Les scénarios en <strong>gras</strong> sont ceux que vous pouvez manipuler
-          ci-dessous.
-        </p>
-        <p>
-          Lors de la phase de discovery, des besoins de fonctionnalités
-          d'inventaires ont été identifiés. Ils ont été intégrés dans le design
-          de la page d'accueil pour
-        </p>
       </Column>
       <Column>
-        <FigmaEmbed
-          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13268&node-id=1214-5422"
-          caption="Transfert direct (Le bouton orange simule le scan hardware)"
-          width="360px"
-          height="690px"
+        <Figure
+          caption="Template Page avec placeholders"
+          image={dspage}
+          alt="Template Page avec placeholders"
+          clickable
         />
-      </Column>
-      <Column>
-        <FigmaEmbed
-          url="https://www.figma.com/proto/75KYihyfxnvdwxaSWFgTHv/srx-logistique?page-id=1%3A13269&node-id=1-8384"
-          caption="Vérification des produits du chariot (le clic simule un scan)"
-          width="360px"
-          height="690px"
-        />
-      </Column>
-      <Column fullWidth>
-        <p>
-          Ces prototypes ont été validés avec nos pharmaciens témoins. Les
-          développements ont pu commencer sur cette base.
-        </p>
       </Column>
     </Section>
   </Row>
-
   <Row>
-    <Section title="Résultats">
-      <Column>
-        <Learnings>
-          <p class="learnings-title">Adoption</p>
-          <h3>+500 grandes pharmacies</h3>
-          <p>~10% de la base client</p>
-        </Learnings>
+    <Section>
+      <Learnings>
+        <h3>Design system de ~120 composants</h3>
+        <p>
+          Usage intense des possibilités de Figma : Auto-layout, Variant,
+          Variables depuis 2023 (date de leur introduction) +versioning via
+          l'usage du plugin <em>Semantic-Versioning</em>.
+        </p>
+      </Learnings>
+    </Section>
+  </Row>
+  <Row>
+    <Section title="A l'usage - Point de vente">
+      <Column title="Composants métier">
+        <p>
+          Voyons comment nous avons utilisé le design system pour créer des
+          composants spécifiques pour le point de vente.
+        </p>
+        <p>
+          Ici, un assemblage de composants constitue le contenu principal de
+          l'interface du point de vente. Cet ensemble est lui-même un composant.
+        </p>
       </Column>
-      <Column>
-        <Learnings>
-          <p class="learnings-title">Livrables design</p>
-          <h3>8 parcours utilisateurs</h3>
-          <p>~100 écrans haute-fidélité</p>
-        </Learnings>
+      <Column alignWithContent>
+        <Figure
+          caption="Composant du point de vente"
+          image={salescomponent}
+          alt="Composant du point de vente"
+          clickable
+        />
+      </Column>
+      <Column title="Ecran final">
+        <p>
+          Ce composant métier est intégré dans le template décrit ci-dessus, lui
+          même configuré pour réfléter l'espace de vente.
+        </p>
+        <p>
+          Les zones noires (en haut) et grise (en bas) simulent les éléments
+          système d'Android, le système de notre tablette cible.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Design final du point de vente"
+          image={saleswindow}
+          alt="Design final du point de vente"
+          clickable
+        />
+      </Column>
+      <Column title="En production">
+        <p>
+          Le même écran en production. Certains éléments ont évolués depuis le
+          design system auquel j'ai accès.
+        </p>
+      </Column>
+      <Column alignWithContent>
+        <Figure
+          caption="Point de vente en production"
+          image={salesfinal}
+          alt="Point de vente en production"
+          clickable
+        />
       </Column>
     </Section>
   </Row>
-
+  <Row>
+    <Section>
+      <Learnings>
+        <h3>~200 composants métiers</h3>
+        <p>
+          Tous conçus à partir des composants du design system. Pour environ 10
+          modules dans l'ERP.
+        </p>
+      </Learnings>
+    </Section>
+  </Row>
   <Row>
     <Section>
       <Learnings>
         <h2>Enseignements clés</h2>
         <ul class="list-arrow">
           <li>
-            <strong>La Discovery</strong> a été cruciale pour appréhender la complexité
-            de la logistique, qui semblait pourtant simple. Comprendre 1 réserve
-            → N pharmacies, N réserves → 1 pharmacie, distances variables (mètres
-            vs km) a été déterminant pour restreindre le scope et livrer plus vite
-            la v1.
+            <strong>100% des designs </strong> utilisent ce system design, grâce
+            auquel nous avons pu concevoir des nouvelles fonctionnalités en maintenant
+            les cohérence UX et visuelle, sans avoir à tout réinventer.
           </li>
           <li>
-            <strong>Restreindre le scope </strong> de cette v1 (1 réserve = 1 pharmacie),
-            pour livrer plus rapidement n'a pas empêché l'adoption rapide de la solution
-            (+500 pharmacies, ~10% de la base client).
+            <strong>Traduction dans le code :</strong> Au début, nous avons travaillé
+            avec <strong>Storybook</strong> pour traduire les composants Figma en
+            code. Mais l'urgence de mettre en production un produit opérationnel
+            et prouver notre market-fit a eu raison de cette initiative.
           </li>
           <li>
-            Choisir <strong>Material Design </strong>, et accepter une
-            incohérence avec le design system pour permettre à l'équipe de se
-            former sur Android a été le bon choix. Pour une app "compagnon", la
-            cohérence fonctionnelle prime sur la cohérence visuelle.
+            <strong>UX mobile != UX écran large en plus petit :</strong> A mesure
+            que l'enveloppe fonctionnelle de l'ERP grossissait, nous avons compris
+            que pour tirer parti au mieux de chaque taille d'écran, nous devions
+            faire diverger l'UX mobile et l'UX écran large. La recherche du market-fit
+            nous a amené à remettre ce chantier à plus tard.
           </li>
         </ul>
       </Learnings>
     </Section>
   </Row>
-  <Row>
-    <Section title="Liens utiles">
-      <Column fullWidth>
-        <ul class="list-arrow">
-          <li>
-            <a href="https://www.smart-rx.com/logi-stock/" target="_blank"
-              >Présentation du terminal Logi-Stock</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.smart-rx.com/applications/smart-rx-logi-stock/"
-              target="_blank">Page de l'application Logi-Stock</a
-            >
-          </li>
-        </ul>
-      </Column>
-    </Section>
-  </Row>
 
   <Row>
     <Keywords>
-      <span class="keyword">Android</span>
-      <span class="keyword">Discovery</span>
+      <span class="keyword">Atomic Design</span>
+      <span class="keyword">Chakra UI</span>
+      <span class="keyword">Design System</span>
       <span class="keyword">Figma</span>
       <span class="keyword">Mobile</span>
-      <span class="keyword">User Research</span>
-      <span class="keyword">UX Design</span>
+      <span class="keyword">Tablette</span>
+      <span class="keyword">UX/UI Design</span>
     </Keywords>
   </Row>
 </ProjectPro>
