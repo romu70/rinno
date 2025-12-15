@@ -33,7 +33,10 @@ const fullTitle = title.includes("Romuald Tisserand")
   ? title
   : `${title} | Romuald Tisserand`;
 const canonical = new URL(canonicalUrl, siteUrl).href;
-const imageUrl = typeof image === "string" ? new URL(image, siteUrl).href : image;
+const imageUrl =
+  typeof image === "string"
+    ? new URL(image, siteUrl).href
+    : new URL(image.src, siteUrl).href;
 
 // Default Person structured data
 const personSchema = {
@@ -41,8 +44,7 @@ const personSchema = {
   "@type": "Person",
   name: "Romuald Tisserand",
   jobTitle: "Product & Design Leader",
-  description:
-    "Product & Design Leader spécialisé dans les solutions SaaS B2B",
+  description: "Product & Design Leader spécialisé dans les solutions SaaS B2B",
   url: siteUrl,
   sameAs: [],
   knowsAbout: [
