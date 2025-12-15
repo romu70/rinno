@@ -6,11 +6,24 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import coachPizzaImg from "../../assets/perso/coach-pizza/thumbnail.jpg";
 import galleriesImg from "../../assets/perso/galleries/thumbnail.jpg";
 import thotImg from "../../assets/perso/thot/thumbnail.jpg";
+
+const pageDescription =
+  "Projets personnels de Romuald Tisserand - Product Management et UX Design en SaaS B2B.";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Projets Personnels - Romuald Tisserand",
+  description: pageDescription,
+};
 ---
 
 <ProjectsLanding
   title="Projets Personnels"
   intro="Explorations et expérimentations créatives."
+  description={pageDescription}
+  structuredData={structuredData}
+  breadcrumbs={[{ name: "Projets personnels", url: "/perso" }]}
 >
   <ProjectCard
     title="Coach Pizza"

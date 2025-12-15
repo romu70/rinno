@@ -2,60 +2,101 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import type { ImageMetadata } from "astro";
 
 interface Props {
-    title?: string;
+  title?: string;
+  description?: string;
+  image?: ImageMetadata | string;
+  imageAlt?: string;
+  type?: "website" | "article" | "profile";
+  noindex?: boolean;
+  structuredData?: object;
 }
 
-const { title = "Rinno - Romuald Tisserand" } = Astro.props;
+const {
+  title = "Rinno - Romuald Tisserand",
+  description,
+  image,
+  imageAlt,
+  type,
+  noindex,
+  structuredData,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-    </head>
-    <body>
-        <div class="page-wrapper">
-            <Header />
-            <main>
-                <slot />
-            </main>
-            <Footer />
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="/fonts/CormorantGaramond-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/CormorantGaramond-SemiBold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      imageAlt={imageAlt}
+      type={type}
+      noindex={noindex}
+      structuredData={structuredData}
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
 </html>
 
 <style>
-    .page-wrapper {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
     main {
-        flex: 1;
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 6rem 2rem;
+      padding: 5rem 1rem;
     }
+  }
 
-    /* Responsive mobile */
-    @media (max-width: 768px) {
-        main {
-            padding: 5rem 1rem;
-        }
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    main {
+      padding: 7rem 3rem;
     }
-
-    /* Responsive large screens */
-    @media (min-width: 1440px) {
-        main {
-            padding: 7rem 3rem;
-        }
-    }
+  }
 </style>

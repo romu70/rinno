@@ -1,17 +1,32 @@
 ---
 import Layout from "./Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
 
 interface Props {
   title: string;
   intro: string;
+  description?: string;
+  structuredData?: object;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-const { title, intro } = Astro.props;
-const pageTitle = `${title} - Romuald Tisserand`;
+const { title, intro, description, structuredData, breadcrumbs } = Astro.props;
+const pageTitle = `${title} | Romuald Tisserand`;
+const pageDescription = description || intro;
 ---
 
-<Layout title={pageTitle}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  structuredData={structuredData}
+>
   <div class="projects-page">
+    {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
     <header class="page-header">
       <h1>{title}</h1>
       <p class="intro">{intro}</p>

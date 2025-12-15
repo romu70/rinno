@@ -9,9 +9,30 @@ import portrait from "../assets/portrait.jpeg";
 import novyspec from "../assets/pro/novyspec/thumbnail.png";
 import meditect from "../assets/pro/meditect/thumbnail.png";
 import galleriesImg from "../assets/perso/galleries/thumbnail.jpg";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    name: "Romuald Tisserand",
+    jobTitle: "Product & Design Leader",
+    description:
+      "Product & Design Leader spécialisé dans les solutions SaaS B2B. Je crée des produits pour résoudre les problèmes des pros.",
+    url: "https://romu70.github.io",
+    alumniOf: [],
+    worksFor: [],
+  },
+};
 ---
 
-<Layout title="A propos - Romuald Tisserand">
+<Layout
+  title="Romuald Tisserand - Product & Design Leader | Portfolio"
+  description="Product & Design Leader spécialisé dans les solutions SaaS B2B. Je crée des produits pour résoudre les problèmes des pros."
+  type="profile"
+  image={portrait}
+  structuredData={structuredData}
+>
   <article class="container-narrow content-detail">
     <div class="project-content">
       <Row>

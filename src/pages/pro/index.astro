@@ -4,11 +4,24 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import novyspec from "../../assets/pro/novyspec/thumbnail.png";
 import smartrx from "../../assets/pro/smartrx/thumbnail.png";
 import meditect from "../../assets/pro/meditect/thumbnail.png";
+
+const pageDescription =
+  "Portfolio de projets professionnels en Product Management et UX Design en SaaS B2B.";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Projets Professionnels - Romuald Tisserand",
+  description: pageDescription,
+};
 ---
 
 <ProjectsLanding
   title="Produits pour les pros"
   intro="Product management & design pour résoudre des problèmes métier complexes"
+  description={pageDescription}
+  structuredData={structuredData}
+  breadcrumbs={[{ name: "Projets professionnels", url: "/pro" }]}
 >
   <ProjectCard
     title="Meditect"

@@ -9,12 +9,22 @@ interface Props {
   description: string;
   link?: string;
   image?: ImageMetadata;
+  imageAlt?: string;
   bottomText?: string;
   category?: "pro" | "perso";
 }
 
-const { title, year, description, link, image, bottomText, category } =
-  Astro.props;
+const {
+  title,
+  year,
+  description,
+  link,
+  image,
+  imageAlt,
+  bottomText,
+  category,
+} = Astro.props;
+const defaultAlt = `Aperçu du projet ${title}`;
 const isClickable = !!link;
 const Tag = isClickable ? "a" : "div";
 ---
@@ -28,7 +38,7 @@ const Tag = isClickable ? "a" : "div";
       image ? (
         <Image
           src={image}
-          alt={title}
+          alt={imageAlt || defaultAlt}
           width={250}
           height={250}
           format="webp"
