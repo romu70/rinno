@@ -1,0 +1,76 @@
+# Romuald Tisserand - Portfolio
+
+> Product & Design Leader
+
+## About
+
+This is the personal portfolio website of Romuald Tisserand, a Product & Design Leader specializing in digital solutions and AI consulting.
+
+Site URL: https://romu70.github.io
+Language: French (fr)
+
+## Professional Background
+
+Romuald has built SaaS products in challenging contexts:
+- **Meditect (2021-2024)**: Built a touch-first pharmacy ERP for Sub-Saharan Africa, achieving 5% market share across 7 countries in 2 years
+- **Smart-Rx (2019-2020)**: Harmonized UX for 6,000+ pharmacies (Top 3 in France) at Cegedim Santé, launched 2 products serving 2,000+ clients
+- **Novyspec (2017-2018)**: Created a mobile-first SaaS solution for industrial inspection, qualified 4 business verticals
+
+Core expertise: Product discovery, UX design, delivery management for products that work in constrained environments.
+
+## Personal Projects
+
+- **Galleries (2023-present)**: Photography gallery website showcasing typography and street art, built with Astro
+- **Coach Pizza (2024-present)**: Pizza dough ingredient calculator
+- **THoT - Sia (2017)**: Design research project on helping refugees navigate Paris
+
+## Technical Stack
+
+- **Framework**: Astro (static site generation)
+- **Styling**: CSS with custom properties, scoped component styles
+- **Typography**: MuseoModerno font family
+- **Hosting**: GitHub Pages
+- **Build**: No JavaScript frameworks, pure static HTML
+
+## Site Structure
+
+### Main Pages
+- `/` - Home/About page with professional introduction and featured projects
+- `/pro` - Professional projects showcase
+- `/perso` - Personal projects showcase
+- `/legal` - Legal notices (mentions légales)
+
+### Project Pages
+Professional projects under `/pro/`:
+- `/pro/meditect` - Pharmacy digitalization in Africa
+- `/pro/smartrx` - Pharmacy ERP UX harmonization
+- `/pro/novyspec` - Industrial inspection SaaS
+
+Personal projects under `/perso/`:
+- `/perso/galleries` - Typography and street art photography
+- `/perso/coach-pizza` - Pizza dough calculator
+- `/perso/thot` - Refugee navigation research
+
+## Design Principles
+
+- **Mobile-first**: Responsive design with breakpoints at 768px, 1200px, and 1440px
+- **Minimal**: Clean, focused design without unnecessary elements
+- **Accessibility**: Semantic HTML, proper heading hierarchy
+- **Performance**: Static generation, optimized images (WebP format)
+- **Privacy**: No data collection, no cookies, no analytics
+
+## Content Language
+
+All content is in French. The site targets French-speaking professionals and potential collaborators interested in Product Management and UX Design work.
+
+## Contact
+
+For professional inquiries or collaborations, visit the homepage for contact information.
+
+## Technical Notes
+
+- Static site built with Astro
+- All images optimized and served in WebP format
+- Responsive typography scales with viewport size
+- Custom CSS properties for theming (--color, --color-dark, --color-darkest, etc.)
+- Component-based architecture with reusable Astro components
