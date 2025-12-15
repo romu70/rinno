@@ -7,24 +7,19 @@ interface Props {
   title: string;
   year?: string;
   description: string;
-  status: "available" | "soon";
   link?: string;
   image?: ImageMetadata;
   bottomText?: string;
 }
 
-const { title, year, description, status, link, image, bottomText } =
-  Astro.props;
-const isClickable = status === "available" && link;
+const { title, year, description, link, image, bottomText } = Astro.props;
+const isClickable = !!link;
 const Tag = isClickable ? "a" : "div";
 ---
 
 <Tag
   href={isClickable ? link : undefined}
-  class:list={[
-    "project-card",
-    { clickable: isClickable, soon: status === "soon" },
-  ]}
+  class:list={["project-card", { clickable: isClickable }]}
 >
   <div class="project-image">
     {
@@ -50,11 +45,6 @@ const Tag = isClickable ? "a" : "div";
       {year && <span class="badge">{year}</span>}
     </div>
     <p class="description">{description}</p>
-    {
-      status === "soon" && (
-        <div class="status-badge soon">Bientôt disponible</div>
-      )
-    }
     {bottomText && <p class="bottom-text">{bottomText}</p>}
   </div>
 </Tag>
@@ -82,10 +72,6 @@ const Tag = isClickable ? "a" : "div";
     transform: translateY(-2px);
     border-color: var(--color);
     box-shadow: 0 10px 30px var(--color);
-  }
-
-  .project-card.soon {
-    opacity: 0.7;
   }
 
   .project-image {
@@ -157,27 +143,6 @@ const Tag = isClickable ? "a" : "div";
     margin: 0;
     font-style: normal;
     flex: 1;
-  }
-
-  .status-badge {
-    font-size: 0.85rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-    display: inline-block;
-    align-self: flex-start;
-  }
-
-  .status-badge.available {
-    background-color: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
-    border: 1px solid #2ecc71;
-  }
-
-  .status-badge.soon {
-    background-color: rgba(241, 196, 15, 0.2);
-    color: #f1c40f;
-    border: 1px solid #f1c40f;
   }
 
   .bottom-text {
