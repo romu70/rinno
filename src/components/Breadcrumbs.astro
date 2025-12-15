@@ -1,0 +1,118 @@
+---
+// Breadcrumbs component with structured data
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+// Add home as the first item if not present
+const breadcrumbItems = items[0]?.name === "Accueil" ? items : [
+  { name: "Accueil", url: "/" },
+  ...items,
+];
+
+// Generate structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: `https://romu70.github.io${item.url}`,
+  })),
+};
+---
+
+<nav aria-label="Fil d'Ariane" class="breadcrumbs">
+  <ol>
+    {
+      breadcrumbItems.map((item, index) => (
+        <li>
+          {index < breadcrumbItems.length - 1 ? (
+            <>
+              <a href={item.url}>{item.name}</a>
+              <span class="separator" aria-hidden="true">
+                /
+              </span>
+            </>
+          ) : (
+            <span class="current" aria-current="page">
+              {item.name}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 2rem;
+  }
+
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  a {
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color);
+    text-decoration: underline;
+  }
+
+  .separator {
+    color: var(--color-dark);
+    opacity: 0.5;
+  }
+
+  .current {
+    color: var(--color-darkest);
+    font-weight: 500;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .breadcrumbs {
+      margin-bottom: 1.5rem;
+    }
+
+    ol {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    ol {
+      font-size: 1rem;
+    }
+  }
+</style>

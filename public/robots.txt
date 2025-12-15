@@ -1,0 +1,26 @@
+# robots.txt for romu70.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://romu70.github.io/sitemap.xml
+
+# AI Crawlers - Allow access
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Additional resources for AI
+# See /llms.txt for structured information about this site
