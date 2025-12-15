@@ -469,7 +469,6 @@ import dsthumb from "../../../assets/pro/meditect/ds-thumbnail.jpg";
         <ProjectCard
           title="Design system"
           description="Accélérer la conception du produits et renforcer la cohérence UX et UI."
-          status="available"
           link="/pro/meditect/designsystem"
           image={dsthumb}
           bottomText="120 composants génériques / +100 composants spécialisés"
@@ -479,7 +478,6 @@ import dsthumb from "../../../assets/pro/meditect/ds-thumbnail.jpg";
         <ProjectCard
           title="Réception de commande"
           description="Faciliter l'alimentation du stock par une fonctionnalité exécutée plusieurs fois chaque jour."
-          status="available"
           link="/pro/meditect/receiving"
           image={recthumb}
           bottomText="Fonctionnalité 0 → 1"
@@ -513,51 +511,96 @@ import dsthumb from "../../../assets/pro/meditect/ds-thumbnail.jpg";
     </Section>
   </Row>
   <Row>
-    <Section title="Liens utiles">
-      <Column fullWidth>
+    <Section>
+      <Learnings>
+        <h2>Enseignements clés</h2>
         <ul class="list-arrow">
           <li>
-            <a href="https://pharmacie.meditect.com/" target="_blank"
-              >Accueil de l'application pharmacien</a
-            >
+            <p><strong>Discovery terrain = fondation produit</strong></p><p>
+              Toutes les heures de terrain, sur place ou sur WhatsApp ont donné
+              des enseignements critiques qu'un brief rapide n'aurait jamais
+              révélé. Sans cette immersion, le produit n'aurait probablement pas
+              été celui là.
+            </p>
           </li>
           <li>
-            <a
-              href="https://tisserand.notion.site/Impression-des-tiquettes-1c8000ee8f6f80fb9be7e2f1105cfb51"
-              target="_blank"
-              >User Research : prototype d'impression des étiquettes</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://meditect.notion.site/Aide-du-LGO-Meditect-75c8777c4474403bad7fc9ca07032033"
-              target="_blank">Aide de l'application pharmacien</a
-            >
-          </li>
-          <li>
-            <a href="https://www.meditect.com/" target="_blank"
-              >Site de Meditect</a
-            >
+            <p><strong>Le Product Market Fit prime</strong></p><p>
+              Avec des ressources limitées, mieux vaut un produit incomplet qui
+              fonctionne. Décision assumée : abandonner Storybook et reporter
+              l'optimisation UX mobile pour valider le marché d'abord.
+            </p>
+            <li>
+              <p>
+                <strong
+                  >Design system = facilitateur de passage à l'échelle</strong
+                >
+              </p><p>
+                Grâce à notre design system de +120 composants, avec une petite
+                équipe de 4 personnes, nous avons pu concevoir un ERP complet et
+                cohérent. Dans ce contexte startup, cela a vraiment été un "game
+                changer".
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Pragmatisme = trouver des solutions</strong>
+              </p><p>
+                A 6500 km de distance, en startup, le pragmatisme règne, il faut
+                s'adapter et trouver des solutions qui permettent d'avancer avec
+                ce qu'on a, comme les tests sur vidéos.
+              </p>
+            </li>
           </li>
         </ul>
-      </Column>
+      </Learnings>
     </Section>
-  </Row>
-  <Row>
-    <Keywords>
-      <span class="keyword">Design Ops</span>
-      <span class="keyword">Design System</span>
-      <span class="keyword">Discovery</span>
-      <span class="keyword">Figma</span>
-      <span class="keyword">Notion</span>
-      <span class="keyword">OKRs</span>
-      <span class="keyword">Product Ops</span>
-      <span class="keyword">React</span>
-      <span class="keyword">SaaS</span>
-      <span class="keyword">Healthtech</span>
-      <span class="keyword">Storybook</span>
-      <span class="keyword">User Research</span>
-      <span class="keyword">UX Design</span>
-    </Keywords>
+    <Row>
+      <Section title="Liens utiles">
+        <Column fullWidth>
+          <ul class="list-arrow">
+            <li>
+              <a href="https://pharmacie.meditect.com/" target="_blank"
+                >Accueil de l'application pharmacien</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://tisserand.notion.site/Impression-des-tiquettes-1c8000ee8f6f80fb9be7e2f1105cfb51"
+                target="_blank"
+                >User Research : prototype d'impression des étiquettes</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://meditect.notion.site/Aide-du-LGO-Meditect-75c8777c4474403bad7fc9ca07032033"
+                target="_blank">Aide de l'application pharmacien</a
+              >
+            </li>
+            <li>
+              <a href="https://www.meditect.com/" target="_blank"
+                >Site de Meditect</a
+              >
+            </li>
+          </ul>
+        </Column>
+      </Section>
+    </Row>
+    <Row>
+      <Keywords>
+        <span class="keyword">Design Ops</span>
+        <span class="keyword">Design System</span>
+        <span class="keyword">Discovery</span>
+        <span class="keyword">Figma</span>
+        <span class="keyword">Notion</span>
+        <span class="keyword">OKRs</span>
+        <span class="keyword">Product Ops</span>
+        <span class="keyword">React</span>
+        <span class="keyword">SaaS</span>
+        <span class="keyword">Healthtech</span>
+        <span class="keyword">Storybook</span>
+        <span class="keyword">User Research</span>
+        <span class="keyword">UX Design</span>
+      </Keywords>
+    </Row>
   </Row>
 </ProjectPro>
