@@ -4,10 +4,15 @@ interface Props {
   title?: string;
   fullWidth?: boolean;
   alignWithContent?: boolean;
-  headingLevel?: 'h2' | 'h3' | 'h4';
+  headingLevel?: "h2" | "h3" | "h4";
 }
 
-const { title, fullWidth = false, alignWithContent = false, headingLevel = 'h3' } = Astro.props;
+const {
+  title,
+  fullWidth = false,
+  alignWithContent = false,
+  headingLevel = "h3",
+} = Astro.props;
 const HeadingTag = headingLevel;
 // Only apply align-with-content class when there's no title
 const shouldAlignContent = alignWithContent && !title;
@@ -35,19 +40,19 @@ const shouldAlignContent = alignWithContent && !title;
   }
 
   .column.align-with-content > .column-content {
-    /* Add top padding to align with sibling column headings */
-    padding-top: 3.6rem;
+    /* Add top padding to align with sibling column content (after heading) */
+    padding-top: 4.7rem;
   }
 
   @media (max-width: 768px) {
     .column.align-with-content > .column-content {
-      padding-top: 2rem;
+      padding-top: 0rem;
     }
   }
 
   @media (min-width: 1440px) {
     .column.align-with-content > .column-content {
-      padding-top: 3.8rem;
+      padding-top: 5.15rem;
     }
   }
 
