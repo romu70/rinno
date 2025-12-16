@@ -72,47 +72,53 @@ const structuredData = {
         <Section>
           <Column>
             <p class="centered-link">
-              <a href="/pro">Mes travaux professionnels</a>
+              <a href="/pro">Travaux professionnels</a>
             </p>
           </Column>
           <Column>
             <p class="centered-link">
-              <a href="/perso">Mes projets personnels</a>
+              <a href="/perso">Projets personnels</a>
             </p>
           </Column>
         </Section>
       </Row>
       <Row>
-        <Section title="Un échantillon de travaux" centered>
+        <Section title="Du produit stratégique à l’exécution" centered>
           <Column fullWidth />
           <Column>
-            <ProjectCard
-              title="Meditect"
-              year="2021 - 2024"
-              description="Digitaliser la santé en Afrique subsaharienne, en commençant par les pharmacies."
-              link="/pro/meditect"
-              image={meditect}
-              bottomText="5% du marché - 7 pays - en 2 ans"
-              category="pro"
-            />
-            <ProjectCard
-              title="Novyspec"
-              year="2017 - 2018"
-              description="Solution SaaS & touch-first pour moderniser l'audit industriel."
-              link="/pro/novyspec"
-              image={novyspec}
-              bottomText="4 verticales métier qualifiées - Structuration UX"
-              category="pro"
-            />
-            <ProjectCard
-              title="Galleries"
-              year="2023 - présent"
-              description="Photographier des typographies et du street art, et réaliser une galerie virtuelle pour les présenter."
-              link="/perso/galleries"
-              image={galleriesImg}
-              bottomText="Un site Astro qui reproduit l'effet galerie de DuckDuckGo"
-              category="perso"
-            />
+            <div class="card-container card-wide">
+              <ProjectCard
+                title="Meditect"
+                year="2021 - 2024"
+                description="Conception et déploiement d’un ERP SaaS B2B pour les pharmacies en Afrique subsaharienne."
+                link="/pro/meditect"
+                image={meditect}
+                bottomText="Head of Product & Design - 5% du marché - 7 pays - en 2 ans"
+                category="pro"
+              />
+            </div>
+            <div class="card-container card-medium">
+              <ProjectCard
+                title="Novyspec"
+                year="2017 - 2018"
+                description="Solution SaaS & touch-first pour moderniser l'audit industriel."
+                link="/pro/novyspec"
+                image={novyspec}
+                bottomText="Product Manager & Designer - Structuration UX"
+                category="pro"
+              />
+            </div>
+            <div class="card-container card-narrow">
+              <ProjectCard
+                title="Galleries"
+                year="2023 - présent"
+                description="Développement d'une galerie virtuelle pour présenter des typographies et du street art."
+                link="/perso/galleries"
+                image={galleriesImg}
+                bottomText="Projet personnel"
+                category="perso"
+              />
+            </div>
           </Column>
         </Section>
       </Row>
@@ -185,10 +191,50 @@ const structuredData = {
     border-radius: var(--radius);
   }
 
-  /* Responsive mobile */
+  /* Card container styling for progressive widths */
+  .card-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Responsive mobile - all cards full width */
   @media (max-width: 768px) {
     .content-detail {
       gap: 2rem;
+    }
+
+    .card-container {
+      width: 100%;
+    }
+  }
+
+  /* Responsive tablet/desktop - progressive widths start appearing */
+  @media (min-width: 768px) {
+    .card-container.card-wide {
+      width: 100%;
+    }
+
+    .card-container.card-medium {
+      width: 90%;
+    }
+
+    .card-container.card-narrow {
+      width: 80%;
+    }
+  }
+
+  /* Responsive mid-range desktop - more pronounced difference */
+  @media (min-width: 1200px) {
+    .card-container.card-wide {
+      width: 100%;
+    }
+
+    .card-container.card-medium {
+      width: 90%;
+    }
+
+    .card-container.card-narrow {
+      width: 80%;
     }
   }
 
@@ -204,6 +250,19 @@ const structuredData = {
     :global(.content-area > .content-section.full-width),
     :global(.content-area > .highlight.full-width) {
       flex: 1 1 100%;
+    }
+
+    /* Maximum progressive width difference on large screens */
+    .card-container.card-wide {
+      width: 100%;
+    }
+
+    .card-container.card-medium {
+      width: 95%;
+    }
+
+    .card-container.card-narrow {
+      width: 90%;
     }
   }
 </style>
