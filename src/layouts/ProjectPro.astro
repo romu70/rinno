@@ -2,6 +2,7 @@
 import Layout from "./Layout.astro";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import LinkIcon from "../components/LinkIcon.astro";
 
 interface Props {
   title: string;
@@ -96,7 +97,8 @@ if (!parentPage) {
                   rel="noopener noreferrer"
                   class="visit-link"
                 >
-                  Visiter le site ↗
+                  Visiter le site
+                  <LinkIcon class="visit-icon" />
                 </a>
               )}
             </div>
@@ -244,7 +246,9 @@ if (!parentPage) {
       color 0.3s ease,
       transform 0.2s ease,
       text-decoration 0.3s ease;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     flex-shrink: 0;
     align-self: center;
   }
@@ -253,6 +257,16 @@ if (!parentPage) {
     color: var(--color-dark);
     transform: translateY(-2px);
     text-decoration: underline;
+  }
+
+  .visit-icon {
+    width: 1.2em;
+    height: 1.2em;
+    transition: transform 0.2s;
+  }
+
+  .visit-link:hover .visit-icon {
+    transform: translate(2px, -2px);
   }
 
   .hero-overlay .year {
