@@ -191,12 +191,12 @@ p strong {
 }
 
 /* Links */
-a {
+a:not(.button) {
   color: var(--color-dark);
   transition: color 0.3s ease;
 }
 
-a:hover {
+a:not(.button):hover {
   color: var(--accent-color);
 }
 

@@ -6,6 +6,7 @@ import Section from "../components/project/Section.astro";
 import Column from "../components/project/Column.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import Learnings from "../components/project/Learnings.astro";
+import LinkIcon from "../components/LinkIcon.astro";
 import portrait from "../assets/portrait.jpeg";
 import novyspec from "../assets/pro/novyspec/thumbnail.png";
 import meditect from "../assets/pro/meditect/thumbnail.png";
@@ -121,12 +122,18 @@ const structuredData = {
         <Section>
           <Column>
             <p class="centered-link">
-              <a href="/pro">Travaux professionnels</a>
+              <a href="/pro" class="button button-primary">
+                Travaux professionnels
+                <LinkIcon class="button-icon" />
+              </a>
             </p>
           </Column>
           <Column>
             <p class="centered-link">
-              <a href="/perso">Projets personnels</a>
+              <a href="/perso" class="button button-secondary">
+                Projets personnels
+                <LinkIcon class="button-icon" />
+              </a>
             </p>
           </Column>
         </Section>
@@ -190,6 +197,43 @@ const structuredData = {
 </Layout>
 
 <style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s;
+    font-variant: small-caps;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-icon {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s;
+  }
+
+  .button:hover .button-icon {
+    transform: translate(2px, -2px);
+  }
+
+  .button-primary {
+    background-color: var(--color-darkest);
+    color: var(--color-ligthest);
+  }
+
+  a.button-secondary {
+    background-color: var(--color-light);
+    color: var(--color-darkest);
+    border: 2px solid var(--color-darkest);
+  }
+
   .project-content {
     display: flex;
     flex-wrap: wrap;
