@@ -5,6 +5,7 @@ import Row from "../components/project/Row.astro";
 import Section from "../components/project/Section.astro";
 import Column from "../components/project/Column.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import Learnings from "../components/project/Learnings.astro";
 import portrait from "../assets/portrait.jpeg";
 import novyspec from "../assets/pro/novyspec/thumbnail.png";
 import meditect from "../assets/pro/meditect/thumbnail.png";
@@ -55,17 +56,64 @@ const structuredData = {
           <Column>
             <h4>Product & Design Leader B2B</h4>
             <p>
-              J'ai construit un ERP de pharmacie SaaS & <em>touch-first</em> en Afrique
-              subsaharienne <strong>(7 pays - 5% du marché en 2 ans)</strong>.
+              J'ai piloté la stratégie produit d'un ERP SaaS pour les pharmacies
+              d'Afrique subsaharienne qui a conquis <strong
+                >5% de son marché en 2 ans (7 pays)</strong
+              >.
             </p>
             <p>
               Avant ça, j'ai lancé une application Android de gestion logistique
               et un éditeur graphique d'étiquettes SaaS.
             </p>
             <p>
-              De la discovery terrain à la delivery, je structure et conçois des
-              produits pour résoudre les problèmes des pros.
+              De la stratégie produit à l'exécution terrain, je transforme des
+              besoins métier en solutions qui créent de la valeur.
             </p>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section>
+          <Column title="De la tech...">
+            <p>
+              Après 15 ans dans des fonctions techniques (Dev, DevOps, Infra),
+              j'ai opéré une transition vers le product management et le design.
+            </p>
+          </Column>
+          <Column title="...au produit">
+            <p>
+              Depuis 2017, j'ai défini la vision et la stratégie produit, et
+              piloté leur exécution terrain.
+            </p>
+            <p>
+              Pour y parvenir, j'ai structuré des pratiques modernes : discovery
+              systématique, roadmapping rigoureux, design systems, et culture
+              data-driven.
+            </p>
+          </Column>
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Vision & Stratégie → Exécution Produit">
+          <Column>
+            <p>Double casquette produit/design + background tech pour :</p>
+            <ul class="list-arrow">
+              <li>Définir la vision en lien avec les objectifs business</li>
+              <li>Aligner les parties prenantes sur cette vision</li>
+              <li>Arbitrer entre opportunités marché et impact business</li>
+              <li>Piloter des équipes cross-fonctionnelles vers l'impact</li>
+            </ul>
+          </Column>
+          <Column>
+            <Learnings>
+              <h3>Ma conviction</h3>
+              <p>
+                Les meilleurs produits naissent d'une <strong
+                  >obsession pour l'utilisateur</strong
+                >, d'une rigueur méthodologique, et d'équipes alignées sur
+                l'impact.
+              </p>
+            </Learnings>
           </Column>
         </Section>
       </Row>
@@ -84,42 +132,55 @@ const structuredData = {
         </Section>
       </Row>
       <Row>
-        <Section title="Produit stratégique → Exécution" centered>
-          <Column fullWidth />
-          <p class="centered-link">Un échantillon de mes réalisations.</p>
+        <Section title="Compétences clés" threeColumns>
+          <Column
+            ><Learnings>
+              <h3>🎯 Produit</h3>
+              <ul>
+                <li>Stratégie</li>
+                <li>Roadmapping</li>
+                <li>Product Ops</li>
+              </ul>
+            </Learnings></Column
+          >
+          <Column
+            ><Learnings>
+              <h3>🎨 Design</h3>
+              <ul>
+                <li>Discovery</li>
+                <li>Design Systems</li>
+                <li>Design Ops</li>
+              </ul>
+            </Learnings></Column
+          >
+          <Column
+            ><Learnings>
+              <h3>👫 Leadership</h3>
+              <ul>
+                <li>Team Building</li>
+                <li>Stakeholder Management</li>
+                <li>Mentoring</li>
+              </ul>
+            </Learnings></Column
+          >
+        </Section>
+      </Row>
+      <Row>
+        <Section title="Pour me joindre et discuter de vos enjeux">
           <Column>
-            <div class="card-container">
-              <ProjectCard
-                title="Meditect"
-                year="2021 - 2024"
-                description="ERP SaaS B2B pour les pharmacies africaines"
-                link="/pro/meditect"
-                image={meditect}
-                bottomText="Head of Product & Design - 5% du marché - 7 pays - en 2 ans"
-                category="pro"
-              />
-            </div>
-            <div class="card-container">
-              <ProjectCard
-                title="Novyspec"
-                year="2017 - 2018"
-                description="Plateforme SaaS d'audit terrain multi-verticales"
-                link="/pro/novyspec"
-                image={novyspec}
-                bottomText="PM & Designer - Discovery multi-secteurs - Design system"
-                category="pro"
-              />
-            </div>
-            <div class="card-container">
-              <ProjectCard
-                title="Galleries"
-                year="2023 - présent"
-                description="Galerie virtuelle de typographies et de street art"
-                link="/perso/galleries"
-                image={galleriesImg}
-                bottomText="Projet personnel de développement avec Astro et JS/TS"
-                category="perso"
-              />
+            <div class="contact-info">
+              <p>📧 <a href="mailto:r@tisserand.eu">r@tisserand.eu</a></p>
+              <p>☎️ <a href="tel:+33666729963">+33 666 72 99 63</a></p>
+              <p>
+                🔗 <a
+                  href="https://www.linkedin.com/in/romutisserand/"
+                  target="_blank">LinkedIn</a
+                >
+              </p>
+              <p>
+                🔗 <a href="https://github.com/romu70" target="_blank">GitHub</a
+                >
+              </p>
             </div>
           </Column>
         </Section>
