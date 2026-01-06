@@ -27,8 +27,8 @@ const { figures } = Astro.props;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 2rem;
-    padding: 1.5rem 2rem;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
     background-color: hsla(var(--hue), 40%, 90%, 0.95);
   }
 
@@ -59,8 +59,8 @@ const { figures } = Astro.props;
   @media (max-width: 768px) {
     .key-figures {
       flex-direction: column;
-      gap: 1rem;
-      padding: 1rem 1.5rem;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
       align-items: stretch;
     }
 
@@ -68,7 +68,7 @@ const { figures } = Astro.props;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0;
+      padding: var(--spacing-xs) 0;
       border-bottom: 1px solid hsla(var(--hue), 30%, 70%, 0.3);
     }
 
@@ -91,8 +91,9 @@ const { figures } = Astro.props;
   /* Responsive large screens */
   @media (min-width: 1440px) {
     .key-figures {
-      padding: 2rem 2.5rem;
-      gap: 2.5rem;
+      padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg)
+        var(--spacing-xl);
+      gap: var(--spacing-xl);
     }
 
     .figure-value {

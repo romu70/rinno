@@ -119,6 +119,14 @@
 
   /* Border patterns */
   --border-divider: 2px solid rgba(253, 240, 213, 0.2);
+
+  /* Spacing scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+  --spacing-2xl: 3rem;
 }
 
 /* Base styles */
