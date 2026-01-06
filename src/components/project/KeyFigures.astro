@@ -1,0 +1,106 @@
+---
+export interface KeyFigure {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  figures: KeyFigure[];
+}
+
+const { figures } = Astro.props;
+---
+
+<div class="key-figures">
+  {
+    figures.map((figure) => (
+      <div class="key-figure">
+        <span class="figure-value">{figure.value}</span>
+        <span class="figure-label">{figure.label}</span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .key-figures {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background-color: hsla(var(--hue), 40%, 90%, 0.95);
+  }
+
+  .key-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .figure-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-darkest);
+    white-space: nowrap;
+  }
+
+  .figure-label {
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .key-figures {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      align-items: stretch;
+    }
+
+    .key-figure {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid hsla(var(--hue), 30%, 70%, 0.3);
+    }
+
+    .key-figure:last-child {
+      border-bottom: none;
+    }
+
+    .figure-value {
+      font-size: 1.5rem;
+      order: 1;
+    }
+
+    .figure-label {
+      font-size: 1rem;
+      text-align: right;
+      order: 2;
+    }
+  }
+
+  /* Responsive large screens */
+  @media (min-width: 1440px) {
+    .key-figures {
+      padding: 2rem 2.5rem;
+      gap: 2.5rem;
+    }
+
+    .figure-value {
+      font-size: 2rem;
+    }
+
+    .figure-label {
+      font-size: 1.2rem;
+    }
+  }
+</style>
