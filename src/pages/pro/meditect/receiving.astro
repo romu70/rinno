@@ -15,13 +15,21 @@ import data from "../../../assets/pro/meditect/rec-data.webp";
 import drawer from "../../../assets/pro/meditect/rec-drawer.png";
 ---
 
-<ProjectPro title="Réception de commande" image={heroImage}>
+<ProjectPro
+  title="Réception de commande"
+  image={heroImage}
+  keyFigures={[
+    { value: "100% Des Clients", label: "Utilisent la fonctionnalité" },
+    { value: "+800 Commandes", label: "Réceptionnées chaque jour" },
+    { value: "+Rapide", label: "Que la concurrence" },
+  ]}
+>
   <Row>
     <Section title="Contexte">
       <Column>
         <p>
-          Un des sous-module de l'ERP pour les pharmaciens, pour réceptionner
-          les produits commandés.
+          Un des sous-modules de l'ERP de pharmacie, pour réceptionner les
+          produits commandés.
         </p>
       </Column>
     </Section>
@@ -76,7 +84,7 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
           Le résultat exhaustif de cette recherche est disponible dans ce
           document : <a href="/pro/meditect/receiving.pdf" target="_blank"
             >Réception de commande</a
-          >. C'est un export Notion, la mise en page est altérée.
+          >. (<em>C'est un export Notion, la mise en page est altérée.</em>)
         </p>
       </Column>
       <Column>
@@ -113,8 +121,8 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
             nécessaires (quantités, prix, etc).
           </li>
           <li>
-            Supporter l'ajout de produit par scan, ce qui annule le risque
-            d'ajouter le mauvais produit.
+            Supporter l'ajout de produit par scan limitera le risque d'ajouter
+            le mauvais produit.
           </li>
           <li>
             Afficher une synthèse à la fin pour contrôler les chiffres entre le
@@ -134,7 +142,7 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
           <li>Impression des étiquettes.</li>
           <li>Suivi de la facturation.</li>
           <li>Chaînage de ces parcours.</li>
-          <li>Et bien d'autres facilités.</li>
+          <li>...et bien d'autres facilités.</li>
         </ul>
       </Column>
 
@@ -208,9 +216,9 @@ import drawer from "../../../assets/pro/meditect/rec-drawer.png";
         <p>Rapidement, nous constatons 2 problèmes :</p>
         <ul class="list-arrow">
           <li>
-            Les data nous montrent que beaucoup de réceptions sont démarrées,
-            mais jamais clôturées. Une enquête auprès des pharmacies indique que
-            le stepper n'est pas compris.
+            Les données montrent que beaucoup de réceptions sont démarrées, mais
+            jamais clôturées. Une enquête auprès des pharmacies indique que le
+            stepper n'est pas compris.
           </li>
           <li>
             L'équipe technique demande à ce que l'on fusionne le parcours à une
