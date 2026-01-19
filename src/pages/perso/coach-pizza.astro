@@ -24,19 +24,17 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
   <Row>
     <Section title="Contexte">
       <p>
-        Mes proches disent que je suis un estomac sur pattes. Comme beaucoup, je
-        ne résiste pas à une bonne pizza, au point d'avoir appris à faire ma
-        propre pâte.
+        Mes proches disent que je suis un estomac sur pattes. J'adore la pizza,
+        au point d'avoir appris à faire ma propre pâte.
       </p>
       <p>
-        Calculer les ingrédients nécessaires à chaque préparation s'est vite
-        avéré pénible. Alors j'ai décidé de créer mon propre calculateur de
-        pizza.
+        Mais pénible de calculer les ingrédients nécessaires à chaque fois !
+        Alors j'ai codé mon propre calculateur de pizza.
       </p>
       <p>
-        La maîtrise de la fermentation, influencée par le type de farine, le
+        La maîtrise de la fermentation (influencée par le type de farine, le
         type et la quantité de levure, la durée et la température de pousse,
-        l'hydratation de la pâte, etc, est la clé pour réaliser une bonne pâte à
+        l'hydratation de la pâte, etc) est la clé pour réaliser une bonne pâte à
         pizza.
       </p>
     </Section>
@@ -67,9 +65,9 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
     <Section title="UI Design">
       <Column>
         <p>
-          Je voulais une app qui soit fun, colorée et ludique. A cette fin, j'ai
-          volontairement forcé le trait de l'italie au travers du charte
-          graphique qui utilise massivement les couleurs du drapeau italien.
+          Je voulais une app fun, colorée et ludique. Pour ça, j'ai forcé le
+          trait de l'italie au travers du charte graphique qui utilise les
+          couleurs du drapeau italien.
         </p>
       </Column>
       <Column>
@@ -86,23 +84,19 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
     <Section title="Touch-first : concevoir pour les doigts">
       <Column title="Astro + GitHub Pages" fullWidth>
         <p>
-          J'ai développé une première version web, hébergée sur GitHub Pages
-          comme Galleries. Cette version est très proche de celle actuellement
-          en ligne.
+          Première version web, hébergée sur GitHub Pages comme Galleries, très
+          proche de celle actuellement en ligne.
         </p>
       </Column>
-      <Column title="Saisir des quantités au doigt">
-        <p>
-          Utilisée sur mobile en priorité, l'app devait être "touch first", donc
-          avec des contrôles facilement utilisables au doigt.
-        </p>
+      <Column title="Saisie au doigt">
+        <p>Utilisée sur mobile en priorité, l'app devait être "touch first".</p>
         <br />
-        <p>
-          Ici, il y a 3 contrôles HTML : un input de type number, un bouton "+"
-          et un bouton "-", avec un logique de "pas" adaptée à la saisie de
-          l'ingrédient souhaité. Le pas des pâtons est de 5g, quand celui de la
-          levure est de 0,1g.
-        </p>
+        <p>Ici, 3 contrôles HTML :</p>
+        <ul class="list-arrow">
+          <li>un input de type number</li>
+          <li>un bouton "-"</li>
+          <li>un bouton "+"</li>
+        </ul>
       </Column>
       <Column alignWithContent>
         <Figure
@@ -111,16 +105,11 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
           alt="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
         />
       </Column>
-      <Column title="Désactiver le double 'Tap'">
+      <Column fullWidth>
         <p>
-          Sur mobile, la norme est de zoomer l'écran en cas de 2 tap rapidement
-          effectués. Ici, l'utilisateur prend l'habitude de taper vite pour
-          augmenter ou baisser une quantité. Ce qui provoquait un zoom de
-          l'écran, rendant l'app difficilement utilisable..
+          Avec un "pas" adapté à la saisie de l'ingrédient souhaité. Le pas des
+          pâtons est de 5g, quand celui de la levure est de 0,1g.
         </p>
-        <br />
-        <p>J'ai donc désactivé ce mécanisme pour conserver l'UX agréable.</p>
-        <br />
       </Column>
     </Section>
   </Row>
@@ -129,9 +118,8 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
     <Section title="De l'outil perso à la publication">
       <Column title="Support Multi-langues">
         <p>
-          Astro offre beaucoup de facilités pour supporter plusieurs langues.
-          Ici, j'ai mis en place non seulement le support de l'Anglais, mais
-          aussi la compatiblité avec les unités impériales.
+          Astro offre beaucoup de facilités pour le support multi-langues, ici
+          l'Anglais, mais aussi les unités impériales.
         </p>
       </Column>
       <Column alignWithContent>
@@ -164,7 +152,7 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
     <Section title="Concept validé par un multi-champion du monde">
       <Column title="Contact avec Aymeric Provence">
         <p>
-          Après des publications sur les réseaux sociaux, je suis contacté par
+          Après publication sur les réseaux sociaux, je suis contacté par
           Aymeric Provence, multi-champion du monde de la pizza.
         </p>
         <br />
@@ -219,7 +207,7 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
       <h3>Validation ≠ Vision partagée</h3>
       <p>
         <strong>Réalisation</strong> : Le contact avec Aymeric a révélé l'écart entre
-        "outil qui marche pour moi" et "produit professionnel". Les pizzaïolos attendent
+        "une app qui marche pour moi" et "un vrai outil". Les pizzaïolos attendent
         des protocoles validés par farine (T45, T55...), pas un calculateur générique.
       </p>
       <p>
@@ -230,7 +218,7 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
       <p>
         <strong>Réalisation</strong> : Expo promet le développement mobile facile,
         mais les exigences Apple/Google 2024 pour la publication sur les app stores
-        ont multiplié la complexité.
+        ont augmenté la complexité.
       </p>
       <p>
         <strong>Impact</strong> : Le SaaS web reste plus agile pour l'itération rapide.
