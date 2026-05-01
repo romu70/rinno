@@ -230,6 +230,11 @@ a:not(.button):hover {
   color: var(--accent-indigo);
 }
 
+p a {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 /* Utility classes */
 .text-center {
   text-align: center;
