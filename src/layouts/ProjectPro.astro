@@ -5,6 +5,7 @@ import type { ImageMetadata } from "astro";
 import LinkIcon from "../components/LinkIcon.astro";
 import type { KeyFigure } from "../components/project/KeyFigures.astro";
 import KeyFigures from "../components/project/KeyFigures.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 
 interface Props {
   title: string;
@@ -58,20 +59,18 @@ if (!parentPage) {
     }
   }
 }
+
+const breadcrumbs = [
+  { name: "Accueil", url: "/" },
+  { name: "Projets pro", url: "/pro" },
+  ...(parentPage ? [{ name: parentPage.title, url: parentPage.url }] : []),
+  { name: title, url: currentPath },
+];
 ---
 
 <Layout title={pageTitle}>
   <article class="container-narrow project-detail">
-    {
-      parentPage && (
-        <div class="parent-nav">
-          <a href={parentPage.url}>
-            <span class="nav-label">← Retour</span>
-            <span class="nav-title">{parentPage.title}</span>
-          </a>
-        </div>
-      )
-    }
+    <Breadcrumbs items={breadcrumbs} />
 
     <header class="hero">
       {
@@ -135,7 +134,7 @@ if (!parentPage) {
     </div>
 
     {
-      !parentPage ? (
+      !parentPage && (
         <nav class="project-navigation">
           <div class="nav-item nav-prev">
             {prevProject ? (
@@ -158,13 +157,6 @@ if (!parentPage) {
             )}
           </div>
         </nav>
-      ) : (
-        <div class="parent-nav">
-          <a href={parentPage.url}>
-            <span class="nav-label">← Retour</span>
-            <span class="nav-title">{parentPage.title}</span>
-          </a>
-        </div>
       )
     }
   </article>
@@ -175,15 +167,6 @@ if (!parentPage) {
     display: flex;
     flex-direction: column;
     gap: 0rem;
-  }
-
-  .parent-nav {
-    margin-bottom: 2rem;
-  }
-
-  .project-content + .parent-nav {
-    margin-top: 2rem;
-    margin-bottom: 0;
   }
 
   .project-content {

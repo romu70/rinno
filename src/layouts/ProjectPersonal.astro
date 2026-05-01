@@ -3,6 +3,7 @@ import Layout from "./Layout.astro";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import LinkIcon from "../components/LinkIcon.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 
 interface Props {
   title: string;
@@ -26,10 +27,17 @@ const currentIndex = projects.findIndex((p) => currentPath.includes(p.slug));
 const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
 const nextProject =
   currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+const breadcrumbs = [
+  { name: "Accueil", url: "/" },
+  { name: "Projets perso", url: "/perso" },
+  { name: title, url: currentPath },
+];
 ---
 
 <Layout title={pageTitle}>
   <article class="container-narrow project-detail">
+    <Breadcrumbs items={breadcrumbs} />
     <header class="hero">
       {
         image && (
