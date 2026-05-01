@@ -13,7 +13,11 @@ const { fullWidth = false } = Astro.props;
 
 <style>
   .learnings {
-    background-color: hsla(var(--hue), 40%, 90%, 0.6);
+    background-color: color-mix(
+      in srgb,
+      var(--accent-color) 4%,
+      var(--color-ligthest)
+    );
     border-left: 4px solid var(--accent-color);
     padding: 1.5rem;
     border-radius: var(--radius);
