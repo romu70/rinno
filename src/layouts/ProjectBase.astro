@@ -187,7 +187,11 @@ const {
     position: absolute;
     left: 0;
     right: 0;
-    background-color: hsla(var(--hue), 40%, 90%, 0.8);
+    background-color: color-mix(
+      in srgb,
+      var(--color-ligthest) 40%,
+      transparent
+    );
     backdrop-filter: blur(0.5rem);
     padding: 1.5rem 2rem;
     display: flex;
