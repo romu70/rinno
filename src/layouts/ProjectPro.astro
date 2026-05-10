@@ -53,8 +53,8 @@ if (!parentPage) {
 }
 
 const breadcrumbs = [
-  { name: ROUTES.home.label, url: ROUTES.home.url },
-  { name: ROUTES.pro.label, url: ROUTES.pro.url },
+  { name: ROUTES.home.name, url: ROUTES.home.url },
+  { name: ROUTES.pro.name, url: ROUTES.pro.url },
   ...(parentPage ? [{ name: parentPage.title, url: parentPage.url }] : []),
   { name: title, url: currentPath },
 ];
