@@ -12,6 +12,7 @@ interface Props {
   imageAlt?: string;
   bottomText?: string;
   category?: "pro" | "perso";
+  accent?: "indigo" | "coral";
 }
 
 const {
@@ -23,7 +24,9 @@ const {
   imageAlt,
   bottomText,
   category,
+  accent = "indigo",
 } = Astro.props;
+const accentVar = accent === "coral" ? "var(--accent-color-2)" : "var(--accent-color)";
 const defaultAlt = `Aperçu du projet ${title}`;
 const isClickable = !!link;
 const Tag = isClickable ? "a" : "div";
@@ -32,6 +35,7 @@ const Tag = isClickable ? "a" : "div";
 <Tag
   href={isClickable ? link : undefined}
   class:list={["project-card", { clickable: isClickable }]}
+  style={`--card-accent: ${accentVar}`}
 >
   <div class="project-image">
     {
@@ -94,7 +98,7 @@ const Tag = isClickable ? "a" : "div";
     top: 0;
     bottom: 0;
     width: 6px;
-    background-color: var(--accent-color);
+    background-color: var(--card-accent);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 2;
@@ -111,7 +115,7 @@ const Tag = isClickable ? "a" : "div";
   }
 
   .project-card.clickable:hover h3 {
-    color: var(--accent-color);
+    color: var(--card-accent);
   }
 
   .project-image {
