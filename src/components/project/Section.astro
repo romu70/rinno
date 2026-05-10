@@ -5,6 +5,7 @@ interface Props {
   threeColumns?: boolean;
   vertical?: boolean;
   centered?: boolean;
+  noBorder?: boolean;
 }
 
 const {
@@ -12,6 +13,7 @@ const {
   threeColumns = false,
   vertical = false,
   centered = false,
+  noBorder = false,
 } = Astro.props;
 ---
 
@@ -21,6 +23,7 @@ const {
     "three-columns": threeColumns,
     vertical: vertical,
     centered: centered,
+    "no-border": noBorder,
   }}
 >
   {title && <h2>{title}</h2>}
@@ -35,6 +38,11 @@ const {
     border-radius: var(--radius);
     border-top: 1px solid var(--color);
     padding-top: 2rem;
+  }
+
+  .section.no-border {
+    border-top: none;
+    padding-top: 0;
   }
 
   .section h2 {
