@@ -4,6 +4,7 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import novyspec from "../../assets/pro/novyspec/thumbnail.png";
 import smartrx from "../../assets/pro/smartrx/thumbnail.png";
 import meditect from "../../assets/pro/meditect/thumbnail.png";
+import { ROUTES } from "../../config/routes";
 
 const pageDescription =
   "Portfolio de projets professionnels en Product Management et UX Design en SaaS B2B.";
@@ -21,7 +22,7 @@ const structuredData = {
   intro="Product management & design pour résoudre des problèmes métier complexes"
   description={pageDescription}
   structuredData={structuredData}
-  breadcrumbs={[{ name: "Projets pro", url: "/pro" }]}
+  breadcrumbs={[ROUTES.pro]}
 >
   <ProjectCard
     title="Meditect"

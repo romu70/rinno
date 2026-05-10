@@ -1,6 +1,7 @@
 ---
 import ProjectsLanding from "../../layouts/ProjectsLanding.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import { ROUTES } from "../../config/routes";
 
 // Import images
 import coachPizzaImg from "../../assets/perso/coach-pizza/thumbnail.jpg";
@@ -23,7 +24,7 @@ const structuredData = {
   intro="Explorations et expérimentations créatives."
   description={pageDescription}
   structuredData={structuredData}
-  breadcrumbs={[{ name: "Projets personnels", url: "/perso" }]}
+  breadcrumbs={[ROUTES.perso]}
 >
   <ProjectCard
     title="Coach Pizza"
