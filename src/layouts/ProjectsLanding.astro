@@ -13,9 +13,11 @@ interface Props {
   description?: string;
   structuredData?: object;
   breadcrumbs?: BreadcrumbItem[];
+  accent?: "indigo" | "coral";
 }
 
-const { title, intro, description, structuredData, breadcrumbs } = Astro.props;
+const { title, intro, description, structuredData, breadcrumbs, accent } = Astro.props;
+const titleColor = accent === "coral" ? "var(--accent-color-2)" : accent === "indigo" ? "var(--accent-color)" : undefined;
 const pageTitle = `${title} | Romuald Tisserand`;
 const pageDescription = description || intro;
 ---
@@ -28,7 +30,7 @@ const pageDescription = description || intro;
   <div class="projects-page">
     {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
     <header class="page-header">
-      <h1>{title}</h1>
+      <h1 style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
       <p class="intro">{intro}</p>
     </header>
 
