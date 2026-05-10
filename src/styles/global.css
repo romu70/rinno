@@ -119,7 +119,8 @@
   --accent-coral: #cc4060; /* secondary accent — coral */
 
   /* Semantic aliases */
-  --background-color: var(--color-ligthest);
+  /*--background-color: var(--color-ligthest);*/
+  --background-color: white;
   --accent-color: var(--accent-indigo);
   --accent-color-2: var(--accent-coral);
 
