@@ -236,6 +236,22 @@ p a {
   font-weight: 500;
 }
 
+/* Shared nav link interaction pattern */
+a.nav-link {
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease,
+    text-decoration 0.3s ease;
+  position: relative;
+}
+
+a.nav-link:hover {
+  color: var(--color-dark);
+  transform: translateY(-2px);
+  text-decoration: underline;
+}
+
 /* Utility classes */
 .text-center {
   text-align: center;

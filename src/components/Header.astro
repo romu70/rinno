@@ -5,11 +5,11 @@ const currentPath = Astro.url.pathname;
 
 <header>
   <nav class="glass-effect">
-    <a href="/" class:list={[{ active: currentPath === "/" }]}>Accueil</a>
-    <a href="/pro" class:list={[{ active: currentPath.startsWith("/pro") }]}
+    <a href="/" class:list={["nav-link", { active: currentPath === "/" }]}>Accueil</a>
+    <a href="/pro" class:list={["nav-link", { active: currentPath.startsWith("/pro") }]}
       >Pro</a
     >
-    <a href="/perso" class:list={[{ active: currentPath.startsWith("/perso") }]}
+    <a href="/perso" class:list={["nav-link", { active: currentPath.startsWith("/perso") }]}
       >Perso</a
     >
   </nav>
@@ -42,19 +42,7 @@ const currentPath = Astro.url.pathname;
   a {
     font-size: 1.5rem;
     color: var(--color-dark);
-    text-decoration: none;
     font-weight: 500;
-    transition:
-      color 0.3s ease,
-      transform 0.2s ease,
-      text-decoration 0.3s ease;
-    position: relative;
-  }
-
-  a:hover {
-    color: var(--color-dark);
-    transform: translateY(-2px);
-    text-decoration: underline;
   }
 
   a.active {
