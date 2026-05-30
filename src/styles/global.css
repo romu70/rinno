@@ -204,9 +204,6 @@ p {
   line-height: 140%;
 }
 
-p strong {
-  white-space: nowrap;
-}
 
 /* Actionable elements — sans-serif */
 a,
