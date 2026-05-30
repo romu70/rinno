@@ -13,6 +13,7 @@ import userJourney1 from "../../assets/perso/galleries/user-journey.png";
 import userJourney2 from "../../assets/perso/galleries/user-journey-2.png";
 import mobile from "../../assets/perso/galleries/mobile.png";
 import widescreen from "../../assets/perso/galleries/widescreen.png";
+import skill from "../../assets/perso/galleries/skill.png";
 ---
 
 <ProjectPersonal
@@ -147,6 +148,69 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   </Row>
 
   <Row>
+    <Section title="Itération 3">
+      <Column title="Constat : La flemme bis" fullWidth>
+        <p>
+          Malgré le script, je me suis surpris à toujours accumuler les photos.
+          Certes, le script accélère le process global, mais pas assez pour
+          m'inciter à publier plus rapidement mes images.
+        </p>
+        <p>Ce que le script écrit avec Gemini fait :</p>
+        <ul class="list-arrow">
+          <li>Scanne le dossier inbox</li>
+          <li>Redimensionne les images</li>
+          <li>Extrait la géolocation et la date de shooting</li>
+          <li>Crée les fichiers Astro nécessaires pour les nouvelles images</li>
+        </ul>
+        <p>Mais restait à ma charge :</p>
+        <ul class="list-arrow">
+          <li>De transférer les photos de mon dossiers Downloads dans inbox</li>
+          <li>D'ajouter un nom aux photos</li>
+          <li>Renseigner les métadonnées</li>
+        </ul>
+        <p>
+          Et comme il fallait faire ça image par image, c'est là que je perdais
+          encore du temps.
+        </p>
+      </Column>
+      <Column title="Bonjour Claude, ça skill ?" fullWidth>
+        <p>
+          Avant de parler de Claude, j'ai décidé de supprimer le nom des images,
+          qui ne rimait à rien, et de mettre en avant les artistes et le type
+          des fonts.
+        </p>
+        <p>
+          Puis, avec Claude, j'ai rédigé un <a
+            href="https://claude.com/fr/skills"
+            target="_blank">SKILL</a
+          > qui prend en charge toute la partie pénible et répétitive de l'ajout
+          des images sur le site.
+        </p>
+        <ul class="list-arrow">
+          <li>Transférer les images du dossier Downloads vers inbox</li>
+          <li>
+            Lancer un sous agent pour caractériser les images, le sous agent est
+            par exemple en mesure de déterminer si une font est serif ou
+            sans-serif. Quel gain de temps !
+          </li>
+          <li>
+            Pour les oeuvres de street art, le sous agent est aussi capable
+            d'identifier la signature de l'artiste
+          </li>
+          <li>Valider l'ajout des images</li>
+        </ul>
+        <p>
+          Le gain est aussi dans la manière dont le workflow s'exécute. Au lieu
+          d'avoir à modifier chaque fichier individuellement, Claude me fait une
+          liste de propositions, que je valide, amende, ou refuse, en une seule
+          passe.
+        </p>
+        <Figure caption="Le skill Claude en action" image={skill} alt="skill" />
+      </Column>
+    </Section>
+  </Row>
+
+  <Row>
     <Section title="En situation">
       <Column title="Ecran large">
         <Figure
@@ -171,21 +235,17 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
       <h2>Apprentissages et Résultats</h2>
       <ul class="list-arrow">
         <li>
-          Site fonctionnel qui expose mes collections, adapté pour gérer
-          quelques centaines d'images.
-        </li>
-        <li>
-          Reproduction fidèle de la galerie de DuckDuckGo à quelques détails
-          prêts.
-        </li>
-        <li>
           Compétences TypeScript renforcées : typage, gestion d'événements,
           responsivité.
         </li>
         <li>
           Expérience concrête de développement augmenté par l'IA (vibe coding),
-          ici avec Gemini, de l'expression de besoins initiale, aux itérations
-          jusqu'au script fonctionnel final.
+          ici avec Claude et Gemini, de l'expression de besoins initiale au
+          script fonctionnel final.
+        </li>
+        <li>
+          Expérience concrête de mise en oeuvre de l'IA agentique via le SKILL
+          Claude, qui orchestre toute la procédure d'ajout de nouvelles images.
         </li>
         <li>
           Ce projet m'a permis de rencontrer certains des artistes exposés ici,
@@ -201,9 +261,10 @@ import widescreen from "../../assets/perso/galleries/widescreen.png";
   <Row>
     <Keywords>
       <span class="keyword">Astro</span>
-      <span class="keyword">Galerie</span>
       <span class="keyword">GitHub Pages</span>
+      <span class="keyword">IA Agentique</span>
       <span class="keyword">JavaScript</span>
+      <span class="keyword">Skill Claude</span>
       <span class="keyword">Street art</span>
       <span class="keyword">TypeScript</span>
       <span class="keyword">Typographie</span>
