@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meditect — Proposition de refonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:   #FBFBFA;
+    --surface: #FFFFFF;
+    --soft:    #F2F2F5;
+    --line:    #E4E4EC;
+    --ink:     #0A0A14;
+    --body:    #2A2A3E;
+    --muted:   #5E5E78;
+    --accent:  #4040CC;
+    --accent-soft: #EEEEFB;
+    --coral:   #B8344F;
+    --coral-soft: #FBECEF;
+    --green:   #1F7A4D;
+    --green-soft: #E7F4EC;
+    --sans: 'Montserrat', system-ui, sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --r: 10px;
+    --wrap: 1180px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { background: var(--paper); color: var(--body); font-family: var(--serif); font-size: 21px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* ── Top bar ─────────────────────────────── */
+  .topbar { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid transparent; transition: border-color .3s; }
+  .topbar.scrolled { border-bottom-color: var(--line); }
+  .topbar-in { max-width: var(--wrap); margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { font-family: var(--sans); font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--muted); font-weight: 500; }
+  .topnav { display: flex; gap: 28px; }
+  .topnav a { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 4px 0; border-bottom: 1.5px solid transparent; transition: color .2s, border-color .2s; }
+  .topnav a:hover { color: var(--ink); }
+  .topnav a[aria-current] { color: var(--ink); border-bottom-color: var(--accent); }
+  .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+
+  /* ── Hero ────────────────────────────────── */
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
+  .hero { padding-top: 56px; }
+  .crumbs { font-family: var(--sans); font-size: 12px; color: var(--muted); display: flex; gap: 8px; list-style: none; margin-bottom: 48px; }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); }
+  .crumbs li + li::before { content: "/"; margin-right: 8px; color: var(--line); }
+  .eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .hero h1 { font-family: var(--sans); font-weight: 600; font-size: clamp(56px, 9vw, 120px); line-height: .92; letter-spacing: -0.045em; color: var(--ink); }
+  .lede { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.3; color: var(--body); max-width: 760px; margin-top: 28px; }
+  .lede em { color: var(--ink); font-style: italic; }
+  .meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .meta dt { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .meta dd { font-size: 20px; line-height: 1.35; color: var(--ink); }
+  .meta a { color: var(--accent); text-decoration: none; font-family: var(--sans); font-size: 14px; font-weight: 600; }
+  .meta a:hover { text-decoration: underline; }
+
+  .cover { margin-top: 56px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--soft); aspect-ratio: 2 / 1; }
+  .cover img { width: 100%; height: 100%; object-fit: cover; }
+
+  .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0; border-bottom: 1px solid var(--line); }
+  .fig { padding: 36px 32px 36px 0; }
+  .fig + .fig { padding-left: 32px; border-left: 1px solid var(--line); }
+  .fig-n { font-family: var(--sans); font-weight: 600; font-size: clamp(40px, 4.4vw, 60px); letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+  .fig-n small { font-size: .45em; letter-spacing: -0.01em; color: var(--accent); margin-left: 4px; }
+  .fig-l { margin-top: 10px; font-size: 19px; color: var(--muted); line-height: 1.35; }
+
+  /* ── Layout: rail + content ──────────────── */
+  .layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 72px; padding-top: 96px; }
+  .rail { position: sticky; top: 104px; align-self: start; }
+  .rail p { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .rail ol { list-style: none; border-left: 1px solid var(--line); }
+  .rail a { display: flex; gap: 12px; padding: 7px 0 7px 16px; margin-left: -1px; border-left: 2px solid transparent; font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .2s, border-color .2s; }
+  .rail a span { font-variant-numeric: tabular-nums; opacity: .6; }
+  .rail a:hover { color: var(--ink); }
+  .rail a.on { color: var(--ink); border-left-color: var(--accent); }
+  .rail a.on span { color: var(--accent); opacity: 1; }
+
+  .content { max-width: 800px; }
+  .chapter { padding-bottom: 112px; }
+  .chapter-num { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .16em; color: var(--accent); margin-bottom: 14px; }
+  h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(32px, 3.4vw, 44px); letter-spacing: -0.03em; line-height: 1.08; color: var(--ink); margin-bottom: 32px; }
+  h3 { font-family: var(--sans); font-weight: 600; font-size: 20px; letter-spacing: -0.015em; color: var(--ink); margin: 56px 0 16px; }
+  h4 { font-family: var(--sans); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  p + p { margin-top: 16px; }
+  strong { color: var(--ink); font-weight: 600; }
+  .intro { font-size: 25px; line-height: 1.45; color: var(--ink); }
+
+  ul.arrows { list-style: none; margin-top: 12px; }
+  ul.arrows li { position: relative; padding-left: 28px; margin-top: 10px; }
+  ul.arrows li::before { content: "→"; position: absolute; left: 0; top: 0; font-family: var(--sans); font-size: 15px; line-height: 32px; color: var(--accent); }
+
+  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin: 32px 0; }
+  .facts div { background: var(--surface); padding: 20px 24px; }
+  .facts dt { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .facts dd { font-size: 20px; color: var(--ink); line-height: 1.35; }
+
+  .statement { margin: 48px 0 0; padding: 8px 0 8px 28px; border-left: 3px solid var(--accent); font-size: clamp(28px, 3vw, 38px); line-height: 1.2; font-style: italic; color: var(--ink); }
+  .statement small { display: block; font-family: var(--sans); font-style: normal; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+
+  .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 8px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 28px; }
+  .card p { font-size: 20px; }
+  .card ul.arrows li { font-size: 20px; }
+
+  .impact { margin-top: 20px; background: var(--ink); color: #E8E8F2; border-radius: var(--r); padding: 32px; }
+  .impact h4 { color: #A9A9FF; }
+  .impact ol { list-style: none; display: grid; gap: 16px; }
+  .impact li { display: grid; grid-template-columns: 28px 1fr; font-size: 20px; line-height: 1.45; }
+  .impact li span { font-family: var(--sans); font-size: 12px; font-weight: 600; color: #A9A9FF; padding-top: 6px; }
+  .impact strong { color: #fff; }
+
+  .quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 56px; }
+  blockquote { position: relative; padding-top: 36px; }
+  blockquote::before { content: "“"; position: absolute; top: -18px; left: -4px; font-size: 80px; line-height: 1; color: var(--accent); font-family: var(--serif); }
+  blockquote p { font-size: 22px; font-style: italic; line-height: 1.45; color: var(--ink); }
+  blockquote footer { margin-top: 16px; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink); }
+  blockquote footer span { display: block; font-weight: 500; color: var(--muted); margin-top: 2px; }
+
+  /* ── Figures / media ─────────────────────── */
+  figure { margin: 0; }
+  .frame { position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--soft); overflow: hidden; cursor: zoom-in; }
+  .frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .frame:hover img { transform: scale(1.02); }
+  .frame.contain img { object-fit: contain; background: var(--surface); }
+  .frame::after { content: attr(data-alt); position: absolute; inset: 0; display: none; align-items: center; justify-content: center; text-align: center; padding: 16px; font-family: var(--sans); font-size: 13px; color: var(--muted); }
+  .frame.noimg img { opacity: 0; }
+  .frame.noimg::after { display: flex; }
+  figcaption { margin-top: 10px; font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.45; }
+  .r-16x9 { aspect-ratio: 16 / 9; } .r-4x3 { aspect-ratio: 4 / 3; } .r-3x4 { aspect-ratio: 3 / 4; } .r-16x10 { aspect-ratio: 16 / 10; }
+  .wide { margin-top: 32px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
+
+  /* ── Artefacts: tabs (replaces the accordion) ── */
+  .artefacts { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .artefacts-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+  .artefacts-head h3 { margin: 0; font-size: 24px; }
+  .tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--soft); border-radius: 999px; flex-wrap: wrap; }
+  .tab { appearance: none; border: 0; background: transparent; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--muted); padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s, box-shadow .2s; }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(10,10,20,.08), 0 0 0 1px var(--line); }
+  .panel { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 32px; align-items: start; animation: fade .35s ease; }
+  .panel[hidden] { display: none; }
+  .panel .tag { display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 5px 10px; border-radius: 999px; margin-bottom: 14px; }
+  .panel h4 { font-size: 18px; letter-spacing: -0.01em; text-transform: none; color: var(--ink); margin-bottom: 10px; }
+  .panel p, .panel li { font-size: 19px; }
+  .steps { list-style: none; display: flex; gap: 8px; margin-top: 20px; }
+  .steps li { flex: 1; height: 4px; border-radius: 2px; background: var(--line); }
+  .steps li.on { background: var(--accent); }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ── Before / after ──────────────────────── */
+  .ba { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .chip.no { color: var(--coral); background: var(--coral-soft); }
+  .chip.yes { color: var(--green); background: var(--green-soft); }
+  .note { margin-top: 24px; padding: 20px 24px; border-radius: var(--r); background: var(--coral-soft); color: #4A1622; font-size: 19px; }
+  .note strong { color: #4A1622; }
+
+  ol.numbered { list-style: none; counter-reset: n; margin-top: 16px; }
+  ol.numbered li { counter-increment: n; position: relative; padding-left: 44px; margin-top: 14px; }
+  ol.numbered li::before { content: counter(n); position: absolute; left: 0; top: 4px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-family: var(--sans); font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+
+  /* ── Case studies ────────────────────────── */
+  .cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .case { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; transition: border-color .25s, transform .25s, box-shadow .25s; }
+  .case:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 32px -16px rgba(64,64,204,.35); }
+  .case-img { aspect-ratio: 16 / 10; background: var(--soft); border-bottom: 1px solid var(--line); }
+  .case-img img { width: 100%; height: 100%; object-fit: cover; }
+  .case-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .case-body h3 { margin: 0; font-size: 20px; }
+  .case-body p { font-size: 19px; }
+  .case-foot { margin-top: auto; padding-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--sans); font-size: 12px; font-weight: 600; }
+  .case-foot .metric { color: var(--muted); }
+  .case-foot .go { color: var(--accent); white-space: nowrap; }
+  .voices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 56px; }
+  .voices blockquote p { font-size: 20px; }
+
+  /* ── Learnings ───────────────────────────── */
+  .learn { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .learn article { background: var(--surface); padding: 32px; }
+  .learn .n { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .1em; }
+  .learn h3 { margin: 12px 0 10px; font-size: 19px; line-height: 1.3; }
+  .learn p { font-size: 19px; }
+
+  /* ── Appendix ────────────────────────────── */
+  .appendix { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .links { list-style: none; }
+  .links a { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; transition: color .2s, padding .2s; }
+  .links a:hover { color: var(--accent); padding-left: 6px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+  .tags li { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--body); border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+
+  .next { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 112px 0 0; padding: 40px 0; border-top: 1px solid var(--line); text-decoration: none; }
+  .next small { display: block; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .next strong { font-family: var(--sans); font-size: clamp(32px, 4vw, 56px); font-weight: 600; letter-spacing: -0.04em; color: var(--ink); transition: color .2s; }
+  .next .arrow { font-family: var(--sans); font-size: 40px; color: var(--accent); transition: transform .3s; }
+  .next:hover strong { color: var(--accent); }
+  .next:hover .arrow { transform: translateX(8px); }
+
+  .foot { border-top: 1px solid var(--line); }
+  .foot-in { max-width: var(--wrap); margin: 0 auto; padding: 24px 32px; display: flex; justify-content: space-between; gap: 16px; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+  .foot a { text-decoration: none; } .foot a:hover { color: var(--ink); }
+
+  /* ── Lightbox ────────────────────────────── */
+  dialog.lb { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; margin: auto; }
+  dialog.lb::backdrop { background: rgba(10,10,20,.82); backdrop-filter: blur(4px); }
+  dialog.lb img { max-width: 94vw; max-height: 82vh; border-radius: 8px; background: #fff; }
+  dialog.lb p { color: #E8E8F2; font-family: var(--sans); font-size: 13px; text-align: center; margin-top: 12px; }
+  dialog.lb button { position: fixed; top: 20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.08); color: #fff; font-size: 22px; cursor: pointer; }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 0; }
+    .rail { top: 61px; z-index: 40; margin: 0 -32px 48px; padding: 10px 32px; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); overflow-x: auto; }
+    .rail p { display: none; }
+    .rail ol { display: flex; gap: 6px; border: 0; white-space: nowrap; }
+    .rail a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; margin: 0; background: var(--surface); }
+    .rail a.on { border-color: var(--accent); background: var(--accent-soft); }
+    .content { max-width: none; }
+    .layout { padding-top: 48px; }
+  }
+  @media (max-width: 760px) {
+    body { font-size: 19px; }
+    .wrap, .topbar-in, .foot-in { padding-left: 20px; padding-right: 20px; }
+    .rail { margin: 0 -20px 40px; padding: 10px 20px; }
+    .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .figures { grid-template-columns: minmax(0, 1fr); }
+    .fig, .fig + .fig { padding: 24px 0; border-left: 0; }
+    .fig + .fig { border-top: 1px solid var(--line); }
+    .duo, .quotes, .grid-2, .grid-3, .ba, .cases, .voices, .learn, .appendix, .facts, .panel { grid-template-columns: minmax(0, 1fr); }
+    .topnav { gap: 18px; }
+    .brand span { display: none; }
+    .chapter { padding-bottom: 80px; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#">Romuald Tisserand <span>— Product &amp; Design</span></a>
+    <nav class="topnav" aria-label="Principale">
+      <a href="#">Accueil</a>
+      <a href="#" aria-current="page">Pro</a>
+      <a href="#">Perso</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+  <!-- ── Hero ─────────────────────────────── -->
+  <section class="hero wrap">
+    <nav aria-label="Fil d'Ariane"><ol class="crumbs"><li><a href="#">Accueil</a></li><li><a href="#">Projets professionnels</a></li><li aria-current="page">Meditect</li></ol></nav>
+    <p class="eyebrow">Healthtech · Afrique subsaharienne · 2021 — 2024</p>
+    <h1>Meditect</h1>
+    <p class="lede">Un logiciel de pharmacie SaaS, mobile first et résistant aux coupures — <em>conçu sur le terrain, avec les pharmaciens.</em></p>
+    <dl class="meta">
+      <div><dt>Rôle</dt><dd>Head of Product &amp; Design</dd></div>
+      <div><dt>Équipe</dt><dd>~20 personnes, dont 3 en produit</dd></div>
+      <div><dt>Durée</dt><dd>4 ans · Comité de direction</dd></div>
+      <div><dt>Site</dt><dd><a href="https://www.meditect.com/" target="_blank" rel="noopener noreferrer">meditect.com ↗</a></dd></div>
+    </dl>
+    <div class="cover"><img src="https://rinno.fr/_astro/hero.DQAL41pe_ZrYfue.webp" alt="Interface du logiciel de pharmacie Meditect : catalogue produits" /></div>
+    <div class="figures">
+      <div class="fig"><div class="fig-n">~5<small>%</small></div><p class="fig-l">du marché cible en 24 mois, sur 7 pays</p></div>
+      <div class="fig"><div class="fig-n">2</div><p class="fig-l">laboratoires pharmaceutiques signés comme partenaires</p></div>
+      <div class="fig"><div class="fig-n">+27k</div><p class="fig-l">produits — 1<sup>er</sup> catalogue digital d'Afrique</p></div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <!-- ── Sticky chapter rail ────────────── -->
+    <aside class="rail" aria-label="Sommaire">
+      <p>Sommaire</p>
+      <ol>
+        <li><a href="#contexte"><span>01</span>Contexte</a></li>
+        <li><a href="#strategie"><span>02</span>Stratégie &amp; impact</a></li>
+        <li><a href="#discovery"><span>03</span>Discovery</a></li>
+        <li><a href="#design"><span>04</span>Product design</a></li>
+        <li><a href="#cas"><span>05</span>Cas pratiques</a></li>
+        <li><a href="#enseignements"><span>06</span>Enseignements</a></li>
+      </ol>
+    </aside>
+
+    <div class="content">
+
+      <!-- 01 Contexte -->
+      <section class="chapter" id="contexte">
+        <p class="chapter-num">01</p>
+        <h2>Contexte</h2>
+        <p class="intro">Meditect est une startup healthtech initialement créée pour lutter contre les faux médicaments en Afrique subsaharienne.</p>
+        <p style="margin-top:24px">Recruté lors d'un pivot stratégique :</p>
+        <ul class="arrows">
+          <li>Digitaliser la santé en Afrique subsaharienne, dont les flux sont encore très papier-crayon.</li>
+          <li>La data sera notre source de revenus.</li>
+        </ul>
+        <p style="margin-top:24px">Dans un système de santé, le pharmacien est l'interlocuteur de toutes les parties prenantes, il en est le maillon central.</p>
+        <p class="statement"><small>Le parti pris</small>Nous commencerons par le pharmacien.</p>
+      </section>
+
+      <!-- 02 Stratégie -->
+      <section class="chapter" id="strategie">
+        <p class="chapter-num">02</p>
+        <h2>Stratégie produit et impact</h2>
+        <div class="duo">
+          <div class="card">
+            <h4>Challenge</h4>
+            <p>Plus de 50 pharmacies visitées, pour découvrir que :</p>
+            <ul class="arrows">
+              <li><strong>Le besoin n°1</strong> est d'avoir un stock <em>propre</em>, pour toujours servir les patients et minimiser les pertes de trésorerie dues aux produits périmés.</li>
+              <li><strong>La concurrence</strong> propose des solutions <em>on-premise</em> qui ne tiennent pas face aux coupures régulières du courant électrique.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Vision</h4>
+            <p>Un nouveau logiciel de pharmacie, SaaS, mobile first, pour :</p>
+            <ul class="arrows">
+              <li>Résister aux coupures de réseau (électrique et data).</li>
+              <li>Permettre le pilotage à distance.</li>
+              <li>S'appuyer sur un catalogue standardisé de produits, devenu notre <strong>asset stratégique</strong> pour produire la donnée sur plusieurs marchés.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="impact">
+          <h4>Impact</h4>
+          <ol>
+            <li><span>01</span><div><strong>7 pays et ~5 % du marché cible en 24 mois</strong>, 1<sup>ères</sup> ventes en 12 mois.</div></li>
+            <li><span>02</span><div><strong>Partenariats avec 2 laboratoires</strong> pharmaceutiques majeurs.</div></li>
+            <li><span>03</span><div><strong>1<sup>er</sup> catalogue d'Afrique subsaharienne</strong> validé par des pharmaciens (+33k produits), monétisé auprès d'un acteur majeur de l'assurance santé privée (S&amp;P 500).</div></li>
+          </ol>
+        </div>
+
+        <div class="quotes">
+          <blockquote>
+            <p>Romuald a établi une solide culture produit basée sur la recherche utilisateur et des discussions exigeantes. Grâce à lui, nous avons réussi à pivoter d'une solution B2C de traçabilité à un système B2B de gestion de pharmacie. Un véritable team player et bâtisseur persévérant.</p>
+            <footer>Matthieu Bagory<span>ex-CTO de Meditect</span></footer>
+          </blockquote>
+          <blockquote>
+            <p>La vision claire de Romuald et sa constance ont permis à l'équipe de travailler avec cohérence. Il comprend les défis du développement, ce qui facilite la priorisation et rend nos interactions sur le design efficaces.</p>
+            <footer>Maxime Petit<span>ex-Développeur chez Meditect</span></footer>
+          </blockquote>
+        </div>
+
+        <!-- Artefacts: tabs instead of accordion -->
+        <div class="artefacts">
+          <div class="artefacts-head">
+            <h3>Artefacts de la stratégie produit</h3>
+            <div class="tabs" role="tablist" aria-label="Artefacts">
+              <button class="tab" role="tab" id="t-seg" aria-controls="p-seg" aria-selected="true">Segmentation</button>
+              <button class="tab" role="tab" id="t-map" aria-controls="p-map" aria-selected="false" tabindex="-1">Mapping</button>
+              <button class="tab" role="tab" id="t-road" aria-controls="p-road" aria-selected="false" tabindex="-1">Roadmap</button>
+              <button class="tab" role="tab" id="t-sprint" aria-controls="p-sprint" aria-selected="false" tabindex="-1">Sprint</button>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="p-seg" aria-labelledby="t-seg">
+            <figure><button class="frame contain r-4x3" data-alt="Segmentation commerciale"><img src="https://rinno.fr/_astro/segmentation.Dlq9If2s_Z28BTzG.webp" alt="Segmentation commerciale" /></button></figure>
+            <div>
+              <span class="tag">Go-to-market</span>
+              <h4>Segmentation commerciale</h4>
+              <p>Les segments, issus de <em>Crossing the chasm</em> de G. A. Moore, ont permis de cartographier et d'ordonner les cibles commerciales.</p>
+              <p>2 segments ajoutés pour le marché africain :</p>
+              <ul class="arrows">
+                <li><strong>Dépôts de médicaments</strong> : a débloqué nos ventes après 12 mois de développement.</li>
+                <li><strong>Pharmacies avec dépôts</strong> : pour anticiper un impact majeur sur le produit.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="p-map" aria-labelledby="t-map" hidden>
+            <figure><button class="frame contain r-4x3" data-alt="Tasks mapping"><img src="https://rinno.fr/_astro/mapping.MN24qjAB_cyKTP.webp" alt="Tasks mapping" /></button></figure>
+            <div>
+              <span class="tag">Temps long</span>
+              <h4>Mapping</h4>
+              <p>Vision d'ensemble, en actualisation continue. Premier des 3 horizons de planification qui alignent stratégie et exécution.</p>
+              <ol class="steps" aria-label="Horizon 1 sur 3"><li class="on"></li><li></li><li></li></ol>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="p-road" aria-labelledby="t-road" hidden>
+            <figure><button class="frame contain r-4x3" data-alt="Roadmap trimestrielle"><img src="https://rinno.fr/_astro/roadmap.C5HQxoNQ_1iIt7J.webp" alt="Roadmap trimestrielle" /></button></figure>
+            <div>
+              <span class="tag">3 mois</span>
+              <h4>Roadmap du trimestre</h4>
+              <p>L'enveloppe fonctionnelle à 3 mois : ce que l'équipe s'engage à livrer, dérivé du mapping.</p>
+              <ol class="steps" aria-label="Horizon 2 sur 3"><li class="on"></li><li class="on"></li><li></li></ol>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="p-sprint" aria-labelledby="t-sprint" hidden>
+            <figure><button class="frame contain r-4x3" data-alt="Sprint"><img src="https://rinno.fr/_astro/sprint.CqjTvGfD_oHVl3.webp" alt="Sprint" /></button></figure>
+            <div>
+              <span class="tag">Court terme</span>
+              <h4>Sprint</h4>
+              <p>L'exécution court terme, côté développement.</p>
+              <ol class="steps" aria-label="Horizon 3 sur 3"><li class="on"></li><li class="on"></li><li class="on"></li></ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Discovery -->
+      <section class="chapter" id="discovery">
+        <p class="chapter-num">03</p>
+        <h2>Discovery et process de recherche</h2>
+        <p class="intro">Priorité n°1 : comprendre le terrain.</p>
+        <dl class="facts">
+          <div><dt>Recherche terrain</dt><dd><strong>+300</strong> comptes-rendus avec les pharmaciens, sur place ou via WhatsApp</dd></div>
+          <div><dt>Multi-stakeholders</dt><dd><strong>+20</strong> échanges avec assurances, grossistes et laboratoires</dd></div>
+          <div><dt>Documentation</dt><dd>Tous les échanges retranscrits, parcours illustrés de photos in situ</dd></div>
+          <div><dt>Recherche continue</dt><dd>Pas une semaine sans échange avec au moins un·e pharmacien·ne</dd></div>
+        </dl>
+        <h3>Principes opérationnels</h3>
+        <p>La recherche est organisée dans des bases de données Notion :</p>
+        <ul class="arrows">
+          <li><strong>To Learn</strong> : nos questions, notées au fil de l'eau, marquées résolues quand la réponse arrive.</li>
+          <li><strong>Sessions</strong> : retranscriptions des échanges + photos, vidéos, scans de documents. Les sujets sont préparés en avance.</li>
+        </ul>
+        <p>Les informations collectées nourrissent la conception et la roadmap produit.</p>
+        <div class="grid-3">
+          <figure><button class="frame r-3x4" data-alt="Pharmacie Medina, Dakar"><img src="https://rinno.fr/_astro/medina.DMyMVKkv_Z1jWDNU.webp" alt="Pharmacie Medina, Dakar, Sénégal" /></button><figcaption>Pharmacie Medina — Dakar, Sénégal</figcaption></figure>
+          <figure><button class="frame r-3x4" data-alt="Observation processus de commande"><img src="https://rinno.fr/_astro/belier.CUzmbP0e_Z1Ij27f.webp" alt="Observation du processus de commande" /></button><figcaption>Observation du processus de commande</figcaption></figure>
+          <figure><button class="frame r-3x4" data-alt="Dépôt de médicaments, Sikensi"><img src="https://rinno.fr/_astro/depot-sikensi.BZyGKgtW_sQjNF.webp" alt="Dépôt de médicaments à Sikensi, Côte d'Ivoire" /></button><figcaption>Dépôt de médicaments — Sikensi, Côte d'Ivoire</figcaption></figure>
+        </div>
+      </section>
+
+      <!-- 04 Product design -->
+      <section class="chapter" id="design">
+        <p class="chapter-num">04</p>
+        <h2>Product design</h2>
+
+        <h3 style="margin-top:0">Wireframes</h3>
+        <p>En Afrique, les personnes au comptoir ne sont pas forcément formées au métier de la pharmacie. Avec nos pharmaciens internes, nous avons conçu un logiciel radicalement simplifié comparé à l'état de l'art.</p>
+        <ul class="arrows">
+          <li><strong>Navigation principale</strong> : passer de l'espace de vente aux commandes, puis à la gestion financière.</li>
+          <li><strong>Navigation secondaire</strong> : spécialiser le travail dans un espace. Ex. commandes : préparer, envoyer, réceptionner.</li>
+        </ul>
+        <figure class="wide"><button class="frame contain r-16x9" data-alt="Wireframes du logiciel"><img src="https://rinno.fr/_astro/wireframes.cxzd31Kh_Z1w57hc.webp" alt="Wireframes du logiciel" /></button><figcaption>Un logiciel aussi simple à prendre en main que possible, pour masquer la complexité du métier.</figcaption></figure>
+
+        <h3>Charte de couleurs — une fausse bonne idée</h3>
+        <p>Nous avions imaginé une charte inspirée des couleurs africaines : le rouge de la terre et le vert de la végétation, testée sur le prototype du catalogue.</p>
+        <div class="ba">
+          <figure><span class="chip no">✕ Prototype rejeté</span><button class="frame contain r-16x10" data-alt="Prototype du catalogue"><img src="https://rinno.fr/_astro/ref-old.B99KHyI-_ZfAyzI.webp" alt="Prototype du catalogue avec la charte africaine" /></button></figure>
+          <figure><span class="chip yes">✓ En production</span><button class="frame contain r-16x10" data-alt="Catalogue en production"><img src="https://rinno.fr/_astro/ref-new.CbKUDI5J_1gUhW8.webp" alt="Catalogue en production, bleu et vert" /></button></figure>
+        </div>
+        <p class="note"><strong>Ce qu'on a appris :</strong> les pharmaciens voulaient un outil « pro », pas un marqueur culturel. Nous avons basculé vers le bleu et le vert, couleurs classiques de la santé en Occident.</p>
+
+        <h3>Design system</h3>
+        <p>Après un benchmark de librairies UI, nous avons choisi Chakra UI et construit notre design system selon les principes d'Atomic Design, en s'appuyant sur les composants, variables, variants et l'auto-layout de Figma. <strong>~120 composants</strong>, tous disponibles en version écran large et mobile.</p>
+        <div class="grid-2">
+          <figure><button class="frame contain r-4x3" data-alt="Design system : boutons"><img src="https://rinno.fr/_astro/ds-button.CabMcoHS_khgmG.webp" alt="Design system : boutons" /></button><figcaption>Boutons</figcaption></figure>
+          <figure><button class="frame contain r-4x3" data-alt="Design system : shell"><img src="https://rinno.fr/_astro/ds-shell.qd23wTux_Z16LVOU.webp" alt="Design system : shell" /></button><figcaption>Shell applicatif</figcaption></figure>
+        </div>
+
+        <h3>Tests utilisateurs à 6 500 km</h3>
+        <p>Ma présence sur le terrain était consacrée à la discovery et aux commerciaux. Pour les tests, nous nous sommes inspirés de Doctolib :</p>
+        <ol class="numbered">
+          <li>Vidéo d'exécution du prototype.</li>
+          <li>Page Notion avec la vidéo et un questionnaire d'évaluation (scores de 1 à 10 sur la compréhension et la simplicité perçue, + commentaires libres).</li>
+          <li>Envoi du lien aux pharmaciens via WhatsApp.</li>
+        </ol>
+        <div class="grid-2">
+          <figure><button class="frame contain r-4x3" data-alt="Page de test : impression des étiquettes"><img src="https://rinno.fr/_astro/test-etiquettes.BU12a2WS_1423yg.webp" alt="Page de tests pour l'impression des étiquettes" /></button><figcaption>Page de test — impression des étiquettes</figcaption></figure>
+          <figure><button class="frame contain r-4x3" data-alt="Résultats des tests"><img src="https://rinno.fr/_astro/test-etiquettes-resultats.CIrcQk9T_1eXlbD.webp" alt="Résultats des tests pour l'impression des étiquettes" /></button><figcaption>Résultats quantifiés</figcaption></figure>
+        </div>
+        <p style="margin-top:24px">Cette approche asynchrone a effacé une partie de la distance : des retours quantifiés pour valider nos concepts et itérer (modèle d'étiquette, par exemple).</p>
+
+        <h3>Traçabilité</h3>
+        <p>Chaque fichier de design est organisé ainsi :</p>
+        <ul class="arrows">
+          <li><strong>components</strong> : composants issus du design system, spécialisés pour ce fichier.</li>
+          <li><strong>[YYQX] sujet</strong> : une page par trimestre et par sujet. Ex. <em>[23Q1] Éditer un BL des produits de la vente</em>.</li>
+          <li><strong>Vignette de traçabilité</strong> : un lien vers le ticket concerné, et vice versa.</li>
+        </ul>
+        <figure class="wide"><button class="frame contain r-16x9" data-alt="Traçabilité Figma / Notion"><img src="https://rinno.fr/_astro/tracabilite.Dfc8XMZg_Z1jP6HK.webp" alt="Traçabilité Figma/Notion" /></button><figcaption>Traçabilité Figma ↔ Notion</figcaption></figure>
+      </section>
+
+      <!-- 05 Cas pratiques -->
+      <section class="chapter" id="cas">
+        <p class="chapter-num">05</p>
+        <h2>Cas pratiques</h2>
+        <div class="cases">
+          <a class="case" href="#">
+            <div class="case-img"><img src="https://rinno.fr/_astro/ds-thumbnail.B6EpkDPS_qDlnV.webp" alt="" /></div>
+            <div class="case-body">
+              <h3>Design system</h3>
+              <p>Accélérer la conception du produit et renforcer la cohérence UX et UI.</p>
+              <div class="case-foot"><span class="metric">120 génériques · +100 spécialisés</span><span class="go">Deep-dive →</span></div>
+            </div>
+          </a>
+          <a class="case" href="#">
+            <div class="case-img"><img src="https://rinno.fr/_astro/rec-thumb.BhFUfA6i_14Orvo.webp" alt="" /></div>
+            <div class="case-body">
+              <h3>Réception de commande</h3>
+              <p>Faciliter l'alimentation du stock, une fonctionnalité exécutée plusieurs fois par jour.</p>
+              <div class="case-foot"><span class="metric">Fonctionnalité 0 → 1</span><span class="go">Deep-dive →</span></div>
+            </div>
+          </a>
+        </div>
+        <div class="voices">
+          <blockquote><p>Votre produit, il est quand même révolutionnaire si on compare à ce qui existe chez nous.</p><footer>Dr Mansour<span>Yaoundé, Cameroun</span></footer></blockquote>
+          <blockquote><p>…votre logiciel est quand même bien pensé…</p><footer>Dr Eteki<span>Douala, Cameroun</span></footer></blockquote>
+          <blockquote><p>Les clients sont plutôt satisfaits, la preuve : déjà plusieurs recommandations !</p><footer>Nadia<span>Commerciale Meditect</span></footer></blockquote>
+        </div>
+      </section>
+
+      <!-- 06 Enseignements -->
+      <section class="chapter" id="enseignements">
+        <p class="chapter-num">06</p>
+        <h2>Enseignements clés</h2>
+        <div class="learn">
+          <article><span class="n">01</span><h3>Discovery terrain = fondation produit</h3><p>Les heures de terrain, sur place ou sur WhatsApp, ont révélé ce qu'un brief rapide n'aurait jamais montré. Sans cette immersion, le produit n'aurait probablement pas été celui-là.</p></article>
+          <article><span class="n">02</span><h3>Le product market fit prime</h3><p>Avec des ressources limitées, mieux vaut un produit incomplet qui fonctionne. Décision assumée : abandonner Storybook et reporter l'optimisation UX mobile pour valider le marché d'abord.</p></article>
+          <article><span class="n">03</span><h3>Le design system, levier de passage à l'échelle</h3><p>Avec +120 composants et une équipe de 4 personnes, nous avons conçu un ERP complet et cohérent. En contexte startup, un vrai « game changer ».</p></article>
+          <article><span class="n">04</span><h3>Pragmatisme = trouver des solutions</h3><p>À 6 500 km, en startup, il faut avancer avec ce qu'on a — comme les tests sur vidéo.</p></article>
+        </div>
+      </section>
+
+      <!-- Appendix -->
+      <section class="appendix" aria-label="Ressources">
+        <div>
+          <h4>Liens utiles</h4>
+          <ul class="links">
+            <li><a href="#">Accueil de l'application pharmacien <span aria-hidden="true">↗</span></a></li>
+            <li><a href="#">User research : prototype d'impression des étiquettes <span aria-hidden="true">↗</span></a></li>
+            <li><a href="#">Aide de l'application pharmacien <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.meditect.com/" target="_blank" rel="noopener noreferrer">Site de Meditect <span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Mots-clés</h4>
+          <ul class="tags">
+            <li>Discovery</li><li>User Research</li><li>Design System</li><li>UX Design</li><li>Design Ops</li><li>Product Ops</li><li>OKRs</li><li>SaaS</li><li>Healthtech</li><li>Figma</li><li>Notion</li><li>React</li><li>Storybook</li>
+          </ul>
+        </div>
+      </section>
+
+      <a class="next" href="#"><div><small>Projet précédent</small><strong>Smart-Rx</strong></div><span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</main>
+
+<footer class="foot"><div class="foot-in"><span>© 2026 — Tous droits réservés</span><a href="#">Mentions légales</a></div></footer>
+
+<dialog class="lb" id="lb" aria-label="Image agrandie">
+  <button type="button" id="lb-close" aria-label="Fermer">×</button>
+  <img id="lb-img" alt="" />
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+(() => {
+  // Image fallback: show caption placeholder if an image can't load
+  document.querySelectorAll('.frame img, .cover img, .case-img img').forEach(img => {
+    const mark = () => (img.closest('.frame') || img.parentElement).classList.add('noimg');
+    if (img.complete && img.naturalWidth === 0) mark();
+    img.addEventListener('error', mark);
+  });
+
+  // Top bar border + reading progress
+  const bar = document.getElementById('topbar'), prog = document.getElementById('progress');
+  const onScroll = () => {
+    const h = document.documentElement;
+    bar.classList.toggle('scrolled', h.scrollTop > 8);
+    prog.style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) * 100) + '%';
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Scroll-spy for the chapter rail
+  const links = [...document.querySelectorAll('.rail a')];
+  const byId = Object.fromEntries(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.remove('on'));
+      const a = byId[e.target.id]; if (!a) return;
+      a.classList.add('on');
+      a.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  document.querySelectorAll('.chapter').forEach(s => io.observe(s));
+
+  // Tabs (keyboard: ← → Home End)
+  const tabs = [...document.querySelectorAll('[role=tab]')];
+  const select = t => {
+    tabs.forEach(x => {
+      const on = x === t;
+      x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      const k = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (k === undefined) return;
+      e.preventDefault(); const n = tabs[(k + tabs.length) % tabs.length]; select(n); n.focus();
+    });
+  });
+
+  // Lightbox
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
+  document.querySelectorAll('button.frame').forEach(b => b.addEventListener('click', () => {
+    const img = b.querySelector('img'); if (b.classList.contains('noimg')) return;
+    lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = img.alt;
+    lb.showModal();
+  }));
+  document.getElementById('lb-close').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+})();
+</script>
+</body>
+</html>
