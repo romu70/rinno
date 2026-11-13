@@ -1,94 +1,53 @@
 ---
-// Footer simple avec copyright et lien mentions légales
+// Static footer row at the end of every page.
 const currentYear = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="footer-content glass-effect">
-    <p>&copy; {currentYear} - Tous droits réservés</p>
+<footer class="foot">
+  <div class="foot-in">
+    <span>&copy; {currentYear} — Tous droits réservés</span>
     <a href="/legal">Mentions légales</a>
   </div>
 </footer>
 
 <style>
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
-    z-index: 1000;
+  .foot {
+    border-top: 1px solid var(--line);
+    margin-top: 2.5rem;
   }
 
-  .footer-content {
-    width: auto;
+  .foot-in {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 1.5rem var(--gutter);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1rem;
-    border-bottom: none;
-    border-radius: var(--radius) var(--radius) 0 0;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
     flex-wrap: wrap;
-  }
-
-  p {
-    font-size: 1.2rem;
-    color: var(--color-dark);
-    margin: 0;
-    font-style: normal;
-    font-weight: 500;
-    font-family: "Montserrat", sans-serif;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--muted);
   }
 
   a {
-    font-size: 1.2rem;
-    color: var(--color-dark);
+    color: inherit;
     text-decoration: none;
-    font-weight: 500;
-    font-family: "Montserrat", sans-serif;
-    transition:
-      color 0.3s ease,
-      transform 0.2s ease,
-      text-decoration 0.3s ease;
-    position: relative;
   }
 
   a:hover {
-    color: var(--color-dark);
-    transform: translateY(-2px);
+    color: var(--ink);
     text-decoration: underline;
   }
 
-  /* Responsive mobile */
-  @media (max-width: 768px) {
-    footer {
-      padding: 0;
-    }
-
-    .footer-content {
-      gap: 1rem;
-      padding: 0.75rem 1rem;
+  @media (min-width: 768px) {
+    .foot-in {
+      font-size: 0.75rem;
     }
   }
 
-  /* Responsive large screens */
   @media (min-width: 1440px) {
-    footer {
-      padding: 0;
-    }
-
-    .footer-content {
-      padding: 1.25rem 2.5rem;
-    }
-
-    p,
-    a {
-      font-size: 1rem;
+    .foot-in {
+      padding: 1.75rem var(--gutter);
     }
   }
 </style>
