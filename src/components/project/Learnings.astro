@@ -1,98 +1,201 @@
 ---
-// Learnings component for emphasizing key takeaways and lessons learned
+// Callout block.
+//  default   — tinted box with an accent border (original look)
+//  statement — large italic line with an accent rule, optional caption
+//  impact    — dark box
+//  note      — coral-soft box
+//  end       — like note, with a small coral square ("Fin du projet. …")
 interface Props {
+  variant?: "default" | "statement" | "impact" | "note" | "end";
+  /** Small caption above a statement, e.g. "La leçon" */
+  caption?: string;
   fullWidth?: boolean;
 }
 
-const { fullWidth = false } = Astro.props;
+const { variant = "default", caption, fullWidth = false } = Astro.props;
 ---
 
-<div class:list={["learnings", { "full-width": fullWidth }]}>
+<div class:list={["learnings", variant, { "full-width": fullWidth }]}>
+  {caption && <small class="caption">{caption}</small>}
   <slot />
 </div>
 
 <style>
   .learnings {
-    background-color: color-mix(
-      in srgb,
-      var(--accent-color) 4%,
-      var(--color-lightest)
-    );
-    border-left: 4px solid var(--accent-color);
+    min-width: 0;
+  }
+
+  .learnings > :global(:first-child:not(.caption)),
+  .caption + :global(*) {
+    margin-top: 0;
+  }
+
+  /* ── default ─────────────────────────── */
+  .default {
+    background-color: color-mix(in srgb, var(--accent) 5%, var(--surface));
+    border-left: 4px solid var(--accent-deco);
     padding: 1.5rem;
     border-radius: var(--radius);
-    flex: 1;
-    /*margin-top: 2rem;*/
   }
 
-  .learnings :global(h2) {
+  .default :global(h2) {
     margin-top: 0;
-    font-size: 2rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
   }
 
-  .learnings :global(h3) {
-    font-size: 1.4rem;
-    color: var(--color-dark);
+  .default :global(h3) {
+    font-size: 1.15rem;
     margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
   }
 
-  .learnings :global(p) {
-    font-size: 1.5rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
+  .default :global(h3:first-child) {
+    margin-top: 0;
   }
 
-  .learnings :global(strong) {
-    color: var(--color-darkest);
-  }
-
-  .learnings :global(ul) {
+  .default :global(ul) {
     list-style: none;
     padding: 0;
+    margin: 0.5rem 0 0;
   }
 
-  .learnings :global(ul li) {
-    font-size: 1.5rem;
-    color: var(--color-dark);
-    line-height: 1.8;
-    padding-left: 1.5rem;
+  .default :global(ul li) {
     position: relative;
-    margin-bottom: 0.8rem;
+    padding-left: 1.75rem;
+    margin-top: 0.4rem;
   }
 
-  .learnings :global(ul li::before) {
+  .default :global(ul li::before) {
     content: "→";
     position: absolute;
     left: 0;
-    color: var(--color-darkest);
-    font-weight: bold;
+    font-family: var(--sans);
+    font-size: 0.8em;
+    line-height: 1.95;
+    color: var(--accent);
   }
 
-  /* Responsive mobile */
-  @media (max-width: 768px) {
-    .learnings {
-      padding: 1rem;
-    }
+  /* ── statement ───────────────────────── */
+  .statement {
+    margin-top: 2.75rem;
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    border-left: 3px solid var(--accent-deco);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    line-height: 1.22;
+    font-style: italic;
+    color: var(--ink);
+    max-width: var(--prose);
+  }
 
-    .learnings :global(h2) {
-      font-size: 1.6rem;
-    }
+  .statement :global(p) {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
 
-    .learnings :global(h3) {
-      font-size: 1.2rem;
+  .caption {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  /* ── impact ──────────────────────────── */
+  .impact {
+    margin-top: 1.25rem;
+    background: var(--ink);
+    color: #e8e8f2;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .impact :global(h4),
+  .impact .caption {
+    color: var(--accent-on-dark);
+  }
+
+  .impact :global(p),
+  .impact :global(li) {
+    color: #e8e8f2;
+    max-width: none;
+  }
+
+  .impact :global(strong) {
+    color: #fff;
+  }
+
+  .impact :global(ol) {
+    list-style: none;
+    counter-reset: n;
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+
+  .impact :global(ol li) {
+    counter-increment: n;
+    display: grid;
+    grid-template-columns: 1.9rem minmax(0, 1fr);
+    line-height: 1.45;
+  }
+
+  .impact :global(ol li::before) {
+    content: counter(n, decimal-leading-zero);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-on-dark);
+    padding-top: 0.4em;
+  }
+
+  /* ── note / end ──────────────────────── */
+  .note,
+  .end {
+    margin-top: 1.25rem;
+    padding: 1.1rem 1.4rem;
+    border-radius: var(--radius);
+    background: var(--coral-soft);
+    max-width: var(--prose);
+  }
+
+  .note,
+  .end,
+  .note :global(p),
+  .end :global(p),
+  .note :global(strong),
+  .end :global(strong) {
+    color: #4a1622;
+    font-size: 1.15rem;
+  }
+
+  .end > :global(:first-child)::before {
+    content: "■ ";
+    color: var(--coral);
+    font-size: 0.75rem;
+    vertical-align: 0.15em;
+  }
+
+  @media (max-width: 767px) {
+    .default {
+      padding: 1.1rem;
     }
   }
 
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    .learnings :global(h2) {
-      font-size: 2.3rem;
+  @media (min-width: 768px) {
+    .impact {
+      padding: 2rem;
     }
 
-    .learnings :global(h3) {
-      font-size: 1.6rem;
+    .caption {
+      font-size: 0.75rem;
     }
   }
 </style>

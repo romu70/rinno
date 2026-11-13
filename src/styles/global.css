@@ -230,14 +230,24 @@ h4 {
 }
 
 p {
-  margin: 0;
   font-size: 1em;
   line-height: 1.55;
   color: var(--body);
 }
 
-p + p {
+/* Zero-specificity resets: anything more specific wins */
+:where(p, figure, blockquote) {
+  margin: 0;
+}
+
+:where(p + p) {
   margin-top: 0.9rem;
+}
+
+/* Vertical rhythm inside project sections (block flow).
+   Components set their own margin-top with higher specificity. */
+:where(.section-content) > :not(:first-child) {
+  margin-top: 1rem;
 }
 
 strong {

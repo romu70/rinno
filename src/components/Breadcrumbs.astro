@@ -36,16 +36,9 @@ const structuredData = {
       breadcrumbItems.map((item, index) => (
         <li>
           {index < breadcrumbItems.length - 1 ? (
-            <>
-              <a href={item.url} class="nav-link">{item.name}</a>
-              <span class="separator" aria-hidden="true">
-                /
-              </span>
-            </>
+            <a href={item.url}>{item.name}</a>
           ) : (
-            <span class="current" aria-current="page">
-              {item.name}
-            </span>
+            <span aria-current="page">{item.name}</span>
           )}
         </li>
       ))
@@ -57,7 +50,7 @@ const structuredData = {
 
 <style>
   .breadcrumbs {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   ol {
@@ -66,48 +59,39 @@ const structuredData = {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
-    font-family: "Montserrat", sans-serif;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--muted);
   }
 
-  li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
+  li + li::before {
+    content: "/";
+    margin-right: 0.5rem;
+    color: #a3a3b8;
   }
 
-  .separator {
-    color: var(--color-dark);
-    opacity: 0.5;
+  a {
+    color: var(--muted);
+    text-decoration: none;
   }
 
-  .current {
-    color: var(--color-dark);
-    font-style: italic;
-    font-weight: 500;
+  a:hover {
+    color: var(--accent);
     text-decoration: underline;
-    font-family: "Montserrat", sans-serif;
   }
 
-  /* Responsive mobile */
-  @media (max-width: 768px) {
+  [aria-current="page"] {
+    color: var(--ink);
+  }
+
+  @media (min-width: 768px) {
     .breadcrumbs {
-      margin-bottom: 1.5rem;
+      margin-bottom: 3rem;
     }
 
     ol {
-      font-size: 0.85rem;
-    }
-  }
-
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    ol {
-      font-size: 1rem;
+      font-size: 0.75rem;
     }
   }
 </style>

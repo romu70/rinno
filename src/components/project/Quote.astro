@@ -1,80 +1,79 @@
 ---
+// Testimonial: large accent quotation mark, italic quote, author and role.
 interface Props {
   author: string;
+  /** Shown on its own line under the author, e.g. "ex-CTO de Meditect" */
+  role?: string;
   fullWidth?: boolean;
 }
 
-const { author, fullWidth = false } = Astro.props;
+const { author, role } = Astro.props;
 ---
 
-<blockquote class:list={["quote-block", { "full-width": fullWidth }]}>
-  <div class="quote-content">
+<figure class="quote">
+  <blockquote>
     <slot />
-  </div>
-  <cite class="quote-author">{author}</cite>
-</blockquote>
+  </blockquote>
+  <figcaption>
+    {author}
+    {role && <span>{role}</span>}
+  </figcaption>
+</figure>
 
 <style>
-  .quote-block {
-    background-color: var(--color-light);
-    padding: 2rem;
-    border-radius: var(--radius);
-    border-left: 4px solid var(--accent-color-2);
-    margin: 0;
+  .quote {
+    position: relative;
+    padding-top: 2.25rem;
+    min-width: 0;
   }
 
-  .quote-content {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: var(--color-dark);
+  .quote::before {
+    content: "“";
+    position: absolute;
+    top: -1.1rem;
+    left: -0.25rem;
+    font-family: var(--serif);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  blockquote {
+    margin: 0;
+    font-size: 1.3rem;
     font-style: italic;
-    margin-bottom: 1rem;
+    line-height: 1.45;
+    color: var(--ink);
   }
 
-  .quote-content :global(p) {
-    margin: 0;
+  blockquote :global(p) {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
   }
 
-  .quote-author {
+  figcaption {
+    margin-top: 1rem;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  figcaption span {
     display: block;
-    font-variant: small-caps;
-    color: var(--color-dark);
-    text-align: left;
-    font-size: 0.9rem;
-    font-style: normal;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 0.15rem;
   }
 
-  .quote-author::before {
-    content: "— ";
-  }
-
-  /* Responsive mobile */
-  @media (max-width: 768px) {
-    .quote-block {
-      padding: 1.5rem;
-    }
-
-    .quote-content {
-      font-size: 1rem;
-    }
-
-    .quote-author {
-      font-size: 0.8rem;
-    }
-  }
-
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    .quote-block {
-      padding: 2.5rem;
-    }
-
-    .quote-content {
+  @media (min-width: 768px) {
+    blockquote {
       font-size: 1.3rem;
     }
 
-    .quote-author {
-      font-size: 1rem;
+    figcaption {
+      font-size: 0.8rem;
     }
   }
 </style>

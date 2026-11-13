@@ -11,7 +11,7 @@ export interface HeroMeta {
 interface Props {
   eyebrow?: string;
   title: string;
-  /** Plain-text lede; use the "lede" slot for rich text (<em>…) */
+  /** Summary line under the title; may contain inline HTML (<em>…) */
   lede?: string;
   meta?: HeroMeta[];
   image?: ImageMetadata;
@@ -30,18 +30,13 @@ const {
   imageDark = false,
 } = Astro.props;
 
-const hasLedeSlot = Astro.slots.has("lede");
 const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <header class="hero">
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
   <h1>{title}</h1>
-  {
-    (hasLedeSlot || lede) && (
-      <p class="lede">{hasLedeSlot ? <slot name="lede" /> : lede}</p>
-    )
-  }
+  {lede && <p class="lede" set:html={lede} />}
   {
     meta.length > 0 && (
       <dl class="meta">
