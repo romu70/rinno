@@ -426,6 +426,33 @@ ol.numbered li::before {
   color: var(--muted);
 }
 
+/* Content grids: 1 column on mobile, 2 or 3 from 768px */
+.grid-2,
+.grid-3,
+.duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .grid-2,
+  .duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Desktop screenshot next to a mobile one */
+  .grid-wide-narrow {
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+
 /* Visually hidden, still read by screen readers */
 .sr-only {
   position: absolute;

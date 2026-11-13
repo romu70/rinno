@@ -1,0 +1,135 @@
+---
+// Previous / next project links. Works with only one side.
+export interface PagerLink {
+  label: string;
+  title: string;
+  href: string;
+}
+
+interface Props {
+  prev?: PagerLink | null;
+  next?: PagerLink | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav class="pager" aria-label="Autres projets">
+      {prev && (
+        <a class="prev" href={prev.href} rel="prev">
+          <div>
+            <small>{prev.label}</small>
+            <strong>{prev.title}</strong>
+          </div>
+          <span class="arrow" aria-hidden="true">
+            ←
+          </span>
+        </a>
+      )}
+      {next && (
+        <a class="next" href={next.href} rel="next">
+          <div>
+            <small>{next.label}</small>
+            <strong>{next.title}</strong>
+          </div>
+          <span class="arrow" aria-hidden="true">
+            →
+          </span>
+        </a>
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .pager {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 2rem 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a + a {
+    border-top: 1px solid var(--line);
+  }
+
+  small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  strong {
+    font-family: var(--sans);
+    font-size: clamp(1.9rem, 4vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+
+  .arrow {
+    font-family: var(--sans);
+    font-size: 2.25rem;
+    color: var(--accent-deco);
+    transition: transform 0.3s;
+  }
+
+  a:hover strong {
+    color: var(--accent);
+  }
+
+  .next:hover .arrow {
+    transform: translateX(8px);
+  }
+
+  .prev:hover .arrow {
+    transform: translateX(-8px);
+  }
+
+  .prev {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .next {
+    text-align: right;
+  }
+
+  @media (min-width: 768px) {
+    .pager {
+      margin-top: 7rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    a + a {
+      border-top: 0;
+    }
+
+    .next {
+      grid-column: 2;
+    }
+
+    small {
+      font-size: 0.7rem;
+    }
+  }
+</style>

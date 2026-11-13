@@ -1,0 +1,106 @@
+---
+// A single <dialog> for enlarged images, rendered once per project page.
+// Any <button data-zoom="full-size-url"> containing an <img> opens it.
+---
+
+<dialog class="lb" aria-label="Image agrandie" data-lightbox>
+  <button type="button" class="close" aria-label="Fermer" data-lb-close>
+    <span aria-hidden="true">×</span>
+  </button>
+  <img alt="" decoding="async" />
+  <p></p>
+</dialog>
+
+<script>
+  const lb = document.querySelector<HTMLDialogElement>("[data-lightbox]");
+  if (lb) {
+    const img = lb.querySelector("img")!;
+    const cap = lb.querySelector("p")!;
+    let trigger: HTMLElement | null = null;
+
+    document.querySelectorAll<HTMLButtonElement>("button[data-zoom]").forEach((b) => {
+      b.addEventListener("click", () => {
+        const thumb = b.querySelector("img");
+        img.src = b.dataset.zoom || thumb?.currentSrc || thumb?.src || "";
+        img.alt = thumb?.alt ?? "";
+        cap.textContent =
+          b.closest("figure")?.querySelector("figcaption")?.textContent?.trim() ||
+          thumb?.alt ||
+          "";
+        cap.hidden = !cap.textContent;
+        trigger = b;
+        lb.showModal();
+      });
+    });
+
+    lb.querySelector("[data-lb-close]")!.addEventListener("click", () => lb.close());
+    // Click on the backdrop (the dialog itself, outside the image) closes it
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) lb.close();
+    });
+    lb.addEventListener("close", () => {
+      img.removeAttribute("src");
+      trigger?.focus();
+    });
+  }
+</script>
+
+<style>
+  dialog.lb {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    max-width: 94vw;
+    max-height: 94vh;
+    margin: auto;
+    overflow: visible;
+  }
+
+  dialog.lb::backdrop {
+    background: rgba(10, 10, 20, 0.86);
+    backdrop-filter: blur(4px);
+  }
+
+  img {
+    display: block;
+    max-width: 94vw;
+    max-height: 84vh;
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+
+  p {
+    color: #e8e8f2;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    text-align: center;
+    margin-top: 0.75rem;
+  }
+
+  .close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .close:focus-visible {
+    outline-color: #fff;
+  }
+</style>

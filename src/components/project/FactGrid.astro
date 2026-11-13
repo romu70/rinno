@@ -1,0 +1,71 @@
+---
+// Label / value facts: 1 column on mobile, 2×2 from 768px.
+// `value` may contain inline HTML (e.g. <strong>, <a>).
+interface Props {
+  items: { label: string; value: string }[];
+  /** Remove the top margin (e.g. first element of a timeline item) */
+  flush?: boolean;
+}
+
+const { items, flush = false } = Astro.props;
+---
+
+<dl class:list={["facts", { flush }]}>
+  {
+    items.map((it) => (
+      <div>
+        <dt>{it.label}</dt>
+        <dd set:html={it.value} />
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.75rem 0;
+  }
+
+  .facts.flush {
+    margin-top: 0;
+  }
+
+  .facts > div {
+    background: var(--surface);
+    padding: 1.25rem 1.5rem;
+  }
+
+  dt {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.45;
+    color: var(--body);
+  }
+
+  @media (min-width: 768px) {
+    .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    dt {
+      font-size: 0.7rem;
+    }
+  }
+</style>

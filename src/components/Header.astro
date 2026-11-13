@@ -40,6 +40,17 @@ const links = [
 <script>
   const bar = document.querySelector<HTMLElement>("[data-topbar]");
   const prog = document.querySelector<HTMLElement>("[data-progress]");
+  // Expose the header height so sticky elements can sit right under it
+  const setHeight = () => {
+    if (bar)
+      document.documentElement.style.setProperty(
+        "--header-h",
+        `${bar.offsetHeight}px`,
+      );
+  };
+  setHeight();
+  addEventListener("resize", setHeight, { passive: true });
+
   let ticking = false;
   const update = () => {
     ticking = false;

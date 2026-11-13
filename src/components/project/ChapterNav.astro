@@ -1,0 +1,262 @@
+---
+// Chapter navigation.
+// < 1200px: sticky, horizontally scrollable row of chips (top level only).
+// ≥ 1200px: sticky numbered sidebar; sub-items of the current chapter expand.
+export interface ChapterItem {
+  id: string;
+  label: string;
+  children?: { id: string; label: string }[];
+}
+
+interface Props {
+  items: ChapterItem[];
+}
+
+const { items } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<nav class="rail" aria-label="Sommaire" data-rail>
+  <p class="rail-title" aria-hidden="true">Sommaire</p>
+  <ol>
+    {
+      items.map((item, i) => (
+        <li>
+          <a href={`#${item.id}`}>
+            <span class="num">{pad(i + 1)}</span>
+            {item.label}
+          </a>
+          {item.children && item.children.length > 0 && (
+            <ol class="sub">
+              {item.children.map((c) => (
+                <li>
+                  <a href={`#${c.id}`}>{c.label}</a>
+                </li>
+              ))}
+            </ol>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script>
+  const rail = document.querySelector<HTMLElement>("[data-rail]");
+  if (rail) {
+    const links = [...rail.querySelectorAll<HTMLAnchorElement>("a")];
+    const byId = new Map(links.map((a) => [a.hash.slice(1), a]));
+    const targets = links
+      .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
+      .filter((t): t is HTMLElement => !!t);
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+
+    const setActive = (id: string) => {
+      const a = byId.get(id);
+      if (!a) return;
+      const sub = a.closest(".sub");
+      const top = sub
+        ? sub.parentElement!.querySelector<HTMLAnchorElement>(":scope > a")!
+        : a;
+      links.forEach((l) => {
+        l.classList.remove("on");
+        l.removeAttribute("aria-current");
+      });
+      rail
+        .querySelectorAll("li.open")
+        .forEach((li) => li.classList.remove("open"));
+      top.classList.add("on");
+      top.parentElement!.classList.add("open");
+      if (sub) a.classList.add("on");
+      a.setAttribute("aria-current", "location");
+      // Keep the active chip visible when the rail scrolls horizontally
+      if (rail.scrollWidth > rail.clientWidth) {
+        rail.scrollTo({
+          left: top.parentElement!.offsetLeft - 20,
+          behavior: reduce.matches ? "auto" : "smooth",
+        });
+      }
+    };
+
+    // Active = last chapter or sub-section whose top passed 35% of the viewport
+    let current = "";
+    let ticking = false;
+    const spy = () => {
+      ticking = false;
+      const line = innerHeight * 0.35;
+      let id = targets[0]?.id ?? "";
+      for (const t of targets) {
+        if (t.getBoundingClientRect().top <= line) id = t.id;
+      }
+      if (id && id !== current) {
+        current = id;
+        setActive(id);
+      }
+    };
+    addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(spy);
+        }
+      },
+      { passive: true },
+    );
+    addEventListener("resize", spy, { passive: true });
+    spy();
+  }
+</script>
+
+<style>
+  .rail {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 40;
+    margin: 0 calc(-1 * var(--gutter)) 2.5rem;
+    padding: 0.6rem var(--gutter);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail-title {
+    display: none;
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .rail > ol {
+    display: flex;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  a {
+    display: flex;
+    gap: 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.4rem 0.8rem;
+    background: var(--surface);
+    transition:
+      color 0.2s,
+      border-color 0.2s,
+      background 0.2s;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.75;
+  }
+
+  a:hover {
+    color: var(--ink);
+  }
+
+  a:global(.on) {
+    color: var(--ink);
+    border-color: var(--accent-deco);
+    background: var(--accent-soft);
+  }
+
+  a:global(.on) .num {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  .sub {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    a {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .rail {
+      top: calc(var(--header-h) + 2.5rem);
+      align-self: start;
+      margin: 0;
+      padding: 0;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: 0;
+      overflow: visible;
+    }
+
+    .rail-title {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .rail > ol {
+      display: block;
+      white-space: normal;
+      border-left: 1px solid var(--line);
+    }
+
+    a {
+      border: 0;
+      border-left: 2px solid transparent;
+      border-radius: 0;
+      margin-left: -1px;
+      padding: 0.45rem 0 0.45rem 1rem;
+      background: none;
+    }
+
+    a:global(.on) {
+      background: none;
+      border-left-color: var(--accent-deco);
+    }
+
+    /* Sub-items (h3) only show for the active chapter */
+    .sub {
+      display: block;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    li:global(.open) > .sub {
+      max-height: 25rem;
+    }
+
+    .sub a {
+      font-size: 0.75rem;
+      padding: 0.25rem 0 0.25rem 2.6rem;
+      border-left-color: transparent;
+    }
+
+    .sub a:global(.on) {
+      color: var(--accent);
+      border-left-color: transparent;
+    }
+  }
+</style>

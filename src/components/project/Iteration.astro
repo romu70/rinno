@@ -1,0 +1,102 @@
+---
+// One item of <Timeline>.
+interface Props {
+  n: number;
+  title: string;
+  /** Tool used in this iteration, shown as a chip */
+  tool?: string;
+  /** The latest iteration gets a filled dot */
+  current?: boolean;
+  /** Anchor for the chapter nav */
+  id?: string;
+}
+
+const { n, title, tool, current = false, id } = Astro.props;
+---
+
+<li class:list={["it", { current }]}>
+  <div class="it-head">
+    <span class="it-n">Itération {n}</span>
+    <h3 id={id}>{title}</h3>
+    {tool && <span class="it-tool">{tool}</span>}
+  </div>
+  <div class="it-body">
+    <slot />
+  </div>
+</li>
+
+<style>
+  .it {
+    position: relative;
+    padding: 0 0 4rem 3rem;
+  }
+
+  .it:last-child {
+    padding-bottom: 0;
+  }
+
+  .it::before {
+    content: "";
+    position: absolute;
+    left: 0.25rem;
+    top: 0.4rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--accent-deco);
+    box-shadow: 0 0 0 4px var(--paper);
+  }
+
+  .it.current::before {
+    background: var(--accent-deco);
+  }
+
+  .it-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .it-n {
+    flex-basis: 100%;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .it-tool {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.2rem 0.65rem;
+  }
+
+  .it-body {
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .it-n {
+      flex-basis: auto;
+      font-size: 0.75rem;
+    }
+
+    .it-tool {
+      font-size: 0.75rem;
+    }
+  }
+</style>
