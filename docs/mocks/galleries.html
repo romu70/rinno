@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Galleries — Proposition de refonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="redesign.css" />
+</head>
+<body class="theme-perso">
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#">Romuald Tisserand <span>— Product &amp; Design</span></a>
+    <nav class="topnav" aria-label="Principale"><a href="#">Accueil</a><a href="#">Pro</a><a href="#" aria-current="page">Perso</a></nav>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <nav aria-label="Fil d'Ariane"><ol class="crumbs"><li><a href="#">Accueil</a></li><li><a href="#">Projets personnels</a></li><li aria-current="page">Galleries</li></ol></nav>
+    <p class="eyebrow">Projet personnel · Web · 2023 — présent</p>
+    <h1>Galleries</h1>
+    <p class="lede">Une galerie virtuelle pour exposer mes photos de typographies et de street art — <em>et un terrain d'apprentissage, du code à l'IA agentique.</em></p>
+    <dl class="meta">
+      <div><dt>Type</dt><dd>Projet personnel</dd></div>
+      <div><dt>Stack</dt><dd>Astro · TypeScript</dd></div>
+      <div><dt>Hébergement</dt><dd>GitHub Pages</dd></div>
+      <div><dt>Site</dt><dd><a href="https://romu70.github.io/galleries/" target="_blank" rel="noopener noreferrer">Voir la galerie ↗</a></dd></div>
+    </dl>
+    <div class="cover dark"><img src="../../src/assets/perso/galleries/hero.jpg" width="1200" height="800" alt="Page d'accueil de Galleries : galeries Fonts et Street Art" /></div>
+  </section>
+
+  <div class="wrap layout">
+    <aside class="rail" aria-label="Sommaire">
+      <p>Sommaire</p>
+      <ol>
+        <li><a href="#contexte"><span>01</span>Contexte</a></li>
+        <li><a href="#ui"><span>02</span>UI design</a></li>
+        <li><a href="#iterations"><span>03</span>Itérations</a>
+          <ol class="sub">
+            <li><a href="#it1">1 · Construire</a></li>
+            <li><a href="#it2">2 · Script Gemini</a></li>
+            <li><a href="#it3">3 · Skill Claude</a></li>
+          </ol>
+        </li>
+        <li><a href="#situation"><span>04</span>En situation</a></li>
+        <li><a href="#apprentissages"><span>05</span>Apprentissages</a></li>
+      </ol>
+    </aside>
+
+    <div class="content">
+
+      <!-- 01 -->
+      <section class="chapter" id="contexte">
+        <p class="chapter-num">01</p>
+        <h2>Contexte</h2>
+        <p class="intro">Passionné par les polices de caractères et le street art, je capture et collecte des photos, qui s'accumulent sur mon téléphone depuis des années.</p>
+        <p style="margin-top:20px">Je me suis donc lancé dans le développement d'une galerie virtuelle, calquée sur celle de DuckDuckGo que j'aime beaucoup, pour exposer ces images.</p>
+        <div class="card" style="margin-top:32px">
+          <h4>Challenge</h4>
+          <ul class="arrows">
+            <li>Aiguiser mes compétences en développement web</li>
+            <li>Créer une galerie performante et esthétique</li>
+            <li>Gérer efficacement de nombreuses images</li>
+            <li>Approfondir l'approche composants en web</li>
+          </ul>
+          <p style="margin-top:14px">Bien sûr, la galerie devait être utilisable sur téléphone et sur écran large.</p>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section class="chapter" id="ui">
+        <p class="chapter-num">02</p>
+        <h2>UI design</h2>
+        <p>Les images sont très colorées : la charte devait rester neutre pour ne pas perturber le visionnage. Seulement 3 couleurs.</p>
+        <div class="swatches" style="margin-top:24px" role="list" aria-label="Palette de Galleries">
+          <div class="swatch" role="listitem"><i style="background:#303030"></i><div><b>Fond</b>#303030</div></div>
+          <div class="swatch" role="listitem"><i style="background:#FFFFFF; border-bottom:1px solid var(--line)"></i><div><b>Textes</b>#FFFFFF</div></div>
+          <div class="swatch" role="listitem"><i style="background:#464646"></i><div><b>Hover &amp; active</b>#464646</div></div>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section class="chapter" id="iterations">
+        <p class="chapter-num">03</p>
+        <h2>Trois itérations</h2>
+        <ol class="timeline">
+
+          <li class="it" id="it1">
+            <div class="it-head"><span class="it-n">Itération 1</span><h3>Construire la galerie</h3><span class="it-tool">Astro</span></div>
+            <dl class="facts" style="margin-top:0">
+              <div><dt>Choix de la stack</dt><dd>Sur les conseils d'un ami développeur front-end, <a href="https://www.linkedin.com/in/guillaume-denier/">Guillaume Denier</a>, j'ai choisi Astro : génération statique, proche des standards web, approche composants accessible. Promesses tenues !</dd></div>
+              <div><dt>Hébergement</dt><dd>Code sur GitHub, site statique sans collecte de données : GitHub Pages s'imposait, avec son pipeline CI/CD intégré.</dd></div>
+              <div><dt>Collections par thème</dt><dd>Les 2 galeries reposent sur les Content Collections d'Astro. Pour mieux connaître le système, l'une est en markdown, l'autre en JSON.</dd></div>
+              <div><dt>Galerie responsive</dt><dd>J'ai développé en TypeScript tout le fonctionnement de la galerie : formats portrait / paysage, navigation, clavier, etc.</dd></div>
+            </dl>
+          </li>
+
+          <li class="it" id="it2">
+            <div class="it-head"><span class="it-n">Itération 2</span><h3>Automatiser le traitement</h3><span class="it-tool">Gemini</span></div>
+            <p class="trigger">Constat : la flemme</p>
+            <p>Les images s'accumulaient et ma motivation baissait. Modéliser mon propre user journey m'a éclairé : ouvrir l'image, récupérer sa position, la chercher sur OpenStreetMap, renseigner les métadonnées dans un fichier Astro, redimensionner, compresser… C'est très (trop) long.</p>
+            <figure class="wide"><span class="chip no">Avant</span><button class="frame" type="button"><img src="../../src/assets/perso/galleries/user-journey.png" width="1200" height="429" alt="User journey original" loading="lazy" /></button><figcaption>User journey original</figcaption></figure>
+            <p class="trigger" style="margin-top:28px">Solution : Gemini</p>
+            <p>En 2 heures avec Gemini, un script qui me soulage de toute la partie chronophage. Une fois les images sur mon ordinateur, il se charge des traitements ; je ne renseigne plus que ce qu'il ne peut pas faire.</p>
+            <figure class="wide"><span class="chip yes">Après</span><button class="frame" type="button"><img src="../../src/assets/perso/galleries/user-journey-2.png" width="800" height="472" alt="User journey amélioré" loading="lazy" /></button><figcaption>User journey amélioré</figcaption></figure>
+          </li>
+
+          <li class="it current" id="it3">
+            <div class="it-head"><span class="it-n">Itération 3</span><h3>Bonjour Claude, ça skill ?</h3><span class="it-tool">Skill Claude</span></div>
+            <p class="trigger">Constat : la flemme bis</p>
+            <p>Malgré le script, j'accumulais toujours les photos : il accélère le process, mais pas assez pour m'inciter à publier.</p>
+            <div class="outcomes" style="margin-top:24px">
+              <div class="card yes"><h4>Ce que fait le script</h4><ul><li>Scanne le dossier inbox</li><li>Redimensionne les images</li><li>Extrait la géolocalisation et la date de prise de vue</li><li>Crée les fichiers Astro des nouvelles images</li></ul></div>
+              <div class="card no"><h4>Ce qui restait à ma charge</h4><ul><li>Transférer les photos de Downloads vers inbox</li><li>Nommer les photos</li><li>Renseigner les métadonnées</li></ul></div>
+            </div>
+            <p style="margin-top:20px">Et comme il fallait le faire image par image, c'est là que je perdais du temps.</p>
+            <p class="trigger" style="margin-top:28px">Solution : un skill Claude</p>
+            <p>J'ai d'abord supprimé le nom des images, qui ne rimait à rien, pour mettre en avant les artistes et le type des fonts. Puis, avec Claude, j'ai rédigé un <a href="https://claude.com/fr/skills">skill</a> qui prend en charge toute la partie pénible et répétitive :</p>
+            <ul class="arrows">
+              <li>Transférer les images de Downloads vers inbox.</li>
+              <li>Lancer un sous-agent qui caractérise les images, par exemple une font serif ou sans-serif. Quel gain de temps !</li>
+              <li>Pour le street art, identifier la signature de l'artiste.</li>
+              <li>Valider l'ajout des images.</li>
+            </ul>
+            <p>Au lieu de modifier chaque fichier, Claude me fait une liste de propositions que je valide, amende ou refuse, en une seule passe.</p>
+            <figure class="wide"><button class="frame" type="button"><img src="../../src/assets/perso/galleries/skill.png" width="1582" height="420" alt="Le skill Claude en action : liste de propositions à valider" loading="lazy" /></button><figcaption>Le skill Claude en action</figcaption></figure>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 04 -->
+      <section class="chapter" id="situation">
+        <p class="chapter-num">04</p>
+        <h2>En situation</h2>
+        <div class="grid-2 grid-wide-narrow">
+          <figure><button class="frame dark" type="button"><img src="../../src/assets/perso/galleries/widescreen.png" width="1200" height="766" alt="Rendu de Galleries sur écran large" loading="lazy" /></button><figcaption>Écran large</figcaption></figure>
+          <figure><button class="frame dark" type="button" style="max-width:280px; margin-inline:auto"><img src="../../src/assets/perso/galleries/mobile.png" width="554" height="1200" alt="Rendu de Galleries sur mobile" loading="lazy" /></button><figcaption style="text-align:center">Mobile</figcaption></figure>
+        </div>
+      </section>
+
+      <!-- 05 -->
+      <section class="chapter" id="apprentissages">
+        <p class="chapter-num">05</p>
+        <h2>Apprentissages et résultats</h2>
+        <div class="learn">
+          <article><span class="n">01</span><p>Compétences TypeScript renforcées : typage, gestion d'événements, responsivité.</p></article>
+          <article><span class="n">02</span><p>Expérience concrète du développement augmenté par l'IA (vibe coding) avec Claude et Gemini, de l'expression de besoin au script fonctionnel.</p></article>
+          <article><span class="n">03</span><p>Mise en œuvre concrète de l'IA agentique : le skill Claude orchestre toute la procédure d'ajout de nouvelles images.</p></article>
+          <article><span class="n">04</span><p>Rencontrer certains des artistes exposés, comme <strong>Ador</strong>, <strong>Ratz One</strong> et <strong>Stend</strong>, que je remercie de m'avoir autorisé à reproduire leur travail.</p></article>
+        </div>
+      </section>
+
+      <section class="appendix" aria-label="Mots-clés">
+        <h4>Mots-clés</h4>
+        <ul class="tags"><li>Astro</li><li>TypeScript</li><li>JavaScript</li><li>GitHub Pages</li><li>IA agentique</li><li>Skill Claude</li><li>Typographie</li><li>Street art</li></ul>
+      </section>
+
+      <nav class="pager" aria-label="Projets">
+        <a class="next" href="#"><div><small>Projet plus ancien</small><strong>Coach Pizza</strong></div><span class="arrow" aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="foot"><div class="foot-in"><span>© 2026 — Tous droits réservés</span><a href="#">Mentions légales</a></div></footer>
+
+<dialog class="lb" id="lb" aria-label="Image agrandie"><button type="button" class="close" aria-label="Fermer">×</button><img alt="" /><p></p></dialog>
+<script src="redesign.js"></script>
+</body>
+</html>
