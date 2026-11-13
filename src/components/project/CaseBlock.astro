@@ -1,0 +1,46 @@
+---
+// A titled sub-section with a small kicker label, e.g. "Verticale 1".
+interface Props {
+  kicker: string;
+  title: string;
+  /** Anchor for the chapter nav (set on the h3) */
+  id?: string;
+}
+
+const { kicker, title, id } = Astro.props;
+---
+
+<div class="case-block">
+  <p class="kicker">{kicker}</p>
+  <h3 id={id}>{title}</h3>
+  <div class="section-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .case-block {
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h3 {
+    margin: 0.5rem 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .kicker {
+      font-size: 0.75rem;
+    }
+  }
+</style>

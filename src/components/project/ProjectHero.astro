@@ -156,6 +156,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
   }
 
   .cover {
+    position: relative;
     margin-top: 2.75rem;
     border-radius: 1rem;
     overflow: hidden;
@@ -174,6 +175,15 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  /* Darkens light covers slightly so they stand out from the page */
+  .cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 20, 30, 0.14);
+    pointer-events: none;
   }
 
   @media (min-width: 768px) {

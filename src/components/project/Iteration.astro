@@ -20,7 +20,7 @@ const { n, title, tool, current = false, id } = Astro.props;
     <h3 id={id}>{title}</h3>
     {tool && <span class="it-tool">{tool}</span>}
   </div>
-  <div class="it-body">
+  <div class="it-body section-content">
     <slot />
   </div>
 </li>

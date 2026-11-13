@@ -1,273 +1,302 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
-import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
-import Column from "../../components/project/Column.astro";
-import Learnings from "../../components/project/Learnings.astro";
+import Card from "../../components/project/Card.astro";
 import Keywords from "../../components/project/Keywords.astro";
 import Figure from "../../components/project/Figure.astro";
+import Swatches from "../../components/project/Swatches.astro";
+import Timeline from "../../components/project/Timeline.astro";
+import Iteration from "../../components/project/Iteration.astro";
+import FactGrid from "../../components/project/FactGrid.astro";
+import Outcomes from "../../components/project/Outcomes.astro";
+import LearningsGrid from "../../components/project/LearningsGrid.astro";
+import Learning from "../../components/project/Learning.astro";
 
 import heroImage from "../../assets/perso/galleries/hero.jpg";
-import palette from "../../assets/perso/galleries/palette.png";
 import userJourney1 from "../../assets/perso/galleries/user-journey.png";
 import userJourney2 from "../../assets/perso/galleries/user-journey-2.png";
 import mobile from "../../assets/perso/galleries/mobile.png";
 import widescreen from "../../assets/perso/galleries/widescreen.png";
 import skill from "../../assets/perso/galleries/skill.png";
+
+const chapters = [
+  { id: "contexte", label: "Contexte" },
+  { id: "ui", label: "UI design" },
+  {
+    id: "iterations",
+    label: "Itérations",
+    children: [
+      { id: "it1", label: "1 · Construire" },
+      { id: "it2", label: "2 · Script Gemini" },
+      { id: "it3", label: "3 · Skill Claude" },
+    ],
+  },
+  { id: "situation", label: "En situation" },
+  { id: "apprentissages", label: "Apprentissages" },
+];
 ---
 
 <ProjectPersonal
   title="Galleries"
-  year="2023 - présent"
+  eyebrow="Projet personnel · Web · 2023 — présent"
+  lede="Une galerie virtuelle pour exposer mes photos de typographies et de street art — <em>et un terrain d'apprentissage, du code à l'IA agentique.</em>"
+  meta={[
+    { label: "Type", value: "Projet personnel" },
+    { label: "Stack", value: "Astro · TypeScript" },
+    { label: "Hébergement", value: "GitHub Pages" },
+    {
+      label: "Site",
+      value: "Voir la galerie",
+      href: "https://romu70.github.io/galleries/",
+    },
+  ]}
   image={heroImage}
-  externalLink="https://romu70.github.io/galleries/"
+  imageAlt="Page d'accueil de Galleries : galeries Fonts et Street Art"
+  imageDark
+  chapters={chapters}
 >
-  <Row>
-    <Section title="Contexte">
-      <p>
-        Passionné par les polices de caractères et le street art, je capture et
-        collecte des photos, qui s'accumulent sur mon téléphone depuis des
-        années.
-      </p>
-      <p>
-        Je me suis donc lancé dans le développement d'une galerie virtuelle,
-        calquée sur celle de DuckDuckGo que j'aime beaucoup, pour exposer toutes
-        ces images capturées au fil du temps.
-      </p>
-    </Section>
-
-    <Section title="Challenge">
-      <p>Je visais plusieurs objectifs :</p>
+  <!-- 01 -->
+  <Section id="contexte" number={1} title="Contexte">
+    <p class="intro">
+      Passionné par les polices de caractères et le street art, je capture et
+      collecte des photos, qui s'accumulent sur mon téléphone depuis des années.
+    </p>
+    <p>
+      Je me suis donc lancé dans le développement d'une galerie virtuelle,
+      calquée sur celle de DuckDuckGo que j'aime beaucoup, pour exposer ces
+      images.
+    </p>
+    <Card title="Challenge" class="challenge">
       <ul class="list-arrow">
         <li>Aiguiser mes compétences en développement web</li>
         <li>Créer une galerie performante et esthétique</li>
         <li>Gérer efficacement de nombreuses images</li>
         <li>Approfondir l'approche composants en web</li>
       </ul>
-      <p>
-        Bien sûr, cette galerie se devrait d'être utilisable sur téléphone et
-        écran large.
+      <p class="card-end">
+        Bien sûr, la galerie devait être utilisable sur téléphone et sur écran
+        large.
       </p>
-    </Section>
-  </Row>
+    </Card>
+  </Section>
 
-  <Row>
-    <Section title="UI Design">
-      <Column>
-        <p>
-          Les images capturées sont très colorées, il était donc essentiel ne de
-          pas perturber le visionnage et d'avoir une charte graphique neutre.<br
-          />Ici, seulement 3 couleurs : un fond gris, le blanc pour les textes
-          et un fond plus clair pour les états "hover" et "active".
-        </p>
-      </Column>
-      <Column>
-        <Figure
-          caption="Palette de couleurs simple et neutre"
-          image={palette}
-          alt="Palette de couleurs simple et neutre"
-          width="30rem"
+  <!-- 02 -->
+  <Section id="ui" number={2} title="UI design">
+    <p>
+      Les images sont très colorées : la charte devait rester neutre pour ne pas
+      perturber le visionnage. Seulement 3 couleurs.
+    </p>
+    <Swatches
+      label="Palette de Galleries"
+      colors={[
+        { name: "Fond", hex: "#303030" },
+        { name: "Textes", hex: "#FFFFFF" },
+        { name: "Hover & active", hex: "#464646" },
+      ]}
+    />
+  </Section>
+
+  <!-- 03 -->
+  <Section id="iterations" number={3} title="Trois itérations">
+    <Timeline>
+      <Iteration n={1} title="Construire la galerie" tool="Astro" id="it1">
+        <FactGrid
+          flush
+          items={[
+            {
+              label: "Choix de la stack",
+              value:
+                'Sur les conseils d\'un ami développeur front-end, <a href="https://www.linkedin.com/in/guillaume-denier/">Guillaume Denier</a>, j\'ai choisi Astro : génération statique, proche des standards web, approche composants accessible. Promesses tenues !',
+            },
+            {
+              label: "Hébergement",
+              value:
+                "Code sur GitHub, site statique sans collecte de données : GitHub Pages s'imposait, avec son pipeline CI/CD intégré.",
+            },
+            {
+              label: "Collections par thème",
+              value:
+                "Les 2 galeries reposent sur les Content Collections d'Astro. Pour mieux connaître le système, l'une est en markdown, l'autre en JSON.",
+            },
+            {
+              label: "Galerie responsive",
+              value:
+                "J'ai développé en TypeScript tout le fonctionnement de la galerie : formats portrait / paysage, navigation, clavier, etc.",
+            },
+          ]}
         />
-      </Column>
-    </Section>
-  </Row>
+      </Iteration>
 
-  <Row>
-    <Section title="Itération 1">
-      <Column title="Choix de la stack">
+      <Iteration n={2} title="Automatiser le traitement" tool="Gemini" id="it2">
+        <p class="trigger">Constat : la flemme</p>
         <p>
-          Sur les conseils d'un ami développeur front-end, <a
-            href="https://www.linkedin.com/in/guillaume-denier/"
-            target="_blank">Guillaume Denier</a
-          >, j'ai choisi Astro comme framework pour créer cette galerie.
-          Génération statique, proche des standards web, approche composants
-          accessible : parfait pour un développeur non-professionnel qui veut
-          monter en compétences progressivement.
+          Les images s'accumulaient et ma motivation baissait. Modéliser mon
+          propre user journey m'a éclairé : ouvrir l'image, récupérer sa
+          position, la chercher sur OpenStreetMap, renseigner les métadonnées
+          dans un fichier Astro, redimensionner, compresser… C'est très (trop)
+          long.
         </p>
-        <p>Promesses tenues !</p>
-      </Column>
-      <Column title="Hébergement sur GitHub Pages">
-        <p>
-          Le code est hébergé sur GitHub. Galleries est un site statique, je n'y
-          collecte aucune donnée. L'hébergement sur GitHub Pages était un choix
-          naturel compte tenu du pipeline CI/CD totalement intégré.
-        </p>
-      </Column>
-      <Column title="Organisation des collections par thème">
-        <p>
-          Les 2 galeries reposent sur les Content Collection de Astro. Et pour
-          bénéficier d'une meilleure connaissance du système, l'une est en
-          markdown, l'autre en JSON.
-        </p>
-      </Column>
-      <Column title="Développement d'une galerie responsive">
-        <p>
-          Les Content Collections de Astro sont parfaites pour un blog. Mais
-          pour ce projet, j'ai dû développer en TypeScript tout le
-          fonctionnement de la galerie : gestion du format des images (portrait
-          vs paysage), gestion de la navigation, gestion du clavier, etc.
-        </p>
-      </Column>
-    </Section>
-  </Row>
-
-  <Row>
-    <Section title="Itération 2">
-      <Column title="Constat : La flemme" fullWidth>
-        <p>
-          Au fil du temps, les images s'accumulaient quand même beaucoup sur mon
-          téléphone, et ma motivation pour les ajouter au site baissait.
-          Modéliser mon propre "user journey" m'a éclairé. Le traitement d'une
-          image me prend beaucoup trop de temps : ouvrir l'image, récupérer sa
-          position, chercher cette position sur OpenStreetMap, puis renseigner
-          les métadonnées associées dans un fichier Astro créé pour l'occasion,
-          redimensionner l'image et la compresser. C'est très (trop) long.
-        </p>
-        <br />
         <Figure
-          caption="User Journey original"
           image={userJourney1}
-          alt="user journey 1"
+          alt="User journey original"
+          caption="User journey original"
+          label="Avant"
+          labelTone="no"
         />
-      </Column>
-      <Column title="Enter Gemini" fullWidth>
+        <p class="trigger">Solution : Gemini</p>
         <p>
-          Avec Gemini, j'ai pu créer en 2 heures de travail un script qui me
-          soulage au maximum de toute la partie chronophage. Une fois les images
-          sur mon ordinateur, le script se charge de tous les traitements. Je
-          n'ai plus qu'à renseigner ce qu'il ne peut pas faire à ma place.
+          En 2 heures avec Gemini, un script qui me soulage de toute la partie
+          chronophage. Une fois les images sur mon ordinateur, il se charge des
+          traitements ; je ne renseigne plus que ce qu'il ne peut pas faire.
         </p>
-        <br />
         <Figure
-          caption="User Journey amélioré"
           image={userJourney2}
-          alt="user journey 2"
+          alt="User journey amélioré"
+          caption="User journey amélioré"
+          label="Après"
+          labelTone="yes"
         />
-      </Column>
-    </Section>
-  </Row>
+      </Iteration>
 
-  <Row>
-    <Section title="Itération 3">
-      <Column title="Constat : La flemme bis" fullWidth>
+      <Iteration
+        n={3}
+        title="Bonjour Claude, ça skill ?"
+        tool="Skill Claude"
+        id="it3"
+        current
+      >
+        <p class="trigger">Constat : la flemme bis</p>
         <p>
-          Malgré le script, je me suis surpris à toujours accumuler les photos.
-          Certes, le script accélère le process global, mais pas assez pour
-          m'inciter à publier plus rapidement mes images.
+          Malgré le script, j'accumulais toujours les photos : il accélère le
+          process, mais pas assez pour m'inciter à publier.
         </p>
-        <p>Ce que le script écrit avec Gemini fait :</p>
+        <Outcomes
+          yesTitle="Ce que fait le script"
+          noTitle="Ce qui restait à ma charge"
+        >
+          <Fragment slot="yes">
+            <li>Scanne le dossier inbox</li>
+            <li>Redimensionne les images</li>
+            <li>Extrait la géolocalisation et la date de prise de vue</li>
+            <li>Crée les fichiers Astro des nouvelles images</li>
+          </Fragment>
+          <Fragment slot="no">
+            <li>Transférer les photos de Downloads vers inbox</li>
+            <li>Nommer les photos</li>
+            <li>Renseigner les métadonnées</li>
+          </Fragment>
+        </Outcomes>
+        <p>
+          Et comme il fallait le faire image par image, c'est là que je perdais
+          du temps.
+        </p>
+        <p class="trigger">Solution : un skill Claude</p>
+        <p>
+          J'ai d'abord supprimé le nom des images, qui ne rimait à rien, pour
+          mettre en avant les artistes et le type des fonts. Puis, avec Claude,
+          j'ai rédigé un <a href="https://claude.com/fr/skills">skill</a> qui prend
+          en charge toute la partie pénible et répétitive :
+        </p>
         <ul class="list-arrow">
-          <li>Scanne le dossier inbox</li>
-          <li>Redimensionne les images</li>
-          <li>Extrait la géolocation et la date de shooting</li>
-          <li>Crée les fichiers Astro nécessaires pour les nouvelles images</li>
-        </ul>
-        <p>Mais restait à ma charge :</p>
-        <ul class="list-arrow">
-          <li>De transférer les photos de mon dossiers Downloads dans inbox</li>
-          <li>D'ajouter un nom aux photos</li>
-          <li>Renseigner les métadonnées</li>
-        </ul>
-        <p>
-          Et comme il fallait faire ça image par image, c'est là que je perdais
-          encore du temps.
-        </p>
-      </Column>
-      <Column title="Bonjour Claude, ça skill ?" fullWidth>
-        <p>
-          Avant de parler de Claude, j'ai décidé de supprimer le nom des images,
-          qui ne rimait à rien, et de mettre en avant les artistes et le type
-          des fonts.
-        </p>
-        <p>
-          Puis, avec Claude, j'ai rédigé un <a
-            href="https://claude.com/fr/skills"
-            target="_blank">SKILL</a
-          > qui prend en charge toute la partie pénible et répétitive de l'ajout
-          des images sur le site.
-        </p>
-        <ul class="list-arrow">
-          <li>Transférer les images du dossier Downloads vers inbox</li>
+          <li>Transférer les images de Downloads vers inbox.</li>
           <li>
-            Lancer un sous agent pour caractériser les images, le sous agent est
-            par exemple en mesure de déterminer si une font est serif ou
-            sans-serif. Quel gain de temps !
+            Lancer un sous-agent qui caractérise les images, par exemple une
+            font serif ou sans-serif. Quel gain de temps !
           </li>
-          <li>
-            Pour les oeuvres de street art, le sous agent est aussi capable
-            d'identifier la signature de l'artiste
-          </li>
-          <li>Valider l'ajout des images</li>
+          <li>Pour le street art, identifier la signature de l'artiste.</li>
+          <li>Valider l'ajout des images.</li>
         </ul>
         <p>
-          Le gain est aussi dans la manière dont le workflow s'exécute. Au lieu
-          d'avoir à modifier chaque fichier individuellement, Claude me fait une
-          liste de propositions, que je valide, amende, ou refuse, en une seule
-          passe.
+          Au lieu de modifier chaque fichier, Claude me fait une liste de
+          propositions que je valide, amende ou refuse, en une seule passe.
         </p>
-        <Figure caption="Le skill Claude en action" image={skill} alt="skill" />
-      </Column>
-    </Section>
-  </Row>
-
-  <Row>
-    <Section title="En situation">
-      <Column title="Ecran large">
         <Figure
-          caption="Rendu sur écran large"
-          image={widescreen}
-          alt="wide screen rendering"
+          image={skill}
+          alt="Le skill Claude en action : liste de propositions à valider"
+          caption="Le skill Claude en action"
         />
-      </Column>
-      <Column title="Mobile">
+      </Iteration>
+    </Timeline>
+  </Section>
+
+  <!-- 04 -->
+  <Section id="situation" number={4} title="En situation">
+    <div class="grid-2 grid-wide-narrow">
+      <Figure
+        image={widescreen}
+        alt="Rendu de Galleries sur écran large"
+        caption="Écran large"
+        dark
+        sizes="(min-width: 1200px) 37rem, (min-width: 768px) 62vw, 100vw"
+      />
+      <div class="mobile-shot">
         <Figure
-          caption="Rendu sur mobile"
-          height="40rem"
           image={mobile}
-          alt="mobile rendering"
+          alt="Rendu de Galleries sur mobile"
+          caption="Mobile"
+          dark
+          width="17.5rem"
+          center
+          sizes="17.5rem"
         />
-      </Column>
-    </Section>
-  </Row>
+      </div>
+    </div>
+  </Section>
 
-  <Row>
-    <Learnings>
-      <h2>Apprentissages et Résultats</h2>
-      <ul class="list-arrow">
-        <li>
+  <!-- 05 -->
+  <Section id="apprentissages" number={5} title="Apprentissages et résultats">
+    <LearningsGrid>
+      <Learning n={1}>
+        <p>
           Compétences TypeScript renforcées : typage, gestion d'événements,
           responsivité.
-        </li>
-        <li>
-          Expérience concrête de développement augmenté par l'IA (vibe coding),
-          ici avec Claude et Gemini, de l'expression de besoins initiale au
-          script fonctionnel final.
-        </li>
-        <li>
-          Expérience concrête de mise en oeuvre de l'IA agentique via le SKILL
-          Claude, qui orchestre toute la procédure d'ajout de nouvelles images.
-        </li>
-        <li>
-          Ce projet m'a permis de rencontrer certains des artistes exposés ici,
-          comme
-          <strong>Ador</strong>, <strong>Ratz One</strong> et <strong
-            >Stend</strong
-          >, que je remercie pour m'avoir autorisé à reproduire leur travail.
-        </li>
-      </ul>
-    </Learnings>
-  </Row>
+        </p>
+      </Learning>
+      <Learning n={2}>
+        <p>
+          Expérience concrète du développement augmenté par l'IA (vibe coding)
+          avec Claude et Gemini, de l'expression de besoin au script
+          fonctionnel.
+        </p>
+      </Learning>
+      <Learning n={3}>
+        <p>
+          Mise en œuvre concrète de l'IA agentique : le skill Claude orchestre
+          toute la procédure d'ajout de nouvelles images.
+        </p>
+      </Learning>
+      <Learning n={4}>
+        <p>
+          Rencontrer certains des artistes exposés, comme <strong>Ador</strong>,
+          <strong>Ratz One</strong> et <strong>Stend</strong>, que je remercie de
+          m'avoir autorisé à reproduire leur travail.
+        </p>
+      </Learning>
+    </LearningsGrid>
+  </Section>
 
-  <Row>
-    <Keywords>
-      <span class="keyword">Astro</span>
-      <span class="keyword">GitHub Pages</span>
-      <span class="keyword">IA Agentique</span>
-      <span class="keyword">JavaScript</span>
-      <span class="keyword">Skill Claude</span>
-      <span class="keyword">Street art</span>
-      <span class="keyword">TypeScript</span>
-      <span class="keyword">Typographie</span>
-    </Keywords>
-  </Row>
+  <Keywords>
+    <span class="keyword">Astro</span>
+    <span class="keyword">TypeScript</span>
+    <span class="keyword">JavaScript</span>
+    <span class="keyword">GitHub Pages</span>
+    <span class="keyword">IA agentique</span>
+    <span class="keyword">Skill Claude</span>
+    <span class="keyword">Typographie</span>
+    <span class="keyword">Street art</span>
+  </Keywords>
 </ProjectPersonal>
+
+<style>
+  .challenge {
+    margin-top: 2rem;
+  }
+
+  .card-end {
+    margin-top: 0.9rem;
+  }
+
+  .mobile-shot :global(figcaption) {
+    text-align: center;
+  }
+</style>
