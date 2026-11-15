@@ -69,7 +69,7 @@ npx astro check   # type check
 
 - `src/styles/global.css` holds the tokens (`--paper`, `--surface`, `--soft`, `--line`, `--ink`, `--body`, `--muted`, `--accent`, `--accent-deco`, `--accent-soft`, `--accent-on-dark`, `--coral`, `--green`, `--wrap`, `--prose`, `--radius`, `--header-h`), the type scale and the utilities (`.intro`, `.tag`, `.chip`, `.badge`, `.list-arrow`, `ol.numbered`, grids, `.label`, `.sr-only`). Legacy `--color-*` aliases remain for older code.
 - Themes: pro pages use the indigo accent (`#4040CC`). Personal pages get `body.theme-perso`: `--accent: #B8344F` for text, `--accent-deco: #CC4060` for borders, dots and bars only (too light for small text).
-- Fonts are self-hosted in `public/fonts/`: Cormorant Garamond (body, weight 500) and Montserrat (headings and UI, 600). Do not move them out of `public/`.
+- Fonts are self-hosted in `public/fonts/`: Source Serif 4 (body, weight 400; variable WOFF2 roman + italic with optical sizing, OFL licence alongside) and Montserrat (headings and UI, 600). Do not move them out of `public/`.
 - Headings: `h1`–`h4` in Montserrat; `h4` and `.label` share the small uppercase label look. Keep heading levels in order (no h2 → h4 jump): use `<h3 class="label">` when you need the small look one level down.
 - Component styles are scoped in each `.astro` file; use `:global()` for slotted content.
 
