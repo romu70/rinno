@@ -53,7 +53,7 @@ const chapters = [
   lede="Un logiciel de pharmacie SaaS, mobile first et résistant aux coupures — <em>conçu sur le terrain, avec les pharmaciens.</em>"
   meta={[
     { label: "Rôle", value: "Head of Product & Design" },
-    { label: "Équipe", value: "~20 personnes, dont 3 en produit" },
+    { label: "Équipe", value: "~20 personnes, 3 en produit" },
     { label: "Durée", value: "4 ans · Comité de direction" },
     { label: "Site", value: "meditect.com", href: "https://www.meditect.com/" },
   ]}
@@ -61,7 +61,10 @@ const chapters = [
   imageAlt="Interface du logiciel de pharmacie Meditect : catalogue produits"
   keyFigures={[
     { value: "~5", unit: "%", label: "du marché cible en 24 mois, sur 7 pays" },
-    { value: "2", label: "laboratoires pharmaceutiques signés comme partenaires" },
+    {
+      value: "2",
+      label: "labos pharma signés comme partenaires",
+    },
     { value: "+27k", label: "produits — 1er catalogue digital d'Afrique" },
   ]}
   chapters={chapters}
@@ -75,14 +78,15 @@ const chapters = [
     <p>Recruté lors d'un pivot stratégique :</p>
     <ul class="list-arrow">
       <li>
-        Digitaliser la santé en Afrique subsaharienne, dont les flux sont encore
-        très papier-crayon.
+        Digitaliser la santé en Afrique subsaharienne (flux très
+        "papier-crayon").
       </li>
       <li>La data sera notre source de revenus.</li>
     </ul>
     <p>
-      Dans un système de santé, le pharmacien est l'interlocuteur de toutes les
-      parties prenantes, il en est le maillon central.
+      Dans un système de santé (en Afrique et ailleurs), le pharmacien est
+      l'interlocuteur de toutes les parties prenantes, il en est le maillon
+      central.
     </p>
     <Learnings variant="statement" caption="Le parti pris">
       <p>Nous commencerons par le pharmacien.</p>
@@ -96,12 +100,13 @@ const chapters = [
         <p>Plus de 50 pharmacies visitées, pour découvrir que :</p>
         <ul class="list-arrow">
           <li>
-            <strong>Le besoin n°1</strong> est d'avoir un stock <em>propre</em>, pour
-            toujours servir les patients et minimiser les pertes de trésorerie dues
-            aux produits périmés.
+            <strong>Le besoin n°1</strong> est d'avoir un stock <em>propre</em>,
+            pour toujours servir les patients et minimiser les pertes de
+            trésorerie dues aux produits périmés.
           </li>
           <li>
-            <strong>La concurrence</strong> propose des solutions <em>on-premise</em
+            <strong>La concurrence</strong> propose des solutions <em
+              >on-premise</em
             > qui ne tiennent pas face aux coupures régulières du courant électrique.
           </li>
         </ul>
@@ -191,12 +196,17 @@ const chapters = [
         </ul>
       </TabPanel>
       <TabPanel id="artefact-mapping" title="Mapping">
-        <Figure slot="media" image={mapping} alt="Tasks mapping" sizes={panel} />
+        <Figure
+          slot="media"
+          image={mapping}
+          alt="Tasks mapping"
+          sizes={panel}
+        />
         <span class="tag">Temps long</span>
         <h4>Mapping</h4>
         <p>
-          Vision d'ensemble, en actualisation continue. Premier des 3 horizons de
-          planification qui alignent stratégie et exécution.
+          Vision d'ensemble, en actualisation continue. Premier des 3 horizons
+          de planification qui alignent stratégie et exécution.
         </p>
         <ol class="horizon" aria-label="Horizon 1 sur 3">
           <li class="on"></li><li></li><li></li>
@@ -212,8 +222,8 @@ const chapters = [
         <span class="tag">3 mois</span>
         <h4>Roadmap du trimestre</h4>
         <p>
-          L'enveloppe fonctionnelle à 3 mois : ce que l'équipe s'engage à livrer,
-          dérivé du mapping.
+          L'enveloppe fonctionnelle à 3 mois : ce que l'équipe s'engage à
+          livrer, dérivé du mapping.
         </p>
         <ol class="horizon" aria-label="Horizon 2 sur 3">
           <li class="on"></li><li class="on"></li><li></li>
@@ -345,9 +355,9 @@ const chapters = [
       }}
     >
       <Fragment slot="note">
-        <strong>Ce qu'on a appris :</strong> les pharmaciens voulaient un outil « pro
-        », pas un marqueur culturel. Nous avons basculé vers le bleu et le vert, couleurs
-        classiques de la santé en Occident.
+        <strong>Ce qu'on a appris :</strong> les pharmaciens voulaient un outil «
+        pro », pas un marqueur culturel. Nous avons basculé vers le bleu et le vert,
+        couleurs classiques de la santé en Occident.
       </Fragment>
     </BeforeAfter>
 
@@ -494,7 +504,8 @@ const chapters = [
       <Learning n={3} title="Le design system, levier de passage à l'échelle">
         <p>
           Avec +120 composants et une équipe de 4 personnes, nous avons conçu un
-          ERP complet et cohérent. En contexte startup, un vrai « game changer ».
+          ERP complet et cohérent. En contexte startup, un vrai « game changer
+          ».
         </p>
       </Learning>
       <Learning n={4} title="Pragmatisme = trouver des solutions">
