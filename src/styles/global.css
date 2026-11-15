@@ -464,6 +464,20 @@ ol.numbered li::before {
   }
 }
 
+/* End-of-page appendix: links next to keywords from 768px */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .appendix-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+  }
+}
+
 /* Visually hidden, still read by screen readers */
 .sr-only {
   position: absolute;
