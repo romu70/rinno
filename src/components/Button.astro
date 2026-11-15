@@ -1,0 +1,69 @@
+---
+// Pill link button with a trailing arrow.
+// Filled with the theme colour; on hover / focus the colours swap
+// (white background, coloured text) and the 2px border stays, so the size
+// never changes. pro = indigo, perso = dark coral (white text at 5.6:1).
+interface Props {
+  href: string;
+  variant?: "pro" | "perso";
+}
+
+const { href, variant = "pro" } = Astro.props;
+---
+
+<a href={href} class:list={["btn", variant]}>
+  <slot />
+  <span class="arrow" aria-hidden="true">→</span>
+</a>
+
+<style>
+  .btn {
+    --c: #4040cc;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--c);
+    border-radius: 999px;
+    background: var(--c);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .btn.perso {
+    --c: #b8344f;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    background: var(--surface);
+    color: var(--c);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--c);
+    outline-offset: 3px;
+  }
+
+  .arrow {
+    transition: transform 0.2s;
+  }
+
+  .btn:hover .arrow,
+  .btn:focus-visible .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (min-width: 768px) {
+    .btn {
+      font-size: 0.875rem;
+    }
+  }
+</style>

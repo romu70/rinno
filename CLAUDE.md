@@ -17,7 +17,7 @@ npx astro check   # type check
 
 ## Pages
 
-- `src/pages/index.astro`: home. `src/pages/legal.astro`: legal notices.
+- `src/pages/index.astro`: home (hero with portrait and contact strip, selected projects, path, vision, skills, dark contact block; no chapter nav). `src/pages/legal.astro`: legal notices.
 - `src/pages/pro/index.astro` and `src/pages/perso/index.astro`: project landings (`layouts/ProjectsLanding.astro` + `components/ProjectCard.astro`).
 - Pro projects: `pro/meditect/` (index, `designsystem`, `receiving`), `pro/novyspec`, `pro/smartrx/` (index, `logistock`, `tageditor`).
 - Personal projects: `perso/galleries`, `perso/coach-pizza`, `perso/thot`.
@@ -63,7 +63,7 @@ npx astro check   # type check
 | `LearningsGrid` + `Learning` | Numbered takeaways, 2 or 3 columns. |
 | `KeyFigures`, `Quote`, `LinkList`, `Keywords`, `Pager`, `FigmaEmbed`, `Lightbox` | As named. |
 
-`Row` and `Column` are legacy (only the home page uses them). `components/ProjectCard.astro` is the project card (`layout="row"` on landings, `"stack"` in grids).
+`Row` and `Column` are legacy and no longer used by any page. `components/ProjectCard.astro` is the project card (`layout="row"` on landings, `"stack"` in grids; `fit="contain"` for logos, `imageBg` / `imagePosition` for screenshots). `components/Button.astro` is the pill CTA (`variant="pro" | "perso"`; hover and keyboard focus swap the colours).
 
 ## Styling
 

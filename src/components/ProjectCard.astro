@@ -20,6 +20,12 @@ interface Props {
   /** "row" (image left, landing pages) or "stack" (image on top, grids) */
   layout?: "row" | "stack";
   headingLevel?: "h2" | "h3";
+  /** "contain" shows the whole image inset on white (logos) */
+  fit?: "cover" | "contain";
+  /** Background behind the image, e.g. "#303030" for a dark screenshot */
+  imageBg?: string;
+  /** CSS object-position of the image, e.g. "top" */
+  imagePosition?: string;
 }
 
 const {
@@ -36,6 +42,9 @@ const {
   accent,
   layout = "row",
   headingLevel = "h2",
+  fit = "cover",
+  imageBg,
+  imagePosition,
 } = Astro.props;
 
 const line = metric ?? bottomText;
@@ -55,7 +64,10 @@ const accentStyle =
   class:list={["card", layout, { clickable: isClickable }]}
   style={accentStyle}
 >
-  <div class="card-img">
+  <div
+    class:list={["card-img", { contain: fit === "contain" }]}
+    style={imageBg ? `background: ${imageBg}` : undefined}
+  >
     {
       image ? (
         <Image
@@ -69,6 +81,7 @@ const accentStyle =
           }
           format="webp"
           quality={80}
+          style={imagePosition ? `object-position: ${imagePosition}` : undefined}
         />
       ) : (
         <div class="placeholder" aria-hidden="true">
@@ -144,6 +157,15 @@ const accentStyle =
     object-fit: cover;
   }
 
+  .card-img.contain {
+    background: var(--surface);
+  }
+
+  .card-img.contain :global(img) {
+    object-fit: contain;
+    padding: 12%;
+  }
+
   .placeholder {
     width: 100%;
     height: 100%;
@@ -170,8 +192,8 @@ const accentStyle =
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: var(--surface);
-    color: var(--ink);
+    background: var(--accent-soft);
+    color: var(--accent);
   }
 
   .card-body {

@@ -1,14 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import Row from "../components/project/Row.astro";
 import Section from "../components/project/Section.astro";
-import Column from "../components/project/Column.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import Card from "../components/project/Card.astro";
 import Learnings from "../components/project/Learnings.astro";
-import LinkIcon from "../components/LinkIcon.astro";
+import LearningsGrid from "../components/project/LearningsGrid.astro";
+import Learning from "../components/project/Learning.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Button from "../components/Button.astro";
 import portrait from "../assets/portrait.jpeg";
-import novyspec from "../assets/pro/novyspec/thumbnail.png";
 import meditect from "../assets/pro/meditect/thumbnail.png";
 import galleriesImg from "../assets/perso/galleries/thumbnail.jpg";
 
@@ -26,6 +26,14 @@ const structuredData = {
     worksFor: [],
   },
 };
+
+const contact = {
+  email: "r@tisserand.eu",
+  phone: "+33 666 72 99 63",
+  phoneHref: "tel:+33666729963",
+  linkedin: "https://www.linkedin.com/in/romutisserand/",
+  github: "https://github.com/romu70",
+};
 ---
 
 <Layout
@@ -35,305 +43,531 @@ const structuredData = {
   image={portrait}
   structuredData={structuredData}
 >
-  <article class="container-narrow content-detail">
-    <div class="project-content">
-      <Row>
-        <Section title="" noBorder>
-          <Column>
-            <div class="photo-container">
-              <Image
-                src={portrait}
-                alt="Portrait de Romuald Tisserand"
-                style="width: 20rem; height: 20rem; border: 3px solid var(--color); border-radius: 50%;"
-              />
-            </div>
-            <h1 class="photo-container">Romuald Tisserand</h1>
-            <div class="caption">
-              Crédit photo: <a href="https://yriss.fr/" target="_blank"
-                >maison Yriss</a
+  <div class="home">
+    <!-- Hero -->
+    <header class="hero">
+      <figure class="portrait">
+        <div class="portrait-frame">
+          <Image
+            src={portrait}
+            alt="Portrait de Romuald Tisserand"
+            widths={[300, 600].filter((w) => w <= portrait.width)}
+            sizes="(min-width: 1200px) 26rem, (min-width: 768px) 12rem, 9.5rem"
+            format="webp"
+            quality={85}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <figcaption>
+          Crédit photo : <a href="https://yriss.fr/" target="_blank" rel="noopener"
+            >maison Yriss</a
+          >
+        </figcaption>
+      </figure>
+
+      <div class="pitch">
+        <p class="eyebrow">Product &amp; Design Leader B2B</p>
+        <h1>Romuald Tisserand</h1>
+        <p class="intro">
+          J'ai piloté la stratégie produit d'un ERP SaaS pour les pharmacies
+          d'Afrique subsaharienne qui a conquis <strong
+            >5&nbsp;% de son marché en 2 ans (7 pays)</strong
+          >.
+        </p>
+        <p>
+          Avant ça, j'ai lancé une application Android de gestion logistique et
+          un éditeur graphique d'étiquettes SaaS.
+        </p>
+        <p>
+          De la stratégie produit à l'exécution terrain, je transforme des
+          besoins métier en solutions qui créent de la valeur.
+        </p>
+        <div class="ctas">
+          <Button href="/pro" variant="pro">Travaux professionnels</Button>
+          <Button href="/perso" variant="perso">Projets personnels</Button>
+        </div>
+        <dl class="meta">
+          <div>
+            <dt>Email</dt>
+            <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+          </div>
+          <div>
+            <dt>Téléphone</dt>
+            <dd><a href={contact.phoneHref}>{contact.phone}</a></dd>
+          </div>
+          <div>
+            <dt>LinkedIn</dt>
+            <dd>
+              <a href={contact.linkedin} target="_blank" rel="noopener"
+                >romutisserand <span aria-hidden="true">↗</span></a
               >
-            </div>
-          </Column>
-          <Column>
-            <h2>Product & Design Leader B2B</h2>
-            <p>
-              J'ai piloté la stratégie produit d'un ERP SaaS pour les pharmacies
-              d'Afrique subsaharienne qui a conquis <strong
-                >5% de son marché en 2 ans (7 pays)</strong
-              >.
-            </p>
-            <p>
-              Avant ça, j'ai lancé une application Android de gestion logistique
-              et un éditeur graphique d'étiquettes SaaS.
-            </p>
-            <p>
-              De la stratégie produit à l'exécution terrain, je transforme des
-              besoins métier en solutions qui créent de la valeur.
-            </p>
-          </Column>
-        </Section>
-      </Row>
-      <Row>
-        <Section noBorder>
-          <Column title="De la tech...">
+            </dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd>
+              <a href={contact.github} target="_blank" rel="noopener"
+                >romu70 <span aria-hidden="true">↗</span></a
+              >
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="body">
+      <!-- 01 -->
+      <Section number={1} title="Projets sélectionnés">
+        <div class="grid-2 cards">
+          <ProjectCard
+            title="Meditect"
+            year="2021 – 2024"
+            description="Digitaliser la santé en Afrique subsaharienne, en commençant par les pharmacies."
+            link="/pro/meditect"
+            image={meditect}
+            metric="5 % du marché · 7 pays · en 2 ans"
+            category="pro"
+            layout="stack"
+            headingLevel="h3"
+            fit="contain"
+          />
+          <ProjectCard
+            title="Galleries"
+            year="2023 – présent"
+            description="Photographier des typographies et du street art, et faire une galerie virtuelle pour les présenter."
+            link="/perso/galleries"
+            image={galleriesImg}
+            category="perso"
+            accent="coral"
+            layout="stack"
+            headingLevel="h3"
+            imageBg="#303030"
+            imagePosition="top"
+          />
+        </div>
+      </Section>
+
+      <!-- 02 -->
+      <Section number={2} title="De la tech au produit">
+        <div class="path">
+          <Card>
+            <p class="when">15 ans</p>
+            <h3>De la tech…</h3>
             <p>
               Après 15 ans dans des fonctions techniques (Dev, DevOps, Infra),
               j'ai opéré une transition vers le product management et le design.
             </p>
-          </Column>
-          <Column title="...au produit">
+          </Card>
+          <span class="arrow" aria-hidden="true">→</span>
+          <Card class="now">
+            <p class="when">Depuis 2017</p>
+            <h3>…au produit</h3>
             <p>
-              Depuis 2017, je définis vision et stratégie produit, et pilote
-              leur exécution, de la discovery terrain jusqu'au déploiement.
+              Je définis vision et stratégie produit, et pilote leur exécution,
+              de la discovery terrain jusqu'au déploiement.
             </p>
-          </Column>
-        </Section>
-      </Row>
-      <Row>
-        <Section title="Vision & Stratégie → Exécution Produit" noBorder>
-          <Column>
-            <p>Double casquette produit/design + background tech pour :</p>
-            <ul class="list-arrow">
-              <li>Définir la vision en lien avec les objectifs business</li>
-              <li>Aligner les parties prenantes sur cette vision</li>
-              <li>Arbitrer entre opportunités marché et impact business</li>
-              <li>Piloter des équipes cross-fonctionnelles vers l'impact</li>
+          </Card>
+        </div>
+      </Section>
+
+      <!-- 03 -->
+      <Section number={3} title="Vision & stratégie → exécution produit">
+        <p>Double casquette produit/design + background tech pour :</p>
+        <ul class="list-arrow">
+          <li>Définir la vision en lien avec les objectifs business</li>
+          <li>Aligner les parties prenantes sur cette vision</li>
+          <li>Arbitrer entre opportunités marché et impact business</li>
+          <li>Piloter des équipes cross-fonctionnelles vers l'impact</li>
+        </ul>
+        <Learnings variant="statement" caption="Ma conviction">
+          <p>
+            Les meilleurs produits naissent d'une obsession pour l'utilisateur,
+            d'une rigueur méthodologique, et d'équipes alignées sur l'impact.
+          </p>
+        </Learnings>
+      </Section>
+
+      <!-- 04 -->
+      <Section number={4} title="Compétences clés">
+        <LearningsGrid columns={3}>
+          <Learning n={1} title="Produit">
+            <ul class="tags">
+              <li>Stratégie</li>
+              <li>Roadmapping</li>
+              <li>Product Ops</li>
             </ul>
-          </Column>
-          <Column>
-            <Learnings>
-              <h3>Ma conviction</h3>
-              <p>
-                Les meilleurs produits naissent d'une <strong
-                  >obsession pour l'utilisateur</strong
-                >, d'une rigueur méthodologique, et d'équipes alignées sur
-                l'impact.
-              </p>
-            </Learnings>
-          </Column>
-        </Section>
-      </Row>
-      <Row>
-        <Section noBorder>
-          <Column>
-            <p class="centered-link">
-              <a href="/pro" class="button button-primary">
-                Travaux professionnels
-                <LinkIcon class="button-icon" />
-              </a>
-            </p>
-          </Column>
-          <Column>
-            <p class="centered-link">
-              <a href="/perso" class="button button-secondary">
-                Projets personnels
-                <LinkIcon class="button-icon" />
-              </a>
-            </p>
-          </Column>
-        </Section>
-      </Row>
-      <Row>
-        <Section title="Compétences clés" threeColumns noBorder>
-          <p></p>
-          <Column
-            ><Learnings>
-              <h3>🎯 Produit</h3>
-              <ul>
-                <li>Stratégie</li>
-                <li>Roadmapping</li>
-                <li>Product Ops</li>
-              </ul>
-            </Learnings></Column
-          >
-          <Column
-            ><Learnings>
-              <h3>🎨 Design</h3>
-              <ul>
-                <li>Discovery</li>
-                <li>Design Systems</li>
-                <li>Design Ops</li>
-              </ul>
-            </Learnings></Column
-          >
-          <Column
-            ><Learnings>
-              <h3>👫 Leadership</h3>
-              <ul>
-                <li>Team Building</li>
-                <li>Stakeholder Management</li>
-                <li>Mentorat</li>
-              </ul>
-            </Learnings></Column
-          >
-        </Section>
-      </Row>
-      <Row>
-        <Section title="Pour me joindre et discuter de vos enjeux" noBorder>
-          <Column>
-            <div class="contact-info">
-              <p>📧 <a href="mailto:r@tisserand.eu">r@tisserand.eu</a></p>
-              <p>☎️ <a href="tel:+33666729963">+33 666 72 99 63</a></p>
-              <p>
-                🔗 <a
-                  href="https://www.linkedin.com/in/romutisserand/"
-                  target="_blank">LinkedIn</a
-                >
-              </p>
-              <p>
-                🔗 <a href="https://github.com/romu70" target="_blank">GitHub</a
-                >
-              </p>
-            </div>
-          </Column>
-        </Section>
-      </Row>
+          </Learning>
+          <Learning n={2} title="Design">
+            <ul class="tags">
+              <li>Discovery</li>
+              <li>Design Systems</li>
+              <li>Design Ops</li>
+            </ul>
+          </Learning>
+          <Learning n={3} title="Leadership">
+            <ul class="tags">
+              <li>Team Building</li>
+              <li>Stakeholder Management</li>
+              <li>Mentorat</li>
+            </ul>
+          </Learning>
+        </LearningsGrid>
+      </Section>
+
+      <!-- 05 -->
+      <section class="contact" aria-labelledby="contact-title">
+        <p class="contact-num" aria-hidden="true">05</p>
+        <h2 id="contact-title">Pour me joindre et discuter de vos enjeux</h2>
+        <a class="mail" href={`mailto:${contact.email}`}>{contact.email}</a>
+        <ul>
+          <li><a href={contact.phoneHref}>{contact.phone}</a></li>
+          <li>
+            <a href={contact.linkedin} target="_blank" rel="noopener"
+              >LinkedIn <span aria-hidden="true">↗</span></a
+            >
+          </li>
+          <li>
+            <a href={contact.github} target="_blank" rel="noopener"
+              >GitHub <span aria-hidden="true">↗</span></a
+            >
+          </li>
+        </ul>
+      </section>
     </div>
-  </article>
+  </div>
 </Layout>
 
 <style>
-  .button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius);
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s;
-    font-variant: small-caps;
+  .home {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 4rem;
   }
 
-  .button:hover {
-    transform: translateY(-2px);
-  }
-
-  .button-icon {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.2s;
-  }
-
-  .button:hover .button-icon {
-    transform: translate(2px, -2px);
-  }
-
-  .button-primary {
-    background-color: var(--accent-indigo);
-    color: var(--color-lightest);
-  }
-
-  a.button-secondary {
-    background-color: white;
-    color: var(--accent-coral);
-    border: 2px solid var(--accent-coral);
-  }
-
-  .project-content {
-    display: flex;
-    flex-wrap: wrap;
+  /* ── Hero ─────────────────────────── */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
+    padding-top: 2rem;
   }
 
-  .contact-info {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
+  .portrait {
+    width: 9.5rem;
+    margin: 0;
+  }
+
+  .portrait-frame {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--soft);
+  }
+
+  .portrait-frame :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  figcaption a {
+    color: var(--muted);
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.1rem;
   }
 
   h1 {
-    text-align: left;
+    font-size: clamp(3.3rem, 7vw, 5.55rem); /* max 100px at 18px root */
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    overflow-wrap: anywhere;
+    margin-bottom: 1.5rem;
   }
 
-  .content-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 0rem;
+  .pitch p:not(.eyebrow) {
+    max-width: var(--prose);
   }
 
-  .content-area {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+  .pitch p + p {
+    margin-top: 1rem;
   }
 
-  .photo-container {
-    display: flex;
-    justify-content: center;
+  .intro strong {
+    color: var(--ink);
+    font-weight: 600;
   }
 
-  .caption {
-    font-variant: small-caps;
-    color: var(--color-dark);
-    text-align: center;
-    font-size: 1.1rem;
-  }
-
-  .centered-link {
-    text-align: center;
-  }
-
-  :global(.content-area > .content-section),
-  :global(.content-area > .highlight) {
-    flex: 1 1 100%;
-  }
-
-  :global(.keywords) {
+  .ctas {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+    margin: 2.5rem 0 0;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .meta dt {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .meta dd {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .meta a {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .meta a:hover,
+  .meta a:focus-visible {
+    text-decoration: underline;
+  }
+
+  /* ── Sections ─────────────────────── */
+  .body {
+    padding-top: 5rem;
+  }
+
+  .body :global(h2) {
+    max-width: none;
+  }
+
+  .cards {
+    margin-top: 0;
+  }
+
+  /* De la tech → au produit */
+  .path {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .path h3 {
+    margin: 0.4rem 0 0.6rem;
+    font-size: 1.3rem;
+  }
+
+  /* .path prefix: beats Card's own paragraph size */
+  .path .when {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .path :global(.now) {
+    border-color: var(--accent-deco);
+    box-shadow: 0 0 0 1px var(--accent-deco);
+  }
+
+  .path :global(.now) .when {
+    color: var(--accent);
+  }
+
+  /* Same disc as between step cards; points down when stacked */
+  .arrow {
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 3px rgb(10 10 20 / 0.08);
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    transform: rotate(90deg);
+  }
+
+  /* Skills */
+  .home :global(.tags) {
+    margin-top: 0.9rem;
+  }
+
+  /* ── Contact ──────────────────────── */
+  .contact {
+    background: var(--ink);
+    color: #e8e8f2;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+  }
+
+  .contact-num {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--accent-on-dark);
+    margin-bottom: 0.9rem;
+  }
+
+  .contact h2 {
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .mail {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding-bottom: 0.25rem;
+    font-family: var(--sans);
+    font-size: clamp(1.4rem, 3.2vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent-on-dark);
+    overflow-wrap: anywhere;
+  }
+
+  .mail:hover,
+  .mail:focus-visible {
+    color: var(--accent-on-dark);
+  }
+
+  .contact ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+  }
+
+  .contact ul a {
+    display: inline-flex;
+    align-items: center;
     gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid rgb(255 255 255 / 0.22);
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
   }
 
-  :global(.keyword) {
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    background-color: var(--color-light);
-    padding: 0.4rem 1rem;
-    border-radius: var(--radius);
+  .contact ul a:hover,
+  .contact ul a:focus-visible {
+    border-color: var(--accent-on-dark);
+    background: rgb(169 169 255 / 0.1);
   }
 
-  /* Card container styling for progressive widths */
-  .card-container {
-    width: 100%;
-    margin: 0 auto;
+  .contact ul a span {
+    color: var(--accent-on-dark);
   }
 
-  /* Responsive mobile - all cards full width */
-  @media (max-width: 768px) {
-    .content-detail {
-      gap: 2rem;
-    }
-
-    .card-container {
-      width: 100%;
-    }
+  .contact :focus-visible {
+    outline-color: var(--accent-on-dark);
   }
 
-  /* Responsive tablet/desktop - progressive widths start appearing */
   @media (min-width: 768px) {
+    .hero {
+      padding-top: 3.5rem;
+    }
+
+    .portrait {
+      width: 12rem;
+    }
+
+    .meta {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 3rem;
+    }
+
+    .body {
+      padding-top: 6rem;
+    }
+
+    .path {
+      grid-template-columns: minmax(0, 1fr) 2.25rem minmax(0, 1fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .path :global(.card) {
+      height: 100%;
+    }
+
+    .arrow {
+      transform: none;
+    }
+
+    .contact {
+      padding: 3.5rem;
+    }
+
+    .contact-num {
+      font-size: 0.75rem;
+    }
   }
 
-  /* Responsive mid-range desktop - more pronounced difference */
   @media (min-width: 1200px) {
-  }
-
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    /* 2-column layout for content */
-    :global(.content-area > .content-section),
-    :global(.content-area > .highlight) {
-      flex: 1 1 calc(50% - 1rem);
+    .hero {
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: 4.5rem;
+      align-items: start;
+      padding-top: 5rem;
     }
 
-    /* Full-width override */
-    :global(.content-area > .content-section.full-width),
-    :global(.content-area > .highlight.full-width) {
-      flex: 1 1 100%;
+    .portrait {
+      order: 2;
+      width: 100%;
+      max-width: 26rem;
+      justify-self: end;
+      margin-top: 0.5rem;
     }
 
-    /* Maximum progressive width difference on large screens */
-    .card-container.card-wide {
+    .portrait-frame {
+      border-radius: 20px;
     }
   }
 </style>
