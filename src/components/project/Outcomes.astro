@@ -11,11 +11,11 @@ const { yesTitle = "Réussites", noTitle = "Échecs" } = Astro.props;
 
 <div class="outcomes">
   <div class="card yes">
-    <h4>{yesTitle}</h4>
+    <h3 class="label">{yesTitle}</h3>
     <ul><slot name="yes" /></ul>
   </div>
   <div class="card no">
-    <h4>{noTitle}</h4>
+    <h3 class="label">{noTitle}</h3>
     <ul><slot name="no" /></ul>
   </div>
 </div>
@@ -36,11 +36,11 @@ const { yesTitle = "Réussites", noTitle = "Échecs" } = Astro.props;
     min-width: 0;
   }
 
-  .yes h4 {
+  .yes h3 {
     color: var(--green);
   }
 
-  .no h4 {
+  .no h3 {
     color: var(--coral);
   }
 

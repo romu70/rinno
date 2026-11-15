@@ -10,7 +10,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <section class="link-list" aria-label={title}>
-  <h4>{title}</h4>
+  <h2 class="label">{title}</h2>
   <ul>
     {
       links.map((l) => (

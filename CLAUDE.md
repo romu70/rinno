@@ -4,86 +4,95 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal website for Romuald Tisserand (Consultant Expert Numérique & IA) built with Astro. The site is minimal, static, and hosted on GitHub Pages at https://romu70.github.io.
+Personal portfolio of Romuald Tisserand (Product & Design), built with Astro. Static, in French, hosted on GitHub Pages (`site: "https://romu70.github.io"`, custom domain via `public/CNAME`). No JavaScript framework, no cookies, no data collection.
 
 ## Development Commands
 
 ```bash
-# Start development server
-npm run dev
-
-# Build for production (outputs to dist/)
-npm run build
-
-# Preview production build locally
-npm run preview
-
-# Run Astro CLI directly
-npm run astro
+npm run dev       # dev server on http://localhost:4321
+npm run build     # production build to dist/
+npm run preview   # serve the production build
+npx astro check   # type check
 ```
 
-## Project Architecture
+## Pages
 
-### Site Structure
+- `src/pages/index.astro`: home. `src/pages/legal.astro`: legal notices.
+- `src/pages/pro/index.astro` and `src/pages/perso/index.astro`: project landings (`layouts/ProjectsLanding.astro` + `components/ProjectCard.astro`).
+- Pro projects: `pro/meditect/` (index, `designsystem`, `receiving`), `pro/novyspec`, `pro/smartrx/` (index, `logistock`, `tageditor`).
+- Personal projects: `perso/galleries`, `perso/coach-pizza`, `perso/thot`.
+- `public/Sia/` is a static prototype export; PDFs linked from pages live in `public/pro/...`.
 
-- **Pages**: Two main pages
-  - `src/pages/index.astro` - Home page with contact information
-  - `src/pages/legal.astro` - Legal notices (mentions légales)
+## Layouts
 
-- **Layout**: Single unified layout at `src/layouts/Layout.astro`
-  - Sets up HTML structure with lang="fr"
-  - Imports global styles
-  - Provides consistent page wrapper via `<slot />`
+- `Layout.astro`: HTML shell (lang="fr", SEO, font preloads, Header, Footer). Props `bodyClass`, `progress` (reading-progress bar in the header).
+- `ProjectBase.astro`: every project page. Renders breadcrumbs, `ProjectHero`, `KeyFigures`, then a 2-column grid from 1200px (`ChapterNav` sidebar + content), the `Pager` and the `Lightbox`. Holds the global content rules (prose width, vertical rhythm).
+- `ProjectPro.astro` / `ProjectPersonal.astro`: wrap `ProjectBase`, set the theme, the breadcrumbs and the previous/next project. Sub-pages (e.g. `/pro/smartrx/logistock`) get their parent in the breadcrumbs and no pager.
 
-- **Components**: Reusable Astro components
-  - `src/components/Home.astro` - Main home page content with contact details
-  - `src/components/Link.astro` - Styled link component accepting `{value, label}` props
+### Writing a project page
 
-### Styling Approach
+```astro
+<ProjectPro
+  title="…" eyebrow="… · 2021 — 2024" lede="… <em>…</em>"
+  meta={[{ label: "Rôle", value: "…" }, { label: "Site", value: "…", href: "https://…" }]}
+  image={hero} imageAlt="…" keyFigures={[{ value: "+500", label: "…" }]}
+  chapters={[{ id: "contexte", label: "Contexte" }, { id: "x", label: "…", children: [{ id: "sub", label: "…" }] }]}
+>
+  <Section id="contexte" number={1} title="Contexte">…</Section>
+</ProjectPro>
+```
 
-- Global styles in `src/styles/global.css` define:
-  - CSS custom properties for theming (--background-color, --primary-color, --accent-color)
-  - Typography using MuseoModerno font from @fontsource
-  - Responsive font sizing via media queries (768px, 1440px breakpoints)
+- `chapters` ids must match `Section` ids; `children` ids match `h3` ids inside the section. The sidebar highlights the last target whose top passed 35% of the viewport.
+- Inside a `Section`, write plain blocks (`p`, `ul.list-arrow`, `h3`, components). Use `div.grid-2`, `div.grid-3`, `div.duo` or `div.grid-wide-narrow` for side-by-side content, and `div.section-content` to restore vertical rhythm inside a grid cell.
+- End a page with `<div class="appendix-grid"><LinkList …/><Keywords>…</Keywords></div>`, or `Keywords` alone.
 
-- Component-specific styles are scoped within each `.astro` file's `<style>` tag
+## Components (`src/components/project/`)
 
-- Responsive design using media queries to adjust for mobile (max-width: 768px), tablet/desktop (768px-1440px), and large screens (1440px+)
+| Component | Use |
+|---|---|
+| `ProjectHero` | Eyebrow, title, lede, meta row, cover (with a light darkening overlay). Rendered by `ProjectBase`. |
+| `ChapterNav` | Sticky chips below 1200px, numbered sidebar from 1200px. Rendered by `ProjectBase`. |
+| `Section` | Numbered chapter with an `h2`. |
+| `Card` | Bordered box with a small title; pairs go in `div.duo`. |
+| `CaseBlock` | Sub-section with a kicker ("Verticale 1", "Étape 2") and an `h3`. |
+| `Tabs` + `TabPanel` | `variant="tabs"` for parallel items, `variant="steps"` for a sequence (Previous/Next). Image in the panel's `media` slot. WAI-ARIA, all panels shown without JS. |
+| `Timeline` + `Iteration` | Successive versions (v1, v2…). `<p class="trigger">` labels "Constat" / "Solution". |
+| `Figure` | Image with caption, zoomable by default (opens the `Lightbox`). `label` + `labelTone` for "Avant"/"Après" chips; `sizes` for responsive images. |
+| `BeforeAfter`, `Options`/`Option`, `Outcomes`, `FactGrid`, `Swatches` | Comparisons, option cards, successes/failures, label/value facts, colour swatches. |
+| `Learnings` | Callout: `default`, `statement`, `impact` (dark), `note`, `end` ("Fin du projet."). |
+| `LearningsGrid` + `Learning` | Numbered takeaways, 2 or 3 columns. |
+| `KeyFigures`, `Quote`, `LinkList`, `Keywords`, `Pager`, `FigmaEmbed`, `Lightbox` | As named. |
 
-### Deployment
+`Row` and `Column` are legacy (only the home page uses them). `components/ProjectCard.astro` is the project card (`layout="row"` on landings, `"stack"` in grids).
 
-- Site is deployed to GitHub Pages
-- Configured in `astro.config.mjs` with `site: "https://romu70.github.io"`
-- The `base` config is commented out (no subdirectory deployment)
-- `public/CNAME` file likely handles custom domain routing
+## Styling
 
-## Key Technical Details
-
-- Language: French (lang="fr")
-- TypeScript: Uses Astro's strict TypeScript configuration
-- No JavaScript frameworks: Pure Astro with static HTML generation
-- No data collection: Site explicitly states no personal data or cookies are collected
-- Static assets: Minimal footprint with logo SVG and favicon
+- `src/styles/global.css` holds the tokens (`--paper`, `--surface`, `--soft`, `--line`, `--ink`, `--body`, `--muted`, `--accent`, `--accent-deco`, `--accent-soft`, `--accent-on-dark`, `--coral`, `--green`, `--wrap`, `--prose`, `--radius`, `--header-h`), the type scale and the utilities (`.intro`, `.tag`, `.chip`, `.badge`, `.list-arrow`, `ol.numbered`, grids, `.label`, `.sr-only`). Legacy `--color-*` aliases remain for older code.
+- Themes: pro pages use the indigo accent (`#4040CC`). Personal pages get `body.theme-perso`: `--accent: #B8344F` for text, `--accent-deco: #CC4060` for borders, dots and bars only (too light for small text).
+- Fonts are self-hosted in `public/fonts/`: Cormorant Garamond (body, weight 500) and Montserrat (headings and UI, 600). Do not move them out of `public/`.
+- Headings: `h1`–`h4` in Montserrat; `h4` and `.label` share the small uppercase label look. Keep heading levels in order (no h2 → h4 jump): use `<h3 class="label">` when you need the small look one level down.
+- Component styles are scoped in each `.astro` file; use `:global()` for slotted content.
 
 ## Development Guidelines
 
-### Responsive Design Requirements
+### Responsive design
 
-**Every code change must be responsive.** The site uses a mobile-first approach with the following breakpoints:
+**Every change must be responsive**, mobile first. Breakpoints:
 
-- **Mobile**: `max-width: 768px`
-  - Base font-size: 14px (set in global.css)
+- **Mobile** (`max-width: 768px`): base font-size 14px.
+- **Tablet/desktop** (`min-width: 768px`): base 16px; 2–4 column grids appear.
+- **`min-width: 1200px`**: the chapter sidebar appears next to the content.
+- **Large screens** (`min-width: 1440px`): base 18px.
 
-- **Tablet/Desktop**: `min-width: 768px` and `min-width: 1200px`
-  - Base font-size: 16px (default)
-  - Progressive width adjustments for content containers
+Use rem units, test at 390, 768, 1200 and 1440px, and check that nothing scrolls horizontally.
 
-- **Large screens**: `min-width: 1440px`
-  - Base font-size: 18px (set in global.css)
+### Accessibility
 
-**When adding or modifying any UI elements:**
-1. Start with mobile-first design
-2. Add media queries for at least the 768px and 1440px breakpoints
-3. Consider the 1200px breakpoint for mid-range desktop adjustments
-4. Use relative units (rem, %, vh/vw) that scale with the base font-size
-5. Test layout, spacing, and typography across all breakpoints
+- Text contrast ≥ 4.5:1 (3:1 for large text). Don't fade text with `opacity`.
+- Everything works with the keyboard (tabs: ← → Home End; lightbox: Esc returns focus to the trigger).
+- Respect `prefers-reduced-motion` (handled globally).
+- Every image needs a meaningful `alt`.
+
+### Content
+
+Content is in French. Keep existing copy and URLs unless the owner asks for a change.

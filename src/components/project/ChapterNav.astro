@@ -105,6 +105,17 @@ const pad = (n: number) => String(n).padStart(2, "0");
     );
     addEventListener("resize", spy, { passive: true });
     spy();
+
+    // Below 1200px the rail is a sticky chip bar under the header: publish its
+    // height so anchor jumps (scroll-padding-top) land below it.
+    const wide = matchMedia("(min-width: 1200px)");
+    const setRailH = () =>
+      document.documentElement.style.setProperty(
+        "--rail-h",
+        wide.matches ? "0px" : `${rail.offsetHeight}px`,
+      );
+    setRailH();
+    addEventListener("resize", setRailH, { passive: true });
   }
 </script>
 
@@ -164,7 +175,6 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
   .num {
     font-variant-numeric: tabular-nums;
-    opacity: 0.75;
   }
 
   a:hover {
@@ -179,7 +189,6 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
   a:global(.on) .num {
     color: var(--accent);
-    opacity: 1;
   }
 
   .sub {

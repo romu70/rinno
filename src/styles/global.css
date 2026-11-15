@@ -163,7 +163,11 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  /* Clear the sticky header, plus the chapter chip bar below 1200px */
+  scroll-padding-top: max(
+    6rem,
+    calc(var(--header-h) + var(--rail-h, 0px) + 1.25rem)
+  );
   -webkit-text-size-adjust: 100%;
 }
 
@@ -221,7 +225,9 @@ h3 {
   margin: 2.5rem 0 1rem;
 }
 
-h4 {
+/* .label: any heading level with the small uppercase h4 look */
+h4,
+.label {
   font-size: 0.8rem;
   line-height: 1.4;
   letter-spacing: 0.14em;
