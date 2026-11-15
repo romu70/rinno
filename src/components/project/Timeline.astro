@@ -1,0 +1,47 @@
+---
+// Vertical timeline of iterations. Children: <Iteration>.
+// Inside an iteration, <p class="trigger"> labels a step ("Constat : …").
+---
+
+<ol class="timeline">
+  <slot />
+</ol>
+
+<style>
+  .timeline {
+    list-style: none;
+    position: relative;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.7rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .timeline :global(.trigger) {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 1.75rem 0 0.4rem;
+  }
+
+  .timeline :global(.trigger:first-child) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 768px) {
+    .timeline :global(.trigger) {
+      font-size: 0.75rem;
+    }
+  }
+</style>

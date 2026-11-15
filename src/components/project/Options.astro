@@ -1,0 +1,22 @@
+---
+// Comparison cards: 1 column on mobile, 3 from 768px. Children: <Option>.
+---
+
+<div class="options">
+  <slot />
+</div>
+
+<style>
+  .options {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .options {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,31 +1,46 @@
 ---
-// Section component - content block with optional h2 title
+// Section (chapter) with an optional number and h2 title.
+// Content flows as blocks; when it contains <Column>s they sit side by side.
 interface Props {
   title?: string;
+  /** Anchor for the chapter nav */
+  id?: string;
+  /** Chapter number shown above the title, e.g. 1 → "01" */
+  number?: number | string;
   threeColumns?: boolean;
   vertical?: boolean;
   centered?: boolean;
+  /** Legacy prop, no longer has an effect */
   noBorder?: boolean;
 }
 
 const {
   title,
+  id,
+  number,
   threeColumns = false,
   vertical = false,
   centered = false,
-  noBorder = false,
 } = Astro.props;
+
+const num =
+  number === undefined
+    ? undefined
+    : typeof number === "number"
+      ? String(number).padStart(2, "0")
+      : number;
 ---
 
 <section
   class="section"
+  id={id}
   class:list={{
     "three-columns": threeColumns,
     vertical: vertical,
     centered: centered,
-    "no-border": noBorder,
   }}
 >
+  {num && <p class="chapter-num" aria-hidden="true">{num}</p>}
   {title && <h2>{title}</h2>}
   <div class="section-content">
     <slot />
@@ -34,98 +49,71 @@ const {
 
 <style>
   .section {
-    background-color: transparent;
-    border-radius: var(--radius);
-    border-top: 1px solid var(--color);
-    padding-top: 2rem;
+    padding-bottom: 5rem;
+    min-width: 0;
   }
 
-  .section.no-border {
-    border-top: none;
-    padding-top: 0;
+  .chapter-num {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
   }
 
-  .section h2 {
-    margin-top: 0;
-  }
-
-  .section-content {
+  /* Columns side by side (legacy pages) */
+  .section-content:has(> :global(.column)) {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
   }
 
-  /* Vertical layout mode */
-  .section.vertical .section-content {
-    flex-direction: column;
+  .section-content:has(> :global(.column)) > :global(*) {
+    margin-top: 0;
   }
 
-  .section.vertical .section-content > :global(.column) {
-    flex: 1 1 auto;
-  }
-
-  /* Columns get equal space, max 2 per row */
   .section-content > :global(.column) {
-    flex: 1 1 40%;
-  }
-
-  /* Three columns mode */
-  .section.three-columns .section-content > :global(.column) {
-    flex: 1 1 30%;
-  }
-
-  /* Non-column content takes full width */
-  .section-content > :global(:not(.column)) {
     flex: 1 1 100%;
   }
 
-  /* Centered mode */
+  .section-content:has(> :global(.column)) > :global(:not(.column)) {
+    flex: 1 1 100%;
+  }
+
   .section.centered h2 {
     text-align: center;
   }
 
   .section.centered .section-content {
-    justify-content: center;
-    max-width: 800px;
+    max-width: 50rem;
     margin: 0 auto;
+    justify-content: center;
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     .section {
-      padding-top: 1.5rem;
+      padding-bottom: 7rem;
     }
 
-    /* Stack columns vertically on mobile */
     .section-content > :global(.column) {
+      flex: 1 1 calc(50% - 0.75rem);
+    }
+
+    .section.three-columns .section-content > :global(.column) {
+      flex: 1 1 calc(33.333% - 1rem);
+    }
+
+    .section.vertical .section-content > :global(.column) {
       flex: 1 1 100%;
     }
 
-    .section-content {
-      gap: 1rem;
-    }
-
-    .section.centered .section-content {
-      max-width: 100%;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 1199px) {
-    .section.centered .section-content {
-      max-width: 600px;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .section {
-      padding-top: 2.5rem;
-    }
-
-    .section-content {
+    .section-content:has(> :global(.column)) {
       gap: 2rem;
     }
 
-    .section.centered .section-content {
-      max-width: 900px;
+    .chapter-num {
+      font-size: 0.75rem;
     }
   }
 </style>

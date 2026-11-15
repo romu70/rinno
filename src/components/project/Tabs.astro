@@ -1,0 +1,322 @@
+---
+// WAI-ARIA tabs. Two looks:
+//  - "tabs":  segmented pill next to a heading (parallel items)
+//  - "steps": numbered cards joined by arrows + Previous/Next (a sequence)
+// Children must be <TabPanel>. Without JS, every panel shows, stacked.
+interface Props {
+  variant?: "tabs" | "steps";
+  /** Visible heading of the block; also names the tablist */
+  label: string;
+  /** Optional id on the heading (for the chapter nav) */
+  id?: string;
+}
+
+const { variant = "tabs", label, id } = Astro.props;
+
+// Read the panels' id/title/step from the rendered slot to build the tablist
+// on the server (no layout shift when the script runs).
+const html = await Astro.slots.render("default");
+const panels = [
+  ...html.matchAll(
+    /data-tab-panel="([^"]+)" data-tab-title="([^"]*)"(?: data-tab-step="([^"]*)")?/g,
+  ),
+].map(([, pid, title, step]) => ({ pid, title, step }));
+const perRow = panels.length <= 2 ? 2 : panels.length === 3 ? 3 : 4;
+---
+
+<div
+  class:list={["tabs-root", variant]}
+  data-tabs
+  data-variant={variant}
+  style={`--per-row: ${perRow}`}
+>
+  <div class="head">
+    {
+      variant === "tabs" ? (
+        <h3 id={id}>{label}</h3>
+      ) : (
+        <h3 id={id} class="label">{label}</h3>
+      )
+    }
+    <div class="tablist" role="tablist" aria-label={label}>
+      {
+        panels.map((p, i) => (
+          <button
+            type="button"
+            class="tab"
+            role="tab"
+            id={`${p.pid}-tab`}
+            aria-controls={p.pid}
+            aria-selected={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? 0 : -1}
+          >
+            {variant === "steps" && p.step && <b set:html={p.step} />}
+            <span set:html={p.title} />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+  <div class="panels">
+    <Fragment set:html={html} />
+  </div>
+</div>
+
+<noscript>
+  <style>
+    [data-tabs] .tablist,
+    [data-tabs] .step-nav {
+      display: none !important;
+    }
+    [data-tabs] [role="tabpanel"] {
+      display: grid !important;
+    }
+    [data-tabs] .panel-fallback-title {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-tabs]").forEach((root) => {
+    const tabs = [
+      ...root.querySelectorAll<HTMLButtonElement>(":scope > .head [role=tab]"),
+    ];
+    const panels = tabs.map(
+      (t) => document.getElementById(t.getAttribute("aria-controls")!)!,
+    );
+    let cur = 0;
+
+    const select = (i: number, focus = false) => {
+      cur = Math.max(0, Math.min(tabs.length - 1, i));
+      tabs.forEach((t, j) => {
+        const on = j === cur;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        panels[j].hidden = !on;
+      });
+      panels.forEach((p) => {
+        p.querySelectorAll<HTMLButtonElement>("[data-prev]").forEach(
+          (b) => (b.disabled = cur === 0),
+        );
+        p.querySelectorAll<HTMLButtonElement>("[data-next]").forEach(
+          (b) => (b.disabled = cur === tabs.length - 1),
+        );
+      });
+      if (focus) tabs[cur].focus();
+    };
+
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(i));
+      t.addEventListener("keydown", (e) => {
+        const n = tabs.length;
+        const k = {
+          ArrowRight: (i + 1) % n,
+          ArrowLeft: (i - 1 + n) % n,
+          Home: 0,
+          End: n - 1,
+        }[e.key];
+        if (k === undefined) return;
+        e.preventDefault();
+        select(k, true);
+      });
+    });
+
+    panels.forEach((p) => {
+      p.querySelector("[data-prev]")?.addEventListener("click", () =>
+        select(cur - 1, true),
+      );
+      p.querySelector("[data-next]")?.addEventListener("click", () =>
+        select(cur + 1, true),
+      );
+    });
+
+    select(0);
+    root.setAttribute("data-ready", "");
+  });
+</script>
+
+<style>
+  .tabs-root {
+    margin-top: 2.25rem;
+  }
+
+  h3,
+  h4 {
+    margin: 0;
+  }
+
+  .tablist {
+    display: flex;
+  }
+
+  .tab {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    text-align: left;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  /* Before the script runs, show the first panel only (no flash) */
+  .tabs-root:not([data-ready]) .panels > :global([role="tabpanel"] ~ [role="tabpanel"]) {
+    display: none;
+  }
+
+  /* ── tabs: segmented pill ─────────────── */
+  .tabs {
+    margin-top: 4.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .tabs .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tabs h3 {
+    font-size: 1.5rem;
+  }
+
+  .tabs .tablist {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: var(--soft);
+    border-radius: 999px;
+  }
+
+  .tabs .tab {
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+  }
+
+  .tabs .tab:hover {
+    color: var(--ink);
+  }
+
+  .tabs .tab[aria-selected="true"] {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow:
+      0 1px 2px rgba(10, 10, 20, 0.08),
+      0 0 0 1px var(--line);
+  }
+
+  /* ── steps: numbered sequence ─────────── */
+  .steps {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .steps .head {
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .steps h3 {
+    margin-bottom: 0.9rem;
+  }
+
+  .steps .tablist {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .steps .tab {
+    position: relative;
+    background: var(--soft);
+    color: var(--muted);
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.5rem;
+  }
+
+  .steps .tab :global(b) {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .steps .tab :global(span) {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.15rem;
+  }
+
+  .steps .tab:hover {
+    color: var(--ink);
+  }
+
+  .steps .tab[aria-selected="true"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  @media (min-width: 768px) {
+    .steps .head {
+      padding: 1.5rem 1.75rem 0;
+    }
+
+    .steps .tablist {
+      grid-template-columns: repeat(var(--per-row), minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    /* Arrow between step cards: a small disc straddling the gap */
+    .steps .tab:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -1.25rem; /* centred in the 0.75rem gap */
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--accent);
+      box-shadow: 0 1px 3px rgb(10 10 20 / 0.08);
+      z-index: 1;
+    }
+
+    .tabs .tab {
+      font-size: 0.8rem;
+    }
+
+    .steps .tab :global(span) {
+      font-size: 0.8rem;
+    }
+
+    .steps .tab :global(b) {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .tabs h3 {
+      font-size: 1.4rem;
+    }
+  }
+</style>

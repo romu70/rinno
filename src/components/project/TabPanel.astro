@@ -1,0 +1,168 @@
+---
+// One panel of <Tabs>. Put the image in the "media" slot and the text in the
+// default slot: they sit side by side from 768px, stacked below.
+interface Props {
+  id: string;
+  /** Tab label */
+  title: string;
+  /** Step label shown above the title in the "steps" variant, e.g. "01" */
+  step?: string;
+}
+
+const { id, title, step } = Astro.props;
+const hasMedia = Astro.slots.has("media");
+---
+
+<div
+  data-tab-panel={id}
+  data-tab-title={title}
+  data-tab-step={step}
+  class:list={["tab-panel", { "has-media": hasMedia }]}
+  role="tabpanel"
+  id={id}
+  aria-labelledby={`${id}-tab`}
+  tabindex="0"
+>
+  <p class="panel-fallback-title">{step ? `${step} — ${title}` : title}</p>
+  {
+    hasMedia && (
+      <div class="panel-media">
+        <slot name="media" />
+      </div>
+    )
+  }
+  <div class="panel-body">
+    <slot />
+    <div class="step-nav">
+      <button type="button" data-prev>← Précédent</button>
+      <button type="button" data-next>Suivant →</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tab-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    animation: fade 0.35s ease;
+  }
+
+  .tab-panel[hidden] {
+    display: none;
+  }
+
+  .tab-panel:focus-visible {
+    outline-offset: 6px;
+  }
+
+  .panel-fallback-title {
+    display: none;
+    grid-column: 1 / -1;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .panel-body {
+    min-width: 0;
+  }
+
+  .panel-body > :global(*:first-child) {
+    margin-top: 0;
+  }
+
+  .panel-body :global(p),
+  .panel-body :global(li) {
+    font-size: var(--text-sm);
+  }
+
+  .panel-body :global(h4) {
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+    margin: 0 0 0.6rem;
+  }
+
+  .panel-body :global(.tag) {
+    margin-bottom: 0.9rem;
+  }
+
+  /* Previous / Next only in the "steps" variant */
+  .step-nav {
+    display: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  :global([data-variant="steps"]) .step-nav {
+    display: flex;
+  }
+
+  .step-nav button {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+
+  .step-nav button:hover:not(:disabled) {
+    border-color: var(--accent-deco);
+    color: var(--accent);
+  }
+
+  .step-nav button:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  /* Inside the steps box, panels get padding */
+  :global([data-variant="steps"]) .tab-panel {
+    padding: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .tab-panel.has-media {
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    :global([data-variant="steps"]) .tab-panel {
+      padding: 1.75rem;
+    }
+
+    :global([data-variant="steps"]) .tab-panel.has-media {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.75rem;
+    }
+
+    .step-nav button {
+      font-size: 0.75rem;
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

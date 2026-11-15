@@ -16,8 +16,8 @@ interface Props {
   accent?: "indigo" | "coral";
 }
 
-const { title, intro, description, structuredData, breadcrumbs, accent } = Astro.props;
-const titleColor = accent === "coral" ? "var(--accent-color-2)" : accent === "indigo" ? "var(--accent-color)" : undefined;
+const { title, intro, description, structuredData, breadcrumbs, accent } =
+  Astro.props;
 const pageTitle = `${title} | Romuald Tisserand`;
 const pageDescription = description || intro;
 ---
@@ -26,64 +26,65 @@ const pageDescription = description || intro;
   title={pageTitle}
   description={pageDescription}
   structuredData={structuredData}
+  bodyClass={accent === "coral" ? "theme-perso" : undefined}
 >
   <div class="projects-page">
     {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
     <header class="page-header">
-      <h1 style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
+      <h1>{title}</h1>
       <p class="intro">{intro}</p>
     </header>
 
-    <section class="projects-section">
-      <div class="projects-list">
-        <slot />
-      </div>
+    <section class="projects-list" aria-label="Projets">
+      <slot />
     </section>
   </div>
 </Layout>
 
 <style>
   .projects-page {
-    max-width: 900px;
+    max-width: 60rem;
     margin: 0 auto;
+    padding: 2rem var(--gutter) 4rem;
   }
 
   .page-header {
-    text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   h1 {
-    margin-bottom: 1rem;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+  }
+
+  h1::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 1.25rem;
+    background: var(--accent-deco);
   }
 
   .intro {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-    opacity: 0.9;
-  }
-
-  .projects-section {
-    margin-bottom: 4rem;
+    margin-top: 1.25rem;
+    max-width: 40rem;
   }
 
   .projects-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
   }
 
-  /* Responsive mobile */
-  @media (max-width: 768px) {
-    .intro {
-      font-size: 1rem;
+  @media (min-width: 768px) {
+    .projects-page {
+      padding-top: 3rem;
     }
 
-    .projects-section {
-      margin-bottom: 3rem;
+    .page-header {
+      margin-bottom: 3.5rem;
     }
 
     .projects-list {
@@ -91,18 +92,9 @@ const pageDescription = description || intro;
     }
   }
 
-  /* Responsive large screens */
   @media (min-width: 1440px) {
     .projects-page {
-      max-width: 1280px;
-    }
-
-    .intro {
-      font-size: 1.3rem;
-    }
-
-    .projects-list {
-      gap: 2.5rem;
+      max-width: 66rem;
     }
   }
 </style>

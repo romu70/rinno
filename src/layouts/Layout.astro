@@ -13,6 +13,10 @@ interface Props {
   type?: "website" | "article" | "profile";
   noindex?: boolean;
   structuredData?: object;
+  /** Extra class on <body>, e.g. "theme-perso" */
+  bodyClass?: string;
+  /** Show the reading-progress bar in the header (project pages) */
+  progress?: boolean;
 }
 
 const {
@@ -23,6 +27,8 @@ const {
   type,
   noindex,
   structuredData,
+  bodyClass,
+  progress = false,
 } = Astro.props;
 ---
 
@@ -30,21 +36,21 @@ const {
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Preload critical fonts -->
     <link
       rel="preload"
-      href="/fonts/CormorantGaramond-Regular.ttf"
+      href="/fonts/NewsreaderVariable-Roman.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/CormorantGaramond-SemiBold.ttf"
+      href="/fonts/Montserrat-SemiBold.ttf"
       as="font"
       type="font/ttf"
       crossorigin
@@ -60,10 +66,10 @@ const {
       structuredData={structuredData}
     />
   </head>
-  <body>
+  <body class={bodyClass}>
     <div class="page-wrapper">
-      <Header />
-      <main>
+      <Header progress={progress} />
+      <main id="contenu">
         <slot />
       </main>
       <Footer />
@@ -81,22 +87,5 @@ const {
   main {
     flex: 1;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-  }
-
-  /* Responsive mobile */
-  @media (max-width: 768px) {
-    main {
-      padding: 5rem 1rem;
-    }
-  }
-
-  /* Responsive large screens */
-  @media (min-width: 1440px) {
-    main {
-      padding: 7rem 3rem;
-    }
   }
 </style>

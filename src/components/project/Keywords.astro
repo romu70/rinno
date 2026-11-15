@@ -1,14 +1,47 @@
 ---
+// Keyword pills at the end of a project. Children: <span class="keyword">.
 interface Props {
   fullWidth?: boolean;
+  title?: string;
 }
 
-const { fullWidth = true } = Astro.props; // Always full-width by default
+const { title = "Mots-clés" } = Astro.props;
 ---
 
-<section class:list={["content-section", { "full-width": fullWidth }]}>
-  <h2>Mots-Clés</h2>
+<section class="appendix" aria-labelledby="mots-cles">
+  <h2 id="mots-cles" class="label">{title}</h2>
   <div class="keywords">
     <slot />
   </div>
 </section>
+
+<style>
+  .appendix {
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    width: 100%;
+  }
+
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .keywords :global(.keyword) {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--body);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  @media (min-width: 768px) {
+    .keywords :global(.keyword) {
+      font-size: 0.75rem;
+    }
+  }
+</style>

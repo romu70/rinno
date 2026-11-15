@@ -1,93 +1,36 @@
-/* Fonts */
+/* ── Fonts ─────────────────────────────────────────── */
+/* Files live in public/fonts. Weights map to the real font files. */
+/* Newsreader (Production Type, OFL): variable fonts, weight 200–800 and optical size */
 @font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Light.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Newsreader";
+  src: url("/fonts/NewsreaderVariable-Roman.woff2") format("woff2");
+  font-weight: 200 800;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-LightItalic.ttf") format("truetype");
-  font-weight: 300;
+  font-family: "Newsreader";
+  src: url("/fonts/NewsreaderVariable-Italic.woff2") format("woff2");
+  font-weight: 200 800;
   font-style: italic;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-BoldItalic.ttf") format("truetype");
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat-Thin.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat-Light.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -95,6 +38,7 @@
   src: url("/fonts/Montserrat-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -102,33 +46,59 @@
   src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
+/* ── Tokens ────────────────────────────────────────── */
 :root {
-  /* ── Chalk & Indigo theme ───────────────────────── */
+  /* Surfaces & text */
+  --paper: #fbfbfa;
+  --surface: #ffffff;
+  --soft: #f2f2f5;
+  --line: #e4e4ec;
+  --ink: #0a0a14;
+  --body: #2a2a3e;
+  --muted: #5e5e78;
 
-  /* Base scale */
-  --color-ligthest: #fafafa; /* background */
-  --color-light: #f0f0f2; /* background alt / subtle fills */
-  --color: #dcdce8; /* borders, dividers */
-  --color-dark: #2a2a3e; /* body text */
-  --color-darkest: #0a0a14; /* headings */
+  /* Accent (indigo for pro pages) */
+  --accent: #4040cc; /* text-safe on paper: 7.2:1 */
+  --accent-deco: #4040cc; /* borders, dots, bars */
+  --accent-soft: #eeeefb;
+  --accent-on-dark: #a9a9ff;
 
-  /* Accent pair */
-  --accent-indigo: #4040cc; /* primary accent — indigo */
-  --accent-coral: #cc4060; /* secondary accent — coral */
+  /* Status colours */
+  --coral: #b8344f;
+  --coral-soft: #fbecef;
+  --green: #1f7a4d;
+  --green-soft: #e7f4ec;
 
-  /* Semantic aliases */
-  /*--background-color: var(--color-ligthest);*/
-  --background-color: white;
-  --accent-color: var(--accent-indigo);
+  /* Type */
+  --sans: "Montserrat", system-ui, sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+
+  /* Layout */
+  --radius: 0.625rem;
+  --radius-lg: 0.875rem;
+  --wrap: 73.75rem; /* 1180px at 16px */
+  --prose: 46rem; /* reading width */
+  --gutter: 1.25rem;
+  --header-h: 3.6rem;
+  /* Text sizes: body copy, and secondary copy in cards, panels, learnings */
+  --text: 1.15rem;
+  --text-sm: 1.1rem;
+
+  /* Legacy names, kept as aliases so older markup keeps working */
+  --color-lightest: #fafafa;
+  --color-light: var(--soft);
+  --color: var(--line);
+  --color-dark: var(--body);
+  --color-darkest: var(--ink);
+  --accent-indigo: #4040cc;
+  --accent-coral: #cc4060;
+  --background-color: var(--paper);
+  --accent-color: var(--accent);
   --accent-color-2: var(--accent-coral);
-
-  /* Radius */
-  --radius: 0.25rem;
-
-  /* Border patterns */
-  --border-divider: 2px solid rgba(64, 64, 204, 0.12);
+  --border-divider: 1px solid var(--line);
 
   /* Spacing scale */
   --spacing-xs: 0.5rem;
@@ -139,295 +109,416 @@
   --spacing-2xl: 3rem;
 }
 
-/* Base styles */
+/* Personal projects: coral accent instead of indigo */
+.theme-perso {
+  --accent: #b8344f; /* 5.6:1 on paper */
+  --accent-deco: #cc4060; /* 4.5:1, decoration only */
+  --accent-soft: #fbecef;
+  --accent-on-dark: #ff9db0;
+}
+
+/* ── Base ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
+  /* Clear the sticky header, plus the chapter chip bar below 1200px */
+  scroll-padding-top: max(
+    6rem,
+    calc(var(--header-h) + var(--rail-h, 0px) + 1.25rem)
+  );
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-color);
-  /* background-image removed — Chalk & Indigo uses a clean flat background */
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  min-height: 100%;
+  background-color: var(--paper);
+  color: var(--body);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text);
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Apply Cormorant Garamond serif to all text elements */
-* {
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Typography */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Typography ────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+}
+
 h1 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 2.5rem;
-  color: var(--color-darkest);
-  text-align: center;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
   margin: 0;
 }
 
 h2 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 2.3rem;
-  color: var(--color-darkest);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.75rem;
 }
 
 h3 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--color-darkest);
-  margin-top: 1.5rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin: 2.5rem 0 1rem;
 }
 
-h4 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: var(--color-darkest);
-  margin-top: 1rem;
-  margin-bottom: 0.8rem;
+/* .label: any heading level with the small uppercase h4 look */
+h4,
+.label {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
 }
 
 p {
-  font-size: 1.5rem;
-  color: var(--color-dark);
-  /*font-style: italic;*/
-  margin-top: 0rem;
-  margin-bottom: 0rem;
-  line-height: 140%;
+  font-size: 1em;
+  line-height: 1.55;
+  color: var(--body);
 }
 
+/* Zero-specificity resets: anything more specific wins */
+:where(p, figure, blockquote) {
+  margin: 0;
+}
 
-/* Actionable elements — sans-serif */
+:where(p + p) {
+  margin-top: 0.9rem;
+}
+
+/* Vertical rhythm inside project sections (block flow).
+   Components set their own margin-top with higher specificity. */
+:where(.section-content) > :not(:first-child) {
+  margin-top: 1rem;
+}
+
+strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Actionable elements use the sans */
 a,
 button,
 input,
 select,
 textarea,
-label,
-nav a,
-.button,
-.badge {
-  font-family: "Montserrat", sans-serif;
+label {
+  font-family: var(--sans);
 }
 
-/* Links */
-a:not(.button) {
-  color: var(--color-dark);
-  transition: color 0.3s ease;
+/* Links inside text keep the reading font and get an accent underline */
+a {
+  color: inherit;
+  transition: color 0.2s ease;
 }
 
-a:not(.button):hover {
-  color: var(--accent-indigo);
+a:hover {
+  color: var(--accent);
 }
 
-p a {
-  font-size: 1.2rem;
-  font-weight: 500;
+p a,
+li a,
+dd a {
+  font-family: inherit;
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
-/* Shared nav link interaction pattern */
-a.nav-link {
-  text-decoration: none;
-  transition:
-    color 0.3s ease,
-    transform 0.2s ease,
-    text-decoration 0.3s ease;
-  position: relative;
-}
-
-a.nav-link:hover {
-  color: var(--color-dark);
-  transform: translateY(-2px);
-  text-decoration: underline;
-}
-
-/* Utility classes */
+/* ── Utilities ─────────────────────────────────────── */
 .text-center {
   text-align: center;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: var(--wrap);
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem var(--gutter) 4rem;
 }
 
 .container-narrow {
-  max-width: 900px;
+  max-width: 56rem;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem var(--gutter) 4rem;
 }
 
-/* Responsive adjustments for container-narrow */
 @media (min-width: 1440px) {
   .container-narrow {
-    max-width: 1280px;
+    max-width: 64rem;
   }
 }
 
-.glass-effect {
-  background-color: color-mix(in srgb, var(--color-light) 70%, transparent);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  border: 1px solid var(--color);
+/* Lede-sized paragraph */
+/* Lead paragraph: same size as body copy, darker */
+.intro {
+  font-size: inherit;
+  line-height: 1.5;
+  color: var(--ink);
 }
 
-/* Badge/Pill component */
+/* Year badge (cards, landing pages) */
 .badge {
-  font-size: 1.2rem;
-  color: var(--color-darkest);
-  font-weight: bold;
-  background-color: var(--color-light);
-  padding: 0.4rem 1rem;
-  border-radius: var(--radius);
   display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  background-color: var(--soft);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
-/* Legacy flex container utilities - kept for backward compatibility */
-.flex-row {
+/* Pill tag */
+/* Row of pills, e.g. skills: <ul class="tags"><li>…</li></ul> */
+.tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.flex-row > p {
-  flex: 1 1 300px;
-  min-width: 0;
+.tags li {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--body);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
 }
 
-.flex-row > figure {
-  flex: 0 1 auto;
+.tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
 }
 
-.subsections-flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+/* Status chip: .chip.yes / .chip.no / .chip.neutral */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
 }
 
-.subsections-flex > .subsection {
-  flex: 1 1 calc(50% - 1rem);
-  max-width: calc(50% - 1rem);
+.chip.no {
+  color: var(--coral);
+  background: var(--coral-soft);
+}
+
+.chip.yes {
+  color: var(--green);
+  background: var(--green-soft);
+}
+
+.chip.neutral {
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 /* List with arrow bullets */
 .list-arrow {
   list-style: none;
   padding: 0;
-  margin-top: 0;
-  margin-bottom: 1rem;
+  margin: 0.6rem 0 0;
 }
 
-.list-arrow li,
-ol li {
-  font-size: 1.5rem;
-  color: var(--color-dark);
-  line-height: 1.8;
-  padding-left: 1.5rem;
+.list-arrow li {
   position: relative;
-  /*margin-bottom: 0.8rem;*/
+  padding-left: 1.75rem;
+  margin-top: 0.5rem;
+  line-height: 1.55;
 }
 
 .list-arrow li::before {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--color-darkest);
-  font-weight: bold;
+  font-family: var(--sans);
+  font-size: 0.8em;
+  line-height: 1.95;
+  color: var(--accent);
+}
+
+/* Numbered list with circles */
+ol.numbered {
+  list-style: none;
+  counter-reset: n;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+ol.numbered li {
+  counter-increment: n;
+  position: relative;
+  padding-left: 2.75rem;
+  margin-top: 0.75rem;
+}
+
+ol.numbered li::before {
+  content: counter(n);
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
 }
 
 .learnings-title {
-  font-variant: small-caps;
-  color: var(--color-dark);
-  text-align: left;
-  font-size: 0.9rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-/* Responsive breakpoints */
+/* Content grids: 1 column on mobile, 2 or 3 from 768px */
+.grid-2,
+.grid-3,
+.duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
 
-/* Ajuster la taille de base pour les écrans plus petits */
+@media (min-width: 768px) {
+  .grid-2,
+  .duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Desktop screenshot next to a mobile one */
+  .grid-wide-narrow {
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+
+/* End-of-page appendix: links next to keywords from 768px */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .appendix-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+  }
+}
+
+/* Visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
   html {
     font-size: 14px;
   }
+}
 
-  h1 {
-    font-size: 2.5rem;
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
   }
 
-  h2 {
-    font-size: 2.2rem;
-  }
-
-  h3 {
-    font-size: 1.8rem;
-  }
-
-  h4 {
-    font-size: 1.2rem;
-  }
-
-  .container {
-    padding: 1rem;
-  }
-
-  .container-narrow {
-    padding: 1rem;
-  }
-
-  .badge {
-    font-size: 1.1rem;
-    padding: 0.4rem 0.8rem;
+  :root {
+    --text: 1.35rem;
+    --text-sm: 1.2rem;
   }
 }
 
-/* Medium screens (tablets/small desktops) */
-@media (min-width: 768px) and (max-width: 1200px) {
-  .container {
-    padding: 1.5rem;
-  }
-}
-
-/* Ajuster la taille de base pour les écrans plus grands */
 @media (min-width: 1440px) {
   html {
     font-size: 18px;
   }
+}
 
-  h1 {
-    font-size: 3.2rem;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 
-  h2 {
-    font-size: 2.8rem;
-  }
-
-  h3 {
-    font-size: 2.3rem;
-  }
-
-  h4 {
-    font-size: 1.6rem;
-  }
-
-  .container {
-    padding: 3rem;
-  }
-
-  .container-narrow {
-    padding: 3rem;
-  }
-
-  .badge {
-    font-size: 1.3rem;
-    padding: 0.5rem 1.2rem;
+  html {
+    scroll-behavior: auto;
   }
 }

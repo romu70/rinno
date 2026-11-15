@@ -1,10 +1,12 @@
 ---
 import ProjectPersonal from "../../layouts/ProjectPersonal.astro";
-import Row from "../../components/project/Row.astro";
 import Section from "../../components/project/Section.astro";
-import Column from "../../components/project/Column.astro";
+import Card from "../../components/project/Card.astro";
+import CaseBlock from "../../components/project/CaseBlock.astro";
 import Figure from "../../components/project/Figure.astro";
 import Learnings from "../../components/project/Learnings.astro";
+import LearningsGrid from "../../components/project/LearningsGrid.astro";
+import Learning from "../../components/project/Learning.astro";
 import Keywords from "../../components/project/Keywords.astro";
 import Quote from "../../components/project/Quote.astro";
 import heroImage from "../../assets/perso/coach-pizza/hero.png";
@@ -12,34 +14,67 @@ import inputNum from "../../assets/perso/coach-pizza/input-num.png";
 import palette from "../../assets/perso/coach-pizza/palette.png";
 import imperial from "../../assets/perso/coach-pizza/imperial-units.png";
 import ios from "../../assets/perso/coach-pizza/ios.png";
-import webapp from "../../assets/perso/coach-pizza/web-app.png";
+
+const half = "(min-width: 1200px) 27rem, (min-width: 768px) 45vw, 100vw";
+
+const chapters = [
+  { id: "contexte", label: "Contexte" },
+  { id: "ui", label: "UI design" },
+  {
+    id: "developpement",
+    label: "Développement",
+    children: [
+      { id: "saisie", label: "Saisie au doigt" },
+      { id: "langues", label: "Multi-langues" },
+    ],
+  },
+  {
+    id: "validation",
+    label: "Validation",
+    children: [
+      { id: "contact", label: "Aymeric Provence" },
+      { id: "protocoles", label: "Les protocoles" },
+      { id: "mobile", label: "Migration mobile" },
+    ],
+  },
+  { id: "apprentissages", label: "Apprentissages" },
+];
 ---
 
 <ProjectPersonal
   title="Coach Pizza"
-  year="2023 - 2025"
+  eyebrow="Projet personnel · Web & mobile · 2023 — 2025"
+  meta={[
+    { label: "Type", value: "Projet personnel" },
+    { label: "Stack", value: "Astro · Expo · Supabase" },
+    { label: "Statut", value: "En pause" },
+    {
+      label: "Site",
+      value: "Essayer l'app",
+      href: "https://romu70.github.io/pizza/",
+    },
+  ]}
   image={heroImage}
-  externalLink="https://romu70.github.io/pizza/"
+  imageAlt="Coach Pizza : calculateur de pâte à pizza"
+  chapters={chapters}
 >
-  <Row>
-    <Section title="Contexte">
-      <p>
-        Mes proches disent que je suis un estomac sur pattes. J'adore la pizza,
-        au point d'avoir appris à faire ma propre pâte.
-      </p>
-      <p>
-        Mais pénible de calculer les ingrédients nécessaires à chaque fois !
-        Alors j'ai codé mon propre calculateur de pizza.
-      </p>
-      <p>
-        La maîtrise de la fermentation (influencée par le type de farine, le
-        type et la quantité de levure, la durée et la température de pousse,
-        l'hydratation de la pâte, etc) est la clé pour réaliser une bonne pâte à
-        pizza.
-      </p>
-    </Section>
-
-    <Section title="Challenge">
+  <!-- 01 -->
+  <Section id="contexte" number={1} title="Contexte">
+    <p class="intro">
+      Mes proches disent que je suis un estomac sur pattes. J'adore la pizza, au
+      point d'avoir appris à faire ma propre pâte.
+    </p>
+    <p>
+      Mais pénible de calculer les ingrédients nécessaires à chaque fois ! Alors
+      j'ai codé mon propre calculateur de pizza.
+    </p>
+    <p>
+      La maîtrise de la fermentation (influencée par le type de farine, le type
+      et la quantité de levure, la durée et la température de pousse,
+      l'hydratation de la pâte, etc) est la clé pour réaliser une bonne pâte à
+      pizza.
+    </p>
+    <Card title="Challenge" class="challenge">
       <p>
         <a href="/perso/galleries">Galleries</a> m'a appris Astro et la conception
         des sites statiques. Avec Coach Pizza je monte mes exigences d'un cran :
@@ -58,178 +93,207 @@ import webapp from "../../assets/perso/coach-pizza/web-app.png";
           <strong>Multi-langues</strong> pour en faire profiter les non francophones
         </li>
       </ul>
-    </Section>
-  </Row>
+    </Card>
+  </Section>
 
-  <Row>
-    <Section title="UI Design">
-      <Column>
-        <p>
-          Je voulais une app fun, colorée et ludique. Pour ça, j'ai forcé le
-          trait de l'italie au travers du charte graphique qui utilise les
-          couleurs du drapeau italien.
-        </p>
-      </Column>
-      <Column>
-        <Figure
-          caption="Palette de couleurs italiennes"
-          image={palette}
-          alt="Palette de couleurs italiennes"
-        />
-      </Column>
-    </Section>
-  </Row>
+  <!-- 02 -->
+  <Section id="ui" number={2} title="UI Design">
+    <div class="grid-2 split">
+      <p>
+        Je voulais une app fun, colorée et ludique. Pour ça, j'ai forcé le trait
+        de l'italie au travers du charte graphique qui utilise les couleurs du
+        drapeau italien.
+      </p>
+      <Figure
+        image={palette}
+        alt="Palette de couleurs italiennes"
+        caption="Palette de couleurs italiennes"
+        sizes={half}
+      />
+    </div>
+  </Section>
 
-  <Row>
-    <Section title="Développement">
-      <Column title="Astro + GitHub Pages" fullWidth>
-        <p>
-          Première version web, hébergée sur GitHub Pages comme Galleries, très
-          proche de celle actuellement en ligne.
-        </p>
-      </Column>
-      <Column title="Saisie au doigt">
+  <!-- 03 -->
+  <Section id="developpement" number={3} title="Développement">
+    <h3>Astro + GitHub Pages</h3>
+    <p>
+      Première version web, hébergée sur GitHub Pages comme Galleries, très
+      proche de celle actuellement en ligne.
+    </p>
+
+    <h3 id="saisie">Saisie au doigt</h3>
+    <div class="grid-2 split">
+      <div class="section-content">
         <p>Utilisée sur mobile en priorité, l'app devait être "touch first".</p>
-        <br />
         <p>Ici, 3 contrôles HTML :</p>
         <ul class="list-arrow">
           <li>un input de type number</li>
           <li>un bouton "-"</li>
           <li>un bouton "+"</li>
         </ul>
-      </Column>
-      <Column alignWithContent>
-        <Figure
-          caption="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
-          image={inputNum}
-          alt="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
-        />
-      </Column>
-      <Column fullWidth>
         <p>
           Avec un "pas" adapté à la saisie de l'ingrédient souhaité. Le pas des
           pâtons est de 5g, quand celui de la levure est de 0,1g.
         </p>
-      </Column>
-      <Column title="Support Multi-langues">
-        <p>
-          Astro offre beaucoup de facilités pour le support multi-langues, ici
-          l'Anglais, mais aussi les unités impériales.
-        </p>
-      </Column>
-      <Column alignWithContent>
-        <Figure
-          caption="Support des unités impériales"
-          image={imperial}
-          alt="support des unités impériales"
-        />
-      </Column>
-    </Section>
-  </Row>
+      </div>
+      <Figure
+        image={inputNum}
+        alt="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
+        caption="Contrôle de saisie numérique adaptés et inspirés du drapeau italien."
+        sizes={half}
+      />
+    </div>
 
-  <Row>
-    <Section title="Concept validé par un multi-champion du monde">
-      <Column title="Contact avec Aymeric Provence">
+    <h3 id="langues">Support Multi-langues</h3>
+    <div class="grid-2 split">
+      <p>
+        Astro offre beaucoup de facilités pour le support multi-langues, ici
+        l'Anglais, mais aussi les unités impériales.
+      </p>
+      <Figure
+        image={imperial}
+        alt="Support des unités impériales"
+        caption="Support des unités impériales"
+        sizes={half}
+      />
+    </div>
+  </Section>
+
+  <!-- 04 -->
+  <Section
+    id="validation"
+    number={4}
+    title="Concept validé par un multi-champion du monde"
+  >
+    <CaseBlock kicker="Étape 1" title="Contact avec Aymeric Provence" id="contact">
+      <p>
+        Après publication sur les réseaux sociaux, je suis contacté par Aymeric
+        Provence, multi-champion du monde de la pizza.
+      </p>
+      <Quote author="Aymeric Provence">
         <p>
-          Après publication sur les réseaux sociaux, je suis contacté par
-          Aymeric Provence, multi-champion du monde de la pizza.
+          Il est chouette ton projet, c'est un bon début. J'ai pleins d'idées
+          pour qu'on en fasse un vrai outil. Ca te dirait qu'on avance ensemble
+          ?
         </p>
-        <br />
-        <Quote author="Aymeric Provence">
+      </Quote>
+    </CaseBlock>
+
+    <CaseBlock
+      kicker="Étape 2"
+      title="Premier obstacle : définir les protocoles"
+      id="protocoles"
+    >
+      <p>
+        Aymeric insiste : un calculateur générique ne suffit pas. Il faut des
+        protocoles validés par type de farine (T45, T55, Manitoba...), avec
+        températures et durées précises.
+      </p>
+      <p>
+        Problème : ce travail nécessite des semaines de tests en labo. Aymeric
+        n'a pas cette disponibilité à court terme.
+      </p>
+    </CaseBlock>
+
+    <CaseBlock
+      kicker="Étape 3"
+      title="Pendant ce temps : migration mobile"
+      id="mobile"
+    >
+      <div class="grid-2 split">
+        <div class="section-content">
           <p>
-            "Il est chouette ton projet, c'est un bon début. J'ai pleins d'idées
-            pour qu'on en fasse un vrai outil. Ca te dirait qu'on avance
-            ensemble ?"
+            En parallèle, je prépare le terrain technique. Mon choix :
+            Expo/React Native pour le mobile + Supabase pour le back-end.
           </p>
-        </Quote>
-      </Column>
-      <Column title="Premier obstacle : définir les protocoles">
-        <p>
-          Aymeric insiste : un calculateur générique ne suffit pas. Il faut des
-          protocoles validés par type de farine (T45, T55, Manitoba...), avec
-          températures et durées précises.
-        </p>
-        <p>
-          Problème : ce travail nécessite des semaines de tests en labo. Aymeric
-          n'a pas cette disponibilité à court terme.
-        </p>
-      </Column>
-      <Column title="Pendant ce temps : migration mobile">
-        <p>
-          En parallèle, je prépare le terrain technique. Mon choix : Expo/React
-          Native pour le mobile + Supabase pour le back-end.
-        </p>
-        <p>
-          La migration isofonctionnelle se fait rapidement, aidé par l'IA
-          (Gemini). L'app tourne en émulateur iOS.
-        </p>
-      </Column>
-      <Column alignWithContent>
+          <p>
+            La migration isofonctionnelle se fait rapidement, aidé par l'IA
+            (Gemini). L'app tourne en émulateur iOS.
+          </p>
+        </div>
         <Figure
-          caption="Coach Pizza dans l'émulateur iOS"
-          width="20rem"
           image={ios}
           alt="Coach Pizza dans l'émulateur iOS"
+          caption="Coach Pizza dans l'émulateur iOS"
+          width="20rem"
+          center
+          sizes="20rem"
         />
-      </Column>
-      <Column title="Mise en pause">
+      </div>
+      <Learnings variant="end">
         <p>
-          Sans les protocoles d'Aymeric, l'app mobile reste un coquille vide.
+          <strong>Mise en pause.</strong> Sans les protocoles d'Aymeric, l'app mobile
+          reste un coquille vide. Le projet est mis en pause, en attendant sa disponibilité.
         </p>
-        <p>Le projet est mis en pause, en attendant sa disponibilité.</p>
-      </Column>
-    </Section>
-  </Row>
-  <Row>
-    <Learnings>
-      <h2>Ce que j'ai appris</h2>
-      <h3>Validation ≠ Vision partagée</h3>
+      </Learnings>
+    </CaseBlock>
+  </Section>
+
+  <!-- 05 -->
+  <Section id="apprentissages" number={5} title="Ce que j'ai appris">
+    <LearningsGrid columns={3}>
+      <Learning n={1} title="Validation ≠ Vision partagée">
+        <p>
+          <strong>Réalisation</strong> : Le contact avec Aymeric a révélé l'écart
+          entre "une app qui marche pour moi" et "un vrai outil". Les pizzaïolos attendent
+          des protocoles validés par farine (T45, T55...), pas un calculateur générique.
+        </p>
+        <p>
+          <strong>Impact</strong> : Sans ces protocoles, impossible de continuer.
+          Le projet reste bloqué sur cette dépendance externe.
+        </p>
+      </Learning>
+      <Learning n={2} title="Mobile-first ≠ Mobile-native">
+        <p>
+          <strong>Réalisation</strong> : Expo promet le développement mobile facile,
+          mais les exigences Apple/Google 2024 pour la publication sur les app stores
+          ont augmenté la complexité.
+        </p>
+        <p>
+          <strong>Impact</strong> : Le SaaS web reste plus agile pour l'itération
+          rapide. Si je relance le projet, je pense rester en SaaS.
+        </p>
+      </Learning>
+      <Learning n={3} title="Insights contre-intuitifs">
+        <p>
+          Des utilisateurs US (amateurs et pros) m'ont dit que <strong
+            >les unités impériales ne servent à rien</strong
+          > pour la pizza. La précision nécessaire pour des résultats reproducibles
+          impose le système métrique.
+        </p>
+        <p>
+          <strong>Learning</strong> : Faut toujours valider avec les utilisateurs
+          cibles.
+        </p>
+      </Learning>
+    </LearningsGrid>
+    <Learnings variant="statement">
       <p>
-        <strong>Réalisation</strong> : Le contact avec Aymeric a révélé l'écart entre
-        "une app qui marche pour moi" et "un vrai outil". Les pizzaïolos attendent
-        des protocoles validés par farine (T45, T55...), pas un calculateur générique.
-      </p>
-      <p>
-        <strong>Impact</strong> : Sans ces protocoles, impossible de continuer. Le
-        projet reste bloqué sur cette dépendance externe.
-      </p>
-      <h3>Mobile-first ≠ Mobile-native</h3>
-      <p>
-        <strong>Réalisation</strong> : Expo promet le développement mobile facile,
-        mais les exigences Apple/Google 2024 pour la publication sur les app stores
-        ont augmenté la complexité.
-      </p>
-      <p>
-        <strong>Impact</strong> : Le SaaS web reste plus agile pour l'itération rapide.
-        Si je relance le projet, je pense rester en SaaS.
-      </p>
-      <h3>Insights contre-intuitifs</h3>
-      <p>
-        Des utilisateurs US (amateurs et pros) m'ont dit que <strong
-          >les unités impériales ne servent à rien</strong
-        > pour la pizza. La précision nécessaire pour des résultats reproducibles
-        impose le système métrique.
-      </p>
-      <p>
-        <strong>Learning</strong> : Faut toujours valider avec les utilisateurs cibles.
-      </p>
-      <br />
-      <p class="conclusion">
-        Même en pause, ce projet m'a appris Expo/React Native. Je n'abandonne
-        pas l'idée de le relancer plus tard.
+        Même en pause, ce projet m'a appris Expo/React Native. Je n'abandonne pas
+        l'idée de le relancer plus tard.
       </p>
     </Learnings>
-  </Row>
-  <Row>
-    <Keywords>
-      <span class="keyword">Android</span>
-      <span class="keyword">Astro</span>
-      <span class="keyword">Expo</span>
-      <span class="keyword">IA générative</span>
-      <span class="keyword">iOS</span>
-      <span class="keyword">Mobile</span>
-      <span class="keyword">React Native</span>
-      <span class="keyword">SaaS</span>
-    </Keywords>
-  </Row>
+  </Section>
+
+  <Keywords>
+    <span class="keyword">Android</span>
+    <span class="keyword">Astro</span>
+    <span class="keyword">Expo</span>
+    <span class="keyword">IA générative</span>
+    <span class="keyword">iOS</span>
+    <span class="keyword">Mobile</span>
+    <span class="keyword">React Native</span>
+    <span class="keyword">SaaS</span>
+  </Keywords>
 </ProjectPersonal>
+
+<style>
+  .challenge {
+    margin-top: 2rem;
+  }
+
+  .split {
+    align-items: start;
+    gap: 2rem;
+  }
+</style>

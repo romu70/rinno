@@ -1,0 +1,101 @@
+---
+// One option card inside <Options>. Description goes in the slot.
+interface Props {
+  /** Small label above the title, e.g. "Scénario minimal" */
+  level: string;
+  title: string;
+  /** Outcome, shown at the bottom under "Résultat" */
+  result: string;
+  /** Badge on the highlighted option */
+  badge?: string;
+  highlight?: boolean;
+}
+
+const { level, title, result, badge, highlight = false } = Astro.props;
+---
+
+<article class:list={["option", { picked: highlight }]}>
+  {badge && <span class="badge-pick">{badge}</span>}
+  <span class="lvl">{level}</span>
+  <h4>{title}</h4>
+  <div class="desc"><slot /></div>
+  <p class="res"><b>Résultat</b>{result}</p>
+</article>
+
+<style>
+  .option {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .option.picked {
+    border-color: var(--accent-deco);
+    box-shadow: 0 0 0 1px var(--accent-deco);
+  }
+
+  .lvl {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h4 {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .desc :global(p),
+  .res {
+    font-size: 1.1rem;
+    line-height: 1.45;
+  }
+
+  .res {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--line);
+  }
+
+  .res b {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .badge-pick {
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  @media (min-width: 768px) {
+    .lvl,
+    .res b,
+    .badge-pick {
+      font-size: 0.7rem;
+    }
+  }
+</style>

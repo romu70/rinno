@@ -1,0 +1,87 @@
+---
+// Real colour swatches with name and hex code.
+interface Props {
+  colors: { name: string; hex: string }[];
+  label?: string;
+}
+
+const { colors, label = "Palette" } = Astro.props;
+
+// Light swatches need a border to stay visible on white
+const isLight = (hex: string) => {
+  const h = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  return 0.299 * r + 0.587 * g + 0.114 * b > 230;
+};
+---
+
+<ul class="swatches" aria-label={label}>
+  {
+    colors.map((c) => (
+      <li class="swatch">
+        <i
+          class:list={{ light: isLight(c.hex) }}
+          style={`background:${c.hex}`}
+          aria-hidden="true"
+        />
+        <div>
+          <b>{c.name}</b>
+          {c.hex.toUpperCase()}
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    max-width: var(--prose);
+  }
+
+  .swatch {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    min-width: 0;
+  }
+
+  i {
+    display: block;
+    aspect-ratio: 4 / 3;
+  }
+
+  i.light {
+    border-bottom: 1px solid var(--line);
+  }
+
+  div {
+    padding: 0.6rem 0.75rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  b {
+    display: block;
+    color: var(--ink);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    div {
+      font-size: 0.75rem;
+    }
+
+    b {
+      font-size: 0.8rem;
+    }
+  }
+</style>

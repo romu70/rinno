@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Novyspec — Proposition de refonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="redesign.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#">Romuald Tisserand <span>— Product &amp; Design</span></a>
+    <nav class="topnav" aria-label="Principale"><a href="#">Accueil</a><a href="#" aria-current="page">Pro</a><a href="#">Perso</a></nav>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <nav aria-label="Fil d'Ariane"><ol class="crumbs"><li><a href="#">Accueil</a></li><li><a href="#">Projets professionnels</a></li><li aria-current="page">Novyspec</li></ol></nav>
+    <p class="eyebrow">Industrie · Inspection terrain · 2017 — 2018</p>
+    <h1>Novyspec</h1>
+    <p class="lede">Une application d'inspection industrielle conçue à partir d'une feuille blanche — <em>et mon pivot de la tech vers le produit et le design.</em></p>
+    <dl class="meta">
+      <div><dt>Rôle</dt><dd>Product Manager &amp; Designer</dd></div>
+      <div><dt>Équipe</dt><dd>10 personnes</dd></div>
+      <div><dt>Durée</dt><dd>2 ans</dd></div>
+      <div><dt>Issue</dt><dd>Non commercialisé</dd></div>
+    </dl>
+    <div class="cover"><img src="../../src/assets/pro/novyspec/hero.png" width="1168" height="800" alt="Maquettes de l'application d'inspection Novyspec" /></div>
+    <div class="figures">
+      <div class="fig"><div class="fig-n">4</div><p class="fig-l">verticales métier qualifiées</p></div>
+      <div class="fig"><div class="fig-n">PWA</div><p class="fig-l">conçue de A à Z</p></div>
+      <div class="fig"><div class="fig-n">Tech → UX</div><p class="fig-l">transformation de l'équipe</p></div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <aside class="rail" aria-label="Sommaire">
+      <p>Sommaire</p>
+      <ol>
+        <li><a href="#contexte"><span>01</span>Contexte</a></li>
+        <li><a href="#enjeux"><span>02</span>Enjeux</a></li>
+        <li><a href="#realisations"><span>03</span>Réalisations</a>
+          <ol class="sub">
+            <li><a href="#persona">Proto-persona</a></li>
+            <li><a href="#ui">UI &amp; design system</a></li>
+            <li><a href="#app">App d'inspection</a></li>
+            <li><a href="#formulaire">Concepteur de formulaire</a></li>
+            <li><a href="#epi">Étude EPI</a></li>
+          </ol>
+        </li>
+        <li><a href="#discovery"><span>04</span>Discovery</a>
+          <ol class="sub">
+            <li><a href="#climatiseurs">Climatiseurs</a></li>
+            <li><a href="#agro">Agroalimentaire</a></li>
+          </ol>
+        </li>
+        <li><a href="#bilan"><span>05</span>Succès &amp; échecs</a></li>
+        <li><a href="#enseignements"><span>06</span>Enseignements</a></li>
+      </ol>
+    </aside>
+
+    <div class="content">
+
+      <!-- 01 -->
+      <section class="chapter" id="contexte">
+        <p class="chapter-num">01</p>
+        <h2>Contexte</h2>
+        <p class="intro">Après plusieurs années dans des fonctions techniques, Novyspec m'accorde sa confiance pour mener la conception de sa nouvelle application d'inspection industrielle, en parallèle de ma formation UX Design aux Gobelins.</p>
+        <p style="margin-top:20px">L'équipe venait d'un produit similaire, mais d'une technologie obsolète et sans approche centrée sur l'utilisateur. Nous devions développer une nouvelle solution, en repartant d'une feuille blanche.</p>
+        <p class="statement"><small>Pourquoi ce projet compte</small>Ce produit n'a pas vu le jour, mais il m'a donné les fondations pour réussir ensuite chez Smart-Rx et Meditect.</p>
+      </section>
+
+      <!-- 02 -->
+      <section class="chapter" id="enjeux">
+        <p class="chapter-num">02</p>
+        <h2>Enjeux</h2>
+        <div class="duo">
+          <div class="card"><h4>Structuration méthodologique</h4><p>Mettre en place la bonne méthodologie et les bons outils pour concevoir le produit avec une approche produit et design rigoureuse, au sein d'une équipe très orientée tech.</p></div>
+          <div class="card"><h4>Conception UX</h4><p>Concevoir une application d'inspection industrielle moderne, pensée pour les entreprises, et capable d'interagir avec son écosystème d'objets connectés.</p></div>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section class="chapter" id="realisations">
+        <p class="chapter-num">03</p>
+        <h2>Réalisations produit</h2>
+
+        <h3 id="persona" style="margin-top:0">Recherche &amp; proto-persona</h3>
+        <p>L'équipe ayant déjà réalisé une solution d'inspection industrielle, mon objectif était de l'aider à formaliser la connaissance utilisateur acquise. Pour que tout le monde soit au même niveau, et parce que nous n'avions pas accès aux utilisateurs au démarrage du projet.</p>
+        <div class="grid-2">
+          <figure><button class="frame crop r-4x3" type="button"><img src="../../src/assets/pro/novyspec/persona-1.jpeg" width="1600" height="1200" alt="L'équipe en atelier persona" loading="lazy" /></button><figcaption>L'équipe en atelier persona</figcaption></figure>
+          <figure><button class="frame crop r-4x3" type="button"><img src="../../src/assets/pro/novyspec/persona.png" width="1600" height="1127" alt="Le proto-persona finalisé" loading="lazy" style="object-position: top" /></button><figcaption>Le proto-persona finalisé</figcaption></figure>
+        </div>
+        <p style="margin-top:20px">Un atelier de 2 heures nous a permis de consolider la connaissance acquise pendant plusieurs années.</p>
+
+        <!-- ex-accordion 1 → 2-step process -->
+        <div class="process" data-steps>
+          <div class="process-head">
+            <h4>L'atelier persona, étape par étape</h4>
+            <div class="steps n2" role="tablist" aria-label="Étapes de l'atelier persona">
+              <button class="step" role="tab" id="pa1" aria-controls="pp1"><b>Étape 1</b><span>Empathy map</span></button>
+              <button class="step" role="tab" id="pa2" aria-controls="pp2"><b>Étape 2</b><span>Mise en commun</span></button>
+            </div>
+          </div>
+          <div class="step-panel" role="tabpanel" id="pp1" aria-labelledby="pa1">
+            <figure><button class="frame pad" type="button"><img src="../../src/assets/pro/novyspec/empathy-map.png" width="1600" height="1108" alt="Modèle d'empathy map utilisé" loading="lazy" /></button></figure>
+            <div><p>Un modèle d'empathy map a été distribué à chaque membre de l'équipe, ainsi que des post-it.</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+          </div>
+          <div class="step-panel" role="tabpanel" id="pp2" aria-labelledby="pa2" hidden>
+            <figure><button class="frame crop r-4x3" type="button"><img src="../../src/assets/pro/novyspec/persona-4.jpeg" width="1600" height="1280" alt="Regroupement des post-it du persona" loading="lazy" /></button></figure>
+            <div><p>La mise en commun des post-it a permis de regrouper les informations et de définir notre persona « inspecteur ».</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+          </div>
+        </div>
+
+        <h3 id="ui">UI &amp; design system</h3>
+        <p><strong>Choix d'une librairie UI.</strong> Nos critères : compatible ReactJs, maintenue, communauté active, documentation claire et personnalisable. Candidates : <a href="https://semantic-ui.com/">Semantic UI</a>, <a href="https://material.io/">Material UI</a> et <a href="https://ant.design/">Ant Design</a>. Notre choix : <strong>Ant Design</strong>.</p>
+        <p><strong>Design system :</strong> un design system préliminaire, mené en parallèle de la conception du produit, sur la base de la couleur orange du logo de Novyspec.</p>
+        <figure class="wide"><button class="frame dark" type="button"><img src="../../src/assets/pro/novyspec/ds.png" width="1257" height="540" alt="Design system préliminaire" loading="lazy" /></button><figcaption>Design system préliminaire</figcaption></figure>
+
+        <h3 id="app">Conception de l'application d'inspection</h3>
+        <p>L'application s'appuie sur la connaissance accumulée par l'équipe avec la solution précédente. Le userflow présente le fonctionnement général ; les écrans vides accueillent les formulaires métiers.</p>
+        <p>La validation d'une tâche se fait en 2 temps : <em>Complete</em>, puis <em>Validate</em>. Cette <strong>friction</strong> volontaire évite les erreurs de manipulation induites par les interfaces tactiles.</p>
+        <figure class="wide"><button class="frame dark" type="button"><img src="../../src/assets/pro/novyspec/navigation.png" width="1600" height="1109" alt="Userflow général de l'application" loading="lazy" /></button><figcaption>Userflow général</figcaption></figure>
+
+        <!-- ex-accordion 2 → 4-step process -->
+        <div class="process" data-steps>
+          <div class="process-head">
+            <h4>De l'atelier au design final</h4>
+            <div class="steps" role="tablist" aria-label="Étapes de conception d'une tâche">
+              <button class="step" role="tab" id="ca1" aria-controls="cp1"><b>01</b><span>Atelier tâche</span></button>
+              <button class="step" role="tab" id="ca2" aria-controls="cp2"><b>02</b><span>Tâche finalisée</span></button>
+              <button class="step" role="tab" id="ca3" aria-controls="cp3"><b>03</b><span>Wireframes</span></button>
+              <button class="step" role="tab" id="ca4" aria-controls="cp4"><b>04</b><span>UI finale</span></button>
+            </div>
+          </div>
+          <div class="step-panel" role="tabpanel" id="cp1" aria-labelledby="ca1">
+            <figure><button class="frame crop r-4x3" type="button"><img src="../../src/assets/pro/novyspec/task.png" width="1200" height="900" alt="Atelier de conception d'une tâche avec des éléments de UI papier" loading="lazy" /></button></figure>
+            <div><p>Seuls les formulaires d'inspection sont spécifiques à un métier. J'ai sollicité des utilisateurs « proxies » pour concevoir une tâche telle qu'elle apparaît dans l'application.</p><p>Avec des éléments de UI papier, ils proposaient ce qui faisait sens pour eux dans une « tâche ».</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+          </div>
+          <div class="step-panel" role="tabpanel" id="cp2" aria-labelledby="ca2" hidden>
+            <figure><button class="frame pad" type="button"><img src="../../src/assets/pro/novyspec/task-final.png" width="512" height="366" alt="Design finalisé d'une tâche" loading="lazy" /></button></figure>
+            <div><p>Après mise en commun des propositions, j'avais les éléments nécessaires pour concevoir une tâche.</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+          </div>
+          <div class="step-panel" role="tabpanel" id="cp3" aria-labelledby="ca3" hidden>
+            <figure><button class="frame pad" type="button"><img src="../../src/assets/pro/novyspec/wireframes.png" width="1188" height="874" alt="Wireframes de l'application" loading="lazy" /></button></figure>
+            <div><p>Les wireframes ont nourri la réflexion sur le parcours : ici la vue des tâches et une tâche ouverte.</p><p>Ils ont été animés dans un prototype InVision, et testés avec des utilisateurs « proxies ».</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+          </div>
+          <div class="step-panel" role="tabpanel" id="cp4" aria-labelledby="ca4" hidden>
+            <figure><button class="frame pad" type="button"><img src="../../src/assets/pro/novyspec/ui.png" width="1600" height="699" alt="UI finalisée" loading="lazy" /></button></figure>
+            <div><p>Les résultats des tests des wireframes ont été analysés et intégrés dans la conception finale.</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+          </div>
+        </div>
+
+        <h3 id="formulaire">Conception du concepteur de formulaire</h3>
+        <p>Le concepteur de formulaire définit le contenu des campagnes d'inspection. Il n'est utilisé qu'au bureau.</p>
+        <p>Une session d'idéation selon le modèle 6-to-1 a dégagé des pistes pour le design final des écrans.</p>
+        <div class="grid-2">
+          <figure><button class="frame crop r-4x3" type="button"><img src="../../src/assets/pro/novyspec/6-to-1.jpg" width="1600" height="1424" alt="Idéation 6-to-1" loading="lazy" /></button><figcaption>Idéation 6-to-1</figcaption></figure>
+          <figure><button class="frame crop r-4x3" type="button"><img src="../../src/assets/pro/novyspec/editor.jpg" width="1200" height="800" alt="Éditeur de formulaire" loading="lazy" style="object-position: top" /></button><figcaption>Éditeur de formulaire</figcaption></figure>
+        </div>
+
+        <h3 id="epi">Étude de la détection du port des EPI</h3>
+        <p>Une étude d'environ 3 mois, menée dans le cadre de mon mémoire professionnel aux Gobelins.</p>
+        <dl class="facts">
+          <div><dt>Enjeu business</dt><dd>Si notre produit détecte le port des EPI (Équipements de Protection Individuelle), nous contribuons à faire baisser la prime d'assurance de nos clients.</dd></div>
+          <div><dt>Méthodologie</dt><dd>Étudier différents scénarios pour intégrer cette détection dans l'application d'inspection.</dd></div>
+        </dl>
+        <div class="options">
+          <article class="option">
+            <span class="lvl">Scénario minimal</span>
+            <h4>Balayage visuel</h4>
+            <p>Balayage visuel du corps avec ses EPI, et analyse d'image.</p>
+            <p class="res"><b>Résultat</b>Manipulations de la tablette inconfortables pour les testeurs.</p>
+          </article>
+          <article class="option picked">
+            <span class="badge">Le plus simple</span>
+            <span class="lvl">Scénario intermédiaire</span>
+            <h4>Capture de QR-Code</h4>
+            <p>Capture de QR-Codes apposés sur les EPI.</p>
+            <p class="res"><b>Résultat</b>Le plus simple à mettre en œuvre. La difficulté se reporte sur la pose de QR-Codes robustes, non testée.</p>
+          </article>
+          <article class="option">
+            <span class="lvl">Scénario maximal</span>
+            <h4>EPI connectés (BLE)</h4>
+            <p>Détection d'EPI connectés en Bluetooth Low Energy.</p>
+            <p class="res"><b>Résultat</b>Marché balbutiant : quelques chaussures prototypes, insuffisantes pour les exigences de sécurité.</p>
+          </article>
+        </div>
+        <figure class="wide"><button class="frame" type="button"><img src="../../src/assets/pro/novyspec/epi.png" width="1199" height="600" alt="Étude de la détection des EPI via QR-Code" loading="lazy" /></button><figcaption>Scénario intermédiaire : détection des EPI via QR-Code</figcaption></figure>
+      </section>
+
+      <!-- 04 -->
+      <section class="chapter" id="discovery">
+        <p class="chapter-num">04</p>
+        <h2>Discovery multi-verticales</h2>
+        <p class="intro">Une phase d'exploration des opportunités de marché : plusieurs verticales métier étudiées, dont deux présentées ici.</p>
+
+        <div class="case-block" id="climatiseurs">
+          <p class="kicker">Verticale 1</p>
+          <h3>Contrôle qualité de climatiseurs industriels</h3>
+          <p>J'ai suivi pendant une matinée Ludovic, chargé de vérifier la conformité des climatiseurs industriels en sortie de chaîne de fabrication.</p>
+          <div class="grid-2">
+            <figure><button class="frame crop r-3x4" type="button"><img src="../../src/assets/pro/novyspec/clim1.jpg" width="900" height="1200" alt="Vérification des circuits hydrauliques" loading="lazy" /></button><figcaption>Vérification des circuits hydrauliques</figcaption></figure>
+            <figure><button class="frame crop r-3x4" type="button"><img src="../../src/assets/pro/novyspec/clim2.jpg" width="900" height="1200" alt="Vérification des circuits électroniques" loading="lazy" /></button><figcaption>Vérification des circuits électroniques</figcaption></figure>
+          </div>
+          <p style="margin-top:20px">Avec les informations collectées, j'ai modélisé le user journey de Ludovic, et présenté ce parcours à l'équipe.</p>
+          <figure class="wide"><button class="frame" type="button"><img src="../../src/assets/pro/novyspec/clim-uj.png" width="1600" height="906" alt="User journey de Ludovic" loading="lazy" /></button><figcaption>User journey de Ludovic</figcaption></figure>
+          <p class="note end"><strong>Fin du projet.</strong> Notre produit aurait pu grandement améliorer l'efficacité du travail de Ludovic, mais aucun budget n'était disponible.</p>
+        </div>
+
+        <div class="case-block" id="agro">
+          <p class="kicker">Verticale 2</p>
+          <h3>Contrôle du nettoyage dans une usine agroalimentaire</h3>
+          <p>Avec une consultante experte de l'usine, nous devions proposer une solution pour contrôler la prestation de nettoyage, qui change (fréquence, opérations, produits) au gré de la production.</p>
+          <div class="process" data-steps>
+            <div class="process-head">
+              <h4>Deux étapes</h4>
+              <div class="steps n2" role="tablist" aria-label="Étapes de la verticale agroalimentaire">
+                <button class="step" role="tab" id="aa1" aria-controls="ap1"><b>Étape 1</b><span>Workflow</span></button>
+                <button class="step" role="tab" id="aa2" aria-controls="ap2"><b>Étape 2</b><span>Idéation</span></button>
+              </div>
+            </div>
+            <div class="step-panel" role="tabpanel" id="ap1" aria-labelledby="aa1">
+              <figure><button class="frame" type="button"><img src="../../src/assets/pro/novyspec/netagro.png" width="1600" height="1033" alt="Modélisation du nettoyage de l'usine agroalimentaire" loading="lazy" /></button></figure>
+              <div><p>Modélisation des enjeux du nettoyage dans l'usine. Plusieurs échanges avec la consultante ont été nécessaires pour comprendre les flux d'information et les besoins de l'entreprise.</p><div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div></div>
+            </div>
+            <div class="step-panel" role="tabpanel" id="ap2" aria-labelledby="aa2" hidden>
+              <figure><button class="frame crop r-3x4" type="button"><img src="../../src/assets/pro/novyspec/netagro2.jpg" width="1152" height="1600" alt="Idéation de scénario avec bracelets NFC" loading="lazy" /></button></figure>
+              <div>
+                <p>Une tablette dans chaque salle à nettoyer, un bracelet NFC pour chaque opérateur :</p>
+                <ol class="numbered">
+                  <li>En entrant, l'opérateur passe son bracelet devant la tablette.</li>
+                  <li>La tablette l'identifie et affiche les instructions de nettoyage.</li>
+                  <li>Il n'a plus qu'à nettoyer selon les instructions.</li>
+                </ol>
+                <div class="step-nav"><button type="button" data-prev>← Précédent</button><button type="button" data-next>Suivant →</button></div>
+              </div>
+            </div>
+          </div>
+          <p class="note end"><strong>Fin du projet.</strong> L'usine a refusé ce scénario par crainte d'une contamination bactérienne induite par l'introduction de tablettes dans les salles à nettoyer.</p>
+        </div>
+      </section>
+
+      <!-- 05 (ex-accordion 3) -->
+      <section class="chapter" id="bilan">
+        <p class="chapter-num">05</p>
+        <h2>Succès &amp; échecs</h2>
+        <div class="outcomes">
+          <div class="card yes">
+            <h4>Réussites</h4>
+            <ul>
+              <li><strong>Design system</strong> conçu et intégré dans tous les designs de l'application.</li>
+              <li><strong>Application conçue de A à Z</strong> avec une méthodologie aussi rigoureuse que le contexte le permettait.</li>
+              <li><strong>4 verticales métier</strong> explorées et qualifiées.</li>
+            </ul>
+          </div>
+          <div class="card no">
+            <h4>Échecs</h4>
+            <ul>
+              <li><strong>Application partiellement développée</strong>, jamais mise en production.</li>
+              <li><strong>Échec business</strong> : product market fit non trouvé, aucun contrat signé.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 -->
+      <section class="chapter" id="enseignements">
+        <p class="chapter-num">06</p>
+        <h2>Enseignements clés</h2>
+        <div class="learn n3">
+          <article><span class="n">01</span><h3>Rigueur méthodologique</h3><p>Appliquée ensuite avec succès chez Smart-Rx et Meditect.</p></article>
+          <article><span class="n">02</span><h3>Travailler dans l'incertitude</h3><p>Une capacité qui m'a beaucoup servi chez Meditect.</p></article>
+          <article><span class="n">03</span><h3>Étudier le marché d'abord</h3><p>Avant de passer à la technique.</p></article>
+        </div>
+        <p style="margin-top:32px"><strong>Pourquoi l'échec ?</strong> Une équipe déjà expérimentée sur une solution de niche proche pouvait faire croire que cette offre répondait à un problème. Les verticales explorées avaient de réels besoins, mais pas le budget pour lancer le produit.</p>
+        <p class="statement"><small>La leçon</small>La discovery ne sert pas qu'à concevoir : elle sert d'abord à explorer s'il y a un marché pour résoudre le problème identifié.</p>
+      </section>
+
+      <section class="appendix" aria-label="Mots-clés">
+        <h4>Mots-clés</h4>
+        <ul class="tags"><li>User Research</li><li>UX Design</li><li>Design System</li><li>Ant Design</li><li>React Js</li><li>Prototypage mobile</li><li>Mobile</li><li>Sketch</li><li>Gobelins</li></ul>
+      </section>
+
+      <nav class="pager" aria-label="Projets">
+        <a class="prev" href="#"><div><small>Plus récente</small><strong>Smart-Rx</strong></div><span class="arrow" aria-hidden="true">←</span></a>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="foot"><div class="foot-in"><span>© 2026 — Tous droits réservés</span><a href="#">Mentions légales</a></div></footer>
+
+<dialog class="lb" id="lb" aria-label="Image agrandie"><button type="button" class="close" aria-label="Fermer">×</button><img alt="" /><p></p></dialog>
+<script src="redesign.js"></script>
+</body>
+</html>

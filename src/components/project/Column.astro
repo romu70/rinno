@@ -1,10 +1,14 @@
 ---
-// Column component - content block with optional title
+// Column: a content block with an optional title.
+// Several Columns in a Section sit side by side from 768px.
+// layout="wide-narrow" (≈ 2.2fr / 1fr) puts a desktop screenshot next to a
+// mobile one when its children are two figures.
 interface Props {
   title?: string;
   fullWidth?: boolean;
   alignWithContent?: boolean;
   headingLevel?: "h2" | "h3" | "h4";
+  layout?: "stack" | "wide-narrow";
 }
 
 const {
@@ -12,6 +16,7 @@ const {
   fullWidth = false,
   alignWithContent = false,
   headingLevel = "h3",
+  layout = "stack",
 } = Astro.props;
 const HeadingTag = headingLevel;
 // Only apply align-with-content class when there's no title
@@ -21,46 +26,54 @@ const shouldAlignContent = alignWithContent && !title;
 <div
   class:list={[
     "column",
-    { "full-width": fullWidth, "align-with-content": shouldAlignContent },
+    {
+      "full-width": fullWidth,
+      "align-with-content": shouldAlignContent,
+    },
   ]}
 >
   {title && <HeadingTag>{title}</HeadingTag>}
-  <div class="column-content">
+  <div class:list={["column-content", layout]}>
     <slot />
   </div>
 </div>
 
 <style>
   .column {
-    display: flex;
-    flex-direction: column;
+    min-width: 0;
   }
 
   .column.full-width {
     flex: 1 1 100% !important;
   }
 
-  .column.align-with-content > .column-content {
-    /* Add top padding to align with sibling column content (after heading) */
-    padding-top: 4.7rem;
-  }
-
-  @media (max-width: 768px) {
-    .column.align-with-content > .column-content {
-      padding-top: 0rem;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .column.align-with-content > .column-content {
-      padding-top: 5.15rem;
-    }
+  .column > h2,
+  .column > h3,
+  .column > h4 {
+    margin-top: 0;
   }
 
   .column-content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-    flex: 1;
+    align-content: start;
+  }
+
+  .column-content > :global(*) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 768px) {
+    .column.align-with-content > .column-content {
+      /* Align with a sibling column's content (below its heading) */
+      padding-top: 3.25rem;
+    }
+
+    .column-content.wide-narrow {
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: end;
+    }
   }
 </style>

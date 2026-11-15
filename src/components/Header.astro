@@ -1,77 +1,190 @@
 ---
-// Header avec navigation principale
+// Sticky top bar: name on the left, main navigation on the right.
+interface Props {
+  /** Show a 2px reading-progress bar (project pages only) */
+  progress?: boolean;
+}
+
+const { progress = false } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+const links = [
+  { href: "/", label: "Accueil", active: currentPath === "/" },
+  { href: "/pro", label: "Pro", active: currentPath.startsWith("/pro") },
+  { href: "/perso", label: "Perso", active: currentPath.startsWith("/perso") },
+];
 ---
 
-<header>
-  <nav class="glass-effect">
-    <a href="/" class:list={["nav-link", { active: currentPath === "/" }]}>Accueil</a>
-    <a href="/pro" class:list={["nav-link", { active: currentPath.startsWith("/pro") }]}
-      >Pro</a
+<header class="topbar" data-topbar>
+  <div class="topbar-in">
+    <a class="brand" href="/"
+      >Romuald Tisserand <span>— Product &amp; Design</span></a
     >
-    <a href="/perso" class:list={["nav-link", { active: currentPath.startsWith("/perso") }]}
-      >Perso</a
-    >
-  </nav>
+    <nav aria-label="Principale">
+      <ul>
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} aria-current={l.active ? "page" : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  {progress && <div class="progress" data-progress aria-hidden="true" />}
 </header>
 
+<script>
+  const bar = document.querySelector<HTMLElement>("[data-topbar]");
+  const prog = document.querySelector<HTMLElement>("[data-progress]");
+  // Expose the header height so sticky elements can sit right under it
+  const setHeight = () => {
+    if (bar)
+      document.documentElement.style.setProperty(
+        "--header-h",
+        `${bar.offsetHeight}px`,
+      );
+  };
+  setHeight();
+  addEventListener("resize", setHeight, { passive: true });
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const h = document.documentElement;
+    bar?.classList.toggle("scrolled", h.scrollTop > 8);
+    if (prog) {
+      const max = Math.max(1, h.scrollHeight - h.clientHeight);
+      prog.style.transform = `scaleX(${Math.min(1, h.scrollTop / max)})`;
+    }
+  };
+  addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true },
+  );
+  update();
+</script>
+
 <style>
-  header {
-    position: fixed;
+  .topbar {
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
-    z-index: 1000;
+    z-index: 50;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
   }
 
-  nav {
+  .topbar:global(.scrolled) {
+    border-bottom-color: var(--line);
+  }
+
+  .topbar-in {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 1rem var(--gutter);
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    padding: 1rem 2rem;
-    border-top: none;
-    border-radius: 0 0 var(--radius) var(--radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    gap: 1.5rem;
   }
 
-  a {
-    font-size: 1.5rem;
-    color: var(--color-dark);
+  .brand {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .brand span {
+    display: none;
+    color: var(--muted);
     font-weight: 500;
   }
 
-  a.active {
-    color: var(--color-dark);
-    font-style: italic;
-    text-decoration: underline;
+  ul {
+    display: flex;
+    gap: 1.15rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  /* Responsive mobile */
-  @media (max-width: 768px) {
-    header {
-      padding: 0;
+  nav a {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 1.5px solid transparent;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  nav a:hover {
+    color: var(--ink);
+  }
+
+  nav a[aria-current="page"] {
+    color: var(--ink);
+    border-bottom-color: var(--accent-deco);
+  }
+
+  .progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--accent-deco);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @media (min-width: 768px) {
+    .topbar-in {
+      padding: 1.1rem var(--gutter);
     }
 
-    nav {
-      gap: 1rem;
-      padding: 0.75rem 1.5rem;
+    .brand {
+      font-size: 0.875rem;
+    }
+
+    .brand span {
+      display: inline;
+    }
+
+    ul {
+      gap: 1.75rem;
+    }
+
+    nav a {
+      font-size: 0.75rem;
     }
   }
 
-  /* Responsive large screens */
   @media (min-width: 1440px) {
-    header {
-      padding: 0;
-    }
-
-    nav {
-      gap: 3rem;
-      padding: 1.25rem 2.5rem;
+    .topbar-in {
+      padding: 1.1rem var(--gutter);
     }
   }
 </style>
