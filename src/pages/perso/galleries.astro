@@ -14,9 +14,9 @@ import Learning from "../../components/project/Learning.astro";
 
 import heroImage from "../../assets/perso/galleries/hero.jpg";
 import userJourney1 from "../../assets/perso/galleries/user-journey.png";
-import userJourney2 from "../../assets/perso/galleries/user-journey-2.png";
-import mobile from "../../assets/perso/galleries/mobile.png";
-import widescreen from "../../assets/perso/galleries/widescreen.png";
+import userJourney2 from "../../assets/perso/galleries/user-journey-2.jpg";
+import mobile from "../../assets/perso/galleries/mobile.jpg";
+import widescreen from "../../assets/perso/galleries/widescreen.jpg";
 import skill from "../../assets/perso/galleries/skill.png";
 
 const chapters = [
@@ -72,6 +72,10 @@ const chapters = [
         <li>Créer une galerie performante et esthétique</li>
         <li>Gérer efficacement de nombreuses images</li>
         <li>Approfondir l'approche composants en web</li>
+        <li>
+          M'appuyer sur les capacités de l'IA agentique pour faciliter
+          traitement et publication
+        </li>
       </ul>
       <p class="card-end">
         Bien sûr, la galerie devait être utilisable sur téléphone et sur écran
@@ -97,7 +101,14 @@ const chapters = [
   </Section>
 
   <!-- 03 -->
-  <Section id="iterations" number={3} title="Trois itérations">
+  <Section id="iterations" number={3} title="Quatre itérations">
+    <p>
+      Après une première version faite "à la main", l'IA agentique entre en
+      scène. Je cadre les problèmes, je décide, je revois les changements
+      proposés. Claude pour les réflexions, Claude Code pour développer. Je
+      supervise, une PR à la fois.
+    </p>
+    <p></p>
     <Timeline>
       <Iteration n={1} title="Construire la galerie" tool="Astro" id="it1">
         <FactGrid
@@ -106,7 +117,7 @@ const chapters = [
             {
               label: "Choix de la stack",
               value:
-                'Sur les conseils d\'un ami développeur front-end, <a href="https://www.linkedin.com/in/guillaume-denier/">Guillaume Denier</a>, j\'ai choisi Astro : génération statique, proche des standards web, approche composants accessible. Promesses tenues !',
+                "Sur les conseils d'un ami développeur front-end, <a href=\"https://www.linkedin.com/in/guillaume-denier/\">Guillaume Denier</a>, j'ai choisi Astro : génération statique, proche des standards web, approche composants accessible. Promesses tenues !",
             },
             {
               label: "Hébergement",
@@ -127,14 +138,14 @@ const chapters = [
         />
       </Iteration>
 
-      <Iteration n={2} title="Automatiser le traitement" tool="Gemini" id="it2">
+      <Iteration n={2} title="Publier depuis l'iPhone" tool="Claude" id="it2">
         <p class="trigger">Constat : la flemme</p>
         <p>
-          Les images s'accumulaient et ma motivation baissait. Modéliser mon
+          Les photos s'accumulaient et ma motivation baissait. Modéliser mon
           propre user journey m'a éclairé : ouvrir l'image, récupérer sa
           position, la chercher sur OpenStreetMap, renseigner les métadonnées
-          dans un fichier Astro, redimensionner, compresser… C'est très (trop)
-          long.
+          dans un fichier Astro, redimensionner, compresser… 5 minutes par
+          image, et tout passait par l'ordinateur.
         </p>
         <Figure
           image={userJourney1}
@@ -143,77 +154,119 @@ const chapters = [
           label="Avant"
           labelTone="no"
         />
-        <p class="trigger">Solution : Gemini</p>
+        <p class="trigger">Solution : plus d'ordinateur du tout</p>
         <p>
-          En 2 heures avec Gemini, un script qui me soulage de toute la partie
-          chronophage. Une fois les images sur mon ordinateur, il se charge des
-          traitements ; je ne renseigne plus que ce qu'il ne peut pas faire.
+          Le vrai goulot n'était pas le déploiement, déjà automatique : c'était
+          l'ordinateur. Avec Claude Code, utilisé depuis l'app Claude, j'ai
+          reconstruit toute la chaîne autour du téléphone. Un Raccourci iOS
+          envoie les photos, un skill Claude les traite et me soumet ce qu'il a
+          reconnu (lieu, date, sujet), je valide, puis je fusionne la pull
+          request sur GitHub.
         </p>
         <Figure
           image={userJourney2}
-          alt="User journey amélioré"
-          caption="User journey amélioré"
+          alt="User journey actuel"
+          caption="User journey actuel"
           label="Après"
           labelTone="yes"
+        />
+        <p class="trigger">résultat</p>
+        <p>
+          Moins d'une minute pour un lot de 5 images en général, contre 5
+          minutes par image avant. En asynchrone, à mon rythme, sans ordinateur.
+        </p>
+        <p></p>
+        <FactGrid
+          flush
+          items={[
+            {
+              label: "Garder l'humain dans la boucle",
+              value:
+                "Une session interactive où je valide les propositions de Claude, plutôt qu'un traitement entièrement automatique.",
+            },
+            {
+              label: "Rien ne traîne",
+              value:
+                "Les originaux sont supprimés après traitement, et un garde-fou empêche de les publier par erreur.",
+            },
+          ]}
         />
       </Iteration>
 
       <Iteration
         n={3}
-        title="Bonjour Claude, ça skill ?"
-        tool="Skill Claude"
+        title="Ce mur au fil du temps"
+        tool="Claude"
         id="it3"
         current
       >
-        <p class="trigger">Constat : la flemme bis</p>
+        <p class="trigger">un mur se repeint</p>
         <p>
-          Malgré le script, j'accumulais toujours les photos : il accélère le
-          process, mais pas assez pour m'inciter à publier.
+          Le street art se repeint, sur les mêmes murs, mais impossible de voir
+          l'histoire d'un mur.
         </p>
-        <Outcomes
-          yesTitle="Ce que fait le script"
-          noTitle="Ce qui restait à ma charge"
-        >
-          <Fragment slot="yes">
-            <li>Scanne le dossier inbox</li>
-            <li>Redimensionne les images</li>
-            <li>Extrait la géolocalisation et la date de prise de vue</li>
-            <li>Crée les fichiers Astro des nouvelles images</li>
-          </Fragment>
-          <Fragment slot="no">
-            <li>Transférer les photos de Downloads vers inbox</li>
-            <li>Nommer les photos</li>
-            <li>Renseigner les métadonnées</li>
-          </Fragment>
-        </Outcomes>
         <p>
-          Et comme il fallait le faire image par image, c'est là que je perdais
-          du temps.
+          Dans la vue détail d'une photo, une frise permet désormais de remonter
+          le temps sur le même mur. Une skill dédiée regroupe les photos : elle
+          compare visuellement les candidates proches, et je tranche chaque
+          groupe depuis mon téléphone.
         </p>
-        <p class="trigger">Solution : un skill Claude</p>
+        <p></p>
+        <FactGrid
+          flush
+          items={[
+            {
+              label: "Un mur, une surface",
+              value:
+                "Un pilier de pont peint sur quatre faces, c'est quatre murs.",
+            },
+            {
+              label: "Le GPS propose, je confirme",
+              value:
+                "La proximité seule ne suffit pas (murs voisins, erreurs GPS) : l'agent propose, je décide.",
+            },
+          ]}
+        />
+      </Iteration>
+      <Iteration
+        n={4}
+        title="Une page 90 fois plus légère"
+        tool="Claude"
+        id="it4"
+        current
+      >
         <p>
-          J'ai d'abord supprimé le nom des images, qui ne rimait à rien, pour
-          mettre en avant les artistes et le type des fonts. Puis, avec Claude,
-          j'ai rédigé un <a href="https://claude.com/fr/skills">skill</a> qui prend
-          en charge toute la partie pénible et répétitive :
+          Certaines visites étaient très lentes. Mesure : la page street art
+          téléchargeait ses 340 photos dès le premier chargement, soit 81,4 Mo,
+          malgré le chargement différé.
         </p>
-        <ul class="list-arrow">
-          <li>Transférer les images de Downloads vers inbox.</li>
-          <li>
-            Lancer un sous-agent qui caractérise les images, par exemple une
-            font serif ou sans-serif. Quel gain de temps !
-          </li>
-          <li>Pour le street art, identifier la signature de l'artiste.</li>
-          <li>Valider l'ajout des images.</li>
-        </ul>
         <p>
-          Au lieu de modifier chaque fichier, Claude me fait une liste de
-          propositions que je valide, amende ou refuse, en une seule passe.
+          Dans la vue détail d'une photo, une frise permet désormais de remonter
+          le temps sur le même mur. Une skill dédiée regroupe les photos : elle
+          compare visuellement les candidates proches, et je tranche chaque
+          groupe depuis mon téléphone.
         </p>
-        <Figure
-          image={skill}
-          alt="Le skill Claude en action : liste de propositions à valider"
-          caption="Le skill Claude en action"
+        <p></p>
+        <FactGrid
+          flush
+          items={[
+            {
+              label: "Les causes",
+              value:
+                '<ul class="list-arrow"><li>Les panneaux de détail cachés recouvraient l\'écran : le navigateur jugeait chaque grande image visible et la téléchargeait.</li><li>Les vignettes étaient le fichier de 1 600 px, pour un cadre de 240 à 480 px.</li></ul>',
+            },
+            {
+              label: "Les corrections",
+              value:
+                '<ul class="list-arrow"><li>Corriger la cause en CSS.</li><li>Vignettes plafonnées à 800 px : à 1 200 px, la page pesait encore 3,2 Mo sur iPhone.</li><li>Grande image chargée à l\'ouverture seulement, voisines préchargées pour garder une navigation instantanée.</li></ul>',
+            },
+            {
+              label: "Résultat",
+              wide: true,
+              value:
+                "Corrigé et fusionné le jour même. Sur iPhone 13, premier chargement : 8 images et 0,9 Mo au lieu de 81,4 Mo. Sur ordinateur : 2,1 Mo. Mesuré par un script versionné dans le dépôt, sur un build local.",
+            },
+          ]}
         />
       </Iteration>
     </Timeline>
@@ -254,22 +307,25 @@ const chapters = [
       </Learning>
       <Learning n={2}>
         <p>
-          Expérience concrète du développement augmenté par l'IA (vibe coding)
-          avec Claude et Gemini, de l'expression de besoin au script
-          fonctionnel.
+          Expérience concrète de conception et développement augmenté par l'IA
+          avec Claude. Je ne touche plus au code. Claude fait tout, sous ma
+          supervision.
         </p>
       </Learning>
       <Learning n={3}>
         <p>
           Mise en œuvre concrète de l'IA agentique : le skill Claude orchestre
-          toute la procédure d'ajout de nouvelles images.
+          toute la procédure d'ajout de nouvelles images depuis mon téléphone.
         </p>
       </Learning>
       <Learning n={4}>
         <p>
-          Rencontrer certains des artistes exposés, comme <strong>Ador</strong>,
-          <strong>Ratz One</strong> et <strong>Stend</strong>, que je remercie de
-          m'avoir autorisé à reproduire leur travail.
+          Rencontres avec certains des artistes exposés, comme <strong
+            >Ador</strong
+          >,
+          <strong>Ratz One</strong>, <strong>Stend</strong> ou <strong
+            >Tanala</strong
+          >, que je remercie de m'avoir autorisé à reproduire leur travail.
         </p>
       </Learning>
     </LearningsGrid>
