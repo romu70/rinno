@@ -26,6 +26,8 @@ interface Props {
   imageBg?: string;
   /** CSS object-position of the image, e.g. "top" */
   imagePosition?: string;
+  /** Role of AI in the project: level chip + short detail */
+  ai?: { level: string; detail?: string; none?: boolean };
 }
 
 const {
@@ -45,6 +47,7 @@ const {
   fit = "cover",
   imageBg,
   imagePosition,
+  ai,
 } = Astro.props;
 
 const line = metric ?? bottomText;
@@ -103,6 +106,14 @@ const accentStyle =
       {year && <span class="badge">{year}</span>}
     </div>
     <p class="description">{description}</p>
+    {
+      ai && (
+        <p class:list={["ai", { "ai-none": ai.none }]}>
+          <span class="ai-level">{ai.level}</span>
+          {ai.detail && <span class="ai-detail">{ai.detail}</span>}
+        </p>
+      )
+    }
     {
       (line || isClickable) && (
         <div class="card-foot">
@@ -225,6 +236,36 @@ const accentStyle =
     font-family: var(--serif);
     font-size: var(--text-sm);
     margin: 0;
+  }
+
+  .ai {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.6rem;
+    margin: 0.2rem 0 0;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+  }
+
+  .ai-level {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .ai-none .ai-level {
+    background: var(--soft);
+    color: var(--muted);
+  }
+
+  .ai-detail {
+    color: var(--muted);
   }
 
   .card-foot {
