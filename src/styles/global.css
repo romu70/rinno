@@ -336,6 +336,14 @@ dd a {
   border-radius: 999px;
 }
 
+/* Tag in the Pro colour (indigo, as on the Pro project pages) */
+.tags .tag-pro {
+  color: var(--accent-indigo);
+  background: #eeeefb;
+  border-color: var(--accent-indigo);
+  font-weight: 600;
+}
+
 /* Status chip: .chip.yes / .chip.no / .chip.neutral */
 .chip {
   display: inline-flex;
