@@ -276,16 +276,28 @@ const perRow = panels.length <= 2 ? 2 : panels.length === 3 ? 3 : 4;
 
     .steps .tablist {
       grid-template-columns: repeat(var(--per-row), minmax(0, 1fr));
+      gap: 0.75rem;
     }
 
+    /* Arrow between step cards: a small disc straddling the gap */
     .steps .tab:not(:last-child)::after {
       content: "→";
       position: absolute;
-      right: -0.6rem;
+      right: -1.25rem; /* centred in the 0.75rem gap */
       top: 50%;
       transform: translateY(-50%);
-      font-size: 0.75rem;
-      color: #8a8aa3;
+      display: grid;
+      place-items: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--accent);
+      box-shadow: 0 1px 3px rgb(10 10 20 / 0.08);
       z-index: 1;
     }
 

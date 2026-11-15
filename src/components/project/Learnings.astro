@@ -174,7 +174,7 @@ const { variant = "default", caption, fullWidth = false } = Astro.props;
   .note :global(strong),
   .end :global(strong) {
     color: #4a1622;
-    font-size: 1.15rem;
+    font-size: var(--text-sm);
   }
 
   .end > :global(:first-child)::before {

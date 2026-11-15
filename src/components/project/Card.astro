@@ -24,7 +24,7 @@ const { title, class: className } = Astro.props;
 
   .card :global(p),
   .card :global(li) {
-    font-size: 1.15rem;
+    font-size: var(--text-sm);
   }
 
   .card > :global(:last-child) {

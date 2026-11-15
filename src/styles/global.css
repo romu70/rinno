@@ -122,6 +122,9 @@
   --prose: 46rem; /* reading width */
   --gutter: 1.25rem;
   --header-h: 3.6rem;
+  /* Text sizes: body copy, and secondary copy in cards, panels, learnings */
+  --text: 1.2rem;
+  --text-sm: 1.1rem;
 
   /* Legacy names, kept as aliases so older markup keeps working */
   --color-lightest: #fafafa;
@@ -178,7 +181,7 @@ body {
   color: var(--body);
   font-family: var(--serif);
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: var(--text);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
@@ -315,9 +318,10 @@ dd a {
 }
 
 /* Lede-sized paragraph */
+/* Lead paragraph: same size as body copy, darker */
 .intro {
-  font-size: 1.3rem;
-  line-height: 1.45;
+  font-size: inherit;
+  line-height: 1.5;
   color: var(--ink);
 }
 
@@ -509,12 +513,9 @@ ol.numbered li::before {
     --gutter: 2rem;
   }
 
-  body {
-    font-size: 1.3rem;
-  }
-
-  .intro {
-    font-size: 1.45rem;
+  :root {
+    --text: 1.45rem;
+    --text-sm: 1.3rem;
   }
 }
 

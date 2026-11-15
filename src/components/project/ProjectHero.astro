@@ -100,7 +100,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
   }
 
   h1 {
-    font-size: clamp(3.3rem, 9vw, 7.5rem);
+    font-size: clamp(3.3rem, 7vw, 5.55rem); /* max 100px at 18px root */
     line-height: 0.92;
     letter-spacing: -0.045em;
     overflow-wrap: anywhere;
@@ -128,7 +128,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
 
   .meta dt {
     font-family: var(--sans);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -138,14 +138,14 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
 
   .meta dd {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: var(--text);
     line-height: 1.35;
     color: var(--ink);
   }
 
   .meta a {
     font-family: var(--sans);
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--accent);
     text-decoration: none;
@@ -202,9 +202,4 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
     }
   }
 
-  @media (min-width: 1440px) {
-    .meta dd {
-      font-size: 1.1rem;
-    }
-  }
 </style>

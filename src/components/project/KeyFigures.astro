@@ -49,7 +49,7 @@ const { figures = [] } = Astro.props;
   .kf-n {
     font-family: var(--sans);
     font-weight: 600;
-    font-size: clamp(2.25rem, 4.4vw, 3.5rem);
+    font-size: clamp(2.25rem, 4vw, 3.05rem); /* max 55px at 18px root */
     letter-spacing: -0.04em;
     line-height: 1;
     color: var(--ink);
@@ -64,7 +64,7 @@ const { figures = [] } = Astro.props;
 
   .kf-l {
     margin-top: 0.6rem;
-    font-size: 1.15rem;
+    font-size: var(--text-sm);
     line-height: 1.35;
     color: var(--muted);
   }
