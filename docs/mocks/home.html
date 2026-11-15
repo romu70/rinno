@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Accueil — Proposition de refonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="redesign.css" />
+<style>
+  /* Mirrors the type tweaks shipped on the project pages (h1 ≤ 100px, intro = body size) */
+  .hero h1 { font-size: clamp(48px, 7.4vw, 100px); }
+
+  /* ── Home hero ─────────────────────── */
+  .home-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 32px; }
+  .portrait { width: 9.5rem; }
+  .portrait-frame { aspect-ratio: 1; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--soft); }
+  .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+  .portrait figcaption { font-size: 11px; margin-top: 8px; }
+  .portrait figcaption a { color: var(--muted); }
+  .pitch p { max-width: var(--prose); }
+  .pitch .lede { margin-top: 20px; }
+  .pitch .lede strong { color: var(--ink); font-weight: 600; }
+  .pitch .more { margin-top: 16px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-family: var(--sans); font-size: 14px; font-weight: 600; text-decoration: none; transition: transform .2s, background .2s, border-color .2s, color .2s; }
+  .btn span { transition: transform .2s; }
+  .btn:hover span { transform: translateX(4px); }
+  /* Theme colour by default (pro = indigo, perso = coral); on hover the colours swap, the coloured border stays */
+  .btn.primary { --c: #4040CC; }
+  .btn.secondary { --c: #B8344F; }
+  .btn.primary, .btn.secondary { background: var(--c); color: #fff; border: 2px solid var(--c); padding: 12px 20px; }
+  .btn.primary:hover, .btn.secondary:hover { background: var(--surface); color: var(--c); }
+  .home-hero .meta { margin-top: 40px; }
+  @media (min-width: 768px) {
+    .home-hero { padding-top: 56px; }
+    .portrait { width: 12rem; }
+  }
+  @media (min-width: 1200px) {
+    .home-hero { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 72px; align-items: start; padding-top: 80px; }
+    .portrait { order: 2; width: 100%; max-width: 26rem; justify-self: end; margin-top: 8px; }
+    .portrait-frame { border-radius: 20px; }
+  }
+
+  /* ── Sections without chapter rail ─── */
+  .home-body { padding-top: 96px; }
+  .home-body .chapter h2 { max-width: none; }
+
+  /* ── Project cards (ProjectCard layout="stack") ── */
+  .cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .pcard { --a: #4040CC; --a-deco: #4040CC; --a-soft: #EEEEFB; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; transition: border-color .25s, transform .25s, box-shadow .25s; }
+  .pcard.perso { --a: #B8344F; --a-deco: #CC4060; --a-soft: #FBECEF; }
+  .pcard:hover { border-color: var(--a-deco); transform: translateY(-3px); box-shadow: 0 12px 32px -16px color-mix(in srgb, var(--a) 45%, transparent); }
+  .pcard-img { position: relative; aspect-ratio: 16 / 10; background: var(--soft); border-bottom: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+  .pcard-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pcard-img.logo { background: var(--surface); }
+  .pcard-img.logo img { inset: 12%; width: 76%; height: 76%; object-fit: contain; }
+  .pcard-img.dark { background: #303030; }
+  .pcard .cat { position: absolute; top: 12px; left: 12px; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--a); background: var(--a-soft); padding: 4px 10px; border-radius: 999px; }
+  .pcard-body { padding: 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .pcard-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .pcard h3 { margin: 0; font-size: 21px; transition: color .2s; }
+  .pcard:hover h3 { color: var(--a); }
+  .pcard .year { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+  .pcard p { font-size: 19px; line-height: 1.45; }
+  .pcard-foot { margin-top: auto; padding-top: 14px; display: flex; justify-content: space-between; gap: 12px; align-items: end; font-family: var(--sans); font-size: 12px; font-weight: 600; }
+  .pcard-foot .metric { color: var(--muted); }
+  .pcard-foot .go { color: var(--a); white-space: nowrap; }
+  @media (min-width: 768px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ── Parcours: two steps joined by an arrow disc ── */
+  .path { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; align-items: stretch; }
+  .path .card h3 { margin: 6px 0 10px; font-size: 21px; }
+  .path .when { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .path .card.now .when { color: var(--accent); }
+  .path .card.now { border-color: var(--accent-deco); box-shadow: 0 0 0 1px var(--accent-deco); }
+  .path .arrow { justify-self: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-family: var(--sans); font-size: 15px; transform: rotate(90deg); }
+  @media (min-width: 768px) { .path { grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr); gap: 16px; align-items: center; } .path .arrow { transform: none; } .path .card { height: 100%; } }
+
+  /* ── Skills ─────────────────────────── */
+  .skills .tags { margin-top: 14px; }
+  .skills h3 { margin: 10px 0 0; font-size: 19px; }
+
+  /* ── Contact ────────────────────────── */
+  .contact { background: var(--ink); color: #E8E8F2; border-radius: 16px; padding: 32px 24px; }
+  .contact h2 { color: #fff; margin-bottom: 12px; }
+  .contact > p { color: #C9C9DA; }
+  .contact .mail { display: inline-block; margin-top: 24px; font-family: var(--sans); font-weight: 600; font-size: clamp(22px, 3.2vw, 40px); letter-spacing: -0.03em; color: #fff; text-decoration: none; border-bottom: 2px solid #A9A9FF; padding-bottom: 4px; word-break: break-all; }
+  .contact .mail:hover { color: #A9A9FF; }
+  .contact ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .contact ul a { display: inline-flex; gap: 8px; align-items: center; font-family: var(--sans); font-size: 13px; font-weight: 600; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 9px 16px; transition: border-color .2s, background .2s; }
+  .contact ul a:hover { border-color: #A9A9FF; background: rgba(169,169,255,.1); }
+  .contact ul a span { color: #A9A9FF; }
+  @media (min-width: 768px) { .contact { padding: 56px; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#">Romuald Tisserand <span>— Product &amp; Design</span></a>
+    <nav class="topnav" aria-label="Principale"><a href="#" aria-current="page">Accueil</a><a href="#">Pro</a><a href="#">Perso</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ── Hero ─────────────────────────── -->
+  <section class="hero home-hero">
+    <figure class="portrait">
+      <div class="portrait-frame"><img src="../../src/assets/portrait.jpeg" width="600" height="600" alt="Portrait de Romuald Tisserand" /></div>
+      <figcaption>Crédit photo : <a href="https://yriss.fr/">maison Yriss</a></figcaption>
+    </figure>
+    <div class="pitch">
+      <p class="eyebrow">Product &amp; Design Leader B2B</p>
+      <h1>Romuald Tisserand</h1>
+      <p class="lede">J'ai piloté la stratégie produit d'un ERP SaaS pour les pharmacies d'Afrique subsaharienne qui a conquis <strong>5&nbsp;% de son marché en 2 ans (7 pays)</strong>.</p>
+      <p class="more">Avant ça, j'ai lancé une application Android de gestion logistique et un éditeur graphique d'étiquettes SaaS.</p>
+      <p>De la stratégie produit à l'exécution terrain, je transforme des besoins métier en solutions qui créent de la valeur.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#">Travaux professionnels <span aria-hidden="true">→</span></a>
+        <a class="btn secondary" href="#">Projets personnels <span aria-hidden="true">→</span></a>
+      </div>
+      <dl class="meta">
+        <div><dt>Email</dt><dd><a href="mailto:r@tisserand.eu">r@tisserand.eu</a></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+33666729963">+33 666 72 99 63</a></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/romutisserand/">romutisserand ↗</a></dd></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/romu70">romu70 ↗</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="home-body content">
+
+    <!-- 01 Projets -->
+    <section class="chapter" id="projets">
+      <p class="chapter-num">01</p>
+      <h2>Projets sélectionnés</h2>
+      <div class="cards">
+        <a class="pcard" href="#">
+          <div class="pcard-img logo"><img src="../../src/assets/pro/meditect/thumbnail.png" width="500" height="500" alt="" /><span class="cat">Pro</span></div>
+          <div class="pcard-body">
+            <div class="pcard-head"><h3>Meditect</h3><span class="year">2021 – 2024</span></div>
+            <p>Digitaliser la santé en Afrique subsaharienne, en commençant par les pharmacies.</p>
+            <div class="pcard-foot"><span class="metric">5 % du marché · 7 pays · en 2 ans</span><span class="go">Deep-dive →</span></div>
+          </div>
+        </a>
+        <a class="pcard perso" href="#">
+          <div class="pcard-img dark"><img src="../../src/assets/perso/galleries/thumbnail.jpg" width="600" height="600" alt="" style="object-position: top" /><span class="cat">Perso</span></div>
+          <div class="pcard-body">
+            <div class="pcard-head"><h3>Galleries</h3><span class="year">2023 – présent</span></div>
+            <p>Photographier des typographies et du street art, et faire une galerie virtuelle pour les présenter.</p>
+            <div class="pcard-foot"><span class="metric"></span><span class="go">Deep-dive →</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 02 Parcours -->
+    <section class="chapter" id="parcours">
+      <p class="chapter-num">02</p>
+      <h2>De la tech au produit</h2>
+      <div class="path">
+        <div class="card">
+          <span class="when">15 ans</span>
+          <h3>De la tech…</h3>
+          <p>Après 15 ans dans des fonctions techniques (Dev, DevOps, Infra), j'ai opéré une transition vers le product management et le design.</p>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="card now">
+          <span class="when">Depuis 2017</span>
+          <h3>…au produit</h3>
+          <p>Je définis vision et stratégie produit, et pilote leur exécution, de la discovery terrain jusqu'au déploiement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Vision -->
+    <section class="chapter" id="vision">
+      <p class="chapter-num">03</p>
+      <h2>Vision &amp; stratégie → exécution produit</h2>
+      <p>Double casquette produit/design + background tech pour :</p>
+      <ul class="arrows">
+        <li>Définir la vision en lien avec les objectifs business</li>
+        <li>Aligner les parties prenantes sur cette vision</li>
+        <li>Arbitrer entre opportunités marché et impact business</li>
+        <li>Piloter des équipes cross-fonctionnelles vers l'impact</li>
+      </ul>
+      <p class="statement"><small>Ma conviction</small>Les meilleurs produits naissent d'une obsession pour l'utilisateur, d'une rigueur méthodologique, et d'équipes alignées sur l'impact.</p>
+    </section>
+
+    <!-- 04 Compétences -->
+    <section class="chapter" id="competences">
+      <p class="chapter-num">04</p>
+      <h2>Compétences clés</h2>
+      <div class="learn n3 skills">
+        <article><span class="n">01</span><h3>Produit</h3><ul class="tags"><li>Stratégie</li><li>Roadmapping</li><li>Product Ops</li></ul></article>
+        <article><span class="n">02</span><h3>Design</h3><ul class="tags"><li>Discovery</li><li>Design Systems</li><li>Design Ops</li></ul></article>
+        <article><span class="n">03</span><h3>Leadership</h3><ul class="tags"><li>Team Building</li><li>Stakeholder Management</li><li>Mentorat</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 05 Contact -->
+    <section class="chapter" id="contact" style="padding-bottom:0">
+      <div class="contact">
+        <p class="chapter-num" style="color:#A9A9FF">05</p>
+        <h2>Pour me joindre et discuter de vos enjeux</h2>
+        <a class="mail" href="mailto:r@tisserand.eu">r@tisserand.eu</a>
+        <ul>
+          <li><a href="tel:+33666729963"><span>☎</span> +33 666 72 99 63</a></li>
+          <li><a href="https://www.linkedin.com/in/romutisserand/">LinkedIn <span>↗</span></a></li>
+          <li><a href="https://github.com/romu70">GitHub <span>↗</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot"><div class="foot-in"><span>© 2026 — Tous droits réservés</span><a href="#">Mentions légales</a></div></footer>
+<script src="redesign.js"></script>
+</body>
+</html>
