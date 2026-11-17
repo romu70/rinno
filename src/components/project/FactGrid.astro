@@ -1,8 +1,9 @@
 ---
 // Label / value facts: 1 column on mobile, 2×2 from 768px.
-// `value` may contain inline HTML (e.g. <strong>, <a>).
+// `value` may contain inline HTML (e.g. <strong>, <a>, <ul class="list-arrow">).
+// `wide` makes an item span the full row from 768px.
 interface Props {
-  items: { label: string; value: string }[];
+  items: { label: string; value: string; wide?: boolean }[];
   /** Remove the top margin (e.g. first element of a timeline item) */
   flush?: boolean;
 }
@@ -13,7 +14,7 @@ const { items, flush = false } = Astro.props;
 <dl class:list={["facts", { flush }]}>
   {
     items.map((it) => (
-      <div>
+      <div class:list={{ wide: it.wide }}>
         <dt>{it.label}</dt>
         <dd set:html={it.value} />
       </div>
@@ -59,9 +60,17 @@ const { items, flush = false } = Astro.props;
     color: var(--body);
   }
 
+  dd :global(.list-arrow) {
+    margin-top: 0;
+  }
+
   @media (min-width: 768px) {
     .facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .facts > .wide {
+      grid-column: 1 / -1;
     }
 
     dt {
